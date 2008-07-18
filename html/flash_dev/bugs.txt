@@ -1,0 +1,6 @@
+BUGS AND TO BE FIXED:
+
+001. Transparency issues in firefox
+002. Scrollbar resize issues after closing details
+003. change which image is loading in the load queue
+004. 

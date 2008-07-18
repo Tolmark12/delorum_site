@@ -1,0 +1,50 @@
+<SCHEMES>
+	
+	<firstScheme>tan</firstScheme>
+	
+	<!-- !! IMPORTANT !! -->
+	<!-- The default node must be the first node -->
+	<colorScheme id="default">
+		<colors 
+			 bg="1A1B1F"
+			 nav_up="FFFFFF"
+			 nav_hover="D4B17D"
+			 nav_active="F2CA8F"
+			 scrollbar_track="000000"
+			 scrollbar_track_border="222222"
+			 scrollbar_bar="FFFFFF"
+			 logo="FFFFFF"
+		/>
+	</colorScheme>
+	<!-- !! IMPORTANT !! -->
+	
+	
+	<colorScheme id="tan">
+		<colors 
+			 nav_hover="000000"
+			 bg="978061"
+		/>
+	</colorScheme>
+	
+	<colorScheme id="orange">
+		<colors 
+			 nav_hover="333333"
+			 nav_active="000000"
+			 bg="FF9D2E"
+		/>
+	</colorScheme>
+	
+	<colorScheme id="white">
+		<colors 
+			 bg="FFFFFF"
+			 nav_up="666666"
+			 nav_hover="FF9D2E"
+			 nav_active="000000"
+			 scrollbar_track="CCCCCC"
+			 scrollbar_track_border="AAAAAA"
+			 scrollbar_bar="FFFFFF"
+			 logo="FFFFFF"
+		/>
+	</colorScheme>
+	
+</SCHEMES>

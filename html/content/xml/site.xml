@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<site>
+	<nav xmlDir="content/xml/" >
+		<nav_item section="portfolio" contentType="portfolio" xml="sections/portfolio.xml" bg="1A1B1F" colorScheme="default">
+			<title>Our Work</title>
+		</nav_item>
+		<nav_item section="about" contentType="page" colorScheme="orange">
+			<title>About</title>
+		</nav_item>
+		<nav_item section="contact" contentType="page" colorScheme="tan">
+			<title>Contact</title>
+		</nav_item>
+	</nav>
+</site>
