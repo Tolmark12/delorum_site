@@ -97,6 +97,7 @@ public class StageMediator extends Mediator implements IMediator
 		_bgColorMc			= new Sprite();
 		_bgColorMc.graphics.beginFill( 0xFFFFFF );
 		_bgColorMc.graphics.drawRect( 0,0,10,10 );
+		_bgColorMc.y = -4000;
 		
 		_logo.y = _navSprite.y = 20;
 		_logo.addEventListener( MouseEvent.CLICK, _homeBtnClick );

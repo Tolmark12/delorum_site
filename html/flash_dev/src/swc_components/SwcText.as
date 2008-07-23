@@ -47,6 +47,8 @@ public class SwcText extends MovieClip
 	public function set textWidth ( $val:uint ):void { _textField.width = $val; _addBitmap(); };
 	public function get textWidth ():uint 			 { return _textField.textWidth; };
 	public function set size ( $size:Number ):void { _format.size = $size; _updateFormat();  };
+	public function set color ( $hex:uint ):void { _format.color = $hex; _updateFormat() };
+	public function set leading ( $leading:Number ):void {  _format.leading = $leading; _updateFormat(); };
 
 }
 

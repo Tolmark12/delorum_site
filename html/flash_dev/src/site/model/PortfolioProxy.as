@@ -9,6 +9,7 @@ import flash.events.*;
 import site.SiteFacade;
 import site.model.vo.*;
 import delorum.errors.ErrorMachine;
+import delorum.slides.SlideShow_VO;
 
 /** 
 *	This is a singleton class
@@ -80,7 +81,8 @@ public class PortfolioProxy extends Proxy implements IProxy
 			vo.frameX				= node.@frameX;
 			vo.shortDescription		= node.shortDescription.elements("*").toXMLString();
 			vo.arrayIndex			= _portfolioAr.length;
-			
+			vo.slideShow			= ( node.slideShow.length() != 0 )? new SlideShow_VO( node.slideShow, $xml.projects.@portfolioImagesDir ) : null ;
+
 			_portfolioAr.push( vo );
 		}
 		_sendInitNotification();

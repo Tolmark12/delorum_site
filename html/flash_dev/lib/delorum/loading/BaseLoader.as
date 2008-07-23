@@ -6,8 +6,14 @@ import delorum.loading.progress.BaseProgressDisplay;
 
 public class BaseLoader extends EventDispatcher
 {
+	// 
 	private static var _currentlyLoading:Boolean;
-	private static var _loadQueue:Array = new Array();
+	private static var _loadQueue:Array 		= new Array();
+	
+	// 
+	private static var _snapShotIncrament:uint  = 0;	
+	private static var _loadQueueSnapShot:Array	= new Array();
+	
 	private var _onErrorFunction:Function;
 	
 	public function BaseLoader():void

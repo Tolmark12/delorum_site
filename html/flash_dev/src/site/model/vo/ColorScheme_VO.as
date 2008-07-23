@@ -11,6 +11,9 @@ public class ColorScheme_VO
 	public var scrollbar_track_border:uint;
 	public var scrollbar_bar:uint;
 	public var logo:uint;  // TODO, Get logo to change color as well
+	public var work_h1:uint;
+	public var work_h2:uint;
+	public var work_body:uint;
 }
 
 }

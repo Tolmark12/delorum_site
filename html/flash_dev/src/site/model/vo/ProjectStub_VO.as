@@ -1,5 +1,7 @@
 package site.model.vo
 {
+	
+import delorum.slides.SlideShow_VO;
 
 public class ProjectStub_VO
 {
@@ -8,6 +10,7 @@ public class ProjectStub_VO
 	public var image			:String;
 	public var title			:String;
 	public var shortDescription	:String;
+	public var slideShow		:SlideShow_VO;
 	
 	public function set frameX ( $val:* ):void { _frameX = Number($val); };
 	public function get frameX ():Number 			{ return _frameX; };

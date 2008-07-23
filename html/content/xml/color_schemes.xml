@@ -14,6 +14,9 @@
 			 scrollbar_track_border="222222"
 			 scrollbar_bar="FFFFFF"
 			 logo="FFFFFF"
+			 work_h1="B55E1E"
+			 work_h2="220022"
+			 work_body="222222"
 		/>
 	</colorScheme>
 	<!-- !! IMPORTANT !! -->
@@ -30,7 +33,13 @@
 		<colors 
 			 nav_hover="333333"
 			 nav_active="000000"
-			 bg="FF9D2E"
+			 bg="1A1B1F"
+		/>
+	</colorScheme>
+	
+	<colorScheme id="black">
+		<colors 
+			 bg="000000"
 		/>
 	</colorScheme>
 	

@@ -12,9 +12,9 @@ import site.SiteFacade;
 public class ColorSchemeProxy extends Proxy implements IProxy
 {
 	public static const NAME:String = "color_scheme_proxy";
-	public var defaultColorScheme:ColorScheme_VO;
-	private var _colorSchemes:Object;
-	private var _currentScemeId:String;
+	public static var defaultColorScheme:ColorScheme_VO;
+	private static var _colorSchemes:Object;
+	private static var _currentScemeId:String;
 
 	public function ColorSchemeProxy( ):void
 	{
@@ -54,6 +54,10 @@ public class ColorSchemeProxy extends Proxy implements IProxy
 			_setVoParam( vo, node, "scrollbar_track_border"	);
 			_setVoParam( vo, node, "scrollbar_bar" 			);
 			_setVoParam( vo, node, "logo"					);
+			_setVoParam( vo, node, "work_h1"					);
+			_setVoParam( vo, node, "work_h2"					);
+			_setVoParam( vo, node, "work_body"					);
+			
 			
 			// Save vo
 			_colorSchemes[ node.@id ] = vo;
@@ -79,7 +83,7 @@ public class ColorSchemeProxy extends Proxy implements IProxy
 		$vo[$param] = ( String( $node.colors.@[$param]).length > 0 )? uint("0x" + $node.colors.@[$param]) : defaultColorScheme[$param] as uint ;
 	}
 	
-	public function get currentColorScheme (  ):ColorScheme_VO{ return _colorSchemes[_currentScemeId]; };
+	public static function get currentColorScheme (  ):ColorScheme_VO{ return _colorSchemes[_currentScemeId]; };
 }
 }
 

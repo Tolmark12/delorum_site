@@ -82,7 +82,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				if( _activeStub != null ) 
 					_resizeActiveStub();
 				else
-					_displayAsRibbon();
+				_displayAsRibbon();
 				_resizeScrollTrack();
 				_resizeScrollBar();
 				_updateScrollBarPosition();
@@ -96,6 +96,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_portfolioState = _FULL;
 				_activeStub.buildPage( note.getBody() as Page_VO );
 				_moveRibbonVertical();
+				_displayAsRibbon();
 				break;
 		}
 	}
@@ -120,8 +121,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			var stub_vo:ProjectStub_VO  = $stubAr[i];
 			var stub:ProjectStub		= new ProjectStub();
 			stub.make( stub_vo );
-			stub.addEventListener( ProjectStub.ACTIVATE, _handleActivateStub );
-			stub.addEventListener( ProjectStub.DE_ACTIVATE, _handleDeactivateStub );
+			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub );
+			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub );
 			stub.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest );
 			stub.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeigthChange);
 			_stubHolder.addChild( stub );
@@ -133,8 +134,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _createScrollBar (  ):void
 	{
-		var colorProxy:ColorSchemeProxy = facade.retrieveProxy( ColorSchemeProxy.NAME ) as ColorSchemeProxy;
-		var colorScheme:ColorScheme_VO 	= colorProxy.currentColorScheme;
+		var colorScheme:ColorScheme_VO 	= ColorSchemeProxy.currentColorScheme;
 		_scrollHolder.x = OUTER_PADDING;
 		_scrollHolder.y = 265;
 		
@@ -160,6 +160,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				break;
 		}
 		
+		// Temp disableing moving
+		yTarget = 110;
 		Tweener.addTween( super._baseMc, { y:yTarget, time:1, transition:"EaseInOutQuint"} );
 	}
 	
@@ -174,11 +176,20 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			var stub:ProjectStub = _stubsAr[i];
 			// Make stub small if it's not the activestub
 			if( stub != _activeStub && _activeStub != null) {
+				if( _portfolioState == _FULL ) {
+					stub.setState( ProjectStub.TINY );
+				}else{
+					stub.setState( ProjectStub.SMALL );
+				}
 				stub.dimImage();
-				stub.setState( ProjectStub.SMALL );
-			}else{
-				stub.brightenImage();
+				
 			}
+			
+			if( _portfolioState == _BROWSING || stub == _activeStub) 
+				stub.brightenImage();
+			else
+				stub.dimImage();
+			
 			// Move to new position
 			stub.moveTo( _ribbonWidth, 0 );
 			_ribbonWidth += stub.stubWidth;
@@ -198,11 +209,16 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _deactivateActiveStub (  ):void
 	{
-		if( _activeStub != null ) 
+		if( _activeStub != null ) {
 			_activeStub.setState( ProjectStub.SMALL );
-		
-		_displayAsRibbon();
-		_activeStub = null;
+			// Center ribbon on stub 2 places to the left
+			_activeStub = (_activeStub.arrayIndex - 2 < 0)? _stubsAr[0] : _stubsAr[_activeStub.arrayIndex - 2] ; 
+			_displayAsRibbon();
+			_resizeScrollBar();
+			_updateScrollBarPosition();
+			ProjectStub.currentProject = null;
+			_activeStub = null;
+		}
 	}
 	
 	private function _resizeActiveStub (  ):void
@@ -253,7 +269,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	// ______________________________________________________________ Event Handlers
 	
 	// Project stub
-	public function _handleActivateStub   ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex ); };
+	public function _handleActivateStub   ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex );  };
 	public function _handleDeactivateStub ( e:Event = null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
 	public function _handleStubXmlRequest ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML 		); };
 	public function _handleHeigthChange   ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 	); };

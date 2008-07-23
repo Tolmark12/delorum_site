@@ -15,20 +15,25 @@ public class ProjectStub extends Sprite
 	public static var currentProject:ProjectStub;
 	
 	// Events
-	public static const ACTIVATE:String = "activate";
-	public static const DE_ACTIVATE:String = "de_activate";	
+	public static const ACTIVATE_STUB:String = "activate_stub";
+	public static const DE_ACTIVATE_STUB:String = "de_activate_stub";	
 	public static const CONTENT_HEIGHT_CHANGED:String 	= "content_height_changed";
 	
 	private var _clickEvent:String;			// Which notification to fire on click
 	
 	
 	// Physical characteristics
-	public static const BORDER_SIZE:Number  = 10;
+	public static const BORDER_SIZE:Number  = 0;
+	public static const WIDTH_TINY:Number 	= 224;	// These are the widths of the images at the
 	public static const WIDTH_SMALL:Number 	= 224;	// These are the widths of the images at the
 	public static const WIDTH_MEDIUM:Number	= 700;	// various screen resolutions. Small is when closed.
 	public static const WIDTH_LARGE:Number 	= 800;	// Medium is when browser < 1000 px. Large when > 1000px
+	
 	public static const HEIGHT:Number	 	= 243;	
+	public static const HEIGHT_TINY:Number  = 50;
+	
 	// Physical states
+	public static const TINY:String 		= "tiny";
 	public static const SMALL:String 		= "small";
 	public static const MEDIUM:String 		= "medium";
 	public static const LARGE:String 		= "large";
@@ -98,7 +103,7 @@ public class ProjectStub extends Sprite
 		_stubMc.addEventListener(  MouseEvent.MOUSE_OVER, _mouseOver);
 		_stubMc.addEventListener(  MouseEvent.MOUSE_OUT , _mouseOut );
 		_stubMc.addEventListener(  MouseEvent.CLICK ,     _click );
-		_clickEvent = ACTIVATE;
+		_clickEvent = ACTIVATE_STUB;
 		
 		this.addChild(	 		_holder		);
 		_holder.addChild( 		_stubMc   	);
@@ -135,7 +140,8 @@ public class ProjectStub extends Sprite
 		_details 			= new ProjectDetails();
 		_details.body  		= $vo.shortDescription;
 		_details.title 		= $vo.title;
-		_details.y 			= 290;
+		_details.slideShow 	= $vo.slideShow;
+		_details.y 			= 310;
 		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
 		_details.addEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
 		this.addChild( _details  );
@@ -152,8 +158,10 @@ public class ProjectStub extends Sprite
 	
 	private function _drawBgAndMask (  ):void
 	{
+		
 		_bgMc.graphics.beginFill( 0xFFFFFF );
-		_bgMc.graphics.drawRect(0,0,WIDTH_SMALL + BORDER_SIZE*2, HEIGHT + BORDER_SIZE*2 )
+		if( BORDER_SIZE != 0)
+			_bgMc.graphics.drawRect(0,0,WIDTH_SMALL + BORDER_SIZE*2, HEIGHT + BORDER_SIZE*2 )
 		_maskMc.graphics.beginFill( 0xFFFFFF );
 		_maskMc.graphics.drawRect(0,0,WIDTH_SMALL, HEIGHT );
 	}
@@ -187,7 +195,7 @@ public class ProjectStub extends Sprite
 	public function dimImage ( $changeBorderToo:Boolean = true ):void
 	{
 		Tweener.addTween( this, { rLum:0.2225,  gLum:0.7169,  bLum:0.0606,
-								  rLum2:0.2225, gLum2:0.7169, bLum2:0.0606, brightness:-70,
+								  rLum2:0.2225, gLum2:0.7169, bLum2:0.0606, brightness:-120,
 								  time:0.4, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
 
 		if( $changeBorderToo ) 
@@ -242,21 +250,22 @@ public class ProjectStub extends Sprite
 			_sizeState = $state;
 			
 			// Showing / Hiding details
-			if( _sizeState == SMALL ){
-				_clickEvent = ACTIVATE;
-				_details.hide();
+			if( _sizeState == SMALL || _sizeState == TINY ){
+				_clickEvent = ACTIVATE_STUB;
+				if( _details != null ) 
+					_details.hide();
 			}
 			else if( currentProject != this ) {
-				_clickEvent = DE_ACTIVATE;
+				_clickEvent = DE_ACTIVATE_STUB;
 				makeDetailsMc( _vo );
 				completeHandler = _details.show;
 				currentProject = this;
-			}	
+			}
 			
 			var xtarg:Number = (_sizeState == SMALL)? _baseX : 0;
 			Tweener.addTween( _bgMc,    {width:stubWidth + BORDER_SIZE, time:1, transition:"EaseInOutQuint", onComplete:completeHandler});
 			Tweener.addTween( _maskMc,  {width:stubWidth - BORDER_SIZE, time:1, transition:"EaseInOutQuint"});
-			Tweener.addTween( _imageMc, {x:xtarg, time:1, transition:"EaseInOutQuint"} )			
+			Tweener.addTween( _imageMc, {x:xtarg, time:1, transition:"EaseInOutQuint"} );
 		}
 	}
 	
@@ -303,7 +312,6 @@ public class ProjectStub extends Sprite
 	
 	private function _click ( e:Event ):void
 	{
-		trace( _clickEvent );
 		this.dispatchEvent( new Event( _clickEvent ) );
 	}
 	
@@ -320,9 +328,14 @@ public class ProjectStub extends Sprite
 	// ______________________________________________________________ Getters / Setters
 	
 	public function get stubWidth 	(  ):Number	{ return ProjectStub["WIDTH_" + _sizeState.toUpperCase() ] + BORDER_SIZE; };
+	public function get stubHeight 	(  ):Number	{ 
+		return (_sizeState == TINY)? HEIGHT_TINY : HEIGHT; 
+	}
+
 	public function get arrayIndex 	(  ):uint	{ return _arrayIndex; };
 	public function get targetX 	(  ):Number	{ return _targetX; };
 	public function get sprite      (  ):Sprite { return this; };
+	public function get state 		(  ):String { return _state; };
 }
 
 }
