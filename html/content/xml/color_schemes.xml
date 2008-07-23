@@ -12,7 +12,7 @@
 			 nav_active="F2CA8F"
 			 scrollbar_track="000000"
 			 scrollbar_track_border="222222"
-			 scrollbar_bar="FFFFFF"
+			 scrollbar_bar="4F555E"
 			 logo="FFFFFF"
 			 work_h1="B55E1E"
 			 work_h2="220022"
@@ -33,7 +33,7 @@
 		<colors 
 			 nav_hover="333333"
 			 nav_active="000000"
-			 bg="1A1B1F"
+			 bg="F9A146"
 		/>
 	</colorScheme>
 	
