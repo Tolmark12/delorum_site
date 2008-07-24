@@ -9,6 +9,8 @@ import gs.TweenLite;
 
 public class Logo_swc extends MovieClip
 {
+	public var index:uint;
+	
 	public function Logo_swc():void
 	{
 		this.buttonMode = true;

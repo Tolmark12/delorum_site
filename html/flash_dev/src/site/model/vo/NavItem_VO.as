@@ -2,6 +2,7 @@ package site.model.vo
 {
 public class NavItem_VO
 {
+	public var buttonType:String;
 	public var arrayIndex:uint;
 	public var title:String;
 	public var contentType:String;

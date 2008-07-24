@@ -40,7 +40,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 		//SWFAddress.setStatus(e.target.deepLink);
 		//SWFAddress.resetStatus();
 		//ErrorMachine.echo(e.value);
-		sendNotification( SiteFacade.BROWSER_URL_CHANGED, /* "/portfolio/Playmill_Theatre/" */ e.value );
+		sendNotification( SiteFacade.BROWSER_URL_CHANGED,  /*"/portfolio/Playmill_Theatre/"*/  e.value );
 	}
 	
 	public function _setNewUrl ( $url:String = ""):void

@@ -3,7 +3,7 @@ package site.view.sections
 import org.puremvc.as3.multicore.interfaces.*;
 import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
-import site.view.sections.components.*;
+import site.view.sections.portfolio_components.*;
 import site.SiteFacade;
 import site.model.vo.*;
 import flash.display.Sprite;
@@ -106,7 +106,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _createStubs ( $stubAr:Array ):void
 	{
 		ProjectStub.currentProject = null;
-		super._baseMc.y = StageMediator.stageMiddle - ProjectStub.HEIGHT / 2;
+		super._baseMc.y = 70;
 
 		_scrollHolder 	= new Sprite();
 		_stubHolder 	= new Sprite();
@@ -161,7 +161,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		}
 		
 		// Temp disableing moving
-		yTarget = 110;
+		yTarget = 70;
 		Tweener.addTween( super._baseMc, { y:yTarget, time:1, transition:"EaseInOutQuint"} );
 	}
 	

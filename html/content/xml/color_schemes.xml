@@ -1,7 +1,4 @@
-<SCHEMES>
-	
-	<firstScheme>tan</firstScheme>
-	
+<SCHEMES>	
 	<!-- !! IMPORTANT !! -->
 	<!-- The default node must be the first node -->
 	<colorScheme id="default">
@@ -46,6 +43,19 @@
 	<colorScheme id="white">
 		<colors 
 			 bg="FFFFFF"
+			 nav_up="666666"
+			 nav_hover="FF9D2E"
+			 nav_active="000000"
+			 scrollbar_track="CCCCCC"
+			 scrollbar_track_border="AAAAAA"
+			 scrollbar_bar="FFFFFF"
+			 logo="FFFFFF"
+		/>
+	</colorScheme>
+	
+	<colorScheme id="light_grey">
+		<colors 
+			 bg="cccccc"
 			 nav_up="666666"
 			 nav_hover="FF9D2E"
 			 nav_active="000000"

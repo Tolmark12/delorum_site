@@ -57,11 +57,10 @@ public class SlideShowFacade extends Facade implements IFacade
 		super.initializeController();
 		registerCommand( STARTUP, Startup );
 		registerCommand( UNMAKE, Startup );
-		
 		registerCommand( BUILD_SLIDES, BuildSlides );
-		registerCommand( NEXT_SLIDE, IncramentSlide );
-		registerCommand( PREV_SLIDE, IncramentSlide );
-		
+		registerCommand( NEXT_SLIDE, 	 IncramentSlide );
+		registerCommand( PREV_SLIDE, 	 IncramentSlide );
+		registerCommand( CHANGE_SLIDE_BY_INDEX, ChangeSlideByIndex);
 	}
 
 }

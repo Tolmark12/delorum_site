@@ -11,7 +11,7 @@ public class NavButtonMain extends MovieClip
 	private var _titleTxt:TextField;
 	private var _index:uint;
 	private var _selected:Boolean = false;
-	private var _currentState:String;
+	private var _currentState:String = "COLOR_UP";
 	
 	public static var COLOR_UP:uint;
 	public static var COLOR_HOVER:uint;

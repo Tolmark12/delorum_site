@@ -58,16 +58,13 @@ public class ColorSchemeProxy extends Proxy implements IProxy
 			_setVoParam( vo, node, "work_h2"					);
 			_setVoParam( vo, node, "work_body"					);
 			
-			
 			// Save vo
 			_colorSchemes[ node.@id ] = vo;
 			
 			// If default, set default vo
 			if( node.@id == "default" ) 
 				defaultColorScheme = vo;
-		}
-		
-		changeColorScheme( $xml.firstScheme );
+		}		
 	}
 	
 	public function changeColorScheme ( $id:String ):void

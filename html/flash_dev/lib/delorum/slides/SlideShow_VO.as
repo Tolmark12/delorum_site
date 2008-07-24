@@ -20,9 +20,11 @@ public class SlideShow_VO extends Sprite
 		
 		for each( var node:XML in $slideShowXml.img)
 		{
-			var vo 			= new Slide_VO(  );
-			vo.imagePath 	= $imagePath + node.@src;
-			vo.id			= "slide" + count++;
+			var vo 			 = new Slide_VO(  );
+			vo.imagePath 	 = $imagePath + node.@src;
+			vo.thumbnailPath = $imagePath + node.@thmb;
+			vo.index		 = slides.length;
+			vo.id			 = "slide" + count++;
 			slides.push( vo );
 		}
 	}

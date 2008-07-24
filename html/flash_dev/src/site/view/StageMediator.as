@@ -100,7 +100,6 @@ public class StageMediator extends Mediator implements IMediator
 		_bgColorMc.y = -4000;
 		
 		_logo.y = _navSprite.y = 20;
-		_logo.addEventListener( MouseEvent.CLICK, _homeBtnClick );
 		
 		$mainSprite.addChild( _bgColorMc	 );		// add to display list
 		$mainSprite.addChild( _rootSprite	 );
@@ -203,7 +202,8 @@ public class StageMediator extends Mediator implements IMediator
 	// Called by control.Startup.as
 	public function set defaultBg 		( $bg:uint ):void{ _tweenBgColor($bg, 0) };
 	
-	public function get navSprite   			(  ):Sprite { return _navSprite; };
+	public function get navSprite   			(  ):Sprite   { return _navSprite; };
+	public function get logoSprite   			(  ):Logo_swc { return _logo; };
 	public function get contentSprite  		    (  ):Sprite { return _contentSprite; };
 	public static function get stageLeft   		(  ):int { return ( _stage.stageWidth  - MOVIE_WIDTH) / -2; };
 	public static function get stageCenter 		(  ):int { return MOVIE_WIDTH / 2; };
@@ -217,7 +217,6 @@ public class StageMediator extends Mediator implements IMediator
 	
 	// ______________________________________________________________ Event Handlers
 	
-	private function _homeBtnClick  ( e:Event ):void	 { sendNotification( SiteFacade.HOME_BTN_CLICK 			);	}
 	private function _resizeHandler ( e:Event ):void	 { sendNotification( SiteFacade.BROWSER_RESIZE 			);	}
 	private function _scrollHandler ( $perc:Number):void { sendNotification( SiteFacade.BROWSER_SCROLL, $perc 	); 	}
 	

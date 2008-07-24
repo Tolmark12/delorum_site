@@ -22,7 +22,9 @@ public class Startup extends SimpleCommand implements ICommand
 		// Create the navigation mediator
 		var navMediator:NavMediator = new NavMediator();
 		facade.registerMediator( navMediator );
-		navMediator.navSprite = stageMediator.navSprite;
+		// Send the nav mediator a reference to the logo and the nav holder sprite
+		navMediator.logoSprite = stageMediator.logoSprite;
+		navMediator.navSprite  = stageMediator.navSprite;
 		
 		// Create the color scheme proxy, and load the color schemes
 		var colorProxy:ColorSchemeProxy = new ColorSchemeProxy();

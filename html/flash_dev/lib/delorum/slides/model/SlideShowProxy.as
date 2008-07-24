@@ -29,7 +29,7 @@ public class SlideShowProxy extends Proxy implements IProxy
 		sendNotification( SlideShowFacade.INIT_SLIDES, _slideList );
 		// load the first slide
 		sendNotification( SlideShowFacade.DISPLAY_NEW_SLIDE, this.currentSlide );
-		sendNotification( SlideShowFacade.START_AUTOPLAY  );
+		sendNotification( SlideShowFacade.START_AUTOPLAY );
 	}
 	
 	/** 

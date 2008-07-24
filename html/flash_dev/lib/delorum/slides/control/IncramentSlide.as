@@ -19,7 +19,7 @@ public class IncramentSlide extends SimpleCommand implements ICommand
 		switch( note.getName() )
 		{
 			case SlideShowFacade.NEXT_SLIDE:
-			  slideShowProxy.incramentSlideIndex(1, loopOnOvershoot);
+			  		slideShowProxy.incramentSlideIndex(1, loopOnOvershoot);
 			break;
 			
 			case SlideShowFacade.PREV_SLIDE:

@@ -14,21 +14,19 @@ public class Startup extends SimpleCommand implements ICommand
 	override public function execute( note:INotification ):void
 	{
 		var holderMc:SlideShow = note.getBody() as SlideShow;
-		
-		var autoPlayMediator  :AutoplayMediator;
-		var slideShowMediator :DisplayImageMediator;
-		var slideShowProxy	  :SlideShowProxy;
-		
+
 		// If the main holder is defined...
 		if( holderMc != null ) 
 		{
 			//...create
-			autoPlayMediator  = new AutoplayMediator();
-			slideShowMediator = new DisplayImageMediator( holderMc );
-			slideShowProxy	  = new SlideShowProxy();
-
+			var autoPlayMediator:AutoplayMediator    	= new AutoplayMediator();
+			var slideShowMediator:DisplayImageMediator 	= new DisplayImageMediator( holderMc );
+			var controlsMediator:ControlsMediator      	= new ControlsMediator( holderMc );
+			var slideShowProxy:SlideShowProxy		 	= new SlideShowProxy();
+			
 			facade.registerMediator	( autoPlayMediator  );
 			facade.registerMediator	( slideShowMediator );
+			facade.registerMediator	( controlsMediator  );
 			facade.registerProxy	( slideShowProxy    );
 		}
 		// Else, we are tearing down...
@@ -37,6 +35,7 @@ public class Startup extends SimpleCommand implements ICommand
 			//...destroy
 			sendNotification( SlideShowFacade.STOP_AUTOPLAY );
 			
+			facade.removeMediator( ControlsMediator.NAME  );
 			facade.removeMediator( AutoplayMediator.NAME  );
 			facade.removeProxy( SlideShowProxy.NAME		  );
 			facade.removeProxy( DisplayImageMediator.NAME );

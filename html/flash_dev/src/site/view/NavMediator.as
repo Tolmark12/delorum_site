@@ -14,6 +14,7 @@ public class NavMediator extends Mediator implements IMediator
 	public static const NAME:String = "navigation_mediator";
 
 	private var _navSprite:Sprite;					// Main Holder Sprite
+	private var _logo:Logo_swc;				// Logo swc
 	private var _navAr:Array;						// List of the nav buttons
 	private var _currentBtn:NavButtonMain_swc;		// Store reference to the current nav button
 	
@@ -61,26 +62,40 @@ public class NavMediator extends Mediator implements IMediator
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var navItem:NavItem_VO 			= $navItems[i];
-			var navBtn:NavButtonMain_swc 	= new NavButtonMain_swc();
-			navBtn.title = navItem.title;
-			navBtn.drawHitArea();
-			navBtn.index = i;
-			_navAr[navItem.arrayIndex] = navBtn;
 			
-			navBtn.addEventListener( MouseEvent.CLICK, _handleNavBtnClick );
-			navBtn.x = xPos;
-			navHolder.addChild(navBtn);
-			xPos += navBtn.textWidth + padding;
-			
-			if( i < len - 1 ) {
-				var divider:NavDivider_swc = new NavDivider_swc();
-				divider.x = xPos - padding / 2.3;
-				navHolder.addChild( divider );
+			// If this is a normal nav button...
+			if( navItem.buttonType != "logo" )
+			{
+				//...build nav button.
+				var navBtn:NavButtonMain_swc 	= new NavButtonMain_swc();
+				navBtn.title = navItem.title;
+				navBtn.drawHitArea();
+				navBtn.index = navItem.arrayIndex;
+				_navAr[navItem.arrayIndex] = navBtn;
+				
+				navBtn.addEventListener( MouseEvent.CLICK, _handleNavBtnClick );
+				navBtn.x = xPos;
+				navHolder.addChild(navBtn);
+				xPos += navBtn.textWidth + padding;
+				
+				if( i < len - 1 ) {
+					var divider:NavDivider_swc = new NavDivider_swc();
+					divider.x = xPos - padding / 2.3;
+					navHolder.addChild( divider );
+				}
+			}
+			// This is the logo button
+			else
+			{
+				_logo.addEventListener( MouseEvent.CLICK, _handleNavBtnClick );
+				_logo.index = navItem.arrayIndex;
 			}
 		}
 		
 		// right align the buttons on the 0 pos
 		navHolder.x = -xPos;
+		trace( "build buttons" );
+		
 	}
 	
 	// ______________________________________________________________ Color Scheme change
@@ -97,8 +112,10 @@ public class NavMediator extends Mediator implements IMediator
 			var len:uint = _navAr.length;
 			for ( var i:uint=0; i<len; i++ ) 
 			{
-				var btn:NavButtonMain_swc = _navAr[i];
-				btn.updateColor();
+				if( _navAr[i] != undefined ){
+					var btn:NavButtonMain_swc = _navAr[i];
+					btn.updateColor();
+				}
 			}
 		}
 	}
@@ -113,18 +130,24 @@ public class NavMediator extends Mediator implements IMediator
 	*/
 	public function makeNavItemActive ( $index:uint ):void
 	{	
-		if( _currentBtn != null ) 
+		if( _currentBtn != null ){ 
 			_currentBtn.deselct();
+		}
 		
-		var btn:NavButtonMain_swc = _navAr[ $index ];
-		btn.select();
-				
-		_currentBtn = btn;
+		if( _navAr[ $index ] != undefined ) 
+		{
+			var btn:NavButtonMain_swc = _navAr[ $index ];
+			btn.select();
+
+			_currentBtn = btn;
+		}
+
 	}
 	
 	// ______________________________________________________________ Getters / Settesr
 	
-	public function set navSprite ( $sprite:Sprite ):void{ _navSprite = $sprite; };
+	public function set navSprite  ( $sprite:Sprite   ):void{ _navSprite  = $sprite; };
+	public function set logoSprite ( $sprite:Logo_swc ):void{ _logo = $sprite; };
 	
 	// ______________________________________________________________ Event Handlers
 	private function _handleNavBtnClick ( e:Event ):void { sendNotification( SiteFacade.NAV_BTN_CLICK, e.currentTarget.index ); 	}

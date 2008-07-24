@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <site>
-	<nav xmlDir="content/xml/" >
+	<nav xmlDir="content/xml/" defaultSection="home">
+		<nav_item section="home" buttonType="logo" contentType="page" colorScheme="white">
+			<title>na</title>
+		</nav_item>
 		<nav_item section="portfolio" contentType="portfolio" xml="sections/portfolio.xml" colorScheme="default">
 			<title>Our Work</title>
 		</nav_item>

@@ -23,7 +23,8 @@ public class AutoplayMediator extends Mediator implements IMediator
 	override public function listNotificationInterests():Array
 	{
 		return [	SlideShowFacade.START_AUTOPLAY,
-		    		SlideShowFacade.STOP_AUTOPLAY  ];
+		    		SlideShowFacade.STOP_AUTOPLAY,
+					SlideShowFacade.CHANGE_SLIDE_BY_INDEX,  ];
 	}
 	
 	// PureMVC: Handle notifications
@@ -36,6 +37,9 @@ public class AutoplayMediator extends Mediator implements IMediator
 				break;
 			
 			case SlideShowFacade.STOP_AUTOPLAY:
+				_stopTimer();
+				break;
+			case SlideShowFacade.CHANGE_SLIDE_BY_INDEX :
 				_stopTimer();
 				break;
 		}

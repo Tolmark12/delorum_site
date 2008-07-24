@@ -46,8 +46,7 @@ public class NavProxy extends Proxy implements IProxy
 		var xml:XML = XML(e.target.data);
 		_createNav( xml.nav );
 		sendNotification( SiteFacade.BUILD_NAV, _navArray );
-		// TEMP
-		sendNotification(SiteFacade.FLASH_HEIGHT_CHANGED)
+		sendNotification( SiteFacade.LOAD_NEW_SECTION );
 	}
 	
 	// ______________________________________________________________ Create Nav Value Objects
@@ -65,6 +64,10 @@ public class NavProxy extends Proxy implements IProxy
 			vo.arrayIndex	= _navArray.length;
 			vo.xmlPath		= $navNode.@xmlDir + node.@xml;
 			vo.colorScheme	= node.@colorScheme;
+			vo.buttonType	= node.@buttonType;
+			
+			if( vo.section == $navNode.@defaultSection ) 
+				_currentNavItemIndex = vo.arrayIndex;
 			
 			_navArray.push( vo );
 		}
