@@ -25,6 +25,8 @@ public class ProjectDetails extends Sprite
 	private var _bgMc:Sprite;
 	private var _closeBtn:WhiteCloseBtn_swc;
 	private var _slideShow:SlideShow;
+	private var _contentHolder:Sprite;
+	private var _mask:Sprite;
 	
 	// data
 	private var _body:String;
@@ -42,10 +44,12 @@ public class ProjectDetails extends Sprite
 	
 	public function make (  ):void
 	{
+		_contentHolder 	= new Sprite();
 		_showDetailsBtn = new CircleBtn_swc();
 		_rowManager		= new RowsManager();
 		_bgMc			= new Sprite();
 		_closeBtn		= new WhiteCloseBtn_swc();
+		
 		
 		// Background
 		_bgMc.graphics.beginFill(0xFFFFFF);
@@ -85,18 +89,19 @@ public class ProjectDetails extends Sprite
 		// Rows
 		_rowManager.y = bodyTxtMc.y + bodyTxtMc.height + 20;
 		
-		this.addChild( _bgMc 			);
-		this.addChild( bodyTxtMc 		);
-		this.addChild( titleTxt  		);
+		_contentHolder.addChild( _bgMc 			);
+		_contentHolder.addChild( bodyTxtMc 		);
+		_contentHolder.addChild( titleTxt  		);
 		//this.addChild( _showDetailsBtn 	);
-		this.addChild( _rowManager      );
+		_contentHolder.addChild( _rowManager      );
 		if( _slideShowVo != null )
 		{
 			_slideShow		= new SlideShow();
 			_slideShow.x 	= Column.COLUMN_WIDTH + 27 + ProjectStub.BORDER_SIZE;
-			this.addChild( _slideShow );
+			_contentHolder.addChild( _slideShow );
 			_slideShow.buildSlideShow( _slideShowVo );
 		}
+		this.addChild( _contentHolder );
 		this.addChild( _closeBtn		);
 	}
 	
@@ -120,7 +125,22 @@ public class ProjectDetails extends Sprite
 		if( _rowManager == null ) 
 			make();
 		this.visible = true;
-		Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseInOutQuint"} );
+		//this.scaleY = 0;
+		//this.y = 247;
+		
+		//this.alpha = 0;
+		this.alpha = 1;
+		
+		_mask = new Sprite();
+		_mask.graphics.beginFill(0xFFFF);
+		_mask.graphics.drawRect(0,0,width,height);
+		_mask.scaleY = 0;
+		this.addChild(_mask);
+		//_mask.x = 900
+		_contentHolder.mask = _mask;
+		
+		//Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseOut"} );
+		Tweener.addTween( _mask, { scaleY:1, x:0, time:0.9, transition:"EaseInOutQuint"} );
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
@@ -129,7 +149,8 @@ public class ProjectDetails extends Sprite
 		if( !_isHiding )
 		{
 			_isHiding = true;
-			Tweener.addTween( this, { alpha:0, time:.1, transition:"EaseOutQuint", onComplete:unmake} );
+			Tweener.addTween( _mask, { scaleX:0, time:0.2, transition:"EaseInOutQuint", onComplete:unmake} );
+			//Tweener.addTween( this, { alpha:0, transition:"EaseOutQuint", onComplete:unmake} );
 		} 
 	}
 

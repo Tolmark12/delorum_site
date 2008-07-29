@@ -10,5 +10,6 @@ public class NavItem_VO
 	public var xmlPath:String;
 	public var bgColor:uint;
 	public var colorScheme:String;
+	public var extraData:XML;
 }
 }

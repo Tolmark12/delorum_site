@@ -229,6 +229,10 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		Tweener.addTween( this, { time:0.2, onComplete:_activeStub.bringToFront } );
 	}
 	
+	// ______________________________________________________________ Details
+	
+	
+	
 	// ______________________________________________________________ Scrolling
 	
 	private function _scrollPortfolio ( e:ScrollEvent ):void

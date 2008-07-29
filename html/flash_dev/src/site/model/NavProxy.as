@@ -65,6 +65,7 @@ public class NavProxy extends Proxy implements IProxy
 			vo.xmlPath		= $navNode.@xmlDir + node.@xml;
 			vo.colorScheme	= node.@colorScheme;
 			vo.buttonType	= node.@buttonType;
+			vo.extraData	= ( node.extraData.toXMLString().length != 0 )? XML( node.extraData[0].toXMLString() ) : null ;
 			
 			if( vo.section == $navNode.@defaultSection ) 
 				_currentNavItemIndex = vo.arrayIndex;

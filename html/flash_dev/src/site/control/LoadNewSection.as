@@ -51,6 +51,16 @@ public class LoadNewSection extends SimpleCommand implements ICommand
 				stageMediator.addNewSection( temp );
 				
 			break;
+			
+			case "image":
+				
+				/*trace( navItem.extraData.@image  + '  :  ' + '!' );*/
+				var image:ImageSection = new ImageSection( navItem.extraData.@image );
+				facade.registerMediator( image );
+				image.make(   );
+				stageMediator.addNewSection( image );
+				
+			break
 		}
 		
 		colorProxy.changeColorScheme( navItem.colorScheme );
