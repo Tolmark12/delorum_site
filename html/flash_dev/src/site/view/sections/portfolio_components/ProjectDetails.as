@@ -28,6 +28,9 @@ public class ProjectDetails extends Sprite
 	private var _contentHolder:Sprite;
 	private var _mask:Sprite;
 	
+	private var _titleTxt:TitleTxt_swc;
+	private var _bodyTxtMc:BodyText_swc;
+	
 	// data
 	private var _body:String;
 	private var _title:String;
@@ -40,6 +43,7 @@ public class ProjectDetails extends Sprite
 	public function ProjectDetails():void
 	{
 		this.alpha = 0;
+		this.visible = false;
 	}
 	
 	public function make (  ):void
@@ -49,7 +53,7 @@ public class ProjectDetails extends Sprite
 		_rowManager		= new RowsManager();
 		_bgMc			= new Sprite();
 		_closeBtn		= new WhiteCloseBtn_swc();
-		
+		_mask 			= new Sprite();
 		
 		// Background
 		_bgMc.graphics.beginFill(0xFFFFFF);
@@ -61,54 +65,81 @@ public class ProjectDetails extends Sprite
 		// Show Details button
 		_showDetailsBtn.make( "Title", _showDetailsBtn.DOWN_ARROW );
 		_showDetailsBtn.addEventListener( MouseEvent.CLICK, _handleShowDetailsClick );
-		_showDetailsBtn.x = Column.COLUMN_WIDTH * 3 - _showDetailsBtn.width;
-		_showDetailsBtn.y = 40;
-		
+		_showDetailsBtn.x = 20;//Column.COLUMN_WIDTH * 3 - _showDetailsBtn.width;
+		_showDetailsBtn.y = 310;
+				
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
 		_closeBtn.addEventListener( MouseEvent.CLICK, _handleCloseClick )
 		
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		
 		// Textfields
-		var titleTxt:TitleTxt_swc   = new TitleTxt_swc();
-		var bodyTxtMc:BodyText_swc  = new BodyText_swc();
-		bodyTxtMc.txtField.htmlText = _body;
-		bodyTxtMc.txtField.width    = Column.COLUMN_WIDTH;
-		titleTxt.txtField.text 		= _title;
-		titleTxt.size				= DelorumSite.PROJECT_TITLE_FONT_SIZE;
-		bodyTxtMc.size				= 13;
-		titleTxt.color				= colorScheme.work_h1;
-		bodyTxtMc.color				= colorScheme.work_body;
-		bodyTxtMc.leading			= 12;
+		_titleTxt	= new TitleTxt_swc();
+		_bodyTxtMc	= new BodyText_swc();
 
-		bodyTxtMc.y 				= 50;
-		titleTxt.y  				= 20;
-		titleTxt.x					= 20;
-		bodyTxtMc.x					= 20;
+		_bodyTxtMc.txtField.width   = Column.COLUMN_WIDTH;
+		_titleTxt.size				= DelorumSite.PROJECT_TITLE_FONT_SIZE;
+		_bodyTxtMc.size				= 13;
+		_titleTxt.color				= colorScheme.work_h1;
+		_bodyTxtMc.color			= colorScheme.work_body;
+		_bodyTxtMc.leading			= 12;
+
+		_bodyTxtMc.y 				= 50;
+		_titleTxt.y  				= 20;
+		_titleTxt.x					= 20;
+		_bodyTxtMc.x				= 20;
 		
 		// Rows
-		_rowManager.y = bodyTxtMc.y + bodyTxtMc.height + 20;
+		_rowManager.y = 375;
 		
-		_contentHolder.addChild( _bgMc 			);
-		_contentHolder.addChild( bodyTxtMc 		);
-		_contentHolder.addChild( titleTxt  		);
-		//this.addChild( _showDetailsBtn 	);
-		_contentHolder.addChild( _rowManager      );
-		if( _slideShowVo != null )
-		{
-			_slideShow		= new SlideShow();
-			_slideShow.x 	= Column.COLUMN_WIDTH + 27 + ProjectStub.BORDER_SIZE;
-			_contentHolder.addChild( _slideShow );
-			_slideShow.buildSlideShow( _slideShowVo );
-		}
+		_contentHolder.addChild( _bgMc 		 	 );
+		_contentHolder.addChild( _bodyTxtMc  	 );
+		_contentHolder.addChild( _titleTxt   	 );
+		//_contentHolder.addChild( _showDetailsBtn );
+
 		this.addChild( _contentHolder );
-		this.addChild( _closeBtn		);
+		this.addChild( _closeBtn	  );
+		this.addChild( _mask		  );
+		this.addChild( _rowManager 	 );
+		
+		// Mask
+		_mask.graphics.beginFill(0xFFFF);
+		_mask.graphics.drawRect(0,0,width,height+ 15);
+		_contentHolder.mask = _mask;
 	}
 	
 	public function unmake (  ):void
 	{
-		var par:ProjectStub = this.parent as ProjectStub;
-		par.removeDetailsMc( this );
+		this.visible = false;
+		this.scaleX = 1;
+		this.scaleY = 1;
+		_isHiding = false;
+	}
+	
+	public function changeContent ( $title:String, $shortDescription:String, $slideShow:SlideShow_VO  ):void
+	{
+		_title 		 = $title;
+		_body  		 = $shortDescription;
+		_slideShowVo = $slideShow;
+		
+		_titleTxt.text 	 	= _title;
+		_bodyTxtMc.htmlText = _body;
+		
+		if( _rowManager != null ) 
+			_rowManager.removePage();
+		
+		if( _slideShow != null ) {
+			_contentHolder.removeChild( _slideShow );
+			_slideShow = null;
+		}
+		
+		if( _slideShowVo != null )
+		{
+			_slideShow		= new SlideShow( 508, 351, 5.5, 1.8 ); // w, h, displaytime, transSpeed
+			_slideShow.x 	= Column.COLUMN_WIDTH + 27 + ProjectStub.BORDER_SIZE;
+			_contentHolder.addChild( _slideShow );
+			_slideShow.buildSlideShow( _slideShowVo );
+		}
 	}
 	
 	// ______________________________________________________________ Rows
@@ -124,24 +155,17 @@ public class ProjectDetails extends Sprite
 	{
 		if( _rowManager == null ) 
 			make();
-		this.visible = true;
-		//this.scaleY = 0;
-		//this.y = 247;
-		
-		//this.alpha = 0;
-		this.alpha = 1;
-		
-		_mask = new Sprite();
-		_mask.graphics.beginFill(0xFFFF);
-		_mask.graphics.drawRect(0,0,width,height);
-		_mask.scaleY = 0;
-		this.addChild(_mask);
-		//_mask.x = 900
-		_contentHolder.mask = _mask;
-		
-		//Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseOut"} );
-		Tweener.addTween( _mask, { scaleY:1, x:0, time:0.9, transition:"EaseInOutQuint"} );
-		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
+			
+		if( this.visible == false )
+		{
+			this.visible = true;
+			this.alpha = 1; //0
+			//Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseOut"} );
+			
+			_mask.scaleY = 0;
+			Tweener.addTween( _mask, { scaleY:1, x:0, time:0.9, transition:"EaseInOutQuint"} );
+			dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
+		}
 	}
 	
 	public function hide (  ):void
@@ -149,8 +173,8 @@ public class ProjectDetails extends Sprite
 		if( !_isHiding )
 		{
 			_isHiding = true;
-			Tweener.addTween( _mask, { scaleX:0, time:0.2, transition:"EaseInOutQuint", onComplete:unmake} );
-			//Tweener.addTween( this, { alpha:0, transition:"EaseOutQuint", onComplete:unmake} );
+			//Tweener.addTween( _mask, { scaleY:0, time:0.2, transition:"EaseInOutQuint", onComplete:unmake} );
+			Tweener.addTween( this, { alpha:0, time:0, transition:"EaseOutQuint", onComplete:unmake } );
 		} 
 	}
 

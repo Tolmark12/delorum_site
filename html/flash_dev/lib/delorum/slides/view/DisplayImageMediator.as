@@ -80,7 +80,7 @@ public class DisplayImageMediator extends Mediator implements IMediator
 	private function _showNewSlide ( e:Event = null ):void
 	{
 		_newSlide.alpha = 0;
-		Tweener.addTween(_newSlide, {alpha:1, time:1.8} );
+		Tweener.addTween(_newSlide, {alpha:1, time:SlideShowFacade.transitionSpeed} );
 	}	
 	
 	private function _setStackOrder():void

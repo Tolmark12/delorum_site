@@ -186,8 +186,13 @@ public class StageMediator extends Mediator implements IMediator
 	
 	public function unloadCurrentSection (  ):void
 	{
-		_currentSection.unload();
-		_currentSection = null;
+		if( _currentSection == null){
+			sendNotification( SiteFacade.LOAD_NEW_SECTION )
+		}else{
+			_currentSection.unload();
+			_currentSection = null;
+		}
+		
 	}
 	
 	public function addNewSection ( $newSection:BaseSection ):void

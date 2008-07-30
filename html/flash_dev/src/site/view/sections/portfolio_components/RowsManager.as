@@ -15,18 +15,28 @@ public class RowsManager extends Sprite
 	
 	public function RowsManager():void
 	{
+		_rows = new Array();
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
 	}
 	
 	public function buildPage ( $page_vo:Page_VO ):void
 	{
-		_rows = new Array();
 		var len:uint = $page_vo.rowsAr.length;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var newRow:Row = new Row( $page_vo.rowsAr[i] as Row_VO, $page_vo.imagesDir );
 			this.addChild(newRow);
 			_rows.push(newRow);
+		}
+	}
+	
+	public function removePage (  ):void
+	{
+		var len:uint = _rows.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			var row:Row = _rows.pop() as Row;
+			this.removeChild( row );
 		}
 	}
 	

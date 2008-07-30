@@ -15,6 +15,7 @@ public class SwcText extends MovieClip
 	
 	public function SwcText():void
 	{
+		trace( this );
 		_textField = this.getChildByName("textField") as TextField;
 		_textField.autoSize = "left";
 		_format = new TextFormat();
@@ -23,16 +24,18 @@ public class SwcText extends MovieClip
 	
 	private function _updateFormat (  ):void
 	{
-		_textField.setTextFormat(_format);
+		_textField.defaultTextFormat = _format;
+		_textField.setTextFormat( _format );
 		_addBitmap();
 	}
 	
 	private function _addBitmap ( e:Event = null ):void
 	{
 		_textField.visible = true;
-		if( _bitmap != null ) 
-			this.removeChild(_bitmap);
 		
+		if( _bitmap != null ) {
+			this.removeChild(_bitmap);
+		}
 		var myBitmapData:BitmapData = new BitmapData(this.width, this.height, true, 0x000000);
 		myBitmapData.draw( this );
 		_bitmap = new Bitmap( myBitmapData );
@@ -40,8 +43,8 @@ public class SwcText extends MovieClip
 		_textField.visible = false;
 	}
 	
-	public function set text 		( $str:String ):void{ _textField.text = $str; _addBitmap(); };
-	public function set htmlText 	( $str:String ):void{ _textField.htmlText = $str; _addBitmap(); };
+	public function set text 		( $str:String ):void{ _textField.text = $str; 	  _updateFormat();  };
+	public function set htmlText 	( $str:String ):void{ _textField.htmlText = $str; _updateFormat();  };
 	
 	public function get txtField (  ):TextField { return _textField; };
 	public function set textWidth ( $val:uint ):void { _textField.width = $val; _addBitmap(); };

@@ -63,7 +63,7 @@ public class ControlsMediator extends Mediator implements IMediator
 	{
 		
 		_controlsHolder = new Sprite();
-		_controlsHolder.y = 360;
+		_controlsHolder.y = SlideShowFacade.slidesHeight + 5;
 		_holderMc.addChild( _controlsHolder );
 		_btnsAr = new Array();
 		var xInc:uint = 15;
@@ -93,8 +93,8 @@ public class ControlsMediator extends Mediator implements IMediator
 		// Create previous and next buttons
 		var rightBtn:ArrowBtn = new ArrowBtn( ArrowBtn.RIGHT );
 		var leftBtn:ArrowBtn  = new ArrowBtn( ArrowBtn.LEFT  );
-		rightBtn.x = 500;
-		leftBtn.x  = 482;
+		rightBtn.x = SlideShowFacade.slidesWidth - rightBtn.width/4;
+		leftBtn.x  = SlideShowFacade.slidesWidth - leftBtn.width;
 		rightBtn.addEventListener( MouseEvent.CLICK, _handleArrowBtnClick );
 		leftBtn.addEventListener(  MouseEvent.CLICK, _handleArrowBtnClick );
 		

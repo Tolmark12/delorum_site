@@ -68,7 +68,7 @@ public class ProjectStub extends Sprite
 	private var _baseX:Number = -400;
 	
 	// Project Details
-	private var _details:ProjectDetails;
+//	private var _details:ProjectDetails;
 	
 	public function ProjectStub( ):void
 	{
@@ -137,23 +137,23 @@ public class ProjectStub extends Sprite
 	
 	public function makeDetailsMc ( $vo:ProjectStub_VO ):void
 	{
-		_details 			= new ProjectDetails();
-		_details.body  		= $vo.shortDescription;
-		_details.title 		= $vo.title;
-		_details.slideShow 	= $vo.slideShow;
-		_details.y 			= 300;
-		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
-		_details.addEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
-		this.addChild( _details  );
+//		_details 			= new ProjectDetails();
+//		_details.body  		= $vo.shortDescription;
+//		_details.title 		= $vo.title;
+//		_details.slideShow 	= $vo.slideShow;
+//		_details.y 			= 300;
+//		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
+//		_details.addEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
+//		this.addChild( _details  );
 	}
 	
 	public function removeDetailsMc ( $detailsMc:ProjectDetails ):void
 	{
-		$detailsMc.removeEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
-		$detailsMc.removeEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
-		this.removeChild( $detailsMc );
-		if( $detailsMc == _details ) 
-			_details = null;
+//		$detailsMc.removeEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
+//		$detailsMc.removeEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
+//		this.removeChild( $detailsMc );
+//		if( $detailsMc == _details ) 
+//			_details = null;
 	}
 	
 	private function _drawBgAndMask (  ):void
@@ -186,7 +186,7 @@ public class ProjectStub extends Sprite
 	
 	public function buildPage ( $page:Page_VO ):void
 	{
-		_details.buildPage( $page );
+//		_details.buildPage( $page );
 	}
 	
 	// ______________________________________________________________ Color effects
@@ -252,13 +252,13 @@ public class ProjectStub extends Sprite
 			// Showing / Hiding details
 			if( _sizeState == SMALL || _sizeState == TINY ){
 				_clickEvent = ACTIVATE_STUB;
-				if( _details != null ) 
-					_details.hide();
+//				if( _details != null ) 
+//					_details.hide();
 			}
 			else if( currentProject != this ) {
 				_clickEvent = DE_ACTIVATE_STUB;
-				makeDetailsMc( _vo );
-				completeHandler = _details.show;
+//				makeDetailsMc( _vo );
+//				completeHandler = _details.show;
 				currentProject = this;
 			}
 			
@@ -336,6 +336,7 @@ public class ProjectStub extends Sprite
 	public function get targetX 	(  ):Number	{ return _targetX; };
 	public function get sprite      (  ):Sprite { return this; };
 	public function get state 		(  ):String { return _state; };
+	public function get vo 			(  ):ProjectStub_VO{ return _vo; };
 }
 
 }

@@ -62,6 +62,13 @@ public class SlideShowFacade extends Facade implements IFacade
 		registerCommand( PREV_SLIDE, 	 IncramentSlide );
 		registerCommand( CHANGE_SLIDE_BY_INDEX, ChangeSlideByIndex);
 	}
+	
+	// ______________________________________________________________ Application wide vars
+	
+	public static var slidesWidth:Number;
+	public static var slidesHeight:Number;
+	public static var slideDisplayTime:Number;
+	public static var transitionSpeed:Number;
 
 }
 }

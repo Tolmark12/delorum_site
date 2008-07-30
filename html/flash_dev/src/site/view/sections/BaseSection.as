@@ -28,7 +28,7 @@ public class BaseSection extends Mediator implements IMediator
 	public function hide (  ):void
 	{
 		trace( ":: Hiding ::" );
-		Tweener.addTween( _baseMc, { alpha:0, time:.4, onComplete:_unloadComplete } );
+		Tweener.addTween( _baseMc, { alpha:0, time:0.1, onComplete:_unloadComplete } );
 	}
 	
 	// ______________________________________________________________ Make and unmake

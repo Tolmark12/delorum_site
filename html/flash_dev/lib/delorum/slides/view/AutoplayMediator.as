@@ -47,7 +47,7 @@ public class AutoplayMediator extends Mediator implements IMediator
 	
 	private function _startTimer (  ):void
 	{
-		_timer = new Timer( 5500 );
+		_timer = new Timer( SlideShowFacade.slideDisplayTime * 1000 );
 		_timer.addEventListener("timer", _tick);
 		_timer.start();
 	}

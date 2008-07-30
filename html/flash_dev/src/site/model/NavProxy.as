@@ -15,13 +15,14 @@ import delorum.errors.ErrorMachine;
 public class NavProxy extends Proxy implements IProxy
 {
 	public static const NAME:String = "nav_proxy";
+	public var  sectionLoadComplete:Boolean = true; 		// Set to false when a new section is loading
 	
-	private var _navArray:Array;					// Holds a list of the navigation item value objects
+	private var _navArray:Array;							// Holds a list of the navigation item value objects
 	private var _defaultBgColor:uint;
-	private var _currentNavItemIndex:int 	= -1;		// Current Nav item
+	private var _currentNavItemIndex:int 	= -1;			// Current Nav item
 	private var _pathArray:Array	 		= new Array();
-	public var  sectionLoadComplete:Boolean = true; 	// Set to false when a new section is loading
 	private var _newSectionDefaultContent:String;
+	private var _defaultIndex:uint;
 	
 	public function NavProxy( ):void
 	{
@@ -46,7 +47,6 @@ public class NavProxy extends Proxy implements IProxy
 		var xml:XML = XML(e.target.data);
 		_createNav( xml.nav );
 		sendNotification( SiteFacade.BUILD_NAV, _navArray );
-		sendNotification( SiteFacade.LOAD_NEW_SECTION );
 	}
 	
 	// ______________________________________________________________ Create Nav Value Objects
@@ -67,8 +67,9 @@ public class NavProxy extends Proxy implements IProxy
 			vo.buttonType	= node.@buttonType;
 			vo.extraData	= ( node.extraData.toXMLString().length != 0 )? XML( node.extraData[0].toXMLString() ) : null ;
 			
+			// default section
 			if( vo.section == $navNode.@defaultSection ) 
-				_currentNavItemIndex = vo.arrayIndex;
+				_defaultIndex = vo.arrayIndex;
 			
 			_navArray.push( vo );
 		}
@@ -83,6 +84,8 @@ public class NavProxy extends Proxy implements IProxy
 			// ...load new section
 			var isFirstSectiontoLoad:Boolean = _currentNavItemIndex == -1;
 			_currentNavItemIndex = $index;
+			
+			// If the new section has some sort of default content to display...
 			if( $defaultContent != null ) 
 				_newSectionDefaultContent = $defaultContent; 
 			else
@@ -99,18 +102,34 @@ public class NavProxy extends Proxy implements IProxy
 		// fire notification that current section's btn was clicked
 		else{
 			sendNotification( SiteFacade.CUR_BTN_CLICKED_AGAIN );
-		}
+		}		
 	}
 	
 	public function changeSectionBySectionName ( $section:String, $defaultContent:String = null ):void
 	{
-		var len:uint = _navArray.length;
-		for ( var i:uint=0; i<len; i++ ) 
+		var newContentIndex:uint;
+		
+		// If no section is specified... 
+		if( $section == "" )
 		{
-			var vo:NavItem_VO = _navArray[i] as NavItem_VO;
-			if( vo.section == $section )
-				changeSection( vo.arrayIndex, $defaultContent );
+			//...load the default content. 
+			// This is likely to happen when the visitor comes
+			// to the default page (www.delorum.com/)
+			newContentIndex = _defaultIndex;
 		}
+		else
+		{	
+			// loop through nav items to find matching section name
+			var len:uint = _navArray.length;
+			for ( var i:uint=0; i<len; i++ ) 
+			{
+				var vo:NavItem_VO = _navArray[i] as NavItem_VO;
+				if( vo.section == $section )
+					newContentIndex = vo.arrayIndex
+			}
+		}
+		
+		changeSection( newContentIndex, $defaultContent );
 	}
 	
 	public function changeUrlPath ( $path:String, $level:uint = 0 ):void

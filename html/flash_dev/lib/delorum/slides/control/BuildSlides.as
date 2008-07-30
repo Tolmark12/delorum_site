@@ -14,6 +14,7 @@ public class BuildSlides extends SimpleCommand implements ICommand
 	{
 		var slideShowVo:SlideShow_VO 		= note.getBody() as SlideShow_VO;
 		var slideShowProxy:SlideShowProxy 	= facade.retrieveProxy( SlideShowProxy.NAME ) as SlideShowProxy;
+		
 		slideShowProxy.buildSlides( slideShowVo );
 	}
 }

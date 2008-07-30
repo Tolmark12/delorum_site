@@ -7,7 +7,6 @@ public class TitleTxt_swc extends SwcText
 	{
 		super();
 	}
-
 }
 
 }

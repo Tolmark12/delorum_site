@@ -17,7 +17,7 @@ public class Text extends BaseColumnObj implements IColumnObject
 	{
 		super.make($node);
 		_bodyTxtSwc 			= new BodyText_swc();
-		_bodyTxtSwc.size 		= 4;
+		_bodyTxtSwc.size 		= 11;
 		_bodyTxtSwc.htmlText 	= String($node);
 		this.addChild(_bodyTxtSwc);
 		

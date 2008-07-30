@@ -22,10 +22,14 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private static const _BROWSING:String = "ribbon";
 	private static const _DETAILS:String = "details";
 	private static const _FULL:String = "full";
-	
+
+	// Display
 	private var _stubHolder:Sprite;
 	private var _scrollHolder:Sprite;
 	private var _scroller:Scroller;
+	private var _holder:Sprite;
+	private var _details:ProjectDetails;
+
 	private var _ribbonWidth:Number;
 	private var _stubsAr:Array;
 	private var _activeStub:ProjectStub;
@@ -73,16 +77,18 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			case SiteFacade.DEACTIVATE_PROJECT :
 				_portfolioState = _BROWSING;
 				_deactivateActiveStub();
+				_hideDetails()
 				_moveRibbonVertical();
 				break;
 			case SiteFacade.CUR_BTN_CLICKED_AGAIN:
 				_handleDeactivateStub();
 				break;
 			case SiteFacade.BROWSER_RESIZE:
-				if( _activeStub != null ) 
+				if( _activeStub != null ) {
 					_resizeActiveStub();
-				else
-				_displayAsRibbon();
+				}
+				_displayAsRibbon(1);
+				_moveDetails();
 				_resizeScrollTrack();
 				_resizeScrollBar();
 				_updateScrollBarPosition();
@@ -94,9 +100,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				break;
 			case SiteFacade.PROJECT_XML_LOADED:
 				_portfolioState = _FULL;
-				_activeStub.buildPage( note.getBody() as Page_VO );
-				_moveRibbonVertical();
-				_displayAsRibbon();
+				_details.buildPage( note.getBody() as Page_VO );
+				//_displayAsRibbon();
 				break;
 		}
 	}
@@ -107,37 +112,53 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	{
 		ProjectStub.currentProject = null;
 		super._baseMc.y = 70;
-
+		
+		// Create display items
 		_scrollHolder 	= new Sprite();
 		_stubHolder 	= new Sprite();
+		_details 		= new ProjectDetails();		
 		_stubsAr		= new Array();
-		_stubHolder.x = StageMediator.stageLeft + OUTER_PADDING;
+
+		// Position display items
+		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
+		_details.y 		= 300;
+		_scrollHolder.x = OUTER_PADDING;
+		_scrollHolder.y = 265;
+		_moveDetails();
+		
+		// Add to display list
 		super._baseMc.addChild( _scrollHolder );
 		super._baseMc.addChild( _stubHolder );
+		super._baseMc.addChild( _details );
 		
+		// Create stub ribbon
 		var len:uint = $stubAr.length;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var stub_vo:ProjectStub_VO  = $stubAr[i];
 			var stub:ProjectStub		= new ProjectStub();
 			stub.make( stub_vo );
-			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub );
-			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub );
-			stub.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest );
-			stub.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeigthChange);
+			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 			);
+			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
+			_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
+			_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
+			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeigthChange 	);
+//			stub.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
+//			stub.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeigthChange	);
+			
 			_stubHolder.addChild( stub );
 			_stubsAr.push( stub );
 		}
+		
+		// display ribbon
+		_displayAsRibbon();		
+		// Make visible
 		super.show();
-		_displayAsRibbon();
 	}
 	
 	private function _createScrollBar (  ):void
 	{
 		var colorScheme:ColorScheme_VO 	= ColorSchemeProxy.currentColorScheme;
-		_scrollHolder.x = OUTER_PADDING;
-		_scrollHolder.y = 265;
-		
 		_scroller = new Scroller( _scrollHolder, 800, Scroller.HORIZONTAL, colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border );
 		_scroller.addEventListener( Scroller.SCROLL, _handleScroll );
 	}
@@ -167,7 +188,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	// ______________________________________________________________ Stub display
 	
-	private function _displayAsRibbon (  ):void
+	private function _displayAsRibbon ( $tweenTime:Number=1 ):void
 	{
 		_ribbonWidth = 0;
 		var len:uint = _stubsAr.length;
@@ -177,12 +198,10 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			// Make stub small if it's not the activestub
 			if( stub != _activeStub && _activeStub != null) {
 				if( _portfolioState == _FULL ) {
-					stub.setState( ProjectStub.TINY );
+					//stub.setState( ProjectStub.TINY );
 				}else{
 					stub.setState( ProjectStub.SMALL );
 				}
-				stub.dimImage();
-				
 			}
 			
 			if( _portfolioState == _BROWSING || stub == _activeStub) 
@@ -198,13 +217,16 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		var newx:Number = ( _activeStub != null ) ? StageMediator.stageLeft - _activeStub.targetX + OUTER_PADDING
 		 										  : StageMediator.stageLeft + OUTER_PADDING;
 		
-		Tweener.addTween( _stubHolder, { x:newx, time:1, transition:"EaseInOutQuint"} );
+		trace( $tweenTime );
+		Tweener.addTween( _stubHolder, { x:newx, time:$tweenTime, transition:"EaseInOutQuint"} );
 	}
 	
 	private function _activateStub ( $id:uint ):void
 	{
 		_activeStub = _stubsAr[ $id ];
 		_resizeActiveStub();
+		_displayAsRibbon();
+		_changeDetails ( _activeStub.vo );
 	}
 	
 	private function _deactivateActiveStub (  ):void
@@ -225,12 +247,26 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	{
 		var stubWidth:String = ( StageMediator.browserSizeState == StageMediator.WIDE )? ProjectStub.LARGE : ProjectStub.MEDIUM;
 		_activeStub.setState( stubWidth );
-		_displayAsRibbon();
 		Tweener.addTween( this, { time:0.2, onComplete:_activeStub.bringToFront } );
 	}
 	
 	// ______________________________________________________________ Details
 	
+	private function _changeDetails ( $vo:ProjectStub_VO ):void
+	{
+		_details.show();
+		_details.changeContent( $vo.title, $vo.shortDescription, $vo.slideShow );
+	}
+	
+	private function _moveDetails (  ):void
+	{
+		_details.x = StageMediator.stageLeft + OUTER_PADDING;
+	}
+	
+	private function _hideDetails (  ):void
+	{
+		_details.hide();
+	}
 	
 	
 	// ______________________________________________________________ Scrolling

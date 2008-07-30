@@ -81,8 +81,11 @@ public class PortfolioProxy extends Proxy implements IProxy
 			vo.frameX				= node.@frameX;
 			vo.shortDescription		= node.shortDescription.elements("*").toXMLString();
 			vo.arrayIndex			= _portfolioAr.length;
-			vo.slideShow			= ( node.slideShow.length() != 0 )? new SlideShow_VO( node.slideShow, $xml.projects.@portfolioImagesDir ) : null ;
-
+			
+			// create slideshow if it exists
+			var slideShowVo			= new SlideShow_VO();
+			slideShowVo.parseXml( node.slideShow, $xml.projects.@portfolioImagesDir );
+			vo.slideShow			= ( slideShowVo.slides.length != 0 )? slideShowVo : null ;
 			_portfolioAr.push( vo );
 		}
 		_sendInitNotification();
