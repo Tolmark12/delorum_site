@@ -12,7 +12,7 @@
 				<img src="plum/slide3.jpg" />
 			</slideShow>
 		</projectStub>
-		<projectStub title="Playmill Theatre" image="playmill2.jpg" xml="oliver_parson.xml" frameX="414">
+		<projectStub title="Playmill Theatre" image="playmill2.jpg" xml="playmill.xml" frameX="414">
 			<slideShow>
 				<img src="playmill/slide1.jpg" />
 				<img src="playmill/slide3.jpg" />

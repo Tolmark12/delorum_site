@@ -27,6 +27,7 @@ public class Text extends BaseColumnObj implements IColumnObject
 	override public function setWidth ( $width:Number ):void
 	{
 		_bodyTxtSwc.textWidth = $width;
+		_fireHeightChange()
 	}
 	
 

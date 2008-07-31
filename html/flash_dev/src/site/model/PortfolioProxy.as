@@ -154,6 +154,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 			var row_vo:Row_VO		= new Row_VO();
 			row_vo.columnAr 		= new Array();
 			row_vo.title 			= ( String(node.@title).length == 0)? null : node.@title;
+			row_vo.bgColor			= ( String(node.@background).length == 0)? 0xFFFFFF : uint("0x" + node.@background) ;
 			for each( var col:XML in node.col)
 			{
 				var col_vo:Col_VO = new Col_VO();

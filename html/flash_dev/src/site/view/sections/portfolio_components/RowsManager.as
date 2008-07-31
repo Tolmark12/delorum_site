@@ -9,22 +9,22 @@ import flash.events.*;
 
 public class RowsManager extends Sprite
 {
-	private static const ROW_PADDING:Number = 10;
-	
+	// List of rows
 	private var _rows:Array;
 	
-	public function RowsManager():void
+	public function RowsManager(  ):void
 	{
 		_rows = new Array();
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
 	}
 	
-	public function buildPage ( $page_vo:Page_VO ):void
+	public function buildPage ( $page_vo:Page_VO, $width:Number ):void
 	{
+		// Add Rows
 		var len:uint = $page_vo.rowsAr.length;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
-			var newRow:Row = new Row( $page_vo.rowsAr[i] as Row_VO, $page_vo.imagesDir );
+			var newRow:Row = new Row( $page_vo.rowsAr[i] as Row_VO, $page_vo.imagesDir, $width );
 			this.addChild(newRow);
 			_rows.push(newRow);
 		}
@@ -51,7 +51,7 @@ public class RowsManager extends Sprite
 		{
 			var row:Row = _rows[i] as Row;
 			row.y = yPos;
-			yPos = row.y + row.height + ROW_PADDING;
+			yPos = row.y + row.height;
 		}
 	}
 	

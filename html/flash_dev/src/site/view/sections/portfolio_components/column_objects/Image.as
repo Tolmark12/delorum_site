@@ -22,13 +22,12 @@ public class Image extends BaseColumnObj implements IColumnObject
 		this.addChild( _imageHolder );
 		
 		// Todo, create better error handling
-		if( _getImagePath( $node ).indexOf(".jpg") != -1 ) 
-		{
-			
+		//if( _getImagePath( $node ).indexOf(".jpg") != -1 ) 
+		//{
 			var ldr:ImageLoader = new ImageLoader( _getImagePath( $node ), _imageHolder );
 			ldr.onComplete	= _initImage;
 			ldr.addItemToLoadQueue();	
-		}
+		//}
 	}
 	
 	// ______________________________________________________________ Image loading

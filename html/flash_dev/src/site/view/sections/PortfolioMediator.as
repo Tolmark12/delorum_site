@@ -34,6 +34,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private var _stubsAr:Array;
 	private var _activeStub:ProjectStub;
 	private var _portfolioState:String;
+	private var _realativeXpos:Number;
 	
 	public function PortfolioMediator():void
 	{
@@ -87,11 +88,11 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				if( _activeStub != null ) {
 					_resizeActiveStub();
 				}
-				_displayAsRibbon(1);
+				_alignRibbonLeft();
 				_moveDetails();
-				_resizeScrollTrack();
-				_resizeScrollBar();
-				_updateScrollBarPosition();
+				_resizeScrollTrack(0);
+				_resizeScrollBar(0);
+				//_updateScrollBarPosition(0);
 				break;
 			case SiteFacade.SCROLL_PORTFOLIO :
 				_scrollPortfolio( note.getBody() as ScrollEvent );
@@ -217,8 +218,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		var newx:Number = ( _activeStub != null ) ? StageMediator.stageLeft - _activeStub.targetX + OUTER_PADDING
 		 										  : StageMediator.stageLeft + OUTER_PADDING;
 		
-		trace( $tweenTime );
-		Tweener.addTween( _stubHolder, { x:newx, time:$tweenTime, transition:"EaseInOutQuint"} );
+		Tweener.addTween( _stubHolder, { x:newx, time:$tweenTime, transition:"EaseInOutQuint", onUpdate:_setRealativePosition} );
 	}
 	
 	private function _activateStub ( $id:uint ):void
@@ -282,29 +282,38 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		}
 		
 		if( e.easeMotion ) 
-			Tweener.addTween( _stubHolder, { x:x, time:0.5} );
+			Tweener.addTween( _stubHolder, { x:x, time:0.5, onUpdate:_setRealativePosition} );
 		else
-			_stubHolder.x = x;
+			_stubHolder.x = x;			
 	}
 	
-	private function _resizeScrollBar (  ):void
+	private function _resizeScrollBar ( $speed:Number=1 ):void
 	{
-		_scroller.updateScrollWindow( StageMediator.stageWidth / _ribbonWidth );
+		_scroller.updateScrollWindow( StageMediator.stageWidth / _ribbonWidth, $speed );
 	}
 	
-	private function _resizeScrollTrack (  ):void
+	private function _resizeScrollTrack ( $speed:Number=1 ):void
 	{
-		Tweener.addTween( _scrollHolder, { x:StageMediator.stageLeft + OUTER_PADDING - 12, time:1, transition:"EaseInOutQuint"} );
-		_scroller.changeWidth( StageMediator.stageWidth - OUTER_PADDING * 2 );
+		Tweener.addTween( _scrollHolder, { x:StageMediator.stageLeft + OUTER_PADDING - 12, time:$speed, transition:"EaseInOutQuint", onUpdate:_setRealativePosition} );
+		_scroller.changeWidth( StageMediator.stageWidth - OUTER_PADDING * 2, $speed );
 	}
 	
-	private function _updateScrollBarPosition (  ):void
+	private function _updateScrollBarPosition ( $speed:Number=1 ):void
 	{
 		if( _activeStub != null ) 
-			_scroller.changeScrollPosition( _activeStub.arrayIndex / (_stubsAr.length - 1));
+			_scroller.changeScrollPosition( _activeStub.arrayIndex / (_stubsAr.length - 1), $speed);
 			
 	}
 	
+	// ______________________________________________________________ Aligning the ribbon on stage resize
+	
+	private function _alignRibbonLeft ():void{
+		_stubHolder.x = StageMediator.stageLeft - _realativeXpos;
+	}
+	
+	private function _setRealativePosition (  ):void{
+		_realativeXpos = StageMediator.stageLeft - _stubHolder.x
+	}
 	
 	// ______________________________________________________________ Event Handlers
 	

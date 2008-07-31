@@ -15,7 +15,6 @@ public class SwcText extends MovieClip
 	
 	public function SwcText():void
 	{
-		trace( this );
 		_textField = this.getChildByName("textField") as TextField;
 		_textField.autoSize = "left";
 		_format = new TextFormat();

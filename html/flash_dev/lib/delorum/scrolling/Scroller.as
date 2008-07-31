@@ -159,24 +159,24 @@ public class Scroller extends EventDispatcher
 	*	
 	*	@param		The percentage (0 - 1) of the target that is visible in the window 
 	*/
-	public function updateScrollWindow ( $percentVisible:Number ):void
+	public function updateScrollWindow ( $percentVisible:Number, $speed:Number=1 ):void
 	{
 		_percentOfContentVisible = $percentVisible;
 		_scrollWidth = _trackWidth - (_trackWidth * _percentOfContentVisible);
-		Tweener.addTween( this, { barWidth:_trackWidth * _percentOfContentVisible, time:1, transition:"EaseInOutQuint", onUpdate:_barTweenUpdate } );
-		changeScrollPosition( _currentPercent );
+		Tweener.addTween( this, { barWidth:_trackWidth * _percentOfContentVisible, time:$speed, transition:"EaseInOutQuint", onUpdate:_barTweenUpdate } );
+		changeScrollPosition( _currentPercent, $speed );
 	}
 	
-	public function changeWidth ( $newWidth:Number ):void
+	public function changeWidth ( $newWidth:Number, $speed:Number=1 ):void
 	{
 		_trackWidth	= $newWidth;
-		Tweener.addTween( this, { trackWidth:$newWidth, time:1, transition:"EaseInOutQuint", onUpdate:_trackTweenUpdate } );
+		Tweener.addTween( this, { trackWidth:$newWidth, time:$speed, transition:"EaseInOutQuint", onUpdate:_trackTweenUpdate } );
 	}
 	
-	public function changeHeight ( $newHeight:Number ):void
+	public function changeHeight ( $newHeight:Number, $speed:Number=0.4 ):void
 	{
 		_barHeight = $newHeight;
-		Tweener.addTween( this, { barHeight:_barHeight, time:.4, transition:"EaseInOutQuint", onUpdate:_heightTweenUpdate} );
+		Tweener.addTween( this, { barHeight:_barHeight, time:$speed, transition:"EaseInOutQuint", onUpdate:_heightTweenUpdate} );
 	}
 	
 	/** 
@@ -184,9 +184,10 @@ public class Scroller extends EventDispatcher
 	*	
 	*	@param		The scrollbar's percentage (0 - 1), 0 is at left (or top), 1 is at right, (or bottom)
 	*/
-	public function changeScrollPosition ( $percent:Number ):void
+	public function changeScrollPosition ( $percent:Number, $speed:Number=1 ):void
 	{
-		Tweener.addTween( _barMc, { x:_scrollWidth * $percent,time:1, transition:"EaseInOutQuint"} );
+		_currentPercent = $percent;
+		Tweener.addTween( _barMc, { x:_scrollWidth * $percent,time:$speed, transition:"EaseInOutQuint"} );
 	}
 	
 	// Called on tween update, see:  updateScrollWindow()

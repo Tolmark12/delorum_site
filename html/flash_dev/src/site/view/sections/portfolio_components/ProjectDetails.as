@@ -95,7 +95,7 @@ public class ProjectDetails extends Sprite
 		_contentHolder.addChild( _bgMc 		 	 );
 		_contentHolder.addChild( _bodyTxtMc  	 );
 		_contentHolder.addChild( _titleTxt   	 );
-		//_contentHolder.addChild( _showDetailsBtn );
+		_contentHolder.addChild( _showDetailsBtn );
 
 		this.addChild( _contentHolder );
 		this.addChild( _closeBtn	  );
@@ -114,6 +114,11 @@ public class ProjectDetails extends Sprite
 		this.scaleX = 1;
 		this.scaleY = 1;
 		_isHiding = false;
+		
+		if( _rowManager != null ) 
+			_rowManager.removePage();
+		
+		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
 	public function changeContent ( $title:String, $shortDescription:String, $slideShow:SlideShow_VO  ):void
@@ -140,13 +145,15 @@ public class ProjectDetails extends Sprite
 			_contentHolder.addChild( _slideShow );
 			_slideShow.buildSlideShow( _slideShowVo );
 		}
+		
+		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
 	// ______________________________________________________________ Rows
 	
 	public function buildPage ( $page_vo:Page_VO ):void
 	{
-		_rowManager.buildPage( $page_vo );
+		_rowManager.buildPage( $page_vo, _bgMc.width );
 	}
 	
 	// ______________________________________________________________ Showing / hiding
@@ -194,7 +201,7 @@ public class ProjectDetails extends Sprite
 	
 	private function _handleContentChange ( e:Event ):void
 	{
-		trace( "blech"  + '  :  ' + count++ );
+		//trace( "blech"  + '  :  ' + count++ );
 	}
 	
 	private function _handleCloseClick ( e:Event ):void
