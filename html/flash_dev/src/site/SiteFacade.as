@@ -17,14 +17,15 @@ public class SiteFacade extends Facade implements IFacade
 	public static const FLASH_HEIGHT_CHANGED:String 	= "content_change";   		// Called when the height of the content area changes
 	public static const BROWSER_RESIZE:String 			= "browser_resize";			// Called when the browser is resized
 	public static const BROWSER_SCROLL:String 			= "browser_scroll";			// Called when the browser scrolls
-    
+    public static const MOVE_BROWSER_SCROLL:String 		= "move_browser_scroll";	// Move the browser's scroll bar
+
 	// SWFAddress TODO: rename these events to avoid confusion
 	public static const FLASH_URL_CHANGED:String 		= "url_changed";			// Called when the flash content has changed
 	public static const BROWSER_URL_CHANGED:String 		= "browser_url_changed";	// Called when the browser url has changed
                                         	
 	// Navigation                                                               	
 	public static const NAV_BTN_CLICK:String 			= "nav_btn_click";			// Passes the index of the btn clicked
-	public static const CUR_BTN_CLICKED_AGAIN:String 	= "cur_btn_clicked_again";	// Passes the index of the btn clicked
+	public static const CUR_BTN_CLICKED_AGAIN:String 	= "cur_btn_clicked_again";	// Passes the index of the btn clicked (when button is alread active and clicked)
 	public static const HOME_BTN_CLICK:String 			= "home_btn_click";			// Called when logo is clicked 
 	
 	// Changing the color Scheme
@@ -46,6 +47,9 @@ public class SiteFacade extends Facade implements IFacade
 	public static const PROJECT_XML_LOADING:String 		= "project_xml_loading";	// XML loading started
 	public static const PROJECT_XML_LOADED:String 		= "project_xml_loaded";		// XML loading complete
 	public static const DEACTIVATE_PROJECT:String 		= "deactivate_project";
+	public static const HIDE_CASE_STUDY_CLICK:String 	= "hide_case_study";		// Hide the current project's case study
+	public static const HIDE_CASE_STUDY:String 			= "hide_case_study";		// Hide the current project's case study
+	public static const CASE_STUDY_HIDDEN:String 		= "case_study_hidden";		// Case study is hidden
 	
 	public function SiteFacade( key:String ):void
 	{
@@ -78,6 +82,8 @@ public class SiteFacade extends Facade implements IFacade
 		registerCommand( LOAD_PROJECT_XML, LoadProjectXml	 			);
 		registerCommand( BROWSER_URL_CHANGED, BrowserUrlChanged	 		);
 		registerCommand( DEACTIVATE_STUB_CLICK, DeactivateStubClick	 	);
+		registerCommand( HIDE_CASE_STUDY_CLICK, HideCaseStudyClick	 	);
+		
 	}
 
 }

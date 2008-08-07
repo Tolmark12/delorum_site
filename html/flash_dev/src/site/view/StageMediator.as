@@ -44,6 +44,7 @@ public class StageMediator extends Mediator implements IMediator
 	// Javascript scrolling
 	public var flashHeight:uint = 0;
 	private static const BOTTOM_PADDIND:uint = 20;
+	public var scrollBarYpos:Number = 0;
 	
 	// TEMP
 	private var _shape:Sprite;
@@ -60,7 +61,11 @@ public class StageMediator extends Mediator implements IMediator
 		return [	SiteFacade.FLASH_HEIGHT_CHANGED,
 		    		SiteFacade.BROWSER_RESIZE,
 					SiteFacade.BROWSER_SCROLL,
-					SiteFacade.CHANGE_COLOR_SCHEME     ];
+					SiteFacade.CHANGE_COLOR_SCHEME,
+					SiteFacade.PROJECT_XML_LOADED,
+					SiteFacade.DEACTIVATE_PROJECT,
+					SiteFacade.HIDE_CASE_STUDY,
+					SiteFacade.CASE_STUDY_HIDDEN,   ];
 	}
 	
 	// PureMVC: Handle notifications
@@ -68,6 +73,20 @@ public class StageMediator extends Mediator implements IMediator
 	{
 		switch ( note.getName() )
 		{
+			case SiteFacade.DEACTIVATE_PROJECT:
+				_moveBrowserScroll( 0 );
+				break
+			case SiteFacade.PROJECT_XML_LOADED :
+				_moveBrowserScroll( 630 );
+				break;
+			case SiteFacade.HIDE_CASE_STUDY:
+				_moveBrowserScroll( 0, 0.7 );
+				//_tweenScrollBar();
+				break;
+			case SiteFacade.CASE_STUDY_HIDDEN:
+				//_moveBrowserScroll( 0 );
+				_tweenScrollBar();
+				break;
 			case SiteFacade.FLASH_HEIGHT_CHANGED:
 				_tweenScrollBar();
 				_resizeBackgroundColor();
@@ -77,7 +96,8 @@ public class StageMediator extends Mediator implements IMediator
 				_resizeBackgroundColor();
 				break;
 			case SiteFacade.BROWSER_SCROLL:
-				_handleBrowserScroll( note.getBody() as Number );
+				var args:Array = note.getBody() as Array;
+				_handleBrowserScroll( args[0], args[1] );
 				break;
 			case SiteFacade.CHANGE_COLOR_SCHEME:
 				_changeColorScheme( note.getBody() as ColorScheme_VO );
@@ -109,7 +129,7 @@ public class StageMediator extends Mediator implements IMediator
 		_handleBrowserResize();
 	}
 		
-	// ______________________________________________________________ Browser listeners
+	// ______________________________________________________________ Browser 
 	
 	/**
 	*	Open a connection with the javascript for handling browser 
@@ -129,6 +149,7 @@ public class StageMediator extends Mediator implements IMediator
 	
 	private function _handleBrowserResize (  ):void
 	{
+		//ErrorMachine.printErrors();
 		_logo.x 			= stageLeft  + 20;
 		_navSprite.x 		= stageRight - 20;
 		_browserSizeState 	= ( stageWidth > WIDE_SCREEN_WIDTH )? WIDE : NORMAL ;
@@ -142,14 +163,22 @@ public class StageMediator extends Mediator implements IMediator
 		_bgColorMc.height 	= ( stageHeight < _rootSprite.height )? _rootSprite.height + 40 : stageHeight + 40 ;
 	}
 	
-	private function _handleBrowserScroll ( $perc:Number ):void
+	private function _handleBrowserScroll ( $perc:Number, $speed:Number=0 ):void
 	{
-		_rootSprite.y = (_stage.stageHeight - _rootSprite.height - BOTTOM_PADDIND) * $perc;
+			var newY:Number;
+			var speed:Number;
+			if( _rootSprite.height < _stage.stageHeight ){
+				newY = (_stage.stageHeight - (_rootSprite.height - _rootSprite.y) ) * $perc;
+			}else{
+				newY = (_stage.stageHeight - _rootSprite.height - BOTTOM_PADDIND) * $perc;
+			}
+			Tweener.addTween( _rootSprite, { y: newY, time:$speed, transition:"EaseInOutExpo" } );
+		
 	}
 	
-	private function _tweenScrollBar (  ):void
+	private function _tweenScrollBar ( $speed:Number = 0 ):void
 	{
-		Tweener.addTween( this, { flashHeight:_rootSprite.height, time:0, transition:"EaseInOutExpo", onUpdate:_sendFlashHeightToJS } );
+		Tweener.addTween( this, { flashHeight:_rootSprite.height, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendFlashHeightToJS } );
 	}
 	
 	private function _tweenBgColor ( $color, $speed:Number=0.5 ):void
@@ -164,6 +193,21 @@ public class StageMediator extends Mediator implements IMediator
 			ExternalInterface.call( "setFlashHeight", flashHeight );
 	}
 	
+	private function _moveBrowserScroll ( $distanceFromTop, $speed:Number=1 ):void
+	{
+		if( ExternalInterface.available )
+			scrollBarYpos = ExternalInterface.call( "getScrollCordinate" );
+		
+//		ErrorMachine.echo(ExternalInterface.call( "getScrollCordinate", flashHeight ));
+		Tweener.addTween( this, { scrollBarYpos:$distanceFromTop, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendScrollPositiontoJS } );
+	}
+	
+	private function _sendScrollPositiontoJS (  ):void
+	{
+		//ErrorMachine.echo(scrollBarYpos);
+		if( ExternalInterface.available )
+			ExternalInterface.call( "moveScrollToCoordinate", scrollBarYpos );
+	}
 	
 	private function _sendNewBgColor (  ):void
 	{
@@ -205,7 +249,7 @@ public class StageMediator extends Mediator implements IMediator
 	// ______________________________________________________________ Getters / Setters
 	
 	// Called by control.Startup.as
-	public function set defaultBg 		( $bg:uint ):void{ _tweenBgColor($bg, 0) };
+	public function set defaultBg 		( $bg:uint ):void { _tweenBgColor($bg, 0) };
 	
 	public function get navSprite   			(  ):Sprite   { return _navSprite; };
 	public function get logoSprite   			(  ):Logo_swc { return _logo; };
@@ -223,7 +267,7 @@ public class StageMediator extends Mediator implements IMediator
 	// ______________________________________________________________ Event Handlers
 	
 	private function _resizeHandler ( e:Event ):void	 { sendNotification( SiteFacade.BROWSER_RESIZE 			);	}
-	private function _scrollHandler ( $perc:Number):void { sendNotification( SiteFacade.BROWSER_SCROLL, $perc 	); 	}
+	private function _scrollHandler ( $perc:Number, $speed:Number ):void { sendNotification( SiteFacade.BROWSER_SCROLL, [$perc, $speed] 	); 	}
 	
 }
 }

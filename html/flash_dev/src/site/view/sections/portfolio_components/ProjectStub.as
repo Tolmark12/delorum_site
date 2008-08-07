@@ -46,6 +46,7 @@ public class ProjectStub extends Sprite
 	private var _maskMc:Sprite;
 	private var _bgMcHolder:Sprite;
 	private var _holder:Sprite;
+	private var ldr:ImageLoader;
 	
 	// State
 	private var _sizeState:String;
@@ -135,27 +136,6 @@ public class ProjectStub extends Sprite
 		_bgMcHolder.filters = [dsf];
 	}
 	
-	public function makeDetailsMc ( $vo:ProjectStub_VO ):void
-	{
-//		_details 			= new ProjectDetails();
-//		_details.body  		= $vo.shortDescription;
-//		_details.title 		= $vo.title;
-//		_details.slideShow 	= $vo.slideShow;
-//		_details.y 			= 300;
-//		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
-//		_details.addEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
-//		this.addChild( _details  );
-	}
-	
-	public function removeDetailsMc ( $detailsMc:ProjectDetails ):void
-	{
-//		$detailsMc.removeEventListener( ProjectDetails.LOAD_PROJECT_XML, _fireLoadXmlEvent 	);
-//		$detailsMc.removeEventListener( CONTENT_HEIGHT_CHANGED, _fireHeightChangeEvent 		);
-//		this.removeChild( $detailsMc );
-//		if( $detailsMc == _details ) 
-//			_details = null;
-	}
-	
 	private function _drawBgAndMask (  ):void
 	{
 		
@@ -168,7 +148,7 @@ public class ProjectStub extends Sprite
 	
 	private function _loadImage ( $imagePath:String ):void
 	{
-		var ldr:ImageLoader = new ImageLoader( $imagePath, _imageMc );
+		ldr = new ImageLoader( $imagePath, _imageMc );
 		ldr.onComplete	= _initImage;
 		ldr.addItemToLoadQueue();		
 	}
@@ -250,15 +230,12 @@ public class ProjectStub extends Sprite
 			_sizeState = $state;
 			
 			// Showing / Hiding details
-			if( _sizeState == SMALL || _sizeState == TINY ){
+			if( _sizeState == SMALL || _sizeState == TINY ){ 	// Close
 				_clickEvent = ACTIVATE_STUB;
-//				if( _details != null ) 
-//					_details.hide();
 			}
-			else if( currentProject != this ) {
+			else if( currentProject != this ) {					// Open
+				ldr.budgeAndLoad();
 				_clickEvent = DE_ACTIVATE_STUB;
-//				makeDetailsMc( _vo );
-//				completeHandler = _details.show;
 				currentProject = this;
 			}
 			
@@ -320,10 +297,6 @@ public class ProjectStub extends Sprite
 		this.dispatchEvent( new Event( ProjectDetails.LOAD_PROJECT_XML ) );
 	}
 	
-	private function _fireHeightChangeEvent ( e:Event ):void
-	{
-		this.dispatchEvent( new Event( CONTENT_HEIGHT_CHANGED ) );
-	}
 	
 	// ______________________________________________________________ Getters / Setters
 	

@@ -9,6 +9,8 @@ import site.model.vo.Col_VO;
 import site.view.sections.portfolio_components.column_objects.*;
 import caurina.transitions.Tweener;
 import flash.events.*;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
 
 public class Row extends Sprite
 {
@@ -18,29 +20,37 @@ public class Row extends Sprite
 	private var _rowVo:Row_VO;
 	private var _columnYpos:int;
 	private var _bgColor:Shape;
+	private var _holder:Sprite;
 	private var _content:Sprite;
+	private var _oldBitmap:Bitmap;
+	private var _newBitmap:Bitmap;
 	
 	public function Row( $rowVo:Row_VO, $imagesDir:String, $width:Number ):void
 	{
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
 		
-		alpha = 0;
-		Tweener.addTween( this, { alpha:1, time:1, transition:"EaseInOutQuint"} );
 		_rowVo = $rowVo;
 		_columnYpos = ROW_PADDING;
+		
+		_holder = new Sprite()
+		this.addChild(_holder);
 		
 		// Add Background and Title
 		if( _rowVo.bgColor != -1 ) 
 			_drawBg( $width );
 			
 		_content = new Sprite();
-		this.addChild( _content );
+		_holder.addChild( _content );
 			
 		if( _rowVo.title != null ) 
 			_addtitle();
 			
 		// Add columns
 		_buildColumns( $imagesDir );
+		
+		alpha = 0;
+		Tweener.addTween( this, { alpha:1, time:1, transition:"EaseInOutQuint"} );
+//		_show();
 	}
 	
 	// ______________________________________________________________ Make
@@ -81,7 +91,7 @@ public class Row extends Sprite
 		_bgColor.visible = false;
 		_bgColor.graphics.beginFill(_rowVo.bgColor);
 		_bgColor.graphics.drawRect(0,0,$width,300);
-		this.addChild(_bgColor);
+		_holder.addChild(_bgColor);
 	}
 	
 	private function _handleRowHeightChange ( e:Event ):void
@@ -91,8 +101,44 @@ public class Row extends Sprite
 			_bgColor.height = _content.height + ROW_PADDING*2;
 			_bgColor.visible = true;
 		}
+//		_show();
 	}
 	
+//	// ______________________________________________________________ Show
+//	
+//	private function _show (  ):void
+//	{
+//		/*if( _oldBitmap != null ) {
+//			this.removeChild( _oldBitmap );
+//			_oldBitmap = null;
+//		}*/
+//		
+//		_holder.visible = true;
+//		var myBitmapData:BitmapData = new BitmapData(_holder.width, _holder.height, true, 0x000000);
+//		myBitmapData.draw( _holder );
+//		_newBitmap = new Bitmap( myBitmapData );
+//		this.addChild( _newBitmap );
+//		_holder.visible = false;
+//		
+//		if( _oldBitmap != null )
+//			_oldBitmap.visible = false;
+//		
+//		_newBitmap.alpha = 0;
+//		Tweener.addTween( _newBitmap, { alpha:1, time:1, transition:"EaseInOutQuint", onComplete:_showTheRealContent} );
+//	}
+//	
+//	private function _showTheRealContent (  ):void
+//	{
+//		//_oldBitmap.visible = false;
+//		//_holder.visible = true;
+//		
+//		if( _oldBitmap != null )
+//			this.removeChild( _oldBitmap );
+//			
+//		_oldBitmap = _newBitmap;
+//		_holder.visible = true;
+//	}
+
 	
 }
 

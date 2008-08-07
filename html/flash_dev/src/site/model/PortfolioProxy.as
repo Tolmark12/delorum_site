@@ -141,6 +141,15 @@ public class PortfolioProxy extends Proxy implements IProxy
 		}
 	}
 	
+	// Return current project to it's semi active state
+	public function hideCaseStudy (  ):void
+	{
+		if( _fullyActiveStubIndex != -1 ) {
+			_fullyActiveStubIndex = -1;
+			sendNotification( SiteFacade.HIDE_CASE_STUDY );
+		}
+	}
+	
 	private function _parseProjectXml ( e:Event ):void
 	{
 		

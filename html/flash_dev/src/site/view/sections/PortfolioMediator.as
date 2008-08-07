@@ -52,7 +52,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				 SiteFacade.PROJECT_XML_LOADED,
 				 SiteFacade.CHANGE_COLOR_SCHEME,
 				 SiteFacade.CUR_BTN_CLICKED_AGAIN,
-				 SiteFacade.DEACTIVATE_PROJECT, ];
+				 SiteFacade.DEACTIVATE_PROJECT,
+				 SiteFacade.HIDE_CASE_STUDY ];
 	}
 	
 	// PureMVC: Handle notifications
@@ -80,6 +81,9 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_deactivateActiveStub();
 				_hideDetails()
 				_moveRibbonVertical();
+				break;
+			case SiteFacade.HIDE_CASE_STUDY :
+				_details.closePage();
 				break;
 			case SiteFacade.CUR_BTN_CLICKED_AGAIN:
 				_handleDeactivateStub();
@@ -139,13 +143,16 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			var stub_vo:ProjectStub_VO  = $stubAr[i];
 			var stub:ProjectStub		= new ProjectStub();
 			stub.make( stub_vo );
-			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 			);
-			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
+			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 				);
+			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 			);
 			_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
 			_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
-			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeigthChange 	);
+			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);
+			_details.addEventListener( ProjectDetails.HIDE_CASE_STUDY, _handleHideCaseStudy		);
+			_details.addEventListener( ProjectDetails.CASE_STUDY_HIDDEN, _handleCaseStudyHidden	);
+			
 //			stub.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
-//			stub.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeigthChange	);
+//			stub.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange	);
 			
 			_stubHolder.addChild( stub );
 			_stubsAr.push( stub );
@@ -318,10 +325,13 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	// ______________________________________________________________ Event Handlers
 	
 	// Project stub
-	public function _handleActivateStub   ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex );  };
-	public function _handleDeactivateStub ( e:Event = null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
-	public function _handleStubXmlRequest ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML 		); };
-	public function _handleHeigthChange   ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 	); };
+	public function _handleActivateStub     ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex );  };
+	public function _handleDeactivateStub   ( e:Event = null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
+	public function _handleStubXmlRequest   ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML 		); };
+	public function _handleHeightChange     ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 	); };
+	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK	); };
+	private function _handleCaseStudyHidden ( e:Event 	   ):void {	sendNotification( SiteFacade.CASE_STUDY_HIDDEN		); };
+	
 	// Scrolling
 	public function _handleScroll    ( e:ScrollEvent ):void{ sendNotification( SiteFacade.SCROLL_PORTFOLIO, e ); };
 	

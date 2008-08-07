@@ -15,7 +15,10 @@ import delorum.slides.SlideShow_VO;
 public class ProjectDetails extends Sprite
 {	
 	// Events
-	public static const LOAD_PROJECT_XML:String  		= "load_xml";
+	public static const LOAD_PROJECT_XML :String  		= "load_project_xml";
+	public static const HIDE_CASE_STUDY	 :String  		= "hide_case_study";
+	public static const CASE_STUDY_HIDDEN:String  		= "case_study_hidden";
+	
 	
 	// Btn
 	private var _showDetailsBtn:CircleBtn_swc;
@@ -23,7 +26,8 @@ public class ProjectDetails extends Sprite
 	// Sprites
 	private var _rowManager:RowsManager;
 	private var _bgMc:Sprite;
-	private var _closeBtn:WhiteCloseBtn_swc;
+	private var _closeBtnTop:WhiteCloseBtn_swc;
+	private var _closeBtnBtm:WhiteCloseBtn_swc;
 	private var _slideShow:SlideShow;
 	private var _contentHolder:Sprite;
 	private var _mask:Sprite;
@@ -52,15 +56,19 @@ public class ProjectDetails extends Sprite
 		_showDetailsBtn = new CircleBtn_swc();
 		_rowManager		= new RowsManager();
 		_bgMc			= new Sprite();
-		_closeBtn		= new WhiteCloseBtn_swc();
+		_closeBtnTop	= new WhiteCloseBtn_swc();
+		_closeBtnBtm	= new WhiteCloseBtn_swc();
 		_mask 			= new Sprite();
 		
 		// Background
 		_bgMc.graphics.beginFill(0xFFFFFF);
 		_bgMc.graphics.drawRect (-ProjectStub.BORDER_SIZE,0,ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE + ProjectStub.BORDER_SIZE,351);
-		_closeBtn.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
-		_closeBtn.y = -10;
-		//_bgMc.visible = false;
+		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
+		_closeBtnTop.y = -10;
+		_closeBtnBtm.y = -5;
+		
+		// Rows
+		_rowManager.y = 380;
 		
 		// Show Details button
 		_showDetailsBtn.make( "Title", _showDetailsBtn.DOWN_ARROW );
@@ -69,7 +77,8 @@ public class ProjectDetails extends Sprite
 		_showDetailsBtn.y = 310;
 				
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
-		_closeBtn.addEventListener( MouseEvent.CLICK, _handleCloseClick )
+		_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
+		_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
 		
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		
@@ -89,8 +98,7 @@ public class ProjectDetails extends Sprite
 		_titleTxt.x					= 20;
 		_bodyTxtMc.x				= 20;
 		
-		// Rows
-		_rowManager.y = 375;
+		
 		
 		_contentHolder.addChild( _bgMc 		 	 );
 		_contentHolder.addChild( _bodyTxtMc  	 );
@@ -98,9 +106,10 @@ public class ProjectDetails extends Sprite
 		_contentHolder.addChild( _showDetailsBtn );
 
 		this.addChild( _contentHolder );
-		this.addChild( _closeBtn	  );
+		this.addChild( _closeBtnTop	  );
 		this.addChild( _mask		  );
-		this.addChild( _rowManager 	 );
+		this.addChild( _rowManager 	  );
+		/*this.addChild( _closeBtnBtm   );*/
 		
 		// Mask
 		_mask.graphics.beginFill(0xFFFF);
@@ -116,7 +125,7 @@ public class ProjectDetails extends Sprite
 		_isHiding = false;
 		
 		if( _rowManager != null ) 
-			_rowManager.removePage();
+			closePage()
 		
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
@@ -153,7 +162,21 @@ public class ProjectDetails extends Sprite
 	
 	public function buildPage ( $page_vo:Page_VO ):void
 	{
+		Tweener.addTween(_rowManager, {alpha:1, time:0 })
 		_rowManager.buildPage( $page_vo, _bgMc.width );
+		_rowManager.addChild( _closeBtnBtm );
+	}
+	
+	public function closePage (  ):void
+	{
+		_rowManager.hide( _removePage );
+	}
+	
+	private function _removePage (  ):void
+	{
+		_rowManager.removePage();
+		/*_rowManager.removeChild( _closeBtnBtm );*/
+		dispatchEvent( new Event( CASE_STUDY_HIDDEN ) );
 	}
 	
 	// ______________________________________________________________ Showing / hiding
@@ -162,7 +185,7 @@ public class ProjectDetails extends Sprite
 	{
 		if( _rowManager == null ) 
 			make();
-			
+		
 		if( this.visible == false )
 		{
 			this.visible = true;
@@ -207,6 +230,11 @@ public class ProjectDetails extends Sprite
 	private function _handleCloseClick ( e:Event ):void
 	{
 		this.dispatchEvent( new Event(ProjectStub.DE_ACTIVATE_STUB, true) );
+	}
+	
+	private function _handlePageCloseClick ( e:Event ):void
+	{
+		this.dispatchEvent( new Event(HIDE_CASE_STUDY) );
 	}
 	
 	// ______________________________________________________________ Getters / Setters

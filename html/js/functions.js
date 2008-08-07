@@ -1,7 +1,8 @@
 // ______________________________________________________________ Flash Scrolling
 
 window.onscroll = detectScroll;
-
+echoString = "";
+oldPercent = -1;
 /** 
  * Formulate percent of document currently
  * being viewed in document window.
@@ -10,8 +11,20 @@ window.onscroll = detectScroll;
  */
 function detectScroll(){
 	var percent = _scrollTop() / ( _scrollHeight() - _innerHeight() );
-	getFlash().scrollFlash( percent );
+	if(oldPercent != percent)
+	{
+		if(percent >= 0){
+			oldPercent = percent;
+			getFlash().scrollFlash( percent, 0 );
+		} 
+	}
 }
+
+//window.onunload = _refreshHandler;
+//function _refreshHandler()
+//{
+//	alert( (document.all)? document.body.scrollTop : window.pageYOffset );
+//}
 
 /**
  * Return the top os the scroll
@@ -73,9 +86,23 @@ function getFlash(){
  */
 function setFlashHeight( newHeight ){
 	document.getElementById( "body" ).style.height = newHeight + "px";
+	//alert(newHeight + ' : ' + _scrollHeight());
+	
+	if ( newHeight<_scrollHeight()  ) 
+	{
+		getFlash().scrollFlash( 0, 1 );
+	}
 }
 
 function setBgColor( newBgColor ){
 	document.getElementById( "delorum_flash" ).style.backgroundColor = newBgColor;
 	//alert(document.getElementById( "flash_wrapper" ));
+}
+
+function moveScrollToCoordinate(y) { 
+	window.scrollTo(0,y); 
+}
+
+function getScrollCordinate () {
+	return (document.all)? document.body.scrollTop : window.pageYOffset ;
 }
