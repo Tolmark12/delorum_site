@@ -126,9 +126,9 @@ public class PortfolioMediator extends BaseSection implements IMediator
 
 		// Position display items
 		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
-		_details.y 		= 300;
+		_details.y 		= 300000;
 		_scrollHolder.x = OUTER_PADDING;
-		_scrollHolder.y = 265;
+		_scrollHolder.y = _stubHolder.y + 265;
 		_moveDetails();
 		
 		// Add to display list
@@ -175,23 +175,25 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _moveRibbonVertical (  ):void
 	{
-		var yTarget:uint;
+		var ribbonTargetY:uint;
 		
 		switch (_portfolioState ){
 			case _BROWSING :
-				yTarget = StageMediator.stageMiddle - ProjectStub.HEIGHT / 2;
+				ribbonTargetY 	= 0;
 				break;
 			case _DETAILS :
-				yTarget = 110;
+				ribbonTargetY = 30;
 				break;
 			case _FULL :
-				yTarget = 80;
+				ribbonTargetY = 100;
 				break;
 		}
 		
 		// Temp disableing moving
-		yTarget = 70;
-		Tweener.addTween( super._baseMc, { y:yTarget, time:1, transition:"EaseInOutQuint"} );
+		//ribbonTargetY = 70;
+		Tweener.addTween( _stubHolder, { y:ribbonTargetY, time:1, transition:"EaseInOutQuint"} );
+		Tweener.addTween( _scrollHolder, { y:ribbonTargetY + 365, time:1, transition:"EaseInOutQuint"} );
+		
 	}
 	
 	// ______________________________________________________________ Stub display

@@ -31,6 +31,7 @@ public class ProjectStub extends Sprite
 	
 	public static const HEIGHT:Number	 	= 243;	
 	public static const HEIGHT_TINY:Number  = 50;
+	public static const HEIGHT_LARGE:Number = 351;
 	
 	// Physical states
 	public static const TINY:String 		= "tiny";
@@ -67,6 +68,7 @@ public class ProjectStub extends Sprite
 	// Motion
 	private var _targetX:Number;
 	private var _baseX:Number = -400;
+	private var _baseY:Number = 0;
 	
 	// Project Details
 //	private var _details:ProjectDetails;
@@ -88,6 +90,7 @@ public class ProjectStub extends Sprite
 	{
 		_vo			= $vo;
 		_baseX		= -$vo.frameX;
+		_baseY		= -$vo.frameY;
 		_arrayIndex = $vo.arrayIndex;
 		_stubMc		= new Sprite();
 		_bgMc 		= new Sprite();
@@ -98,6 +101,7 @@ public class ProjectStub extends Sprite
 		
 		_bgMc.x 			= -BORDER_SIZE;
 		_bgMc.y 			= -BORDER_SIZE;
+		_holder.y				= 40;
 		
 		this.visible 		= false;
 		_stubMc.buttonMode  = true;
@@ -232,17 +236,29 @@ public class ProjectStub extends Sprite
 			// Showing / Hiding details
 			if( _sizeState == SMALL || _sizeState == TINY ){ 	// Close
 				_clickEvent = ACTIVATE_STUB;
+				// Temp                                    
+				Tweener.addTween( _bgMc,    {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _maskMc,  {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _holder, 	{ y:40, time:1, transition:"EaseInOutQuint"} );
+				// end Temp
 			}
 			else if( currentProject != this ) {					// Open
 				ldr.budgeAndLoad();
 				_clickEvent = DE_ACTIVATE_STUB;
 				currentProject = this;
+				// Temp
+				Tweener.addTween( _bgMc,    {height:HEIGHT_LARGE, time:1, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _maskMc,  {height:HEIGHT_LARGE, time:1, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _holder, 	{ y:0, time:1, transition:"EaseInOutQuint"} );
+				// end Temp
 			}
 			
 			var xtarg:Number = (_sizeState == SMALL)? _baseX : 0;
+			var ytarg:Number = (_sizeState == SMALL)? _baseY : 0;
+
 			Tweener.addTween( _bgMc,    {width:stubWidth + BORDER_SIZE, time:1, transition:"EaseInOutQuint", onComplete:completeHandler});
 			Tweener.addTween( _maskMc,  {width:stubWidth - BORDER_SIZE, time:1, transition:"EaseInOutQuint"});
-			Tweener.addTween( _imageMc, {x:xtarg, time:1, transition:"EaseInOutQuint"} );
+			Tweener.addTween( _imageMc, {y:ytarg, x:xtarg, time:1, transition:"EaseInOutQuint"} );
 		}
 	}
 	
@@ -302,7 +318,7 @@ public class ProjectStub extends Sprite
 	
 	public function get stubWidth 	(  ):Number	{ return ProjectStub["WIDTH_" + _sizeState.toUpperCase() ] + BORDER_SIZE; };
 	public function get stubHeight 	(  ):Number	{ 
-		return (_sizeState == TINY)? HEIGHT_TINY : HEIGHT; 
+		return (_sizeState == SMALL)? HEIGHT : HEIGHT_LARGE; 
 	}
 
 	public function get arrayIndex 	(  ):uint	{ return _arrayIndex; };

@@ -79,6 +79,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 			vo.image		   		= $xml.projects.@imageStubDir + node.@image;
 			vo.title		   		= node.@title;
 			vo.frameX				= node.@frameX;
+			vo.frameY				= node.@frameY;
 			vo.shortDescription		= node.shortDescription.elements("*").toXMLString();
 			vo.arrayIndex			= _portfolioAr.length;
 			

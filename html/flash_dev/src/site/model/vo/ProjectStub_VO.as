@@ -14,9 +14,12 @@ public class ProjectStub_VO
 	
 	public function set frameX ( $val:* ):void { _frameX = Number($val); };
 	public function get frameX ():Number 			{ return _frameX; };
-	
+	public function set frameY ( $val:* ):void { _frameY = Number($val); };
+	public function get frameY ():Number 			{ return _frameY; };
+		
 	// private vars
 	private var _frameX			:Number;
+	private var _frameY			:Number;
 	
 }
 
