@@ -2,15 +2,14 @@ package site.view.sections.portfolio_components
 {
 
 import flash.display.*;
-import site.model.ColorSchemeProxy;
-import site.model.vo.ColorScheme_VO;
-import site.model.vo.Row_VO;
-import site.model.vo.Col_VO;
+import site.model.*;
+import site.model.vo.*;
 import site.view.sections.portfolio_components.column_objects.*;
 import caurina.transitions.Tweener;
 import flash.events.*;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import flash.text.StyleSheet;
 
 public class Row extends Sprite
 {
@@ -36,8 +35,7 @@ public class Row extends Sprite
 		this.addChild(_holder);
 		
 		// Add Background and Title
-		if( _rowVo.bgColor != -1 ) 
-			_drawBg( $width );
+		_drawBg( $width );
 			
 		_content = new Sprite();
 		_holder.addChild( _content );
@@ -87,11 +85,30 @@ public class Row extends Sprite
 	
 	private function _drawBg ( $width:Number ):void
 	{
+		var bgColor:uint = _getCssBgColor();
+		bgColor = ( _rowVo.bgColor == null )? bgColor : uint(_rowVo.bgColor) ;
 		_bgColor = new Shape();
 		_bgColor.visible = false;
-		_bgColor.graphics.beginFill(_rowVo.bgColor);
+		_bgColor.graphics.beginFill( bgColor );
 		_bgColor.graphics.drawRect(0,0,$width,300);
 		_holder.addChild(_bgColor);
+	}
+	
+	private function _getCssBgColor (  ):uint
+	{
+		var tempStyleSheet:StyleSheet = new StyleSheet;
+		
+		// parse all css styles associated with this row
+		var len:uint = _rowVo.cssStyleList.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			var cssData:Css_VO = CssProxy.getCss( _rowVo.cssStyleList[i] );
+			tempStyleSheet.parseCSS( cssData.toString() );
+		}
+		
+		var bgColor:String = tempStyleSheet.getStyle("bg").color 
+		// Replace the # with 0x
+		return uint( bgColor.replace(/#/, "0x") );
 	}
 	
 	private function _handleRowHeightChange ( e:Event ):void

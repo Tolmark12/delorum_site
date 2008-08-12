@@ -94,7 +94,7 @@ public class NavMediator extends Mediator implements IMediator
 		
 		// right align the buttons on the 0 pos
 		navHolder.x = -xPos;
-		trace( "build buttons" );
+//		trace( "build buttons" );
 		
 	}
 	

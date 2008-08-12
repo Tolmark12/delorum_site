@@ -146,6 +146,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			stub.make( stub_vo );
 			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 				);
 			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 			);
+			// TODO: move the events of the details from the stub to the details. or at least investigat if it should be so
 			_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
 			_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
 			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);

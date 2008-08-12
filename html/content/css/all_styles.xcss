@@ -5,9 +5,9 @@
  <!-- Styles -->
  <style id="default">
  	p {
-		font-size:16;
+		font-size:14;
 		color:#2A211E;
-		font-weight:bold;	
+		leading:2;
 	}
 
 	body{
@@ -16,20 +16,20 @@
 
 	h1{
 		font-weight:normal;
-		color:#FFFFFF;
-		font-size:16;
 		display:block;
+		font-size:14;
 	}
+	bg { color:#FFFFFF; }
  </style>
  
- <style id="brown">
-	p {
-	}
+ <style id="header">
+	h1 { font-size:16; }
  </style>
  
- <style id="white">
-	h1 {
-	}
+ <style id="cs_brown">
+	bg { color:#FF0000; }
+	p  { color:#382C28; }
+	h1 { color:#FFFFFF; }
  </style>
  <!-- Styles END -->
 

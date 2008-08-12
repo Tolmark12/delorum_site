@@ -46,12 +46,33 @@ public class SwcText extends MovieClip
 	
 	public function parseCss ( ...$cssObjects ):void
 	{
+		var tempStyleSheet = new StyleSheet();
+		
+		// Parse all styles
 		var len:uint = $cssObjects.length-1;
 		for ( var i:int=len; i>=0; i-- ) 
 		{
-			trace( "css: " + $cssObjects[i] );
-			_styleSheet.parseCSS( $cssObjects[i] );
+			tempStyleSheet.parseCSS( $cssObjects[i] );
 		}
+		
+		// Copy styles into _styleSheet
+		var len2:uint = tempStyleSheet.styleNames.length;
+		for ( var j:uint=0; j<len2; j++ ) 
+		{
+			var tag:String = tempStyleSheet.styleNames[j];
+			var newStyle:Object = tempStyleSheet.getStyle( tag );
+			var oldStyle:Object = _styleSheet.getStyle( tag );
+			trace( tag );
+			// Copy any existing params from old style sheet
+			for( var k:String in oldStyle )
+			{
+				// only copy if the new style does not have this param defined
+				if( newStyle[k] == null )
+					newStyle[k] = oldStyle[k];
+			}
+			_styleSheet.setStyle( tag, newStyle );
+		}
+		
 		_updateFormat();
 	}
 	
@@ -59,9 +80,6 @@ public class SwcText extends MovieClip
 	{
 		var look:RegExp = /\n/g;
 		return $str.replace(look, "");
-		//var htmlStr:String = "<a href='http://bewarz.of.warez.ru'>A dangerous link</a>";
-		//var removeHTML:RegExp = new RegExp("<[^>]*>", "gi");
-		//var safeStr:String = htmlStr.replace(removeHTML, "");
 	}
 	
 	public function set text 		( $str:String ):void{ htmlText = $str; };

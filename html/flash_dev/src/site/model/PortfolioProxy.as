@@ -82,7 +82,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 			vo.shortDescription		= node.shortDescription.elements("*").toXMLString();
 			vo.arrayIndex			= _portfolioAr.length;
 			vo.bgColor				= ( String( node.@bgColor ).length == 0 )? 0xFFFFFF : uint("0x" + node.@bgColor) ;
-			vo.cssList				= ( String( node.@css ).length == 0 )? [ $xml.projects.@defaultCss ]: node.@css.split(",") ;
+			vo.cssStyleList			= ( String( node.@css ).length == 0 )? [ $xml.projects.@defaultCss ]: node.@css.split(",") ;
 			
 			// create slideshow if it exists
 			var slideShowVo			= new SlideShow_VO();
@@ -166,8 +166,10 @@ public class PortfolioProxy extends Proxy implements IProxy
 		{
 			var row_vo:Row_VO		= new Row_VO();
 			row_vo.columnAr 		= new Array();
-			row_vo.title 			= ( String(node.@title).length == 0)? null : node.@title;
-			row_vo.bgColor			= ( String(node.@background).length == 0)? 0xFFFFFF : uint("0x" + node.@background) ;
+			row_vo.title 			= ( String(node.@title).length == 0 )? null : node.@title;
+			row_vo.cssStyleList		= ( String(node.@css).length   == 0 )? ["default"] : node.@css.split(",") ;
+			row_vo.bgColor			= ( String(node.@bgColor).length == 0)? null : "0x" + node.@bgColor ;
+			
 			for each( var col:XML in node.col)
 			{
 				var col_vo:Col_VO = new Col_VO();
