@@ -116,7 +116,7 @@ public class ProjectStub extends Sprite
 		//makeDetailsMc( $vo );
 		
 		_loadImage( $vo.image );
-		_drawBgAndMask();
+		_drawBgAndMask( $vo.bgColor );
 		//_drawDropShadow();
 	}
 	
@@ -136,10 +136,10 @@ public class ProjectStub extends Sprite
 		_bgMcHolder.filters = [dsf];
 	}
 	
-	private function _drawBgAndMask (  ):void
+	private function _drawBgAndMask ( $color:uint=0xFFFFFF ):void
 	{
 		
-		_bgMc.graphics.beginFill( 0xFFFFFF );
+		_bgMc.graphics.beginFill( $color );
 		if( BORDER_SIZE != 0)
 			_bgMc.graphics.drawRect(0,0,WIDTH_SMALL + BORDER_SIZE*2, HEIGHT + BORDER_SIZE*2 )
 		_maskMc.graphics.beginFill( 0xFFFFFF );

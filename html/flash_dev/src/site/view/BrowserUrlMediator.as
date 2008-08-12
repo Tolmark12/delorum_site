@@ -48,7 +48,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 		_sendTime = new Date();
 		SWFAddress.setValue( $url );
 		
-		var look:RegExp		 = /_/;
+		var look:RegExp		 = /_/g;
 		var pageTitle:String = $url.replace( look, " ");
 		SWFAddress.setTitle( BROWSER_TITLE_PREFACE + pageTitle);
 	}

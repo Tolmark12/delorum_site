@@ -11,6 +11,8 @@ public class ProjectStub_VO
 	public var title			:String;
 	public var shortDescription	:String;
 	public var slideShow		:SlideShow_VO;
+	public var bgColor			:uint;
+	public var cssList			:Array;
 	
 	public function set frameX ( $val:* ):void { _frameX = Number($val); };
 	public function get frameX ():Number 			{ return _frameX; };

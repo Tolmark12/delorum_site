@@ -81,6 +81,8 @@ public class PortfolioProxy extends Proxy implements IProxy
 			vo.frameX				= node.@frameX;
 			vo.shortDescription		= node.shortDescription.elements("*").toXMLString();
 			vo.arrayIndex			= _portfolioAr.length;
+			vo.bgColor				= ( String( node.@bgColor ).length == 0 )? 0xFFFFFF : uint("0x" + node.@bgColor) ;
+			vo.cssList				= ( String( node.@css ).length == 0 )? [ $xml.projects.@defaultCss ]: node.@css.split(",") ;
 			
 			// create slideshow if it exists
 			var slideShowVo			= new SlideShow_VO();
@@ -88,6 +90,8 @@ public class PortfolioProxy extends Proxy implements IProxy
 			vo.slideShow			= ( slideShowVo.slides.length != 0 )? slideShowVo : null ;
 			_portfolioAr.push( vo );
 		}
+		
+		sendNotification( SiteFacade.LOAD_CSS, String( $xml.projects.@cssFile ) );
 		_sendInitNotification();
 	}
 	

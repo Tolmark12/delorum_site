@@ -12,6 +12,7 @@ import caurina.transitions.Tweener;
 import site.view.StageMediator;
 import delorum.scrolling.*;
 import site.model.ColorSchemeProxy;
+import site.model.CssProxy;
 
 public class PortfolioMediator extends BaseSection implements IMediator
 {	
@@ -262,7 +263,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _changeDetails ( $vo:ProjectStub_VO ):void
 	{
 		_details.show();
-		_details.changeContent( $vo.title, $vo.shortDescription, $vo.slideShow );
+		_details.changeContent( $vo.title, $vo );
 	}
 	
 	private function _moveDetails (  ):void

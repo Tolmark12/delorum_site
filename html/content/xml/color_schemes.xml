@@ -26,6 +26,14 @@
 		/>
 	</colorScheme>
 	
+	
+	<colorScheme id="brown">
+		<colors 
+			 nav_hover="F9A146"
+			 bg="2A211E"
+		/>
+	</colorScheme>
+	
 	<colorScheme id="orange">
 		<colors 
 			 nav_hover="333333"

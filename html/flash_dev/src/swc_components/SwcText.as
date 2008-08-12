@@ -10,21 +10,23 @@ import flash.events.*;
 public class SwcText extends MovieClip
 {
 	private var _textField:TextField;
-	private var _format:TextFormat;
 	private var _bitmap:Bitmap;
+	private var _styleSheet:StyleSheet;
+	private var _baseStyle:Object;
 	
 	public function SwcText():void
 	{
-		_textField = this.getChildByName("textField") as TextField;
-		_textField.autoSize = "left";
-		_format = new TextFormat();
+		_styleSheet 			= new StyleSheet();
+		_baseStyle				= new Object();
+		_textField 				= this.getChildByName("textField") as TextField;
+		_textField.autoSize 	= "left";
 		this.addEventListener( Event.ADDED_TO_STAGE, _addBitmap )
 	}
 	
 	private function _updateFormat (  ):void
 	{
-		_textField.defaultTextFormat = _format;
-		_textField.setTextFormat( _format );
+		_styleSheet.setStyle( "body", _baseStyle );
+		_textField.styleSheet = _styleSheet;
 		_addBitmap();
 	}
 	
@@ -42,15 +44,35 @@ public class SwcText extends MovieClip
 		_textField.visible = false;
 	}
 	
-	public function set text 		( $str:String ):void{ _textField.text = $str; 	  _updateFormat();  };
-	public function set htmlText 	( $str:String ):void{ _textField.htmlText = $str; _updateFormat();  };
+	public function parseCss ( ...$cssObjects ):void
+	{
+		var len:uint = $cssObjects.length-1;
+		for ( var i:int=len; i>=0; i-- ) 
+		{
+			trace( "css: " + $cssObjects[i] );
+			_styleSheet.parseCSS( $cssObjects[i] );
+		}
+		_updateFormat();
+	}
+	
+	private function _stripNewLines ( $str:String ):String
+	{
+		var look:RegExp = /\n/g;
+		return $str.replace(look, "");
+		//var htmlStr:String = "<a href='http://bewarz.of.warez.ru'>A dangerous link</a>";
+		//var removeHTML:RegExp = new RegExp("<[^>]*>", "gi");
+		//var safeStr:String = htmlStr.replace(removeHTML, "");
+	}
+	
+	public function set text 		( $str:String ):void{ htmlText = $str; };
+	public function set htmlText 	( $str:String ):void{ _textField.htmlText = "<body>" + _stripNewLines( $str ) + "</body>"; _updateFormat();  };
 	
 	public function get txtField (  ):TextField { return _textField; };
 	public function set textWidth ( $val:uint ):void { _textField.width = $val; _addBitmap(); };
 	public function get textWidth ():uint 			 { return _textField.textWidth; };
-	public function set size ( $size:Number ):void { _format.size = $size; _updateFormat();  };
-	public function set color ( $hex:uint ):void { _format.color = $hex; _updateFormat() };
-	public function set leading ( $leading:Number ):void {  _format.leading = $leading; _updateFormat(); };
+	public function set size ( $size:Number ):void { _baseStyle.fontSize = $size; _updateFormat();  };
+	public function set color ( $hex:uint ):void { _baseStyle.color = $hex; _updateFormat() };
+	public function set leading ( $leading:Number ):void {  _baseStyle.leading = $leading; _updateFormat(); };
 
 }
 

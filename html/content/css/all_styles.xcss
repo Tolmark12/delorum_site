@@ -1,0 +1,38 @@
+<MAIN>
+<styles>
+
+ 
+ <!-- Styles -->
+ <style id="default">
+ 	p {
+		font-size:16;
+		color:#2A211E;
+		font-weight:bold;	
+	}
+
+	body{
+		font-family:Georgia;
+	}
+
+	h1{
+		font-weight:normal;
+		color:#FFFFFF;
+		font-size:16;
+		display:block;
+	}
+ </style>
+ 
+ <style id="brown">
+	p {
+	}
+ </style>
+ 
+ <style id="white">
+	h1 {
+	}
+ </style>
+ <!-- Styles END -->
+
+
+</styles>
+</MAIN>
