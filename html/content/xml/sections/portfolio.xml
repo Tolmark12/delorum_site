@@ -16,13 +16,13 @@
 				<img src="plum/slide3.jpg" />
 			</slideShow>
 		</projectStub>
-		<projectStub title="Playmill Theatre" image="playmill2.jpg" xml="playmill.xml" frameX="414" >
+		<projectStub title="Playmill Theatre" image="playmill2.jpg" xml="playmill.xml" frameX="414" css="header" >
+			<shortDescription><h1>Playmill Theatres</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions.</p></shortDescription>
 			<slideShow>
 				<img src="playmill/slide1.jpg" />
 				<img src="playmill/slide3.jpg" />
 				<img src="playmill/slide2.jpg" />
 			</slideShow>
-			<shortDescription><h1>Playmill Theatres</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. </p></shortDescription>
 		</projectStub>
 		<projectStub title="Bevy Facebook Application" image="mockup9_big.gif" frameX="30" xml="oliver_parson.xml" css="header,cs_brown" bgColor="8C7A72">
 			<shortDescription><h1>Bevy Facebook Application</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. </p></shortDescription>

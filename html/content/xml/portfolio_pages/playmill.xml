@@ -1,19 +1,32 @@
 <MAIN>
 	<page imageDir="playmill/">
 		<!-- Four Hundred Sketches -->
-		<row css="cs_brown,header" bgColor="FFFFFF">
+		<row css="header" bgColor="FFFFFF" padding="0">
 			<col>
-				<txt><h1>Bringing down the House</h1>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design, earning us complimentary tickets, sample fudge and a Northwest Region Silver Addy.</txt>
+				<txt><h1>Plum Furniture</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p></txt>
+			</col>
+			<col span="2" float="right">
+				<slideShow w="508" h="351" displayTime="5.5" transitionSpeed="1.8" >
+					<img src="slide1.jpg" />
+					<img src="slide2.jpg" />
+					<img src="slide3.jpg" />
+				</slideShow>
+			</col>
+		</row>
+		<row css="header" bgColor="FFFFFF">
+			<col>
+				<txt><h1>Bringing down the House</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design, earning us complimentary tickets, sample fudge and a Northwest Region Silver Addy.</p></txt>
 			</col>
 			<col>
-				<txt>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions and such stuff<h1>Taking out the Cows</h1>Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design.</txt>
+				<txt><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions and such stuff</p><h1>Taking out the Cows</h1><p>Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design.
+</p></txt>
 			</col>
-			<col>
+			<col align="center">
 				<img src="vertical_poster_08.jpg" />
 			</col>
 		</row>
-		<row bgColor="F9A146" >
-			<col>
+		<row bgColor="000000" >
+			<col align="center" span="3">
 				<img src="orange_sketches.gif" />
 			</col>
 		</row>

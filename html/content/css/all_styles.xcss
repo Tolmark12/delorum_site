@@ -7,19 +7,25 @@
  	p {
 		font-size:14;
 		color:#2A211E;
-		leading:2;
 	}
-
 	body{
 		font-family:Georgia;
 	}
-
 	h1{
-		font-weight:normal;
 		display:block;
 		font-size:14;
+		color:#F7732A;
 	}
 	bg { color:#FFFFFF; }
+	
+	row {
+		bgColor:#FFFFFF;
+		padding:12;
+		columnPadding:12;
+		columns:3;
+		margin-top:12;
+		margin-bottom:0;
+	}
  </style>
  
  <style id="header">

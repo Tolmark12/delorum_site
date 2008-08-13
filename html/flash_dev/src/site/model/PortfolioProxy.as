@@ -172,9 +172,11 @@ public class PortfolioProxy extends Proxy implements IProxy
 			
 			for each( var col:XML in node.col)
 			{
-				var col_vo:Col_VO = new Col_VO();
-				col_vo.colSpan = uint( col.@span );
-				col_vo.content = col;
+				var col_vo:Col_VO 	= new Col_VO();
+				col_vo.colSpan 		= uint( col.@span );
+				col_vo.align		= ( String( col.@align ).length == 0)? null : col.@align ;
+				col_vo.float		= ( String( col.@float ).length == 0)? null : col.@float ;
+				col_vo.content	 	= col;
 				row_vo.columnAr.push( col_vo );
 			}
 			rowAr.push( row_vo );

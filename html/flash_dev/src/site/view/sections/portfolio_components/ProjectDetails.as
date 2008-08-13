@@ -118,16 +118,12 @@ public class ProjectDetails extends Sprite
 		_slideShowVo = $vo.slideShow;
 		
 		// Copy all the css styles
+		_bodyTxtMc.clearAllFormatting();
 		var len:uint = $vo.cssStyleList.length;
-		trace( $vo.cssStyleList );
-		trace( "BEGIN PARSING ########################" );
 		for ( var i:uint=0; i<len; i++ ) 
 		{
-			trace( "// Parsing: " + $vo.cssStyleList[i] );
 			_bodyTxtMc.parseCss( CssProxy.getCss( $vo.cssStyleList[i] )  );
-			trace( "//---------------------------------" );
 		}
-		trace( "######################################" );
 	
 		_bodyTxtMc.htmlText = _body;
 					
