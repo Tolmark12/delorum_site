@@ -3,7 +3,7 @@ package site.view.sections.portfolio_components
 import DelorumSite;
 import flash.events.*;
 import caurina.transitions.Tweener;
-import flash.display.Sprite;
+import flash.display.*;
 import site.model.vo.*;
 import site.view.sections.portfolio_components.ProjectStub;
 import site.model.*;
@@ -17,20 +17,21 @@ public class ProjectDetails extends Sprite
 	public static const HIDE_CASE_STUDY	 :String  		= "hide_case_study";
 	public static const CASE_STUDY_HIDDEN:String  		= "case_study_hidden";
 	
-	
-	// Btn
-	private var _showDetailsBtn:CircleBtn_swc;
-	
 	// Sprites
 	private var _rowManager:RowsManager;
+	private var _rowMask:Sprite;
+	private var _snapShotHolder:Sprite;
+	private var _snapMask:Sprite;
+	private var _snapHeight:Number = 0;
+	
 	private var _bgMc:Sprite;
-	private var _closeBtnTop:WhiteCloseBtn_swc;
-	private var _closeBtnBtm:WhiteCloseBtn_swc;
 	private var _slideShow:SlideShow;
 	private var _contentHolder:Sprite;
-	private var _mask:Sprite;
 	
 	private var _bodyTxtMc:BodyText_swc;
+	
+	// snapshot
+	private var _snapshot:Bitmap;
 	
 	// data
 	private var _body:String;
@@ -44,36 +45,25 @@ public class ProjectDetails extends Sprite
 	public function ProjectDetails():void
 	{
 		this.alpha = 0;
-		this.visible = false;
+		//this.visible = false;
 	}
 	
 	public function make (  ):void
 	{
 		_contentHolder 	= new Sprite();
-		_showDetailsBtn = new CircleBtn_swc();
+		_snapShotHolder = new Sprite();
 		_rowManager		= new RowsManager();
 		_bgMc			= new Sprite();
-		_closeBtnTop	= new WhiteCloseBtn_swc();
-		_closeBtnBtm	= new WhiteCloseBtn_swc();
-		_mask 			= new Sprite();
-		
-//		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
-//		_closeBtnTop.y = -10;
-//		_closeBtnBtm.y = -5;
-		
+		_rowMask 		= new Sprite();
+		_snapMask		= new Sprite();
+
 		// Rows
 		_rowManager.y = 0;
 		
-		// Show Details button
-		_showDetailsBtn.make( "Title", _showDetailsBtn.DOWN_ARROW );
-		_showDetailsBtn.addEventListener( MouseEvent.CLICK, _handleShowDetailsClick );
-		_showDetailsBtn.x = 20;//Column.COLUMN_WIDTH * 3 - _showDetailsBtn.width;
-		_showDetailsBtn.y = 310;
-				
+		// Height change
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
-//   	_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
-//   	_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
 		
+		// Color scheme object
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		
 		// Textfields
@@ -84,25 +74,29 @@ public class ProjectDetails extends Sprite
 		
 		_contentHolder.addChild( _bgMc 		 	 );
 		_contentHolder.addChild( _bodyTxtMc  	 );
-		_contentHolder.addChild( _showDetailsBtn );
 
-//		this.addChild( _contentHolder );
-//		this.addChild( _closeBtnTop	  );
-		this.addChild( _mask		  );
-		this.addChild( _rowManager 	  );
-//		this.addChild( _closeBtnBtm   );
+		this.addChild( _rowMask		   );
+		this.addChild( _rowManager 	   );
+		this.addChild( _snapShotHolder );
+		this.addChild( _snapMask 	   );
 		
-		// Mask
-		_mask.graphics.beginFill(0xFFFF);
-		_mask.graphics.drawRect(0,0,width,height+ 15);
-		_contentHolder.mask = _mask;
+		// Masks
+		var wid:Number = Column.COLUMN_PADDING*3 + Column.COLUMN_WIDTH*3
+		_rowMask.graphics.beginFill(0xFF0000);
+		_rowMask.graphics.drawRect( 0, 0, wid, 500 );
+		_rowManager.mask = _rowMask;
 		
+		_snapMask.graphics.beginFill(0xFF0000);
+		_snapMask.graphics.drawRect( 0, 0, wid, 700);
+		_snapMask.x = wid;
+		_snapMask.scaleX = -1;
+		_snapShotHolder.mask = _snapMask;
 		_handleShowDetailsClick();
 	}
 	
 	public function unmake (  ):void
 	{
-		this.visible = false;
+		//this.visible = false;
 		this.scaleX = 1;
 		this.scaleY = 1;
 		_isHiding = false;
@@ -113,8 +107,11 @@ public class ProjectDetails extends Sprite
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
+	// ______________________________________________________________ Changing the content
+	
 	public function changeContent ( $title:String, $vo:ProjectStub_VO ):void
 	{
+		trace( "change" );
 		_title 		 = $title;
 		_body  		 = $vo.shortDescription;
 		_slideShowVo = $vo.slideShow;
@@ -150,6 +147,25 @@ public class ProjectDetails extends Sprite
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
+	// For transtioning. Create a snapshot of the current details so we
+	// can slide the new content in over the top
+	private function _createSnapShot (  ):void
+	{
+		if( _rowManager != null ) 
+		{
+			if( _rowManager.width > 0 && _rowManager.height > 0 )
+			{
+				if( _snapshot != null ) 
+					_snapShotHolder.removeChild(_snapshot);
+					
+				var bmd:BitmapData = new BitmapData( _rowManager.width, _rowManager.height, true, 0x000000 );
+				bmd.draw( this );
+				_snapshot = new Bitmap(bmd);
+				_snapShotHolder.addChild(_snapshot);
+			}
+		}
+	}
+	
 	private function _drawBg ( $color ):void
 	{
 		// Background
@@ -164,7 +180,6 @@ public class ProjectDetails extends Sprite
 	{
 		Tweener.addTween(_rowManager, {alpha:1, time:0 })
 		_rowManager.buildPage( $page_vo, _bgMc.width );
-//		_rowManager.addChild( _closeBtnBtm );
 	}
 	
 	public function closePage (  ):void
@@ -175,7 +190,6 @@ public class ProjectDetails extends Sprite
 	private function _removePage (  ):void
 	{
 		_rowManager.removePage();
-//		_rowManager.removeChild( _closeBtnBtm );
 		dispatchEvent( new Event( CASE_STUDY_HIDDEN ) );
 	}
 	
@@ -183,19 +197,20 @@ public class ProjectDetails extends Sprite
 	
 	public function show (  ):void
 	{
+		_createSnapShot();
+		
 		if( _rowManager == null ) 
 			make();
+
+		this.visible = true;
+		this.alpha = 1; //0
+		//Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseOut"} );
 		
-		if( this.visible == false )
-		{
-			this.visible = true;
-			this.alpha = 1; //0
-			//Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseOut"} );
-			
-			_mask.scaleY = 0;
-			Tweener.addTween( _mask, { scaleY:1, x:0, time:0.9, transition:"EaseInOutQuint"} );
-			dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
-		}
+		_snapMask.scaleX = -1;
+		_rowMask.scaleX = 0;
+		Tweener.addTween( _snapMask, { scaleX:0, time:0.9, transition:"EaseInOutQuint"} );
+		Tweener.addTween( _rowMask, { scaleX:1,  time:0.9, transition:"EaseInOutQuint"} );
+		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
 	public function hide (  ):void
@@ -203,8 +218,8 @@ public class ProjectDetails extends Sprite
 		if( !_isHiding )
 		{
 			_isHiding = true;
-			//Tweener.addTween( _mask, { scaleY:0, time:0.2, transition:"EaseInOutQuint", onComplete:unmake} );
-			Tweener.addTween( this, { alpha:0, time:0, transition:"EaseOutQuint", onComplete:unmake } );
+			Tweener.addTween( _rowMask, { scaleY:0, time:0.2, transition:"EaseInOutQuint", onComplete:unmake} );
+			//Tweener.addTween( this, { alpha:0, time:0, transition:"EaseOutQuint", onComplete:unmake } );
 		} 
 	}
 
@@ -218,8 +233,12 @@ public class ProjectDetails extends Sprite
 	
 	private function _handleMyHeightcChange ( e:Event ):void
 	{
-		//_bgMc.visible = true;
-		//Tweener.addTween( _bgMc, { height:_rowManager.height + 20, time:0, transition:"EaseInOutQuint"} );
+		trace( _rowManager.height + '  :  ' + this.height );
+		if( this.height > 0  )
+		{
+			_rowMask.height = this.height + 20;
+			_snapHeight = this.height + 20;
+		}
 	}
 	
 	private function _handleContentChange ( e:Event ):void

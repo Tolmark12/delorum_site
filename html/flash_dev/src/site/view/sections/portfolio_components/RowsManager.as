@@ -87,6 +87,10 @@ public class RowsManager extends Sprite
 	{
 		_stackRows();
 	}
+	
+	// ______________________________________________________________ Getters Setters
+	public function get realHeight (  ):Number{ return _contentSprite.height; };
 }
+
 
 }

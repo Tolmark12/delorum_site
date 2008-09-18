@@ -59,8 +59,8 @@ public class Row extends Sprite
 		// Add columns
 		_buildColumns( $imagesDir );
 		
-		alpha = 0;
-		Tweener.addTween( this, { alpha:1, time:1, transition:"EaseInOutQuint"} );
+		//alpha = 0;
+		//Tweener.addTween( this, { alpha:1, time:1, transition:"EaseInOutQuint"} );
 //		_show();
 	}
 	
