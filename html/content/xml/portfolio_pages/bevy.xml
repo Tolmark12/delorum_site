@@ -1,0 +1,19 @@
+<MAIN>
+	<page imageDir="bevy/">
+		<!-- Four Hundred Sketches -->
+		<row css="header,cs_brown" bgColor="FFFFFF" padding="0">
+			<col>
+				<txt><h1>Bevy Facebook Application</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. </p></txt>
+			</col>
+			<col span="2" float="right">
+				<slideShow w="508" h="351" displayTime="5.5" transitionSpeed="1.8" >
+					<img src="slide0.jpg" />
+					<img src="slide3.jpg" />
+					<img src="slide4.jpg" />
+					<img src="slide6.jpg" />
+					<img src="slide7.jpg" />
+				</slideShow>
+			</col>
+		</row>
+	</page>
+</MAIN>

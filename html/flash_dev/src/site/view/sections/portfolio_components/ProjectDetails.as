@@ -57,12 +57,12 @@ public class ProjectDetails extends Sprite
 		_closeBtnBtm	= new WhiteCloseBtn_swc();
 		_mask 			= new Sprite();
 		
-		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
-		_closeBtnTop.y = -10;
-		_closeBtnBtm.y = -5;
+//		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
+//		_closeBtnTop.y = -10;
+//		_closeBtnBtm.y = -5;
 		
 		// Rows
-		_rowManager.y = 380;
+		_rowManager.y = 0;
 		
 		// Show Details button
 		_showDetailsBtn.make( "Title", _showDetailsBtn.DOWN_ARROW );
@@ -71,8 +71,8 @@ public class ProjectDetails extends Sprite
 		_showDetailsBtn.y = 310;
 				
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
-		_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
-		_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
+//   	_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
+//   	_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
 		
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		
@@ -86,16 +86,18 @@ public class ProjectDetails extends Sprite
 		_contentHolder.addChild( _bodyTxtMc  	 );
 		_contentHolder.addChild( _showDetailsBtn );
 
-		this.addChild( _contentHolder );
-		this.addChild( _closeBtnTop	  );
+//		this.addChild( _contentHolder );
+//		this.addChild( _closeBtnTop	  );
 		this.addChild( _mask		  );
 		this.addChild( _rowManager 	  );
-		/*this.addChild( _closeBtnBtm   );*/
+//		this.addChild( _closeBtnBtm   );
 		
 		// Mask
 		_mask.graphics.beginFill(0xFFFF);
 		_mask.graphics.drawRect(0,0,width,height+ 15);
 		_contentHolder.mask = _mask;
+		
+		_handleShowDetailsClick();
 	}
 	
 	public function unmake (  ):void
@@ -127,9 +129,10 @@ public class ProjectDetails extends Sprite
 	
 		_bodyTxtMc.htmlText = _body;
 					
-		if( _rowManager != null ) 
+		if( _rowManager != null ) {
 			_rowManager.removePage();
-		
+			_handleShowDetailsClick();
+		}
 		if( _slideShow != null ) {
 			_contentHolder.removeChild( _slideShow );
 			_slideShow = null;
@@ -161,7 +164,7 @@ public class ProjectDetails extends Sprite
 	{
 		Tweener.addTween(_rowManager, {alpha:1, time:0 })
 		_rowManager.buildPage( $page_vo, _bgMc.width );
-		_rowManager.addChild( _closeBtnBtm );
+//		_rowManager.addChild( _closeBtnBtm );
 	}
 	
 	public function closePage (  ):void
@@ -172,7 +175,7 @@ public class ProjectDetails extends Sprite
 	private function _removePage (  ):void
 	{
 		_rowManager.removePage();
-		/*_rowManager.removeChild( _closeBtnBtm );*/
+//		_rowManager.removeChild( _closeBtnBtm );
 		dispatchEvent( new Event( CASE_STUDY_HIDDEN ) );
 	}
 	
@@ -208,7 +211,7 @@ public class ProjectDetails extends Sprite
 	
 	// ______________________________________________________________ Event Handlers
 	
-	private function _handleShowDetailsClick ( e:Event ):void
+	private function _handleShowDetailsClick ( e:Event=null ):void
 	{
 		this.dispatchEvent( new Event(LOAD_PROJECT_XML) );
 	}

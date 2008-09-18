@@ -77,7 +77,7 @@ public class StageMediator extends Mediator implements IMediator
 				_moveBrowserScroll( 0 );
 				break
 			case SiteFacade.PROJECT_XML_LOADED :
-				_moveBrowserScroll( 630 );
+//				_moveBrowserScroll( 630 );
 				break;
 			case SiteFacade.HIDE_CASE_STUDY:
 				_moveBrowserScroll( 0, 0.7 );
@@ -177,7 +177,7 @@ public class StageMediator extends Mediator implements IMediator
 	}
 	
 	private function _tweenScrollBar ( $speed:Number = 0 ):void
-	{
+	{                                       
 		Tweener.addTween( this, { flashHeight:_rootSprite.height, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendFlashHeightToJS } );
 	}
 	
