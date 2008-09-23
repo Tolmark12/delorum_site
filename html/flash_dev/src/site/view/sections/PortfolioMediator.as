@@ -128,7 +128,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		// Position display items
 		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
 		_details.y 		= 285;
-		_scrollHolder.x = OUTER_PADDING;
+		_scrollHolder.x = OUTER_PADDING + 65;
 		_scrollHolder.y = 260;
 		_moveDetails();
 		
@@ -169,8 +169,14 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _createScrollBar (  ):void
 	{
 		var colorScheme:ColorScheme_VO 	= ColorSchemeProxy.currentColorScheme;
-		_scroller = new Scroller( _scrollHolder, 800, Scroller.HORIZONTAL, colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border );
+		//_scroller = new Scroller( _scrollHolder, 800, Scroller.HORIZONTAL, colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border );
+		_scroller = new Scroller( 800, 10 );
+		_scroller.x = 13;
+		_scroller.createDefaultScroller( colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border, 4 );
+		_scroller.build();
+		
 		_scroller.addEventListener( Scroller.SCROLL, _handleScroll );
+		_scrollHolder.addChild( _scroller );
 	}
 	
 	// ______________________________________________________________ Vertical positioning

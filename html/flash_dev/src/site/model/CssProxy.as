@@ -6,7 +6,7 @@ import org.puremvc.as3.multicore.patterns.observer.Notification;
 import site.model.vo.*;
 import site.SiteFacade;
 import flash.events.*;
-import delorum.loading.XmlLoader;
+import delorum.loading.DataLoader;
 
 
 public class CssProxy extends Proxy implements IProxy
@@ -22,7 +22,7 @@ public class CssProxy extends Proxy implements IProxy
 	
 	public function loadCss ( $cssFile:String ):void
 	{
-		var ldr:XmlLoader 			= new XmlLoader( $cssFile );
+		var ldr:DataLoader 			= new DataLoader( $cssFile );
 		ldr.addEventListener( Event.COMPLETE, _handleCssLoadComplete);
 		ldr.loadItem();
 	}

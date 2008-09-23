@@ -5,7 +5,7 @@
 			<title>na</title>
 			<extraData image="content/images/site/butterfly.jpg" />
 		</nav_item>
-		<nav_item section="portfolio" contentType="portfolio" xml="sections/portfolio.xml" colorScheme="black">
+		<nav_item section="portfolio" contentType="portfolio" xml="sections/portfolio.xml" colorScheme="brown">
 			<title>Our Work</title>
 		</nav_item>
 		<nav_item section="about" contentType="page" colorScheme="orange">

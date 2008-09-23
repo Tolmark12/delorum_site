@@ -29,8 +29,14 @@
 	
 	<colorScheme id="brown">
 		<colors 
-			 nav_hover="F9A146"
-			 bg="2A211E"
+			 bg="454240"
+			 nav_up="918985"
+			 nav_hover="FCFCF0"
+			 nav_active="FCFCF0"
+			 scrollbar_track="322F2E"
+			 scrollbar_track_border="322F2E"
+			 scrollbar_bar="484541"
+			 logo="918985"
 		/>
 	</colorScheme>
 	

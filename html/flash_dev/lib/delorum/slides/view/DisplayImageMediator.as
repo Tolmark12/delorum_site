@@ -6,7 +6,7 @@ import org.puremvc.as3.multicore.patterns.observer.Notification;
 import flash.display.Sprite;
 import flash.events.*;
 import delorum.slides.*;
-import delorum.slides.model.vo.*;
+
 import caurina.transitions.Tweener;
 import delorum.loading.ImageLoader;
 

@@ -5,7 +5,7 @@ import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
 import SWFAddress;
 import SWFAddressEvent;
-import delorum.errors.ErrorMachine;
+import delorum.echo.EchoMachine;
 import site.SiteFacade;
 
 public class BrowserUrlMediator extends Mediator implements IMediator
@@ -39,7 +39,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 		//SWFAddress.setValue(e.target.deepLink);
 		//SWFAddress.setStatus(e.target.deepLink);
 		//SWFAddress.resetStatus();
-		//ErrorMachine.echo(e.value);
+		//EchoMachine.echo(e.value);
 		sendNotification( SiteFacade.BROWSER_URL_CHANGED,  /*"/portfolio/Playmill_Theatre/"*/  e.value );
 	}
 	

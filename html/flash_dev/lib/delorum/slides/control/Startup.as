@@ -7,6 +7,7 @@ import delorum.slides.SlideShow;
 import delorum.slides.view.*;
 import delorum.slides.model.*;
 
+
 public class Startup extends SimpleCommand implements ICommand
 {
 

@@ -4,11 +4,11 @@ import org.puremvc.as3.multicore.interfaces.IProxy;
 import org.puremvc.as3.multicore.patterns.proxy.Proxy;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
 import site.model.vo.ProjectStub_VO;
-import delorum.loading.XmlLoader;
+import delorum.loading.DataLoader;
 import flash.events.*;
 import site.SiteFacade;
 import site.model.vo.*;
-import delorum.errors.ErrorMachine;
+import delorum.echo.EchoMachine;
 import delorum.slides.SlideShow_VO;
 
 /** 
@@ -51,7 +51,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 		// If the xml has not yet been loaded...
 		if( !_xmlLoaded ) {
 			//...load xml
-			var ldr:XmlLoader 	= new XmlLoader( $xmlPath );
+			var ldr:DataLoader 	= new DataLoader( $xmlPath );
 			ldr.onComplete		= _handlePortfolioXmlLoaded;
 			ldr.loadItem();
 		// else...
@@ -139,7 +139,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 			_fullyActiveStubIndex = $projectIndex;
 			sendNotification( SiteFacade.PROJECT_XML_LOADING );
 			var project:ProjectStub_VO = _portfolioAr[ $projectIndex ];
-			var ldr:XmlLoader 	= new XmlLoader( project.xmlPath );
+			var ldr:DataLoader 	= new DataLoader( project.xmlPath );
 			ldr.onComplete		= _parseProjectXml;
 			ldr.loadItem();
 		}

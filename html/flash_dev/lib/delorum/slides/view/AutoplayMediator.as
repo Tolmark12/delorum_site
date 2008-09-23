@@ -4,7 +4,7 @@ import org.puremvc.as3.multicore.interfaces.*;
 import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
 import delorum.slides.SlideShowFacade;
-import delorum.slides.model.vo.*;
+
 import flash.utils.Timer;
 import flash.events.*;
 
