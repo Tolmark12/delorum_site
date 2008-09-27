@@ -10,6 +10,8 @@ import gs.TweenLite;
 public class Logo_swc extends MovieClip
 {
 	public var index:uint;
+	private var _logoColor:uint		= 0xFFFFFF;
+	private var _logoHoverColor:uint	= 0xFFFFFF;
 	
 	public function Logo_swc():void
 	{
@@ -38,12 +40,21 @@ public class Logo_swc extends MovieClip
 	private function _rollOver ( e:Event ):void
 	{
 		// Matt Gessel  -  jgessel@coe.usu.edu
-		TweenLite.to(this, 0.2, { tint:DelorumSite.TAN });
+		TweenLite.to(this, 0.2, { tint:_logoHoverColor });
 	}
 	
 	private function _rollOut ( e:Event ):void
 	{
-		TweenLite.to(this, 0.2, { tint:DelorumSite.GRAY_MED });
+		TweenLite.to(this, 0.2, { tint:_logoColor });
+	}
+	
+	// ______________________________________________________________ API
+	
+	public function changeColors ( $up:uint, $over:uint ):void
+	{
+		_logoColor		= $up;
+		_logoHoverColor = $over;
+		this.dispatchEvent( new Event( MouseEvent.MOUSE_OUT ) );
 	}
 }
 

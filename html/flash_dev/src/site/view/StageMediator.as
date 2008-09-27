@@ -4,7 +4,7 @@ import org.puremvc.as3.multicore.interfaces.*;
 import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
 import flash.external.ExternalInterface;
-import delorum.errors.ErrorMachine;
+import delorum.echo.EchoMachine;
 import site.SiteFacade;
 import flash.events.*;
 import flash.display.*;
@@ -77,7 +77,7 @@ public class StageMediator extends Mediator implements IMediator
 				_moveBrowserScroll( 0 );
 				break
 			case SiteFacade.PROJECT_XML_LOADED :
-				_moveBrowserScroll( 630 );
+//				_moveBrowserScroll( 630 );
 				break;
 			case SiteFacade.HIDE_CASE_STUDY:
 				_moveBrowserScroll( 0, 0.7 );
@@ -149,7 +149,7 @@ public class StageMediator extends Mediator implements IMediator
 	
 	private function _handleBrowserResize (  ):void
 	{
-		//ErrorMachine.printErrors();
+		//EchoMachine.printErrors();
 		_logo.x 			= stageLeft  + 20;
 		_navSprite.x 		= stageRight - 20;
 		_browserSizeState 	= ( stageWidth > WIDE_SCREEN_WIDTH )? WIDE : NORMAL ;
@@ -177,7 +177,7 @@ public class StageMediator extends Mediator implements IMediator
 	}
 	
 	private function _tweenScrollBar ( $speed:Number = 0 ):void
-	{
+	{                                       
 		Tweener.addTween( this, { flashHeight:_rootSprite.height, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendFlashHeightToJS } );
 	}
 	
@@ -198,13 +198,13 @@ public class StageMediator extends Mediator implements IMediator
 		if( ExternalInterface.available )
 			scrollBarYpos = ExternalInterface.call( "getScrollCordinate" );
 		
-//		ErrorMachine.echo(ExternalInterface.call( "getScrollCordinate", flashHeight ));
+//		EchoMachine.echo(ExternalInterface.call( "getScrollCordinate", flashHeight ));
 		Tweener.addTween( this, { scrollBarYpos:$distanceFromTop, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendScrollPositiontoJS } );
 	}
 	
 	private function _sendScrollPositiontoJS (  ):void
 	{
-		//ErrorMachine.echo(scrollBarYpos);
+		//EchoMachine.echo(scrollBarYpos);
 		if( ExternalInterface.available )
 			ExternalInterface.call( "moveScrollToCoordinate", scrollBarYpos );
 	}
@@ -223,6 +223,7 @@ public class StageMediator extends Mediator implements IMediator
 	
 	private function _changeColorScheme ( $colorScheme:ColorScheme_VO ):void
 	{
+		_logo.changeColors($colorScheme.logo, $colorScheme.logo_hover)
 		_tweenBgColor( $colorScheme.bg )
 	}
 	

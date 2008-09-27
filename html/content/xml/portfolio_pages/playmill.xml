@@ -1,19 +1,18 @@
 <MAIN>
 	<page imageDir="playmill/">
-		<!-- Four Hundred Sketches -->
-		<row>
+		<row css="header">
 			<col>
-				<txt><h1>Bringing down the House</h1>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design, earning us complimentary tickets, sample fudge and a Northwest Region Silver Addy.</txt>
+				<txt><h1>Bringing down the House</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design, earning us complimentary tickets, sample fudge and a Northwest Region Silver Addy.</p></txt>
 			</col>
 			<col>
-				<txt>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions and such stuff<h1>Taking out the Cows</h1>Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design.</txt>
+				<txt><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions and such stuff</p><h1>Taking out the Cows</h1><p>Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design.</p></txt>
 			</col>
-			<col>
+			<col align="center">
 				<img src="vertical_poster_08.jpg" />
 			</col>
 		</row>
-		<row background="F9A146">
-			<col>
+		<row bgColor="000000" padding="0">
+			<col align="center" span="3">
 				<img src="orange_sketches.gif" />
 			</col>
 		</row>

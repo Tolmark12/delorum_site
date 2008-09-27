@@ -63,6 +63,14 @@ public class SlideShowFacade extends Facade implements IFacade
 		registerCommand( CHANGE_SLIDE_BY_INDEX, ChangeSlideByIndex);
 	}
 	
+	// ______________________________________________________________ API
+
+	public function stop (  ):void{ sendNotification(STOP_AUTOPLAY); };
+	public function start (  ):void{ sendNotification(START_AUTOPLAY); };
+	public function reset (  ):void{ sendNotification(CHANGE_SLIDE_BY_INDEX, 0); };
+	public function gotoSlide ( $slideIndex:uint ):void{ sendNotification(CHANGE_SLIDE_BY_INDEX, $slideIndex); };
+	
+	
 	// ______________________________________________________________ Application wide vars
 	
 	public static var slidesWidth:Number;

@@ -20,14 +20,14 @@ public class BaseSection extends Mediator implements IMediator
 	
 	public function show (  ):void
 	{
-		trace( ":: Showing ::" );
+//		trace( ":: Showing ::" );
 		// Default showing behavior
 		Tweener.addTween( _baseMc, { alpha:1, time:.6 } );
 	}
 	
 	public function hide (  ):void
 	{
-		trace( ":: Hiding ::" );
+//		trace( ":: Hiding ::" );
 		Tweener.addTween( _baseMc, { alpha:0, time:0.1, onComplete:_unloadComplete } );
 	}
 	
@@ -35,21 +35,21 @@ public class BaseSection extends Mediator implements IMediator
 	
 	public function make ( ):void
 	{
-		trace( "==== Adding New Component ====" );
-		trace( ":: Making " + this.getMediatorName() + " Component ::" );
+//		trace( "==== Adding New Component ====" );
+//		trace( ":: Making " + this.getMediatorName() + " Component ::" );
 		_baseMc = new MovieClip();
 		_baseMc.alpha = 0;
 	}
 	
 	public function unload (  ):void
 	{
-		trace( ":: Preparing to unload " + this.getMediatorName() + " Component  ::" );
+//		trace( ":: Preparing to unload " + this.getMediatorName() + " Component  ::" );
 		hide();
 	}
 	
 	private function _unloadComplete (  ):void
 	{
-		trace( ":: Unload Complete ::" );
+//		trace( ":: Unload Complete ::" );
 		setViewComponent( null );
 		_baseMc.parent.removeChild( _baseMc );
 		sendNotification( SiteFacade.LOAD_NEW_SECTION );

@@ -8,6 +8,7 @@ import flash.events.*;
 import flash.filters.*;
 import gs.TweenLite;
 import DelorumSite;
+import delorum.slides.SlideShow;
 
 public class ProjectStub extends Sprite
 {
@@ -44,10 +45,14 @@ public class ProjectStub extends Sprite
 	private var _stubMc:Sprite;
 	private var _bgMc:Sprite;
 	private var _imageMc:Sprite;
+	private var _imageHolder:Sprite;
 	private var _maskMc:Sprite;
 	private var _bgMcHolder:Sprite;
 	private var _holder:Sprite;
 	private var ldr:ImageLoader;
+	
+	// Slideshow
+	private var _slideShow:SlideShow;
 	
 	// State
 	private var _sizeState:String;
@@ -98,16 +103,17 @@ public class ProjectStub extends Sprite
 		_imageMc	= new Sprite();
 		_maskMc		= new Sprite();
 		_holder		= new Sprite();
-		
+		_imageHolder = new Sprite();
+
 		_bgMc.x 			= -BORDER_SIZE;
 		_bgMc.y 			= -BORDER_SIZE;
-		_holder.y				= 40;
+		_holder.y			= 40;
 		
 		this.visible 		= false;
-		_stubMc.buttonMode  = true;
-		_stubMc.addEventListener(  MouseEvent.MOUSE_OVER, _mouseOver);
-		_stubMc.addEventListener(  MouseEvent.MOUSE_OUT , _mouseOut );
-		_stubMc.addEventListener(  MouseEvent.CLICK ,     _click );
+		_maskMc.buttonMode  = true;
+		_maskMc.addEventListener(  MouseEvent.MOUSE_OVER, _mouseOver);
+		_maskMc.addEventListener(  MouseEvent.MOUSE_OUT , _mouseOut );
+		_maskMc.addEventListener(  MouseEvent.CLICK ,     _click );
 		_clickEvent = ACTIVATE_STUB;
 		
 		this.addChild(	 		_holder		);
@@ -116,34 +122,47 @@ public class ProjectStub extends Sprite
 		_stubMc.addChild( 		_imageMc  	);
 		_holder.addChild( 		_maskMc   	);
 		_bgMcHolder.addChild( 	_bgMc 		);
-		
-		//makeDetailsMc( $vo );
+		_imageMc.addChildAt(_imageHolder, 0)
 		
 		_loadImage( $vo.image );
-		_drawBgAndMask();
-		//_drawDropShadow();
+		_drawBgAndMask( $vo.bgColor );
+		if( $vo.row != null ) 
+			_createRow( $vo.row );
 	}
 	
 	private function _drawDropShadow (  ):void
 	{
 		var color:Number = 0x000000;
-		var angle:Number = 45;
-		var alpha:Number = 0.8;
-		var blurX:Number = 8;
-		var blurY:Number = 8;
-		var distance:Number = 5;
-		var strength:Number = 0.45;
+		var angle:Number = 90;
+		var alpha:Number = 0.6;
+		var blurX:Number = 10;
+		var blurY:Number = 10;
+		var distance:Number = 7;
+		var strength:Number = 0.40;
 		var inner:Boolean = false;
 		var knockout:Boolean = false;
 		var quality:Number = BitmapFilterQuality.LOW;
 		var dsf:DropShadowFilter = new DropShadowFilter(distance,angle,color,alpha,blurX,blurY,strength,quality,inner,knockout);
-		_bgMcHolder.filters = [dsf];
+		this.filters = [dsf];
 	}
 	
-	private function _drawBgAndMask (  ):void
+	private function _removeDropShadow (  ):void
 	{
-		
-		_bgMc.graphics.beginFill( 0xFFFFFF );
+		this.filters = [];
+	}
+	
+	private function _createRow ( $row:Row_VO=null ):void
+	{
+		var newRow:Row = new Row( $row, "", WIDTH_LARGE );
+		_slideShow = SlideShow.getSlideShowById( $row.slideShowId );
+		if( _slideShow != null)
+			_slideShow.stop();
+		_imageMc.addChildAt(newRow, 1);
+	}
+	
+	private function _drawBgAndMask ( $color:uint=0xFFFFFF ):void
+	{
+		_bgMc.graphics.beginFill( $color );
 		if( BORDER_SIZE != 0)
 			_bgMc.graphics.drawRect(0,0,WIDTH_SMALL + BORDER_SIZE*2, HEIGHT + BORDER_SIZE*2 )
 		_maskMc.graphics.beginFill( 0xFFFFFF );
@@ -152,7 +171,7 @@ public class ProjectStub extends Sprite
 	
 	private function _loadImage ( $imagePath:String ):void
 	{
-		ldr = new ImageLoader( $imagePath, _imageMc );
+		ldr = new ImageLoader( $imagePath, _imageHolder );
 		ldr.onComplete	= _initImage;
 		ldr.addItemToLoadQueue();		
 	}
@@ -164,6 +183,7 @@ public class ProjectStub extends Sprite
 		this.visible = true;
 		Tweener.addTween( this, { alpha:1, time:0.3, transition:"EaseInQuint"} );
 		_imageMc.x = _baseX;
+		_imageMc.y = _baseY;
 	}
 	
 	// ______________________________________________________________ Activating content
@@ -180,17 +200,23 @@ public class ProjectStub extends Sprite
 	{
 		Tweener.addTween( this, { rLum:0.2225,  gLum:0.7169,  bLum:0.0606,
 								  rLum2:0.2225, gLum2:0.7169, bLum2:0.0606, brightness:-120,
-								  time:0.4, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
+								  time:0.5, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
 
 		if( $changeBorderToo ) 
 			changeBorderColor(DelorumSite.GRAY_STUB);
 	}
 	
-	/**	Turns the image back to color */
-	public function brightenImage ( $changeBorderToo:Boolean = true, $lum2:Number = 1 ):void
+	/**	Turns the image to black and white */
+	public function brightenImageHalfway ( $changeBorderToo:Boolean = true, $lum2:Number = 0.4 ):void
 	{
-		Tweener.addTween( this, { rLum:0, gLum:0, bLum:0, rLum2:$lum2, gLum2:$lum2, bLum2:$lum2, brightness:0,  
-								  time:.3, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
+		brightenImage( $changeBorderToo, 0.08, 0.6, 0.2 );
+	}
+	
+	/**	Turns the image back to color */
+	public function brightenImage ( $changeBorderToo:Boolean = true, $lum1:Number=0, $lum2:Number=1, $time:Number=0.3 ):void
+	{
+		Tweener.addTween( this, { rLum:$lum1, gLum:$lum1, bLum:$lum1, rLum2:$lum2, gLum2:$lum2, bLum2:$lum2, brightness:0,  
+								  time:$time, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
 		if( $changeBorderToo ) 
 			changeBorderColor(DelorumSite.WHITE);
 	}
@@ -236,21 +262,35 @@ public class ProjectStub extends Sprite
 			// Showing / Hiding details
 			if( _sizeState == SMALL || _sizeState == TINY ){ 	// Close
 				_clickEvent = ACTIVATE_STUB;
-				// Temp                                    
 				Tweener.addTween( _bgMc,    {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );
 				Tweener.addTween( _maskMc,  {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );
 				Tweener.addTween( _holder, 	{ y:40, time:1, transition:"EaseInOutQuint"} );
-				// end Temp
+				_maskMc.mouseEnabled = true;
+				
+				// drop shadow
+				_removeDropShadow();
+				
+				// Slideshow
+				if( _slideShow != null){
+					_slideShow.reset();
+					_slideShow.stop();
+				}
 			}
 			else if( currentProject != this ) {					// Open
 				ldr.budgeAndLoad();
 				_clickEvent = DE_ACTIVATE_STUB;
 				currentProject = this;
-				// Temp
 				Tweener.addTween( _bgMc,    {height:HEIGHT_LARGE, time:1, transition:"EaseInOutQuint"} );
-				Tweener.addTween( _maskMc,  {height:HEIGHT_LARGE, time:1, transition:"EaseInOutQuint"} );
-				Tweener.addTween( _holder, 	{ y:0, time:1, transition:"EaseInOutQuint"} );
-				// end Temp
+				Tweener.addTween( _maskMc,  {height:HEIGHT_LARGE + 20, time:1, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _holder, 	{ y:10, time:1, transition:"EaseInOutQuint"} );
+				_maskMc.mouseEnabled = false;
+				
+				// drop shadow
+				_drawDropShadow();
+				
+				// Slideshow
+				if( _slideShow != null)
+					_slideShow.start();
 			}
 			
 			var xtarg:Number = (_sizeState == SMALL)? _baseX : 0;
@@ -290,7 +330,7 @@ public class ProjectStub extends Sprite
 			Tweener.addTween( this, { time:0.1, onComplete:bringToFront} );
 			changeBorderColor( DelorumSite.TAN );
 		}else if ( currentProject != this ) {
-			brightenImage( false );
+			brightenImageHalfway( false );
 		}
 	}
 	

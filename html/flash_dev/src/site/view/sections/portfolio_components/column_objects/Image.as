@@ -10,7 +10,7 @@ public class Image extends BaseColumnObj implements IColumnObject
 	public var imagesDir:String;
 	private var _imageHolder:Sprite;
 	
-	public function Image( $tag:String ):void
+	public function Image():void
 	{
 		super();
 	}

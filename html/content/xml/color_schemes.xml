@@ -10,10 +10,11 @@
 			 scrollbar_track="000000"
 			 scrollbar_track_border="222222"
 			 scrollbar_bar="4F555E"
-			 logo="FFFFFF"
 			 work_h1="B55E1E"
 			 work_h2="7C9DAF"
 			 work_body="222222"
+			 logo="404040"
+			 logo_hover="FFFFFF"
 		/>
 	</colorScheme>
 	<!-- !! IMPORTANT !! -->
@@ -23,6 +24,21 @@
 		<colors 
 			 nav_hover="000000"
 			 bg="978061"
+		/>
+	</colorScheme>
+	
+	
+	<colorScheme id="brown">
+		<colors 
+			 bg="454240"
+			 nav_up="918985"
+			 nav_hover="FCFCF0"
+			 nav_active="FCFCF0"
+			 scrollbar_track="322F2E"
+			 scrollbar_track_border="322F2E"
+			 scrollbar_bar="484541"
+			 logo="918985"
+			 logo_hover="FFFFFF"
 		/>
 	</colorScheme>
 	
@@ -36,7 +52,7 @@
 	
 	<colorScheme id="black">
 		<colors 
-			 bg="000000"
+			 bg="222222"
 		/>
 	</colorScheme>
 	

@@ -19,6 +19,8 @@ public class BaseColumnObj extends Sprite implements IColumnObject
 	{
 		this.dispatchEvent( new Event( ProjectStub.CONTENT_HEIGHT_CHANGED, true) );
 	}
+	
+	public function get myWidth (  ):Number{ return this.width; };
 }
 
 }

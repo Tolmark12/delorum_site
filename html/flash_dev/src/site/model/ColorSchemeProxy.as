@@ -27,7 +27,7 @@ public class ColorSchemeProxy extends Proxy implements IProxy
 	{
 		// If this is on the web, and the param xmlPath is defined, use that instead of this test string to load the xml
 		var colorPath:String	= ( $stage.loaderInfo.parameters.colorXmlPath   != null )? $stage.loaderInfo.parameters.colorXmlPath   : 'content/xml/color_schemes.xml' ;
-		var ldr:XmlLoader 		= new XmlLoader( colorPath );
+		var ldr:DataLoader 		= new DataLoader( colorPath );
 		ldr.onComplete			= _handleXmlLoaded;
 		ldr.addItemToLoadQueue();
 	}
@@ -54,6 +54,7 @@ public class ColorSchemeProxy extends Proxy implements IProxy
 			_setVoParam( vo, node, "scrollbar_track_border"	);
 			_setVoParam( vo, node, "scrollbar_bar" 			);
 			_setVoParam( vo, node, "logo"					);
+			_setVoParam( vo, node, "logo_hover"					);
 			_setVoParam( vo, node, "work_h1"					);
 			_setVoParam( vo, node, "work_h2"					);
 			_setVoParam( vo, node, "work_body"					);

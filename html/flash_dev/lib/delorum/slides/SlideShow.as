@@ -49,6 +49,7 @@ public class SlideShow extends Sprite
 {
 	private var _facade:SlideShowFacade;
 	private static var _showCount:uint = 0;
+	public static var slideShows:Object = {};
 	
 	/** 
 	*	Creates a slideshow
@@ -57,11 +58,13 @@ public class SlideShow extends Sprite
 	*	@param		The slide height
 	*	@param		The slide display time in seconds
 	*	@param		The transition speed in seconds
+	*	@param		An id that can be used to reference this slideshow via SlideShow.getSlideShowById('myId');
 	*/
 	public function SlideShow( 	$slidesWidth:Number		 = 100, 
 								$slidesHeight:Number	 = 100, 
 								$slideDisplayTime:Number = 5.5, 
-								$transitionSpeed:Number	 = 1.8   ) :void
+								$transitionSpeed:Number	 = 1.8,
+								$id:String 				 = null   ) :void
 	{
 		slidesWidth      = $slidesWidth;
 		slidesHeight     = $slidesHeight;
@@ -71,6 +74,8 @@ public class SlideShow extends Sprite
 		this.addEventListener( Event.REMOVED_FROM_STAGE, _unmake );
 		_facade = SlideShowFacade.getInstance( "slideShow" + _showCount++  );
 		_facade.startup( this );
+		if( $id != null ) 
+			slideShows[$id] = this;
 	}
 	
 	
@@ -111,6 +116,22 @@ public class SlideShow extends Sprite
 		var slideShowVo:SlideShow_VO = new SlideShow_VO( imageArray );
 		
 		_facade.buildSlideShow( slideShowVo );
+	}
+	
+	/**	Stop the slideshow */
+	public function stop (  ):void  {  _facade.stop(); };
+	/**	start the slideshow */      
+	public function start (  ):void { _facade.start(); };
+	/**	reset (go back to slide 0)  */
+	public function reset (  ):void { _facade.reset(); };
+	/**	goto a certain slide index */
+	public function gotoSlide ( $slideIndex:uint ):void{ _facade.gotoSlide($slideIndex) };
+	
+	// ______________________________________________________________ Getters
+	
+	public static function getSlideShowById ( $id ):SlideShow
+	{
+		return slideShows[$id];
 	}
 	
 	// ______________________________________________________________ Setters

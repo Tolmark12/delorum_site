@@ -4,11 +4,9 @@ import DelorumSite;
 import flash.events.*;
 import caurina.transitions.Tweener;
 import flash.display.Sprite;
-import site.model.vo.Row_VO;
-import site.model.vo.Page_VO;
-import site.model.vo.ColorScheme_VO;
+import site.model.vo.*;
 import site.view.sections.portfolio_components.ProjectStub;
-import site.model.ColorSchemeProxy;
+import site.model.*;
 import delorum.slides.SlideShow;
 import delorum.slides.SlideShow_VO;
 
@@ -32,7 +30,6 @@ public class ProjectDetails extends Sprite
 	private var _contentHolder:Sprite;
 	private var _mask:Sprite;
 	
-	private var _titleTxt:TitleTxt_swc;
 	private var _bodyTxtMc:BodyText_swc;
 	
 	// data
@@ -60,15 +57,12 @@ public class ProjectDetails extends Sprite
 		_closeBtnBtm	= new WhiteCloseBtn_swc();
 		_mask 			= new Sprite();
 		
-		// Background
-		_bgMc.graphics.beginFill(0xFFFFFF);
-		_bgMc.graphics.drawRect (-ProjectStub.BORDER_SIZE,0,ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE + ProjectStub.BORDER_SIZE,351);
-		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
-		_closeBtnTop.y = -10;
-		_closeBtnBtm.y = -5;
+//		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
+//		_closeBtnTop.y = -10;
+//		_closeBtnBtm.y = -5;
 		
 		// Rows
-		_rowManager.y = 380;
+		_rowManager.y = 0;
 		
 		// Show Details button
 		_showDetailsBtn.make( "Title", _showDetailsBtn.DOWN_ARROW );
@@ -77,44 +71,33 @@ public class ProjectDetails extends Sprite
 		_showDetailsBtn.y = 310;
 				
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
-		_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
-		_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
+//   	_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
+//   	_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
 		
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		
 		// Textfields
-		_titleTxt	= new TitleTxt_swc();
 		_bodyTxtMc	= new BodyText_swc();
-
 		_bodyTxtMc.txtField.width   = Column.COLUMN_WIDTH;
-		_titleTxt.size				= DelorumSite.PROJECT_TITLE_FONT_SIZE;
-		_bodyTxtMc.size				= 13;
-		_titleTxt.color				= colorScheme.work_h1;
-		_bodyTxtMc.color			= colorScheme.work_body;
-		_bodyTxtMc.leading			= 12;
-
-		_bodyTxtMc.y 				= 50;
-		_titleTxt.y  				= 20;
-		_titleTxt.x					= 20;
+		_bodyTxtMc.y 				= 20;
 		_bodyTxtMc.x				= 20;
-		
-		
 		
 		_contentHolder.addChild( _bgMc 		 	 );
 		_contentHolder.addChild( _bodyTxtMc  	 );
-		_contentHolder.addChild( _titleTxt   	 );
 		_contentHolder.addChild( _showDetailsBtn );
 
-		this.addChild( _contentHolder );
-		this.addChild( _closeBtnTop	  );
+//		this.addChild( _contentHolder );
+//		this.addChild( _closeBtnTop	  );
 		this.addChild( _mask		  );
 		this.addChild( _rowManager 	  );
-		/*this.addChild( _closeBtnBtm   );*/
+//		this.addChild( _closeBtnBtm   );
 		
 		// Mask
 		_mask.graphics.beginFill(0xFFFF);
 		_mask.graphics.drawRect(0,0,width,height+ 15);
 		_contentHolder.mask = _mask;
+		
+		_handleShowDetailsClick();
 	}
 	
 	public function unmake (  ):void
@@ -130,18 +113,26 @@ public class ProjectDetails extends Sprite
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
-	public function changeContent ( $title:String, $shortDescription:String, $slideShow:SlideShow_VO  ):void
+	public function changeContent ( $title:String, $vo:ProjectStub_VO ):void
 	{
 		_title 		 = $title;
-		_body  		 = $shortDescription;
-		_slideShowVo = $slideShow;
+		_body  		 = $vo.shortDescription;
+		_slideShowVo = $vo.slideShow;
 		
-		_titleTxt.text 	 	= _title;
+		// Copy all the css styles
+		_bodyTxtMc.clearAllFormatting();
+		var len:uint = $vo.cssStyleList.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			_bodyTxtMc.parseCss( CssProxy.getCss( $vo.cssStyleList[i] )  );
+		}
+	
 		_bodyTxtMc.htmlText = _body;
-		
-		if( _rowManager != null ) 
+					
+		if( _rowManager != null ) {
 			_rowManager.removePage();
-		
+			_handleShowDetailsClick();
+		}
 		if( _slideShow != null ) {
 			_contentHolder.removeChild( _slideShow );
 			_slideShow = null;
@@ -155,7 +146,16 @@ public class ProjectDetails extends Sprite
 			_slideShow.buildSlideShow( _slideShowVo );
 		}
 		
+		_drawBg( $vo.bgColor );
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
+	}
+	
+	private function _drawBg ( $color ):void
+	{
+		// Background
+		_bgMc.graphics.clear();
+		_bgMc.graphics.beginFill( $color );
+		_bgMc.graphics.drawRect (-ProjectStub.BORDER_SIZE,0,ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE + ProjectStub.BORDER_SIZE,351);
 	}
 	
 	// ______________________________________________________________ Rows
@@ -164,7 +164,7 @@ public class ProjectDetails extends Sprite
 	{
 		Tweener.addTween(_rowManager, {alpha:1, time:0 })
 		_rowManager.buildPage( $page_vo, _bgMc.width );
-		_rowManager.addChild( _closeBtnBtm );
+//		_rowManager.addChild( _closeBtnBtm );
 	}
 	
 	public function closePage (  ):void
@@ -175,7 +175,7 @@ public class ProjectDetails extends Sprite
 	private function _removePage (  ):void
 	{
 		_rowManager.removePage();
-		/*_rowManager.removeChild( _closeBtnBtm );*/
+//		_rowManager.removeChild( _closeBtnBtm );
 		dispatchEvent( new Event( CASE_STUDY_HIDDEN ) );
 	}
 	
@@ -211,7 +211,7 @@ public class ProjectDetails extends Sprite
 	
 	// ______________________________________________________________ Event Handlers
 	
-	private function _handleShowDetailsClick ( e:Event ):void
+	private function _handleShowDetailsClick ( e:Event=null ):void
 	{
 		this.dispatchEvent( new Event(LOAD_PROJECT_XML) );
 	}
@@ -224,7 +224,6 @@ public class ProjectDetails extends Sprite
 	
 	private function _handleContentChange ( e:Event ):void
 	{
-		//trace( "blech"  + '  :  ' + count++ );
 	}
 	
 	private function _handleCloseClick ( e:Event ):void

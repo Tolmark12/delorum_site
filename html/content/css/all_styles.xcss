@@ -1,0 +1,58 @@
+<MAIN>
+<styles>
+
+ 
+ <!-- Styles -->
+ <style id="default">
+ 	p {
+		font-size:14;
+		color:#2A211E;
+	}
+	body{
+		font-family:Georgia;
+	}
+	h1{
+		display:block;
+		font-size:14;
+		color:#F7732A;
+	}
+	bg { color:#FFFFFF; }
+	
+	row {
+		bgColor:#FFFFFF;
+		padding:12;
+		columnPadding:12;
+		totalColumns:3;
+		margin-top:12;
+		margin-bottom:0;
+		bgAlpha:1;
+	}
+ </style>
+ 
+ <style id="header">
+	h1 { font-size:16; }
+ </style>
+ 
+ <style id="portfolio">
+	h1	{ font-size:18 }
+	p   { color:#C8B690; font-size:16 }
+	row {
+		margin-top:30;
+		padding:26;
+		bgAlpha:0.6;
+		bgColor:#000000;
+		bgWidth:292;
+		bgHeight:351;
+	}
+ </style>
+
+ <style id="cs_brown">
+	bg { color:#FF0000; }
+	p  { color:#382C28; }
+	h1 { color:#FFFFFF; }
+ </style>
+ <!-- Styles END -->
+
+
+</styles>
+</MAIN>

@@ -1,6 +1,6 @@
 package {
 
-import delorum.errors.ErrorMachine;
+import delorum.echo.EchoMachine;
 import flash.events.*;
 import flash.display.*;
 import site.SiteFacade;
@@ -19,8 +19,8 @@ public class DelorumSite extends Sprite
 	public function DelorumSite():void 
 	{
 		// For printing any errors / message
-		ErrorMachine.setErrorModeAutomatically( this.stage );
-		ErrorMachine.initForExternalJavascript();
+		EchoMachine.setEchoModeAutomatically( this.stage );
+		EchoMachine.initForExternalJavascript();
 		
 		// Initialze the site facade and begin
 		var siteFacade:SiteFacade = SiteFacade.getInstance( 'site_facade' );

@@ -5,12 +5,12 @@ import org.puremvc.as3.multicore.patterns.proxy.Proxy;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
 
 import flash.display.Sprite;
-import delorum.loading.XmlLoader;
+import delorum.loading.DataLoader;
 import flash.events.*;
 import site.SiteFacade;
 import site.model.vo.*;
 
-import delorum.errors.ErrorMachine;
+import delorum.echo.EchoMachine;
 
 public class NavProxy extends Proxy implements IProxy
 {
@@ -37,7 +37,7 @@ public class NavProxy extends Proxy implements IProxy
 		// If this is on the web, and the param xmlPath is defined, use that instead of this test string to load the xml
 		var xmlPath:String	= ( $stage.loaderInfo.parameters.xmlPath   != null )? $stage.loaderInfo.parameters.xmlPath   : 'content/xml/site.xml' ;
 		_defaultBgColor		= ( $stage.loaderInfo.parameters.defaultBg != null )? uint($stage.loaderInfo.parameters.defaultBg) :0x978061 ;
-		var ldr:XmlLoader 	= new XmlLoader( xmlPath );
+		var ldr:DataLoader 	= new DataLoader( xmlPath );
 		ldr.onComplete		= _handleXmlLoaded;
 		ldr.addItemToLoadQueue();
 	}

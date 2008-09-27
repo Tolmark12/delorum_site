@@ -12,6 +12,7 @@ import caurina.transitions.Tweener;
 import site.view.StageMediator;
 import delorum.scrolling.*;
 import site.model.ColorSchemeProxy;
+import site.model.CssProxy;
 
 public class PortfolioMediator extends BaseSection implements IMediator
 {	
@@ -123,12 +124,13 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_stubHolder 	= new Sprite();
 		_details 		= new ProjectDetails();		
 		_stubsAr		= new Array();
-
+		
 		// Position display items
 		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
-		_details.y 		= 300000;
-		_scrollHolder.x = OUTER_PADDING;
-		_scrollHolder.y = _stubHolder.y + 265;
+		_details.y		= 430;
+		//_details.y		= 30000; // Temp
+		_scrollHolder.x = OUTER_PADDING + 65;
+		_scrollHolder.y = 250;
 		_moveDetails();
 		
 		// Add to display list
@@ -145,6 +147,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			stub.make( stub_vo );
 			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 				);
 			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 			);
+			// TODO: move the events of the details from the stub to the details. or at least investigat if it should be so
 			_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
 			_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
 			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);
@@ -159,7 +162,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		}
 		
 		// display ribbon
-		_displayAsRibbon();		
+		_displayAsRibbon();	
+		_moveRibbonVertical();	
 		// Make visible
 		super.show();
 	}
@@ -167,8 +171,14 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _createScrollBar (  ):void
 	{
 		var colorScheme:ColorScheme_VO 	= ColorSchemeProxy.currentColorScheme;
-		_scroller = new Scroller( _scrollHolder, 800, Scroller.HORIZONTAL, colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border );
+		//_scroller = new Scroller( _scrollHolder, 800, Scroller.HORIZONTAL, colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border );
+		_scroller = new Scroller( 800, 10 );
+		_scroller.x = 13;
+		_scroller.createDefaultScroller( colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border, 4 );
+		_scroller.build();
+		
 		_scroller.addEventListener( Scroller.SCROLL, _handleScroll );
+		_scrollHolder.addChild( _scroller );
 	}
 	
 	// ______________________________________________________________ Vertical positioning
@@ -176,24 +186,24 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _moveRibbonVertical (  ):void
 	{
 		var ribbonTargetY:uint;
+		var scrollTargetY:uint;
 		
 		switch (_portfolioState ){
 			case _BROWSING :
-				ribbonTargetY 	= 0;
+				ribbonTargetY = 0;
+				scrollTargetY = 305
 				break;
 			case _DETAILS :
 				ribbonTargetY = 30;
+				scrollTargetY = 395
 				break;
 			case _FULL :
 				ribbonTargetY = 100;
 				break;
 		}
 		
-		// Temp disableing moving
-		//ribbonTargetY = 70;
 		Tweener.addTween( _stubHolder, { y:ribbonTargetY, time:1, transition:"EaseInOutQuint"} );
-		Tweener.addTween( _scrollHolder, { y:ribbonTargetY + 365, time:1, transition:"EaseInOutQuint"} );
-		
+		Tweener.addTween( _scrollHolder, { y:scrollTargetY, time:1, transition:"EaseInOutQuint"} );
 	}
 	
 	// ______________________________________________________________ Stub display
@@ -220,7 +230,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				stub.dimImage();
 			
 			// Move to new position
-			stub.moveTo( _ribbonWidth, 0 );
+			stub.moveTo( _ribbonWidth, -30 );
 			_ribbonWidth += stub.stubWidth;
 		}
 		
@@ -264,7 +274,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _changeDetails ( $vo:ProjectStub_VO ):void
 	{
 		_details.show();
-		_details.changeContent( $vo.title, $vo.shortDescription, $vo.slideShow );
+		_details.changeContent( $vo.title, $vo );
 	}
 	
 	private function _moveDetails (  ):void
@@ -311,7 +321,6 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	{
 		if( _activeStub != null ) 
 			_scroller.changeScrollPosition( _activeStub.arrayIndex / (_stubsAr.length - 1), $speed);
-			
 	}
 	
 	// ______________________________________________________________ Aligning the ribbon on stage resize

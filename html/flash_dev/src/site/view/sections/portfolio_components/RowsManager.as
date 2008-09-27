@@ -59,13 +59,13 @@ public class RowsManager extends Sprite
 	
 	public function hide ( $callBackFunction:Function=null ):void
 	{
-		var myBitmapData:BitmapData = new BitmapData(_contentSprite.width, _contentSprite.height, true, 0x000000);
-		myBitmapData.draw( _contentSprite );
-		_bitmap = new Bitmap( myBitmapData );
-		this.addChild( _bitmap );
+		//var myBitmapData:BitmapData = new BitmapData(_contentSprite.width, _contentSprite.height, true, 0x000000);
+		//myBitmapData.draw( _contentSprite );
+		//_bitmap = new Bitmap( myBitmapData );
+		//this.addChild( _bitmap );
 		_contentSprite.visible = false;
 		
-		Tweener.addTween( _bitmap, {alpha:0, time:1, onComplete:$callBackFunction });
+		//Tweener.addTween( _bitmap, {alpha:0, time:1, onComplete:$callBackFunction });
 	}
 	
 	// ______________________________________________________________ Stacking rows

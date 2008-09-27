@@ -51,6 +51,10 @@ public class SiteFacade extends Facade implements IFacade
 	public static const HIDE_CASE_STUDY:String 			= "hide_case_study";		// Hide the current project's case study
 	public static const CASE_STUDY_HIDDEN:String 		= "case_study_hidden";		// Case study is hidden
 	
+	// CSS
+	public static const LOAD_CSS:String 				= "load_css";				// Load the css
+	public static const CSS_LOADED:String 				= "css_Loaded";				// Css is loaded
+	
 	public function SiteFacade( key:String ):void
 	{
 		super(key);	
@@ -83,6 +87,8 @@ public class SiteFacade extends Facade implements IFacade
 		registerCommand( BROWSER_URL_CHANGED, BrowserUrlChanged	 		);
 		registerCommand( DEACTIVATE_STUB_CLICK, DeactivateStubClick	 	);
 		registerCommand( HIDE_CASE_STUDY_CLICK, HideCaseStudyClick	 	);
+		registerCommand( LOAD_CSS, LoadCss							 	);
+		registerCommand( CSS_LOADED, CssLoaded						 	);
 		
 	}
 

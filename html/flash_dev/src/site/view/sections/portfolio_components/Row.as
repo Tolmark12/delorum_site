@@ -2,21 +2,20 @@ package site.view.sections.portfolio_components
 {
 
 import flash.display.*;
-import site.model.ColorSchemeProxy;
-import site.model.vo.ColorScheme_VO;
-import site.model.vo.Row_VO;
-import site.model.vo.Col_VO;
+import site.model.*;
+import site.model.vo.*;
 import site.view.sections.portfolio_components.column_objects.*;
 import caurina.transitions.Tweener;
 import flash.events.*;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
+import flash.text.StyleSheet;
 
 public class Row extends Sprite
 {
 	public static const ROW_PADDING:Number = 20;
 	
-	
+	private var _width:Number;
 	private var _rowVo:Row_VO;
 	private var _columnYpos:int;
 	private var _bgColor:Shape;
@@ -24,9 +23,21 @@ public class Row extends Sprite
 	private var _content:Sprite;
 	private var _oldBitmap:Bitmap;
 	private var _newBitmap:Bitmap;
+	private var _bgHeight:Number = -1;
+	
+	// CSS Properties
+	private var _cssBgColor:uint;
+	private var _cssTotalColumns:uint;
+	private var _cssPadding:uint;
+	private var _cssMarginTop:Number;
+	private var _cssMarginBottom:Number;
+	private var _cssColumnPadding:uint;
+	private var _columnWidth:Number;
+	
 	
 	public function Row( $rowVo:Row_VO, $imagesDir:String, $width:Number ):void
 	{
+		_width = $width;
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
 		
 		_rowVo = $rowVo;
@@ -35,11 +46,12 @@ public class Row extends Sprite
 		_holder = new Sprite()
 		this.addChild(_holder);
 		
+		_setCssProperties();
+		
 		// Add Background and Title
-		if( _rowVo.bgColor != -1 ) 
-			_drawBg( $width );
-			
+		_drawBg( _width );
 		_content = new Sprite();
+		//_content.y = _cssMarginTop;
 		_holder.addChild( _content );
 			
 		if( _rowVo.title != null ) 
@@ -57,17 +69,18 @@ public class Row extends Sprite
 	
 	private function _buildColumns ( $imagesDir:String ):void
 	{
-		
+		var columnWidth:Number = ( _width - _cssPadding*2 - ( _cssColumnPadding * ( _cssTotalColumns-1 ) )) / _cssTotalColumns;
 		var len:uint = _rowVo.columnAr.length;
 		var currentColumnPos = 0;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var col_vo:Col_VO = _rowVo.columnAr[i] as Col_VO;	
-			var column:Column = new Column( $imagesDir );
+			var column:Column = new Column( $imagesDir, _rowVo.cssStyleList);
 			_content.addChild(column);
-			column.make( col_vo );
-			column.x = currentColumnPos * Column.COLUMN_WIDTH + Column.COLUMN_PADDING;
-			column.y = _columnYpos;
+			column.x = _cssPadding + (currentColumnPos * columnWidth) + (currentColumnPos * _cssColumnPadding);
+			column.y = _cssMarginTop;
+			column.addEventListener( Column.FLOAT, _handleColumnFloat );
+			column.make( col_vo, columnWidth );
 			currentColumnPos += column.numberOfColumnsWide;
 		}
 	}
@@ -87,57 +100,56 @@ public class Row extends Sprite
 	
 	private function _drawBg ( $width:Number ):void
 	{
+		/*var bgColor:uint   = ( _rowVo.bgColor == null )? _cssBgColor : uint(_rowVo.bgColor) ;*/
+		var bgWidth:Number = ( _rowVo.bgWidth == -1 )? $width : _rowVo.bgWidth;
+		var bgHeight:Number = ( _rowVo.bgHeight == -1 )? 300 : _rowVo.bgHeight;
+		_bgHeight = _rowVo.bgHeight;
+
 		_bgColor = new Shape();
 		_bgColor.visible = false;
-		_bgColor.graphics.beginFill(_rowVo.bgColor);
-		_bgColor.graphics.drawRect(0,0,$width,300);
+		_bgColor.graphics.beginFill( _cssBgColor, _rowVo.bgAlpha );
+		_bgColor.graphics.drawRect(0,0,bgWidth,bgHeight);
 		_holder.addChild(_bgColor);
+	}
+	
+	// Pull the bg color out of the css
+	private function _setCssProperties (  ):void
+	{
+		_cssBgColor        	= uint( _rowVo.bgColor.replace(/#/, "0x") );
+		_cssColumnPadding  	= Number( _rowVo.columnPadding );
+		_cssPadding        	= Number( _rowVo.padding );
+		_cssTotalColumns	= uint( _rowVo.totalColumns  );
+		_cssMarginTop		= Number( _rowVo.marginTop );
+		_cssMarginBottom	= Number( _rowVo.marginBottom );
+	}
+	
+	// ______________________________________________________________ Event Handlers
+	
+	private function _handleColumnFloat ( e:Event ):void
+	{
+		var col:Column = e.currentTarget as Column;
+		switch (col.float){
+			case "right" :
+				col.x = _width - col.colWidth;
+			break;
+			case "left":
+				col.x = 0
+			break;
+		}
+		
+		col.y = 0;
 	}
 	
 	private function _handleRowHeightChange ( e:Event ):void
 	{
 		if( _bgColor != null ) 
 		{
-			_bgColor.height = _content.height + ROW_PADDING*2;
+			if( _bgHeight == -1 ) 
+				_bgColor.height = _content.height + _cssMarginTop + _cssMarginBottom;
+			
 			_bgColor.visible = true;
 		}
-//		_show();
 	}
-	
-//	// ______________________________________________________________ Show
-//	
-//	private function _show (  ):void
-//	{
-//		/*if( _oldBitmap != null ) {
-//			this.removeChild( _oldBitmap );
-//			_oldBitmap = null;
-//		}*/
-//		
-//		_holder.visible = true;
-//		var myBitmapData:BitmapData = new BitmapData(_holder.width, _holder.height, true, 0x000000);
-//		myBitmapData.draw( _holder );
-//		_newBitmap = new Bitmap( myBitmapData );
-//		this.addChild( _newBitmap );
-//		_holder.visible = false;
-//		
-//		if( _oldBitmap != null )
-//			_oldBitmap.visible = false;
-//		
-//		_newBitmap.alpha = 0;
-//		Tweener.addTween( _newBitmap, { alpha:1, time:1, transition:"EaseInOutQuint", onComplete:_showTheRealContent} );
-//	}
-//	
-//	private function _showTheRealContent (  ):void
-//	{
-//		//_oldBitmap.visible = false;
-//		//_holder.visible = true;
-//		
-//		if( _oldBitmap != null )
-//			this.removeChild( _oldBitmap );
-//			
-//		_oldBitmap = _newBitmap;
-//		_holder.visible = true;
-//	}
 
 	
 }
