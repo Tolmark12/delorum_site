@@ -45,7 +45,7 @@
  		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="500">
  			<row css="portfolio"  bgX="400" slideShowId="hss_oliver">
 	 			<col>
-	 				<txt><h1>Oliver Parson Documentary</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p></txt>
+	 				<txt><h1>Oliver Parson Documentary</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p></txt>
 	 			</col>
 	 			<col span="2" float="right">
 	 				<slideShow w="508" h="351" displayTime="6" transitionSpeed="4" id="hss_oliver">
