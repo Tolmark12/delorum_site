@@ -1,17 +1,6 @@
 <MAIN>
 	<page imageDir="plum/">
 		<!-- Four Hundred Sketches -->
-		<row css="header" bgColor="FFFFFF" padding="0">
-			<col>
-				<txt><h1>Plum Furniture</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p></txt>
-			</col>
-			<col span="2" float="right">
-				<slideShow w="508" h="351" displayTime="5.5" transitionSpeed="1.8" >
-					<img src="slide1.jpg" />
-					<img src="slide2.jpg" />
-					<img src="slide3.jpg" />
-				</slideShow>
-			</col>
-		</row>
+		
 	</page>
 </MAIN>
