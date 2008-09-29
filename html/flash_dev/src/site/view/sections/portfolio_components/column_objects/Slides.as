@@ -17,13 +17,16 @@ public class Slides extends BaseColumnObj implements IColumnObject
 	
 	override public function make ( $node:XML ):void
 	{
+		var w:Number   = ( String( $node.@w  ).length == 0 )? 					508 	: $node.@w  ;
+		var h:Number   = ( String( $node.@h  ).length == 0 )? 					351		: $node.@h  ;
+		var dt:Number  = ( String( $node.@displayTime ).length == 0 )? 			6 		: $node.@displayTime ;
+		var ats:Number = ( String( $node.@transitionSpeed).length == 0 )? 		4 		: $node.@transitionSpeed;
+		var cts:Number = ( String( $node.@clickTransitionSpeed).length == 0 )? 	1 		: $node.@clickTransitionSpeed;
+		var id:String  = ( String( $node.@id ).length == 0 )? 					null	: $node.@id ;
+		
 		super.make($node);
-		_slideShowWidth = Number( $node.@w );
-		_slideShow = new SlideShow(	_slideShowWidth,
-		 		   				 	Number( $node.@h), 
-				   				 	Number( $node.@displayTime ),
-								 	Number( $node.@transitionSpeed ), 
-								   	$node.@id );
+		_slideShowWidth = w;
+		_slideShow = new SlideShow(	w, h, dt, ats, cts, id);
 
 		this.addChild( _slideShow );
 		var slideShowVo = new SlideShow_VO();

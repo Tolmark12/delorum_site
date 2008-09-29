@@ -60,16 +60,18 @@ public class SlideShow extends Sprite
 	*	@param		The transition speed in seconds
 	*	@param		An id that can be used to reference this slideshow via SlideShow.getSlideShowById('myId');
 	*/
-	public function SlideShow( 	$slidesWidth:Number		 = 100, 
-								$slidesHeight:Number	 = 100, 
-								$slideDisplayTime:Number = 5.5, 
-								$transitionSpeed:Number	 = 1.8,
-								$id:String 				 = null   ) :void
+	public function SlideShow( 	$slidesWidth:Number		 		= 100, 
+								$slidesHeight:Number	 		= 100, 
+								$slideDisplayTime:Number 		= 5.5, 
+								$transitionSpeed:Number	 		= 1.8,
+								$clickTransitionSpeed:Number	= 1.8,
+								$id:String 						= null   ) :void
 	{
-		slidesWidth      = $slidesWidth;
-		slidesHeight     = $slidesHeight;
-		slideDisplayTime = $slideDisplayTime;
-		transitionSpeed  = $transitionSpeed;
+		slidesWidth      		= $slidesWidth;
+		slidesHeight     		= $slidesHeight;
+		slideDisplayTime 		= $slideDisplayTime;
+		transitionSpeed  		= $transitionSpeed;
+		clickTransitionSpeed 	= $clickTransitionSpeed;
 
 		this.addEventListener( Event.REMOVED_FROM_STAGE, _unmake );
 		_facade = SlideShowFacade.getInstance( "slideShow" + _showCount++  );
@@ -136,14 +138,15 @@ public class SlideShow extends Sprite
 	
 	// ______________________________________________________________ Setters
 	/**	 The slide width */
-	public function set slidesWidth  		( $v:Number ):void { SlideShowFacade.slidesWidth = $v; };
+	public function set slidesWidth  		 ( $v:Number ):void { SlideShowFacade.slidesWidth = $v; };
 	/**	The slide height */
-	public function set slidesHeight 		( $v:Number ):void { SlideShowFacade.slidesHeight = $v; };
+	public function set slidesHeight 		 ( $v:Number ):void { SlideShowFacade.slidesHeight = $v; };
 	/**	The slide display time in seconds */
-	public function set slideDisplayTime 	( $v:Number ):void { SlideShowFacade.slideDisplayTime = $v; };
+	public function set slideDisplayTime 	 ( $v:Number ):void { SlideShowFacade.slideDisplayTime = $v; };
 	/**	The transition speed in seconds */
-	public function set transitionSpeed		( $v:Number ):void { SlideShowFacade.transitionSpeed = $v; };
-	
+	public function set transitionSpeed		 ( $v:Number ):void { SlideShowFacade.transitionSpeed = $v; };
+	/**	The transition speed in seconds when a button is clicked */
+	public function set clickTransitionSpeed ( $v:Number ):void { SlideShowFacade.clickTransitionSpeed = $v; };
 }
 
 }

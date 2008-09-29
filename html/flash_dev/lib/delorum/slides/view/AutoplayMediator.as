@@ -66,6 +66,7 @@ public class AutoplayMediator extends Mediator implements IMediator
 	
 	private function _tick ( e:Event ):void
 	{
+		facade.sendNotification( SlideShowFacade.TRANSITION_SPEED_TO_AUTO );
 		facade.sendNotification( SlideShowFacade.NEXT_SLIDE, true );
 	}
 }

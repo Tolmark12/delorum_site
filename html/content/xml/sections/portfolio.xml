@@ -13,7 +13,7 @@
 					<txt><h1>Various Logos</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque.</p></txt>
 				</col>
 				<col span="2" float="right">
-					<slideShow w="508" h="351" displayTime="5.5" transitionSpeed="1.8" id="hss_logos">
+					<slideShow id="hss_logos">
 						<img src="__blank__"  />
 						<img src="content/images/portfolio/pages/logos/h_fudge.jpg" />
 						<img src="content/images/portfolio/pages/logos/olympus.jpg" />
@@ -23,27 +23,13 @@
 				</col>
 			</row>
  		</projectStub>
- 		<projectStub title="Plum Furniture" image="plum.jpg" xml="plum.xml" frameX="290" frameY="31" >
-			<row css="portfolio,plum" slideShowId="hss_plum" bgAlpha="0">
-				<col span="2" float="left">
-					<slideShow w="508" h="351" displayTime="5.5" transitionSpeed="1.8" id="hss_plum">
-						<img src="__blank__"  />
-						<img src="content/images/portfolio/pages/plum/slide1.jpg" />
-						<img src="content/images/portfolio/pages/plum/slide2.jpg" />
-					</slideShow>
-				</col>
-				<col>
-					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design, coupled with a modern twist and today’s handcrafted precision. Built from solid hardwood, each piece is hand worked and hand stained using the highest quality materials.</p></txt>
-				</col>
-			</row>
- 		</projectStub>
 		<projectStub title="Idahoan Potatoes" image="idahoan4.jpg" xml="oliver_parson.xml" frameX="357" frameY="90">
 			<row css="portfolio,idahoan" slideShowId="hss_idahoan" bgColor="#861F16" bgAlpha="0.94">
 	 			<col>
 	 				<txt><h1>Idahoan Potatoes</h1><p>Idahoan potatoes, and other some such, Loerm ipsum deloru. For the forthright mechanism of potato is the reverse case of the adjunct angle.</p></txt>
 	 			</col>
 	 			<col span="2" float="right">
-	 				<slideShow w="508" h="351" displayTime="6" transitionSpeed="4" id="hss_idahoan" >
+	 				<slideShow id="hss_idahoan" >
 						<img src="__blank__"  />
 						<img src="content/images/portfolio/pages/idahoan/slide1.jpg" />
 						<img src="content/images/portfolio/pages/idahoan/slide3.jpg" />
@@ -57,7 +43,7 @@
 	 				<txt><h1>Playmill Theatre</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions.</p></txt>
 	 			</col>
 	 			<col span="2" float="right">
-	 				<slideShow w="508" h="351" displayTime="6" transitionSpeed="4" id="hss_playmill" >
+	 				<slideShow id="hss_playmill" >
 						<img src="__blank__"  />
 						<img src="content/images/portfolio/pages/playmill/slide1.jpg" />
 						<img src="content/images/portfolio/pages/playmill/slide2.jpg" />
@@ -66,13 +52,13 @@
 	 			</col>
 	 		</row>
  		</projectStub>
- 		<projectStub title="Bevy Facebook Application" image="bevy_big4.jpg" frameX="380" frameY="49" xml="bevy.xml" >
+ 	<!-- 	<projectStub title="Bevy Facebook Application" image="bevy_big4.jpg" frameX="380" frameY="49" xml="bevy.xml" >
  			<row css="portfolio" slideShowId="hss_bevy" bgAlpha="0.4">
 				<col>
 					<txt><h1>Bevy Facebook Application</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. </p></txt>
 				</col>
 				<col span="2" float="right">
-					<slideShow w="508" h="351" displayTime="5.5" transitionSpeed="1.8" id="hss_bevy">
+					<slideShow id="hss_bevy">
 						<img src="__blank__" />
 						<img src="content/images/portfolio/pages/bevy/slide0.jpg" />
 						<img src="content/images/portfolio/pages/bevy/slide3.jpg" />
@@ -82,22 +68,36 @@
 					</slideShow>
 				</col>
 			</row>
- 		</projectStub>
+ 		</projectStub> -->
 		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="500">
  			<row css="portfolio" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p></txt>
 	 			</col>
 	 			<col span="2" float="right">
-	 				<slideShow w="508" h="351" displayTime="6" transitionSpeed="4" id="hss_oliver">
+	 				<slideShow id="hss_oliver">
 						<img src="__blank__"  />
-						<img src="content/images/portfolio/pages/oliver/slide1.jpg" />
+						<img src="content/images/portfolio/pages/oliver/slides_new_1.jpg" />
+						<img src="content/images/portfolio/pages/oliver/slides_new_2.jpg" />
 						<img src="content/images/portfolio/pages/oliver/slide3.jpg" />
-						<img src="content/images/portfolio/pages/oliver/slide4.jpg" />
-						<img src="content/images/portfolio/pages/oliver/slide2.jpg" />
+						<img src="content/images/portfolio/pages/oliver/slides_new_3.jpg" />
 	 				</slideShow>
 	 			</col>
 	 		</row>
+ 		</projectStub>
+ 		<projectStub title="Plum Furniture" image="plum.jpg" xml="plum.xml" frameX="290" frameY="31" >
+			<row css="portfolio,plum" slideShowId="hss_plum" bgAlpha="0">
+				<col span="2" float="left">
+					<slideShow id="hss_plum">
+						<img src="__blank__"  />
+						<img src="content/images/portfolio/pages/plum/slide1.jpg" />
+						<img src="content/images/portfolio/pages/plum/slide2.jpg" />
+					</slideShow>
+				</col>
+				<col>
+					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design, coupled with a modern twist and today’s handcrafted precision. Built from solid hardwood, each piece is hand worked and hand stained using the highest quality materials.</p></txt>
+				</col>
+			</row>
  		</projectStub>
  		<projectStub title="City of Rexburg Signage System" image="mockup13_big.jpg" frameX="50" xml="oliver_parson.xml"></projectStub>
  		<projectStub title="Playmill Theatre 2" image="mockup11_big.jpg" xml="oliver_parson.xml" frameX="500"></projectStub>

@@ -58,15 +58,17 @@ public class SlideShow extends Sprite
 	*	@param		The slide display time in seconds
 	*	@param		The transition speed in seconds
 	*/
-	public function SlideShow( 	$slidesWidth:Number		 = 100, 
-								$slidesHeight:Number	 = 100, 
-								$slideDisplayTime:Number = 5.5, 
-								$transitionSpeed:Number	 = 1.8   ) :void
+	public function SlideShow( 	$slidesWidth:Number		 	 = 100, 
+								$slidesHeight:Number	 	 = 100, 
+								$slideDisplayTime:Number 	 = 5.5, 
+								$transitionSpeed:Number	 	 = 1.8,
+								$clickTransitionSpeed:Number = 0.2   ) :void
 	{
-		slidesWidth      = $slidesWidth;
-		slidesHeight     = $slidesHeight;
-		slideDisplayTime = $slideDisplayTime;
-		transitionSpeed  = $transitionSpeed;
+		slidesWidth     		= $slidesWidth;
+		slidesHeight    		= $slidesHeight;
+		slideDisplayTime 		= $slideDisplayTime;
+		transitionSpeed  		= $transitionSpeed;
+		clickTransitionSpeed 	= $clickTransitionSpeed
 
 		this.addEventListener( Event.REMOVED_FROM_STAGE, _unmake );
 		_facade = SlideShowFacade.getInstance( "slideShow" + _showCount++  );
@@ -122,6 +124,8 @@ public class SlideShow extends Sprite
 	public function set slideDisplayTime 	( $v:Number ):void { SlideShowFacade.slideDisplayTime = $v; };
 	/**	The transition speed in seconds */
 	public function set transitionSpeed		( $v:Number ):void { SlideShowFacade.transitionSpeed = $v; };
+	/**	Optional transition speed on click */
+	public function set transitionSpeed		( $v:Number ):void { SlideShowFacade.clickTransitionSpeed = $v; };
 	
 }
 

@@ -107,9 +107,9 @@ public class DisplayImageMediator extends Mediator implements IMediator
 		if( !_newSlide.isBlank ) {
 			_newSlide.alpha = 0;
 			_newSlide.visible = true;
-			Tweener.addTween(_newSlide, {alpha:1, time:SlideShowFacade.transitionSpeed, onComplete:_hidePreviousSlide} );
+			Tweener.addTween(_newSlide, {alpha:1, time:SlideShowFacade.getTransitionSpeed(), onComplete:_hidePreviousSlide} );
 		} else {
-			Tweener.addTween(_bgBitmapHolder, {alpha:0, time:SlideShowFacade.transitionSpeed, onComplete:_hidePreviousSlide} );
+			Tweener.addTween(_bgBitmapHolder, {alpha:0, time:SlideShowFacade.getTransitionSpeed(), onComplete:_hidePreviousSlide} );
 		}
 	}	
 	
