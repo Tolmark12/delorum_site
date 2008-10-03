@@ -190,7 +190,6 @@ public class PortfolioProxy extends Proxy implements IProxy
 			// Css styling - create a list of css objects
 			var tempStyleSheet:StyleSheet = new StyleSheet;
 			var tempCssList:Array = new Array();
-			trace( row_vo.cssStyleList );
 			var len:uint = row_vo.cssStyleList.length;
 			for ( var i:uint=0; i<len; i++ ) 
 			{
@@ -198,10 +197,10 @@ public class PortfolioProxy extends Proxy implements IProxy
 				tempCssList.push( tempStyleSheet.getStyle("row") );
 			}
 			
-			row_vo.bgAlpha				= ( String( rowNode.@bgAlpha ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgAlpha", "1" ) 	: rowNode.@bgAlpha ;
-			row_vo.bgWidth				= ( String( rowNode.@bgWidth ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgWidth", "-1" ) 	: rowNode.@bgWidth ;
-			row_vo.bgHeight				= ( String( rowNode.@bgHeight ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgHeight", "-1" ) 	: rowNode.@bgHeight ;
-			row_vo.bgAlphaMode			= ( String( rowNode.@bgAlphaMode ).length == 0 )? 	_getAttributeFromCss( tempCssList, "bgAlphaMode", "1" ) : rowNode.@bgAlphaMode ;
+			row_vo.bgAlpha				= ( String( rowNode.@bgAlpha ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgAlpha", "1" ) 		: rowNode.@bgAlpha ;
+			row_vo.bgWidth				= ( String( rowNode.@bgWidth ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgWidth", "-1" ) 		: rowNode.@bgWidth ;
+			row_vo.bgHeight				= ( String( rowNode.@bgHeight ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgHeight", "-1" ) 		: rowNode.@bgHeight ;
+			row_vo.bgAlphaMode			= ( String( rowNode.@bgAlphaMode ).length == 0 )? 	_getAttributeFromCss( tempCssList, "bgAlphaMode", "1" ) 	: rowNode.@bgAlphaMode ;
 			row_vo.bgColor				= ( String( rowNode.@bgColor ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgColor", "#FFFFFF" ) 	: rowNode.@bgColor ;
 			row_vo.columnPadding        = ( String( rowNode.@columnPadding ).length == 0 )? _getAttributeFromCss( tempCssList, "columnPadding", "0" ) 	: rowNode.@columnPadding ;
 			row_vo.padding              = ( String( rowNode.@padding ).length == 0 )? 		_getAttributeFromCss( tempCssList, "padding", "0" ) 		: rowNode.@padding ;

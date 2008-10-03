@@ -128,7 +128,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		// Position display items
 		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
 		_details.y		= 430;
-		_details.y		= 30000; // Temp
+		//_details.y		= 30000; // Temp
 		_scrollHolder.x = OUTER_PADDING + 65;
 		_scrollHolder.y = 300;
 		_moveDetails();
