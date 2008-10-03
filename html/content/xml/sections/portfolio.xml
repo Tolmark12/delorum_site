@@ -7,10 +7,10 @@
  			  defaultCss="brown"  >
 
 		
- 		<projectStub title="Various Logos" image="logos_big_1.jpg" frameX="380" frameY="49" xml="bevy.xml" >
+ 		<projectStub title="Various Logos" image="logos.gif" frameX="380" frameY="49" xml="bevy.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
-					<txt><h1>Various Logos</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque.</p></txt>
+					<txt><h1>Various Logos</h1><p>Delorum created over 40 logos for various brands. Lorem ipsum delor and hat telo paks fronn.</p></txt>
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
