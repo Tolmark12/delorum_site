@@ -136,11 +136,12 @@ public class Row extends Sprite
 				col.x = 0
 			break;
 		}
-		
 		col.y = 0;
+		this.dispatchEvent( new Event( ProjectStub.CONTENT_HEIGHT_CHANGED, true ) );
+		
 	}
 	
-	private function _handleRowHeightChange ( e:Event ):void
+	private function _handleRowHeightChange ( e:Event=null ):void
 	{
 		if( _bgColor != null ) 
 		{

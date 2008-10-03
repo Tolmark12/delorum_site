@@ -1,6 +1,14 @@
 <MAIN>
-	<page imageDir="bevy/">
+	<page imageDir="heidis_fudge/">
 		<!-- Four Hundred Sketches -->
-		
+		<row css="header">
+			<col align="center">
+				<img src="purple_shield.jpg" />
+			</col>
+			<col span="2">
+				<txt><h1>Boutique Packaging</h1><p>After 20 years of making fudge, Heidi approached Delorum to create a logo, packaging, simple e-commerce site and sales brochures for a small fudge company.</p>
+				<p>Just a few years after launch, Heidi’s Fudge has opened a physical store and seasonal mall locations, while their e-commerce site continues to boast a modest 5-6% conversion rate for new customers.</p></txt>
+			</col>
+		</row>
 	</page>
 </MAIN>
