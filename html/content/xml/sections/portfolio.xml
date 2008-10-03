@@ -23,6 +23,13 @@
 				</col>
 			</row>
  		</projectStub>
+		<projectStub title="Heidi's Fudge" image="logos_big_1.jpg" frameX="380" frameY="49" xml="heidis_fudge.xml" >
+			<row css="portfolio" slideShowId="hss_heidis_fudge" bgAlpha="0">
+				<col>
+					<txt><h1>Various Logos</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque.</p></txt>
+				</col>
+			</row>
+ 		</projectStub>
 		<projectStub title="Idahoan Potatoes" image="idahoan4.jpg" xml="oliver_parson.xml" frameX="357" frameY="90">
 			<row css="portfolio,idahoan" slideShowId="hss_idahoan" bgColor="#861F16" bgAlpha="0.94">
 	 			<col>

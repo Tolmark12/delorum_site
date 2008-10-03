@@ -109,7 +109,7 @@ public class Column extends Sprite
 		var i:uint;
 		var item:BaseColumnObj;
 		switch (_alignment){
-			case "right" :
+			case "left" :
 				for ( i=0; i<len; i++ ) 
 				{
 					item = _itemAr[i] as BaseColumnObj;

@@ -1,0 +1,30 @@
+------------------------------- 
+CSS ROW STYLES:
+-------------------------------
+	
+:::	bgColor
+ 	- Background color
+	>> bgColor:#FFFFFF
+	
+:::	padding
+ 	- padding around the row??
+	>> padding:12
+	
+:::	columnPadding
+ 	- padding between the columns
+	>> columnPadding:12
+	
+:::	totalColumns
+ 	- the number of columns in a row
+	>> totalColumns:3
+	
+:::	bgAlpha
+ 	- the transparency of a bg color
+	>> bgAlpha:0.5
+	
+:::	marginTop
+ 	- the space above the content of a row, will be filled with the background
+	>> marginTop:10
+
+::: marginTBottom
+	>> marginTBottom:10

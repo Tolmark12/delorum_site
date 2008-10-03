@@ -1,0 +1,30 @@
+<MAIN>
+	<page imageDir="heidis_fudge/">
+		<!-- Four Hundred Sketches -->
+		<row css="header" bgColor="#DDD5CA">
+			<col align="top" float="left">
+				<img src="purple_shield.jpg" />
+			</col>
+			<col span="2">
+				<txt><h1>Boutique Packaging</h1><p>After 20 years of making fudge, Heidi approached Delorum to create a logo, packaging, simple e-commerce site and sales brochures for a small fudge company.</p><br/>
+				<p>Just a few years after launch, Heidi’s Fudge has opened a physical store and seasonal mall locations, while their e-commerce site continues to boast a modest 5-6% conversion rate for new customers.</p></txt>
+			</col>
+		</row>
+		<row css="h_fudge_row" bgColor="#2F2520" >
+			<col>
+				<txt><h1>Market Research and Ideation</h1><p>We enjoyed logo exploration for Heidi’s Fudge more than usual. The restrictions were less rigid and Heidi supplied several samples for “market research.” With a slightly feminine dash of whimsy, we landed on the swirl as a fun metaphor referencing aroma, home cooking and melted chocolate.</p></txt>
+			</col>
+			<col float="right">
+				<img src="sketches_new.jpg" />
+			</col>
+		</row>
+		<row bgColor="#DDD5CA" >
+			<col>
+				<txt><h1>More than a box of chocolate</h1><p>We utilized techniques like embossing, die-cuts and self-adhesive stickers to their fullest. They provide the finishing touches to the Heidi’s Fudge brand, minimize production cost even make hand-packing more efficient. For customers, the boxes set a high expectation worthy of special occasions.</p></txt>
+			</col>
+			<col float="right">
+				<img src="fudge_close.jpg" />
+			</col>
+		</row>
+	</page>
+</MAIN>
