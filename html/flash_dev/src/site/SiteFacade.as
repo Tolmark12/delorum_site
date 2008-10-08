@@ -43,6 +43,8 @@ public class SiteFacade extends Facade implements IFacade
 	public static const SHOW_STUB_OVERVIEW:String 		= "show_stub_overview";		// Brings stub to semi-active state
 	public static const SHOW_STUB_DETAILS:String 		= "show_stub_details";		// Shows full project details
 	public static const SCROLL_PORTFOLIO:String 		= "scroll_portfolio";		// Scroll the portfolio a certain percentage (0-1)
+	public static const PFLIO_SCROLL_PRESS:String 		= "pflio_scroll_press";
+	public static const PFLIO_SCROLL_RELEASE:String 	= "pflio_scroll_release";
 	public static const LOAD_PROJECT_XML:String 		= "LOAD_PROJECT_XML";		// Request the xml for the current active project
 	public static const PROJECT_XML_LOADING:String 		= "project_xml_loading";	// XML loading started
 	public static const PROJECT_XML_LOADED:String 		= "project_xml_loaded";		// XML loading complete

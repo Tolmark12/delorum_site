@@ -110,7 +110,6 @@ public class Row extends Sprite
 		  
 			_bgColor.graphics.beginGradientFill( "linear", _cssBgColor, [1,1], [0, 255], gradientMatrix  );
 			_bgColor.alpha = _rowVo.bgAlpha;
-			trace( bgWidth + '  :  ' + bgHeight );
 		}
 		_bgColor.graphics.drawRect(0,0,bgWidth,bgHeight);
 		_holder.addChild(_bgColor);

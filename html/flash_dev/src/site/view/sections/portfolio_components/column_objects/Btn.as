@@ -19,7 +19,6 @@ public class Btn extends BaseColumnObj
 		_swcBtn.useHandCursor = true;
 		_swcBtn.addEventListener( MouseEvent.CLICK, _click );
 		_clickEvent = $node.@event;
-		trace( _clickEvent );
 		
 		this.addChild(_swcBtn);
 		super.make($node);

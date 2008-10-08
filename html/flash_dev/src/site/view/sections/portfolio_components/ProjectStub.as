@@ -196,20 +196,20 @@ public class ProjectStub extends Sprite
 	// ______________________________________________________________ Color effects
 	
 	/**	Turns the image to black and white */
-	public function dimImage ( $changeBorderToo:Boolean = true ):void
+	public function dimImage ( $time:Number=0.5, $changeBorderToo:Boolean = true ):void
 	{
 		Tweener.addTween( this, { rLum:0.2225,  gLum:0.7169,  bLum:0.0606,
 								  rLum2:0.2225, gLum2:0.7169, bLum2:0.0606, brightness:-120,
-								  time:0.5, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
+								  time:$time, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
 
 		if( $changeBorderToo ) 
 			changeBorderColor(DelorumSite.GRAY_STUB);
 	}
 	
 	/**	Turns the image to black and white */
-	public function brightenImageHalfway ( $changeBorderToo:Boolean = true, $lum2:Number = 0.4 ):void
+	public function brightenImageHalfway ( $changeBorderToo:Boolean = true, $lum2:Number = 0.6, $time:Number=0.2 ):void
 	{
-		brightenImage( $changeBorderToo, 0.08, 0.6, 0.2 );
+		brightenImage( $changeBorderToo, 0.08, $lum2, $time );
 	}
 	
 	/**	Turns the image back to color */
@@ -339,7 +339,7 @@ public class ProjectStub extends Sprite
 		if( currentProject == null ){
 			changeBorderColor( DelorumSite.WHITE );
 		}else if( currentProject != this ) {
-			dimImage( false );
+			dimImage();
 		}
 	}
 	

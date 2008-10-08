@@ -59,7 +59,9 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				 SiteFacade.CUR_BTN_CLICKED_AGAIN,
 				 SiteFacade.DEACTIVATE_PROJECT,
 				 SiteFacade.HIDE_CASE_STUDY,
-				 SiteFacade.SHOW_CASE_STUDY, ];
+				 SiteFacade.SHOW_CASE_STUDY,
+				 SiteFacade.PFLIO_SCROLL_RELEASE,
+				 SiteFacade.PFLIO_SCROLL_PRESS, ];
 	}
 	
 	// PureMVC: Handle notifications
@@ -123,6 +125,12 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_details.buildPage( note.getBody() as Page_VO );
 				//_displayAsRibbon();
 				break;
+			case SiteFacade.PFLIO_SCROLL_PRESS :
+				_brightenOrDimStubs(true);
+				break;
+			case SiteFacade.PFLIO_SCROLL_RELEASE :
+				_brightenOrDimStubs(false);
+				break;
 		}
 	}
 	
@@ -161,7 +169,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			stub.make( stub_vo );
 			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 				);
 			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 			);
-			// TODO: move the events of the details from the stub to the details. or at least investigat if it should be so
+			// TODO: move the events of the details from the stub to the details. or at least investigate if it should be so
 			_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
 			_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
 			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);
@@ -195,6 +203,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_scroller.build();
 		
 		_scroller.addEventListener( Scroller.SCROLL, _handleScroll );
+		_scroller.addEventListener( Scroller.SCROLL_PRESSED, _handleScrollPress)
+		_scroller.addEventListener( Scroller.SCROLL_RELEASED, _handleScrollRelease)
 		_scrollHolder.addChild( _scroller );
 	}
 	
@@ -264,6 +274,31 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_displayAsRibbon();
 	}
 	
+	private function _brightenOrDimStubs ( $doBrighten:Boolean ):void
+	{
+		var len:uint = _stubsAr.length;
+		var i:uint;
+		var stub:ProjectStub;
+		
+		if( _portfolioState != _BROWSING ){
+			if( $doBrighten ){ 				// Brighten
+				for ( i=0; i<len; i++ ) 
+				{
+					stub = _stubsAr[i];
+					if( stub != _activeStub ) 
+						stub.brightenImage(false,0,1,1);
+				}
+			} else {						// DimScroller
+				//for ( i=0; i<len; i++ ) 
+				//{
+				//	stub = _stubsAr[i];
+				//	if( stub != _activeStub ) 
+				//		stub.dimImage(2);
+				//}
+			}
+		}
+	}
+	
 	private function _deactivateActiveStub (  ):void
 	{
 		if( _activeStub != null ) {
@@ -319,6 +354,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			x = (StageMediator.stageLeft + OUTER_PADDING) - (_ribbonWidth - _activeStub.stubWidth ) * e.percent;
 		}
 		
+		x = Math.round(x);
+		
 		if( e.easeMotion ) 
 			Tweener.addTween( _stubHolder, { x:x, time:0.5, onUpdate:_setRealativePosition} );
 		else
@@ -362,6 +399,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK	); };
 	private function _handleCaseStudyHidden ( e:Event 	   ):void {	sendNotification( SiteFacade.CASE_STUDY_HIDDEN		); };
 	private function _showCaseStudy		 	( e:Event 	   ):void {	sendNotification( SiteFacade.SHOW_CASE_STUDY		); };
+	private function _handleScrollPress		( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_PRESS		); };
+	private function _handleScrollRelease	( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_RELEASE	); };
 	
 	// Scrolling
 	public function _handleScroll    ( e:ScrollEvent ):void{ sendNotification( SiteFacade.SCROLL_PORTFOLIO, e ); };

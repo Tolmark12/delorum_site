@@ -178,7 +178,6 @@ public class StageMediator extends Mediator implements IMediator
 	
 	private function _tweenScrollBar ( $speed:Number = 0 ):void
 	{                    
-		trace( _rootSprite.height );                   
 		Tweener.addTween( this, { flashHeight:_rootSprite.height, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendFlashHeightToJS } );
 	}
 	
