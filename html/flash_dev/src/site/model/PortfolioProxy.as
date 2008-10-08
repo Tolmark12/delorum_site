@@ -177,8 +177,6 @@ public class PortfolioProxy extends Proxy implements IProxy
 		var rowAr:Array = new Array()
 		for each( var rowNode:XML in $rowXml)
 		{
-			
-
 
 			var row_vo:Row_VO		= new Row_VO();
 			row_vo.columnAr 		= new Array();
@@ -199,6 +197,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 			
 			row_vo.bgAlpha				= ( String( rowNode.@bgAlpha ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgAlpha", "1" ) 		: rowNode.@bgAlpha ;
 			row_vo.bgWidth				= ( String( rowNode.@bgWidth ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgWidth", "-1" ) 		: rowNode.@bgWidth ;
+			row_vo.background			= ( String( rowNode.@background ).length == 0 )? 	_getAttributeFromCss( tempCssList, "background", "-1" ) 	: rowNode.@background ;
 			row_vo.bgHeight				= ( String( rowNode.@bgHeight ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgHeight", "-1" ) 		: rowNode.@bgHeight ;
 			row_vo.bgAlphaMode			= ( String( rowNode.@bgAlphaMode ).length == 0 )? 	_getAttributeFromCss( tempCssList, "bgAlphaMode", "1" ) 	: rowNode.@bgAlphaMode ;
 			row_vo.bgColor				= ( String( rowNode.@bgColor ).length == 0 )? 		_getAttributeFromCss( tempCssList, "bgColor", "#FFFFFF" ) 	: rowNode.@bgColor ;
@@ -208,13 +207,14 @@ public class PortfolioProxy extends Proxy implements IProxy
 			row_vo.marginTop            = ( String( rowNode.@marginTop ).length == 0 )? 	_getAttributeFromCss( tempCssList, "marginTop", "0" ) 		: rowNode.@marginTop ;
 			row_vo.marginBottom         = ( String( rowNode.@marginBottom ).length == 0 )?  _getAttributeFromCss( tempCssList, "marginBottom", "0" ) 	: rowNode.@marginBottom ;
 			
-			
 			for each( var col:XML in rowNode.col)
 			{
 				var col_vo:Col_VO 	= new Col_VO();
 				col_vo.colSpan 		= uint( col.@span );
 				col_vo.align		= ( String( col.@align ).length == 0)? null : col.@align ;
 				col_vo.float		= ( String( col.@float ).length == 0)? null : col.@float ;
+				col_vo.stack		= ( String( col.@stack ).length == 0)? null : col.@stack ;
+				col_vo.stackPadding	= ( String( col.@stackPadding ).length == 0)? null : col.@stackPadding ;
 				col_vo.content	 	= col;
 				row_vo.columnAr.push( col_vo );
 			}

@@ -24,7 +24,6 @@ public class Slides extends BaseColumnObj implements IColumnObject
 		var cts:Number = ( String( $node.@clickTransitionSpeed).length == 0 )? 	1 		: $node.@clickTransitionSpeed;
 		var id:String  = ( String( $node.@id ).length == 0 )? 					null	: $node.@id ;
 		
-		super.make($node);
 		_slideShowWidth = w;
 		_slideShow = new SlideShow(	w, h, dt, ats, cts, id);
 
@@ -32,6 +31,8 @@ public class Slides extends BaseColumnObj implements IColumnObject
 		var slideShowVo = new SlideShow_VO();
 		slideShowVo.parseXml( new XMLList($node), imagesDir )
 		_slideShow.buildSlideShow( slideShowVo );
+		
+		super.make($node);
 		_fireHeightChange();
 	}
 	

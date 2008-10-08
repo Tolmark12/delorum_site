@@ -10,6 +10,9 @@ import flash.events.*;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.text.StyleSheet;
+import flash.geom.*;
+import delorum.loading.*;
+
 
 public class Row extends Sprite
 {
@@ -26,7 +29,7 @@ public class Row extends Sprite
 	private var _bgHeight:Number = -1;
 	
 	// CSS Properties
-	private var _cssBgColor:uint;
+	private var _cssBgColor:Array;
 	private var _cssTotalColumns:uint;
 	private var _cssPadding:uint;
 	private var _cssMarginTop:Number;
@@ -34,6 +37,9 @@ public class Row extends Sprite
 	private var _cssColumnPadding:uint;
 	private var _columnWidth:Number;
 	
+	// 
+	public var actualHeight:Number = 0;
+	private var _hasBackgroundImage:Boolean = false;
 	
 	public function Row( $rowVo:Row_VO, $imagesDir:String, $width:Number ):void
 	{
@@ -50,12 +56,10 @@ public class Row extends Sprite
 		
 		// Add Background and Title
 		_drawBg( _width );
+		_addBackground( _rowVo.background )
 		_content = new Sprite();
 		//_content.y = _cssMarginTop;
 		_holder.addChild( _content );
-			
-		if( _rowVo.title != null ) 
-			_addtitle();
 			
 		// Add columns
 		_buildColumns( $imagesDir );
@@ -85,19 +89,6 @@ public class Row extends Sprite
 		}
 	}
 	
-	private function _addtitle (  ):void
-	{
-		var colorScheme:ColorScheme_VO 	= ColorSchemeProxy.currentColorScheme;
-		var titleTxt:TitleTxt_swc  = new TitleTxt_swc();
-		titleTxt.y	   = ROW_PADDING;
-		titleTxt.x 	   = Column.COLUMN_PADDING;
-		titleTxt.text  = _rowVo.title;
-		titleTxt.size  = DelorumSite.H1_FONT_SIZE;;
-		titleTxt.color = colorScheme.work_h2;
-		_content.addChild(titleTxt);
-		_columnYpos = titleTxt.height + titleTxt.y + 6;
-	}
-	
 	private function _drawBg ( $width:Number ):void
 	{
 		/*var bgColor:uint   = ( _rowVo.bgColor == null )? _cssBgColor : uint(_rowVo.bgColor) ;*/
@@ -107,20 +98,54 @@ public class Row extends Sprite
 
 		_bgColor = new Shape();
 		_bgColor.visible = false;
-		_bgColor.graphics.beginFill( _cssBgColor, _rowVo.bgAlpha );
+		
+		// No gradient
+		if( _cssBgColor.length < 2 ) 
+			_bgColor.graphics.beginFill( _cssBgColor[0], _rowVo.bgAlpha );
+		// Gradient
+		else {
+			var gradientMatrix:Matrix = new Matrix();
+			gradientMatrix.createGradientBox(bgHeight, bgWidth, 0, 0, 0);
+			gradientMatrix.rotate(1.57079633);
+		  
+			_bgColor.graphics.beginGradientFill( "linear", _cssBgColor, [1,1], [0, 255], gradientMatrix  );
+			_bgColor.alpha = _rowVo.bgAlpha;
+			trace( bgWidth + '  :  ' + bgHeight );
+		}
 		_bgColor.graphics.drawRect(0,0,bgWidth,bgHeight);
 		_holder.addChild(_bgColor);
+	}
+	
+	private function _addBackground ( $bg:String ):void
+	{
+		if( $bg != "-1" ) 
+		{
+			_hasBackgroundImage = true;
+			var _imageHolder:Sprite = new Sprite();
+			_holder.addChild(_imageHolder);
+			var ldr:ImageLoader = new ImageLoader( $bg, _imageHolder );
+			ldr.addEventListener( Event.COMPLETE, _dispatchHeightChange );
+			ldr.loadItem();
+		}
 	}
 	
 	// Pull the bg color out of the css
 	private function _setCssProperties (  ):void
 	{
-		_cssBgColor        	= uint( _rowVo.bgColor.replace(/#/, "0x") );
 		_cssColumnPadding  	= Number( _rowVo.columnPadding );
 		_cssPadding        	= Number( _rowVo.padding );
 		_cssTotalColumns	= uint( _rowVo.totalColumns  );
 		_cssMarginTop		= Number( _rowVo.marginTop );
 		_cssMarginBottom	= Number( _rowVo.marginBottom );
+		
+		var bgArray:Array 	= _rowVo.bgColor.split("-");
+		_cssBgColor        	= new Array();
+		var len:uint = bgArray.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			_cssBgColor.push( uint( bgArray[i].replace(/#/, "0x") ) );
+		}
+		
 	}
 	
 	// ______________________________________________________________ Event Handlers
@@ -137,8 +162,12 @@ public class Row extends Sprite
 			break;
 		}
 		col.y = 0;
+		_dispatchHeightChange()
+	}
+	
+	private function _dispatchHeightChange ( e:Event=null ):void
+	{
 		this.dispatchEvent( new Event( ProjectStub.CONTENT_HEIGHT_CHANGED, true ) );
-		
 	}
 	
 	private function _handleRowHeightChange ( e:Event=null ):void
@@ -148,10 +177,22 @@ public class Row extends Sprite
 			if( _bgHeight == -1 ) 
 				_bgColor.height = _content.height + _cssMarginTop + _cssMarginBottom;
 			
+			// Set actual height
+			actualHeight = 0;
+			var len:uint = _content.numChildren;
+			for ( var i:uint=0; i<len; i++ ) 
+			{
+				var col:Column = _content.getChildAt(i) as Column;
+				actualHeight = (col.colHeight > actualHeight)? col.colHeight : actualHeight ;
+			}
 			_bgColor.visible = true;
 		}
-	}
 
+		actualHeight = _bgColor.height;
+		if( _hasBackgroundImage )
+		 	actualHeight = (_holder.height > actualHeight )? _holder.height : actualHeight ;
+			
+	}
 	
 }
 

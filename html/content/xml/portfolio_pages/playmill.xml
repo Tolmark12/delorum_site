@@ -1,19 +1,30 @@
 <MAIN>
 	<page imageDir="playmill/">
-		<row css="header">
-			<col>
-				<txt><h1>Bringing down the House</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design, earning us complimentary tickets, sample fudge and a Northwest Region Silver Addy.</p></txt>
+		<row css="header,white" columnPadding="40" marginBottom="15" bgColor="#BDAD7C">
+			<col span="2">
+				<txt yMod="60"><h1>And the criticis say...</h1><p>Audience response has been overwhelmingly positive, encouraging the launch of summer theatre camps and a complete line of private label fudge. Playmill loves the change and tripled their promotion budget after the first year.</p></txt>
 			</col>
-			<col>
-				<txt><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions and such stuff</p><h1>Taking out the Cows</h1><p>Emotional, rich full-color illustrations attract notice and patrons, and sets the Playmill apart from overused, plastic cliches. The illustrations perfectly reflect the vibrant Playmill experience, and has been extended into the theatre’s interior design.</p></txt>
-			</col>
-			<col align="center">
-				<img src="vertical_poster_08.jpg" />
+			<col float="right">
+				<img src="talk_bubble.jpg" />
 			</col>
 		</row>
-		<row bgColor="F9A146" padding="0">
-			<col align="center" span="3">
-				<img src="orange_sketches.gif" />
+		<row css="header,white" totalColumns="2" bgColor="#A6976C" marginBottom="-26" columnPadding="90" padding="40">
+			<col float="left">
+				<img src="three_posters.jpg" yMod="-26"/>
+			</col>
+			<col>
+				<txt yMod="66"><h1>Stretching the Rules of Printing</h1><p>For Playmill’s printed collateral, format was key to gaining public attention. We shifted Playmill’s collateral to a lengthened vertical format, nearly doubling the poster height. The longer format is completely distinct and builds easily recognized brand continuity between campaigns. Beyond that, the format takes advantage of production processes, and has actually reduced Playmill’s production costs.</p></txt>
+			</col>
+		</row>
+		<row totalColumns="1">
+			<col float="left"><img src="long_strip.jpg"/></col>
+		</row>
+		<row css="header,white"  bgColor="#BDAD7C" marginTop="25" marginBottom="20" >
+			<col>
+				<txt><h1>Zig and Zag</h1><p>Engaging, lighthearted illustrations were our solution to overused, plastic cliches. The illustration style differentiates Playmill from more typical tourist imagery, and more closely represents the energetic, theatrical Playmill experience. The campaign illustrations were also adopted as the basis for the theatre’s updated interior design, earning Delorum complimentary tickets, free fudge and a Northwest Region Silver Addy. </p></txt>
+			</col>
+			<col span="2" align="center">
+				<img src="sketch.jpg"/>
 			</col>
 		</row>
 	</page>

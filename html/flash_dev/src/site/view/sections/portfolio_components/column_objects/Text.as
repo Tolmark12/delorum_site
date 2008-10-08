@@ -3,6 +3,7 @@ package site.view.sections.portfolio_components.column_objects
 
 import flash.text.TextField;
 import site.model.CssProxy;
+import flash.display.DisplayObject;
 
 public class Text extends BaseColumnObj implements IColumnObject
 {
@@ -17,7 +18,6 @@ public class Text extends BaseColumnObj implements IColumnObject
 	
 	override public function make ( $node:XML ):void
 	{
-		super.make($node);
 		_bodyTxtSwc = new BodyText_swc();
 		_bodyTxtSwc.clearAllFormatting();
 		
@@ -30,6 +30,8 @@ public class Text extends BaseColumnObj implements IColumnObject
 		
 		_bodyTxtSwc.htmlText = String( $node.* );		
 		this.addChild(_bodyTxtSwc);
+		super.make($node);
+		
 		_fireHeightChange();
 	}
 	
@@ -39,7 +41,10 @@ public class Text extends BaseColumnObj implements IColumnObject
 		_fireHeightChange()
 	}
 	
-
+	override public function get myDispayThing (  ):DisplayObject
+	{
+		return _bodyTxtSwc;
+	}
 }
 
 }

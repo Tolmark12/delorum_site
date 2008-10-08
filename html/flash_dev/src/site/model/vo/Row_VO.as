@@ -15,6 +15,7 @@ public class Row_VO
 	public var totalColumns:String
 	public var marginTop:String
 	public var marginBottom:String
+	public var background:String;
 	
 	//optional
 	public var slideShowId:String;

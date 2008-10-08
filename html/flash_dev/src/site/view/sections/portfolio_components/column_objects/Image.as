@@ -1,7 +1,7 @@
 package site.view.sections.portfolio_components.column_objects
 {
 
-import flash.display.Sprite;
+import flash.display.*;
 import delorum.loading.ImageLoader;
 import flash.events.*;
 
@@ -17,7 +17,6 @@ public class Image extends BaseColumnObj implements IColumnObject
 	
 	override public function make ( $node:XML ):void
 	{
-		super.make($node);
 		_imageHolder = new Sprite();
 		this.addChild( _imageHolder );
 		
@@ -28,6 +27,8 @@ public class Image extends BaseColumnObj implements IColumnObject
 			ldr.onComplete	= _initImage;
 			ldr.addItemToLoadQueue();	
 		//}
+		
+		super.make($node);
 	}
 	
 	// ______________________________________________________________ Image loading
@@ -45,6 +46,11 @@ public class Image extends BaseColumnObj implements IColumnObject
 	private function _initImage ( e:Event ):void
 	{
 		_fireHeightChange();
+	}
+	
+	override public function get myDispayThing (  ):DisplayObject
+	{
+		return _imageHolder;
 	}
 }
 

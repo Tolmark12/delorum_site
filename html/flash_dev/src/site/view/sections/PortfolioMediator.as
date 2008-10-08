@@ -23,6 +23,9 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private static const _BROWSING:String = "ribbon";
 	private static const _DETAILS:String = "details";
 	private static const _FULL:String = "full";
+	
+	// Button Events:
+	public static const SHOW_CASE_STUDY:String = "SHOW_CASE_STUDY";
 
 	// Display
 	private var _stubHolder:Sprite;
@@ -37,6 +40,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private var _portfolioState:String;
 	private var _realativeXpos:Number;
 	
+	private var _caseStudyIsVisible:Boolean = false;
 	public function PortfolioMediator():void
 	{
 		super( NAME );
@@ -54,7 +58,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				 SiteFacade.CHANGE_COLOR_SCHEME,
 				 SiteFacade.CUR_BTN_CLICKED_AGAIN,
 				 SiteFacade.DEACTIVATE_PROJECT,
-				 SiteFacade.HIDE_CASE_STUDY ];
+				 SiteFacade.HIDE_CASE_STUDY,
+				 SiteFacade.SHOW_CASE_STUDY, ];
 	}
 	
 	// PureMVC: Handle notifications
@@ -71,6 +76,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_moveRibbonVertical();
 				break;
 			case SiteFacade.SHOW_STUB_OVERVIEW:
+				_hideDetails();
 				_portfolioState = _DETAILS;
 				_activateStub( note.getBody() as uint );
 				_resizeScrollTrack();
@@ -80,11 +86,19 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			case SiteFacade.DEACTIVATE_PROJECT :
 				_portfolioState = _BROWSING;
 				_deactivateActiveStub();
-				_hideDetails()
+				//_hideDetails()
 				_moveRibbonVertical();
 				break;
+			case SiteFacade.SHOW_CASE_STUDY : 
+				if( !_caseStudyIsVisible ) {
+					_caseStudyIsVisible = true;
+					_changeDetails ( _activeStub.vo );
+					_details.show();
+				}
+				break;
 			case SiteFacade.HIDE_CASE_STUDY :
-				_details.closePage();
+				if( _details != null ) 
+					_details.closePage();
 				break;
 			case SiteFacade.CUR_BTN_CLICKED_AGAIN:
 				_handleDeactivateStub();
@@ -160,6 +174,9 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			_stubHolder.addChild( stub );
 			_stubsAr.push( stub );
 		}
+		
+		// Add event listeners for events fired from content
+		super._baseMc.addEventListener( SHOW_CASE_STUDY, _showCaseStudy );
 		
 		// display ribbon
 		_displayAsRibbon();	
@@ -245,7 +262,6 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_activeStub = _stubsAr[ $id ];
 		_resizeActiveStub();
 		_displayAsRibbon();
-		_changeDetails ( _activeStub.vo );
 	}
 	
 	private function _deactivateActiveStub (  ):void
@@ -284,7 +300,10 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _hideDetails (  ):void
 	{
-		_details.hide();
+		if( _details != null ) 
+			_details.hide();
+			
+		_caseStudyIsVisible = false;
 	}
 	
 	
@@ -342,6 +361,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	public function _handleHeightChange     ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 	); };
 	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK	); };
 	private function _handleCaseStudyHidden ( e:Event 	   ):void {	sendNotification( SiteFacade.CASE_STUDY_HIDDEN		); };
+	private function _showCaseStudy		 	( e:Event 	   ):void {	sendNotification( SiteFacade.SHOW_CASE_STUDY		); };
 	
 	// Scrolling
 	public function _handleScroll    ( e:ScrollEvent ):void{ sendNotification( SiteFacade.SCROLL_PORTFOLIO, e ); };

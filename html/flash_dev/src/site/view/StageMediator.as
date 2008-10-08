@@ -165,24 +165,24 @@ public class StageMediator extends Mediator implements IMediator
 	
 	private function _handleBrowserScroll ( $perc:Number, $speed:Number=0 ):void
 	{
-			var newY:Number;
-			var speed:Number;
-			if( _rootSprite.height < _stage.stageHeight ){
-				newY = (_stage.stageHeight - (_rootSprite.height - _rootSprite.y) ) * $perc;
-			}else{
-				newY = (_stage.stageHeight - _rootSprite.height - BOTTOM_PADDIND) * $perc;
-			}
-			Tweener.addTween( _rootSprite, { y: newY, time:$speed, transition:"EaseInOutExpo" } );
+		var newY:Number;
+		var speed:Number;
+		if( _rootSprite.height < _stage.stageHeight ){
+			newY = 0//(_stage.stageHeight - (_rootSprite.height - _rootSprite.y) ) * $perc;
+		}else{
+			newY = (_stage.stageHeight - _rootSprite.height - BOTTOM_PADDIND) * $perc;
+		}
 		
+		Tweener.addTween( _rootSprite, { y: Math.round( newY ), time:$speed, transition:"EaseInOutExpo" } );
 	}
 	
 	private function _tweenScrollBar ( $speed:Number = 0 ):void
-	{                                       
+	{                    
+		trace( _rootSprite.height );                   
 		Tweener.addTween( this, { flashHeight:_rootSprite.height, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendFlashHeightToJS } );
 	}
 	
-	private function _tweenBgColor ( $color, $speed:Number=0.5 ):void
-	{
+	private function _tweenBgColor ( $color, $speed:Number=0.5 ):void {
 		if( $color != null ) 
 			TweenLite.to(_bgColorMc, $speed, {tint:$color, onUpdate:_sendNewBgColor});
 	}

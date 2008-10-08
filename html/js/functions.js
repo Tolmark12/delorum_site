@@ -86,6 +86,7 @@ function getFlash(){
  */
 function setFlashHeight( newHeight ){
 	document.getElementById( "body" ).style.height = newHeight + "px";
+	
 	//alert(newHeight + ' : ' + _scrollHeight());
 	
 	if ( newHeight<_scrollHeight()  ) 

@@ -19,7 +19,7 @@ public class ProjectDetails extends Sprite
 	
 	
 	// Btn
-	private var _showDetailsBtn:CircleBtn_swc;
+	//private var _showDetailsBtn:CircleBtn_swc;
 	
 	// Sprites
 	private var _rowManager:RowsManager;
@@ -50,30 +50,20 @@ public class ProjectDetails extends Sprite
 	public function make (  ):void
 	{
 		_contentHolder 	= new Sprite();
-		_showDetailsBtn = new CircleBtn_swc();
+		//_showDetailsBtn = new CircleBtn_swc();
 		_rowManager		= new RowsManager();
 		_bgMc			= new Sprite();
 		_closeBtnTop	= new WhiteCloseBtn_swc();
 		_closeBtnBtm	= new WhiteCloseBtn_swc();
 		_mask 			= new Sprite();
 		
-//		_closeBtnBtm.x = _closeBtnTop.x = ProjectStub.WIDTH_LARGE + ProjectStub.BORDER_SIZE - 8;
-//		_closeBtnTop.y = -10;
-//		_closeBtnBtm.y = -5;
-		
+
 		// Rows
 		_rowManager.y = 0;
 		
-		// Show Details button
-		_showDetailsBtn.make( "Title", _showDetailsBtn.DOWN_ARROW );
-		_showDetailsBtn.addEventListener( MouseEvent.CLICK, _handleShowDetailsClick );
-		_showDetailsBtn.x = 20;//Column.COLUMN_WIDTH * 3 - _showDetailsBtn.width;
-		_showDetailsBtn.y = 310;
-				
+
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
-//   	_closeBtnTop.addEventListener( MouseEvent.CLICK, _handleCloseClick );
-//   	_closeBtnBtm.addEventListener( MouseEvent.CLICK, _handlePageCloseClick );
-		
+
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		
 		// Textfields
@@ -84,13 +74,9 @@ public class ProjectDetails extends Sprite
 		
 		_contentHolder.addChild( _bgMc 		 	 );
 		_contentHolder.addChild( _bodyTxtMc  	 );
-		_contentHolder.addChild( _showDetailsBtn );
 
-//		this.addChild( _contentHolder );
-//		this.addChild( _closeBtnTop	  );
 		this.addChild( _mask		  );
 		this.addChild( _rowManager 	  );
-//		this.addChild( _closeBtnBtm   );
 		
 		// Mask
 		_mask.graphics.beginFill(0xFFFF);
@@ -104,7 +90,7 @@ public class ProjectDetails extends Sprite
 	{
 		this.visible = false;
 		this.scaleX = 1;
-		this.scaleY = 1;
+		this.scaleY = 0;
 		_isHiding = false;
 		
 		if( _rowManager != null ) 
@@ -164,7 +150,6 @@ public class ProjectDetails extends Sprite
 	{
 		Tweener.addTween(_rowManager, {alpha:1, time:0 })
 		_rowManager.buildPage( $page_vo, _bgMc.width );
-//		_rowManager.addChild( _closeBtnBtm );
 	}
 	
 	public function closePage (  ):void
@@ -175,7 +160,6 @@ public class ProjectDetails extends Sprite
 	private function _removePage (  ):void
 	{
 		_rowManager.removePage();
-//		_rowManager.removeChild( _closeBtnBtm );
 		dispatchEvent( new Event( CASE_STUDY_HIDDEN ) );
 	}
 	
@@ -183,6 +167,7 @@ public class ProjectDetails extends Sprite
 	
 	public function show (  ):void
 	{
+		this.scaleY=1;
 		if( _rowManager == null ) 
 			make();
 		
@@ -190,7 +175,6 @@ public class ProjectDetails extends Sprite
 		{
 			this.visible = true;
 			this.alpha = 1; //0
-			//Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseOut"} );
 			
 			_mask.scaleY = 0;
 			Tweener.addTween( _mask, { scaleY:1, x:0, time:0.9, transition:"EaseInOutQuint"} );

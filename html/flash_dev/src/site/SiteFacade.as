@@ -49,6 +49,7 @@ public class SiteFacade extends Facade implements IFacade
 	public static const DEACTIVATE_PROJECT:String 		= "deactivate_project";
 	public static const HIDE_CASE_STUDY_CLICK:String 	= "hide_case_study";		// Hide the current project's case study
 	public static const HIDE_CASE_STUDY:String 			= "hide_case_study";		// Hide the current project's case study
+	public static const SHOW_CASE_STUDY:String 			= "show_case_study";		// Show the case stury
 	public static const CASE_STUDY_HIDDEN:String 		= "case_study_hidden";		// Case study is hidden
 	
 	// CSS

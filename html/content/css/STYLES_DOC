@@ -1,7 +1,11 @@
 ------------------------------- 
-CSS ROW STYLES:
+ROW STYLES:
 -------------------------------
 	
+::: background
+::: bgWidth
+::: bgHeight
+
 :::	bgColor
  	- Background color
 	>> bgColor:#FFFFFF
@@ -26,5 +30,43 @@ CSS ROW STYLES:
  	- the space above the content of a row, will be filled with the background
 	>> marginTop:10
 
-::: marginTBottom
+::: marginBottom
 	>> marginTBottom:10
+	
+------------------------------- 
+COLUMN STYLES:
+-------------------------------	
+
+::: align
+	- How to align a column's items 
+	[right, left, center]
+	>> align:left
+	
+::: float
+	- How to align a column's items 
+	[right, left, center]
+	>> align:left
+	
+::: stack
+	- To stack multiple column objects vertically or horizontally
+	[horizontal, vertical, none]
+	>> stack:horizontal 
+	
+::: stackPadding
+	- The number of pixels between stacked column items
+	>> stackPadding:20
+                          
+
+------------------------------- 
+IMG STYLES:
+-------------------------------
+
+::: xMod
+	- A number to modify the x position of the image
+	xMod:-50 
+
+::: yMod
+	- A number to modify the y position of the image
+	yMod:50
+
+

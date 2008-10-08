@@ -79,7 +79,7 @@ public class RowsManager extends Sprite
 		{
 			var row:Row = _rows[i] as Row;
 			row.y = yPos;
-			yPos = row.y + row.height;
+			yPos = row.y + row.actualHeight;
 		}
 	}
 	

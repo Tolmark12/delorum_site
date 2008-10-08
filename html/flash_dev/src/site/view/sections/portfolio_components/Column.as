@@ -15,6 +15,7 @@ public class Column extends Sprite
 	public static const FLOAT:String = "float";
 	
 	// xml tag constants !!-should be lowercase-!!
+	private static const BTN:String 		= "btn";
 	private static const TEXT:String 		= "txt";
 	private static const IMG:String 		= "img";
 	private static const IMAGE:String 		= "image";
@@ -25,13 +26,22 @@ public class Column extends Sprite
 	// Width
 	private var _actualWidth:Number;
 	private var _colWidth:Number;
+	
+	//
 	public var float:String;
+	
+	//
+	private var _actualHeight:Number;
 	
 	// ImagesDir
 	private var _imagesDir:String;
 	private var _cssStyleList:Array;
 	private var _itemAr:Array;
 	private var _alignment:String;
+	
+	// Content
+	private var _stackDirection:String = "vertical";
+	private var _stackPadding:Number;
 	
 	public function Column( $imagesDir:String, $cssStyleList:Array ):void
 	{
@@ -47,6 +57,8 @@ public class Column extends Sprite
 	{
 		float					= $col_vo.float;
 		_alignment 				= $col_vo.align;
+		_stackDirection			= $col_vo.stack;
+		_stackPadding			= Number($col_vo.stackPadding);
 		_itemAr 				= new Array();
 		numberOfColumnsWide 	= ( $col_vo.colSpan == 0 )? 1 : $col_vo.colSpan ;
 		_colWidth 				= $columnWidth * numberOfColumnsWide;
@@ -73,6 +85,9 @@ public class Column extends Sprite
 				var newText:Text = new Text();
 				newText.cssStyleList = _cssStyleList;
 				return newText;
+			case BTN :
+				var btn:Btn = new Btn();
+				return btn;
 			case IMAGE :
 			case IMG:
 				var image:Image = new Image();
@@ -91,9 +106,8 @@ public class Column extends Sprite
 	
 	private function _refreshContent ( e:Event ):void
 	{
-		_updateWidth()
+		_updateWidthAndHeight()
 		_align();
-		_stackItems();
 		_updateFloat();
 	}
 	
@@ -108,44 +122,89 @@ public class Column extends Sprite
 		var len:uint = _itemAr.length;
 		var i:uint;
 		var item:BaseColumnObj;
+		var xPos:Number = 0;
+		var yPos:Number = 0;
+		
 		switch (_alignment){
-			case "left" :
-				for ( i=0; i<len; i++ ) 
-				{
-					item = _itemAr[i] as BaseColumnObj;
-					item.x = _colWidth - item.myWidth;
+			case "right" :
+				if(_stackDirection == "vertical"){				// Right Vertical
+					for ( i=0; i<len; i++ ) {
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = _colWidth - item.myWidth;
+						item.y = yPos;
+						yPos += item.height + _stackPadding;
+					}
+				}else if(_stackDirection == "horizontal"){
+					xPos = _colWidth;
+					for ( i=0; i<len; i++ ) {					// Right Horizontal
+						item = _itemAr[i] as BaseColumnObj;
+						xPos -= item.myWidth + _stackPadding;
+						item.x = xPos;
+					}
+				}else{											// Right No Stacking
+					for ( i=0; i<len; i++ ) {
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = _colWidth - item.myWidth;
+						item.y = 0;
+					}
 				}
 			break;
 			case "center" :
-				for( i=0; i<len; i++ ) 
-				{
-					item = _itemAr[i] as BaseColumnObj;
-					item.x = _colWidth/2 - item.myWidth/2;
+				var centerPoint:Number = _colWidth/2;
+				if(_stackDirection == "vertical"){				// Center Vertical
+					for( i=0; i<len; i++ ) {
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = centerPoint - item.myWidth/2;
+						item.y = yPos;
+						yPos += item.height + _stackPadding;
+					}
+				}else if(_stackDirection == "horizontal"){		// Center Horizontal
+					var totalWidth:Number = -_stackPadding;
+					for ( i=0; i<len; i++ ){
+						item = _itemAr[i] as BaseColumnObj;
+						totalWidth += item.myWidth + _stackPadding;
+					}
+					
+					xPos = centerPoint - totalWidth/2;
+					for( i=0; i<len; i++ ) {
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = xPos;
+						xPos += item.myWidth + _stackPadding;
+					}
+				}else{											// Center No Stacking
+					for ( i=0; i<len; i++ ) {
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = centerPoint - item.myWidth/2;
+						item.y = 0;
+					}
 				}
 			break;
 			default:
-				for ( i=0; i<len; i++ ) 
-				{
-					item = _itemAr[i] as BaseColumnObj;
-					item.x = 0;
+				if(_stackDirection == "vertical"){				// Left Vertical
+					for ( i=0; i<len; i++ ){
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = 0;
+						item.y = yPos;
+						yPos += item.height + _stackPadding;
+					}
+				}else if(_stackDirection == "horizontal"){		// Left Horizontal
+					for ( i=0; i<len; i++ ){
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = xPos;
+						xPos += item.myWidth + _stackPadding;
+					}
+				}else{											// Left No Stacking
+					for ( i=0; i<len; i++ ) {
+						item = _itemAr[i] as BaseColumnObj;
+						item.x = 0;
+						item.y = 0;
+					}
 				}
 			break;
 		}
 	}
-	
-	private function _stackItems (  ):void
-	{
-		var yPos:Number = 0;
-		var len:uint = _itemAr.length;
-		for ( var i:uint=0; i<len; i++ ) 
-		{
-			var item:BaseColumnObj = _itemAr[i];
-			item.y = yPos;
-			yPos += item.height;
-		}
-	}
-	
-	private function _updateWidth (  ):void
+	  
+	private function _updateWidthAndHeight (  ):void
 	{
 		_actualWidth = 0;
 		var len:uint = _itemAr.length;
@@ -154,12 +213,15 @@ public class Column extends Sprite
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			item = _itemAr[i] as BaseColumnObj;
-			_actualWidth = item.myWidth ;
+			_actualWidth  = (item.myWidth  >_actualWidth   )? item.myWidth  : _actualWidth;
+			_actualHeight = (item.myHeight > _actualHeight )? item.myHeight : _actualHeight;
 		}
 	}
+	
 	// ______________________________________________________________ getters / setters
 	
 	public function get colWidth (  ):Number{ return _actualWidth; };
+	public function get colHeight (  ):Number{ return _actualHeight; };
 	
 }
 
