@@ -338,7 +338,7 @@ public class ProjectStub extends Sprite
 	{
 		if( currentProject == null ){
 			changeBorderColor( DelorumSite.WHITE );
-		}else if( currentProject != this ) {
+		}else if( currentProject != this  ) {
 			dimImage();
 		}
 	}
