@@ -19,6 +19,7 @@ public class Column extends Sprite
 	private static const TEXT:String 		= "txt";
 	private static const IMG:String 		= "img";
 	private static const IMAGE:String 		= "image";
+	private static const VIDEO:String 		= "video";
 	private static const SLIDE_SHOW:String 	= "slideshow";
 	
 	public var numberOfColumnsWide:uint;
@@ -97,6 +98,9 @@ public class Column extends Sprite
 				var slide:Slides = new Slides();
 				slide.imagesDir = _imagesDir;
 				return slide;
+			case VIDEO :
+				var video:Video = new Video();
+				return video;
 			default:
 				var item:BaseColumnObj = new BaseColumnObj();
 				return item;
@@ -203,7 +207,7 @@ public class Column extends Sprite
 			break;
 		}
 	}
-	  
+	
 	private function _updateWidthAndHeight (  ):void
 	{
 		_actualWidth = 0;
@@ -215,6 +219,17 @@ public class Column extends Sprite
 			item = _itemAr[i] as BaseColumnObj;
 			_actualWidth  = (item.myWidth  >_actualWidth   )? item.myWidth  : _actualWidth;
 			_actualHeight = (item.myHeight > _actualHeight )? item.myHeight : _actualHeight;
+		}
+	}
+
+	public function destruct (  ):void
+	{
+		var len:uint = _itemAr.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			var item:BaseColumnObj = _itemAr.pop();
+			item.destruct();
+			this.removeChild(item);
 		}
 	}
 	

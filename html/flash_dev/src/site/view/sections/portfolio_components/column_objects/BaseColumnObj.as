@@ -18,12 +18,21 @@ public class BaseColumnObj extends Sprite implements IColumnObject
 		myDispayThing.x += xMod;
 		myDispayThing.y += yMod;
 	};
+	
 	public function setWidth ( $width:Number ):void{ };
 	
 	protected function _fireHeightChange()
 	{
 		this.dispatchEvent( new Event( ProjectStub.CONTENT_HEIGHT_CHANGED, true) );
 	}
+	
+	
+	public function destruct (  ):void
+	{
+		
+	}
+	
+	// ______________________________________________________________ Getters Settesr
 	
 	public function get myWidth (  ):Number{ return this.width; };
 	public function get myHeight (  ):Number{ return this.height; };

@@ -1,47 +1,46 @@
 <MAIN>
+	
 	<page imageDir="heavens_best/">
-		<row css="header,heavens_best" columnPadding="0">
-			<col float="left">
-				<img src="main_logo.jpg"/>
+		<row css="header,heavens_best_top" background="content/images/portfolio/pages/heavens_best/gradient.jpg" marginBottom="15">
+			<col>
+				<img src="logo.jpg" yMod="15"/>
 			</col>
-			<col span="2" stack="none">
-				<img src="gradient.jpg"/>
-				<txt yMod="40"><br/><h1>Increased Franchise Sales</h1><br/>
-				<p>Franchise sales jumped 30% after launching this revitalized brand. The new image met with overwhelming approval from franchise owners, and helped bump franchise rankings by as much as half. </p></txt>
+			<col span="2">
+				<txt yMod="60"><h1>Increased Franchise Sales</h1><p>Franchise sales jumped 30% after launching this revitalized brand. The new image met with overwhelming approval from franchise owners, and helped bump franchise rankings by as much as half.</p></txt>
 			</col>
 		</row>
-		<row css="header,heavens_best" columnPadding="0" padding="0" bgColor="#D6D3D5">
-			<col span="2" align="left" float="left">
-				<img src="logo_studies.gif" xMod="20" yMod="20"/>
+		<row marginBottom="40">
+			<col align="center" float="left">
+				<img src="bad_logo.gif" />
 			</col>
-			<col float="right">
-				<img src="final_logo.jpg" />
+			<col span="2" align="center" stack="horizontal" stackPadding="40">
+				<img src="logoIdea1.gif" />
+				<img src="logoIdea2.gif" />
+				<img src="logoIdea3.gif" />
 			</col>
 		</row>
-		<row bgColor="#B9B7BB" marginBottom="2" bgHeight="1">
-			<col span="3"><txt/></col>
-		</row>
-		<row css="header,heavens_best" bgColor="#A9A8AC-#D7D3D4" columnPadding="0">
+		<row marginBottom="20">
 			<col>
 				<txt><br/><h1>Setting our sights on customers</h1><p>Based on a 95% female, 90% residential customer base and competitor’s positions, we identified a more customer-centric brand focus for Heaven’s Best: feminine, family-friendly, clean and healthy.</p></txt>
 			</col>
-			<col span="2" float="right" >
+			<col span="2" align="center">
 				<img src="van.jpg"/>
 			</col>
 		</row>
-		<row background="content/images/portfolio/pages/heavens_best/smiler.jpg" css="heavens_best" >
-			<col ></col>
-			<col span="2" stack="vertical" float="right">
-				<img src="movie_stills.jpg" yMod="60"/>
-				<txt yMod="45" xMod="20"><br/><h1>Selling the concept over 400 times</h1><br/><p>We developed an internal corporate presentation for Heaven’s Best to introduce and sell the updated image to over 400 franchise owners. Buy-off was crucial, as the burden of transitioning fleet and promotional materials rested primarily with  franchise owners. The presentation met with nearly unanimous support. One franchisee immediately purchased 12 new vehicles to speed his transition to the new brand.</p></txt>
+		<row  css="heavens_best_top">
+			<col float="left">
+				<img src="smile.jpg" />
+			</col>
+			<col span="2">
+				<txt yMod="185" xMod="20"><br/><h1>Selling the concept over 400 times</h1><p>We developed an internal corporate presentation for Heaven’s Best to introduce and sell the updated image to over 400 franchise owners. Buy-off was crucial, as the burden of transitioning fleet and promotional materials rested primarily with  franchise owners. The presentation met with nearly unanimous support. One franchisee immediately purchased 12 new vehicles to speed his transition to the new brand.</p></txt>
 			</col>
 		</row>
-		<row css="header,heavens_best" bgColor="#CCC9CB" marginBottom="20">
+		<row totalColumns="2" marginBottom="20" columnPadding="90" >
 			<col>
 				<txt><br/><h1>Good-but-not-too-Expensive</h1><br/><p>Keeping the brand message affordable but trusted was a fine line to walk. We refined the chosen direction into a contemporary consumer brand directed at a middle-class female audience. Then we developed and oversaw the implementation of all brand elements, including copy writing, photography, advertising, fleet signage, uniforms, web site, packaging, and training materials.</p></txt>
 			</col>
-			<col span="2" align="center" >
-				<img src="printed_materials.jpg"/>
+			<col>
+				<img src="bottom_forms.jpg" xMod="-82"/>
 			</col>
 		</row>
 	</page>

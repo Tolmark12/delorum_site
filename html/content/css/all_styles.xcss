@@ -46,16 +46,21 @@
 	   	bgHeight:351;
 	   }
 	</style>
-
+	
+	<!-- Ribbon -->
+	<style id="rbn_playmill"> h1{ color:#B71A13 } p{color:#303030}</style>
+	<!-- Ribbon End -->
+	
 	<!-- Portfolio END -->
 	
 	
 	<!--Pages     -->
-	<style id="plum"> 			h1{ color:#FFFFFF } p{color:#303030}</style>
-	<style id="idahoan"> 		h1{ color:#FFFFFF } p{color:#000000}</style>
-	<style id="h_fudge_row"> 	p{  color:#DDD5CA }</style>
-	<style id="h_fudge_light"> 	p{  color:#85756E }</style>
-	<style id="heavens_best"> 	p{  color:#FFFFFF }</style>
+	<style id="plum"> 				h1{ color:#FFFFFF } p{color:#303030}</style>
+	<style id="idahoan"> 			h1{ color:#FFFFFF } p{color:#000000}</style>
+	<style id="h_fudge_row"> 		p{  color:#DDD5CA }</style>
+	<style id="h_fudge_light"> 		p{  color:#85756E }</style>
+	<style id="heavens_best_top"> 	p{  color:#121A2F } h1{  color:#121A2F }</style>
+	<style id="ibex_head"> 			p   { color:#C8B690; font-size:16 } h1	{ font-size:18 }</style>
 	<!--Pages END -->
 	
 	<!-- Pages shared -->

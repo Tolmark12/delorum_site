@@ -27,6 +27,7 @@ public class Row extends Sprite
 	private var _oldBitmap:Bitmap;
 	private var _newBitmap:Bitmap;
 	private var _bgHeight:Number = -1;
+	private var _columnAr:Array = new Array();
 	
 	// CSS Properties
 	private var _cssBgColor:Array;
@@ -86,6 +87,7 @@ public class Row extends Sprite
 			column.addEventListener( Column.FLOAT, _handleColumnFloat );
 			column.make( col_vo, columnWidth );
 			currentColumnPos += column.numberOfColumnsWide;
+			_columnAr.push(column);
 		}
 	}
 	
@@ -193,6 +195,16 @@ public class Row extends Sprite
 			
 	}
 	
+	public function destruct (  ):void
+	{
+		var len:uint = _columnAr.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			var column:Column = _columnAr.pop() as Column;
+			column.destruct();
+			_content.removeChild( column );
+		}
+	}
 }
 
 }

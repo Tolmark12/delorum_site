@@ -46,6 +46,7 @@ public class RowsManager extends Sprite
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var row:Row = _rows.pop() as Row;
+			row.destruct();
 			_contentSprite.removeChild( row );
 		}
 	}
@@ -64,7 +65,7 @@ public class RowsManager extends Sprite
 		//_bitmap = new Bitmap( myBitmapData );
 		//this.addChild( _bitmap );
 		_contentSprite.visible = false;
-		
+		removePage();
 		//Tweener.addTween( _bitmap, {alpha:0, time:1, onComplete:$callBackFunction });
 	}
 	
