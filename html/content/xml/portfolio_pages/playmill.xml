@@ -19,7 +19,7 @@
 		<row totalColumns="1">
 			<col float="left"><img src="long_strip.jpg"/></col>
 		</row>
-		<row css="header,white"  bgColor="#BDAD7C" marginTop="25" marginBottom="20" >
+		<row css="header,white,padded"  bgColor="#BDAD7C"  >
 			<col>
 				<txt><h1>Zig and Zag</h1><p>Engaging, lighthearted illustrations were our solution to overused, plastic cliches. The illustration style differentiates Playmill from more typical tourist imagery, and more closely represents the energetic, theatrical Playmill experience. The campaign illustrations were also adopted as the basis for the theatre’s updated interior design, earning Delorum complimentary tickets, free fudge and a Northwest Region Silver Addy. </p></txt>
 			</col>

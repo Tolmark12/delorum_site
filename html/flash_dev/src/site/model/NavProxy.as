@@ -132,6 +132,13 @@ public class NavProxy extends Proxy implements IProxy
 		changeSection( newContentIndex, $defaultContent );
 	}
 	
+	public function changeSectionWithSlashedName ( $slashedName:String ):void
+	{
+		var ar = $slashedName.split("/");
+		trace( ar[0] + '  :  ' + ar[1] );
+		changeSectionBySectionName(ar[0], ar[1]);
+	}
+	
 	public function changeUrlPath ( $path:String, $level:uint = 0 ):void
 	{
 		// If new path is different than old...

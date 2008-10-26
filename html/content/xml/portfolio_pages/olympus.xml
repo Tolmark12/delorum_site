@@ -1,0 +1,78 @@
+<MAIN>
+	<page css="plum" imageDir="olympus/">
+		<row bgColor="#E2E2E0">
+			<col span="2">
+				<txt><h1>The Need</h1><p>Klassic Builders was a growing Southeast Idaho construction company. They contacted Delorum to increase the size and sophistication of their clientele, and help position their company for future land development. Our efforts revolved around creating a brand which projected size, capability and integrity. We started with the name.</p></txt>
+			</col>
+			<col float="right">
+				<img src="house.jpg" />
+			</col>
+		</row>
+		<row css="padded" totalColumns="2">
+			<col>
+				<txt><h1>Mapping the Naming Landscape</h1><p>Given the lofty business objectives, the name Klassic Builders proved a major obstacle. Setting a higher, more professional expectation that suggested both construction and land development became top priority. We began by grouping major competitors as follows:</p></txt>
+			</col>
+		</row>
+		<row css="padded" totalColumns="2">
+			<col>
+				<txt>
+					<p>1) The majority of competitor’s names are simply last names plus the words Builders, Construction or Contractors. Variations utilize initials, for example: Bateman-Hall Construction, BH Construction.</p>
+					<p>2) A second group uses names or words to directly state business qualities, for example: Comfort Construction.</p>
+				</txt>
+			</col>
+			<col>
+				<txt>
+					<p>3) A third group are location-based names which draw from city, county, landmark, or geography for example: Teton Construction.</p>
+					<p>4) A very small group–closer to the objective—integrates name and brand to reinforce emotional appeal and rational concepts.</p>
+				</txt>
+			</col>
+		</row>
+		<row css="padded" totalColumns="2">
+			<col>
+				<txt><h1>Identifying the Naming Possibilities</h1><p>Explorations sought to convey Primary and Secondary objectives as defined with the client. From hundreds of possibilities, these 3 final options were presented to the client, with rationale, Pro’s & Con’s and availability for each.</p></txt>
+			</col>
+		</row>
+		<row css="padded">
+			<col span="3" align="center" stack="horizontal" stackPadding="32">
+				<img xMod="9" src="nameOption1.gif" />
+				<img xMod="9" src="nameOption2.gif" />
+				<img xMod="9" src="nameOption3.gif" />
+			</col>
+		</row>
+		<row css="padded">
+			<col span="2">
+				<txt>
+					<h1>Free Roving Billboards</h1><p>Fleet signage has been a huge success for Olympus. Market research pointed to the vehicles and construction signage as the most effective way to draw new customers. Matched trucks and trailers continue to draw new business at a prodigious rate, simply by parking them prominently at a job site.</p>
+				</txt>
+			</col>
+			<col float="right">
+				<img src="vectorTruck.gif" yMod="50" />
+			</col>
+		</row>
+		<row totalColumns="1" css="padded">
+			<col align="center">
+				<img src="truck.jpg" />
+			</col>
+		</row>
+		<row totalColumns="2" columnPadding="100" css="padded">
+			<col>
+				<img yMod="100" xMod="6" src="welcomBox.jpg" />
+			</col>
+			<col>
+				<txt xMod="0">
+					<h1>Welcome Home</h1><p>New home owners are the greatest new business source for Olympus. So, we created the perfect house warming gift with warranties, material swatches and keys. Of course, as new home owners brag to their friends, they now have ready access to Olympus marketing materials.</p>
+				</txt>
+			</col>
+		</row>
+		<row css="padded">
+			<col>
+				<txt>
+					<h1>Working Fashion as advertising</h1><p>Uniforms were a visible, simple way to build name recognition. The increased exposure and employee loyalty has more than offset the relatively low cost to outfit construction crews in matching shirts, hats and jackets. Uniforms have proven an easy return on investment for Olympus. They helped elevate brand perception and build brand recognition over an undistinguished range of competitors.</p>
+				</txt>
+			</col>
+			<col span="2" float="right">
+				<img src="har.jpg" yMod="20"/>
+			</col>
+		</row>
+	</page>
+</MAIN>

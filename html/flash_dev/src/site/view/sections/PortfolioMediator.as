@@ -13,6 +13,7 @@ import site.view.StageMediator;
 import delorum.scrolling.*;
 import site.model.ColorSchemeProxy;
 import site.model.CssProxy;
+import site.view.sections.portfolio_components.column_objects.BtnEvent;
 
 public class PortfolioMediator extends BaseSection implements IMediator
 {	
@@ -24,9 +25,6 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private static const _DETAILS:String = "details";
 	private static const _FULL:String = "full";
 	
-	// Button Events:
-	public static const SHOW_CASE_STUDY:String = "SHOW_CASE_STUDY";
-
 	// Display
 	private var _stubHolder:Sprite;
 	private var _scrollHolder:Sprite;
@@ -39,6 +37,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private var _activeStub:ProjectStub;
 	private var _portfolioState:String;
 	private var _realativeXpos:Number;
+	
+	private var _alternateXml:String;
 	
 	private var _caseStudyIsVisible:Boolean = false;
 	public function PortfolioMediator():void
@@ -93,14 +93,17 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				break;
 			case SiteFacade.SHOW_CASE_STUDY : 
 				if( !_caseStudyIsVisible ) {
+					_alternateXml = note.getBody() as String;
 					_caseStudyIsVisible = true;
 					_changeDetails ( _activeStub.vo );
 					_details.show();
 				}
 				break;
 			case SiteFacade.HIDE_CASE_STUDY :
-				if( _details != null ) 
+				if( _details != null && _caseStudyIsVisible) {
+					_caseStudyIsVisible = false;
 					_details.closePage();
+				}
 				break;
 			case SiteFacade.CUR_BTN_CLICKED_AGAIN:
 				_handleDeactivateStub();
@@ -176,15 +179,12 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			_details.addEventListener( ProjectDetails.HIDE_CASE_STUDY, _handleHideCaseStudy		);
 			_details.addEventListener( ProjectDetails.CASE_STUDY_HIDDEN, _handleCaseStudyHidden	);
 			
-//			stub.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
-//			stub.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange	);
-			
 			_stubHolder.addChild( stub );
 			_stubsAr.push( stub );
 		}
 		
 		// Add event listeners for events fired from content
-		super._baseMc.addEventListener( SHOW_CASE_STUDY, _showCaseStudy );
+		super._baseMc.addEventListener( BtnEvent.SHOW_CASE_STUDY, _showCaseStudy );
 		
 		// display ribbon
 		_displayAsRibbon();	
@@ -325,7 +325,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _changeDetails ( $vo:ProjectStub_VO ):void
 	{
 		_details.show();
-		_details.changeContent( $vo.title, $vo );
+		_details.changeContent( $vo );
 	}
 	
 	private function _moveDetails (  ):void
@@ -394,13 +394,16 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	// Project stub
 	public function _handleActivateStub     ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex );  };
 	public function _handleDeactivateStub   ( e:Event = null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
-	public function _handleStubXmlRequest   ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML 		); };
-	public function _handleHeightChange     ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 	); };
-	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK	); };
-	private function _handleCaseStudyHidden ( e:Event 	   ):void {	sendNotification( SiteFacade.CASE_STUDY_HIDDEN		); };
-	private function _showCaseStudy		 	( e:Event 	   ):void {	sendNotification( SiteFacade.SHOW_CASE_STUDY		); };
-	private function _handleScrollPress		( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_PRESS		); };
-	private function _handleScrollRelease	( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_RELEASE	); };
+	public function _handleStubXmlRequest   ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML, _alternateXml ); };
+	public function _handleHeightChange     ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 		); };
+	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK		); };
+	private function _handleCaseStudyHidden ( e:Event 	   ):void {	sendNotification( SiteFacade.CASE_STUDY_HIDDEN			); };
+	private function _handleScrollPress		( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_PRESS			); };
+	private function _handleScrollRelease	( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_RELEASE		); };
+	private function _showCaseStudy		 	( e:BtnEvent   ):void {	 
+		sendNotification( SiteFacade.HIDE_CASE_STUDY		);
+		sendNotification( SiteFacade.SHOW_CASE_STUDY, e.xmlFileIndex ); 
+	}
 	
 	// Scrolling
 	public function _handleScroll    ( e:ScrollEvent ):void{ sendNotification( SiteFacade.SCROLL_PORTFOLIO, e ); };

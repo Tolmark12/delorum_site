@@ -8,6 +8,10 @@ public class Btn extends BaseColumnObj
 	private var _swcBtn:ChameleonBtn_swc;
 	private var _clickEvent:String;
 	
+	
+	// possible vars
+	private var _xmlFile:String;
+	
 	public function Btn():void
 	{
 		
@@ -20,6 +24,9 @@ public class Btn extends BaseColumnObj
 		_swcBtn.addEventListener( MouseEvent.CLICK, _click );
 		_clickEvent = $node.@event;
 		
+		// possible vars
+		_xmlFile = ( String( $node.@xmlFile ).length == 0 )? null : $node.@xmlFile ;
+		
 		this.addChild(_swcBtn);
 		super.make($node);
 		_fireHeightChange();
@@ -29,7 +36,9 @@ public class Btn extends BaseColumnObj
 	
 	private function _click ( e:Event ):void
 	{
-		this.dispatchEvent( new Event(_clickEvent, true ) );
+		var btnEvent:BtnEvent = new BtnEvent( _clickEvent, true );
+		btnEvent.xmlFileIndex = _xmlFile;
+		this.dispatchEvent( btnEvent );
 	}
 	
 	// ______________________________________________________________ 

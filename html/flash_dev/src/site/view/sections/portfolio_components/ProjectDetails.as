@@ -82,8 +82,6 @@ public class ProjectDetails extends Sprite
 		_mask.graphics.beginFill(0xFFFF);
 		_mask.graphics.drawRect(0,0,width,height+ 15);
 		_contentHolder.mask = _mask;
-		
-		_handleShowDetailsClick();
 	}
 	
 	public function unmake (  ):void
@@ -99,37 +97,11 @@ public class ProjectDetails extends Sprite
 		dispatchEvent( new Event(ProjectStub.CONTENT_HEIGHT_CHANGED) );
 	}
 	
-	public function changeContent ( $title:String, $vo:ProjectStub_VO ):void
+	public function changeContent ( $vo:ProjectStub_VO ):void
 	{
-		_title 		 = $title;
-		_body  		 = $vo.shortDescription;
-		_slideShowVo = $vo.slideShow;
-		
-		// Copy all the css styles
-		_bodyTxtMc.clearAllFormatting();
-		var len:uint = $vo.cssStyleList.length;
-		for ( var i:uint=0; i<len; i++ ) 
-		{
-			_bodyTxtMc.parseCss( CssProxy.getCss( $vo.cssStyleList[i] )  );
-		}
-	
-		_bodyTxtMc.htmlText = _body;
-					
 		if( _rowManager != null ) {
 			_rowManager.removePage();
 			_handleShowDetailsClick();
-		}
-		if( _slideShow != null ) {
-			_contentHolder.removeChild( _slideShow );
-			_slideShow = null;
-		}
-		
-		if( _slideShowVo != null )
-		{
-			_slideShow		= new SlideShow( 508, 351, 5.5, 1.8 ); // w, h, displaytime, transSpeed
-			_slideShow.x 	= Column.COLUMN_WIDTH + 27 + ProjectStub.BORDER_SIZE;
-			_contentHolder.addChild( _slideShow );
-			_slideShow.buildSlideShow( _slideShowVo );
 		}
 		
 		_drawBg( $vo.bgColor );
@@ -195,7 +167,7 @@ public class ProjectDetails extends Sprite
 	
 	// ______________________________________________________________ Event Handlers
 	
-	private function _handleShowDetailsClick ( e:Event=null ):void
+	private function _handleShowDetailsClick (  ):void
 	{
 		this.dispatchEvent( new Event(LOAD_PROJECT_XML) );
 	}
@@ -221,7 +193,6 @@ public class ProjectDetails extends Sprite
 	}
 	
 	// ______________________________________________________________ Getters / Setters
-	public function set title  		( $str:String ):void{ _title = $str; };
 	public function set body   		( $str:String ):void{ _body  = $str; };
 	public function set slideShow 	( $slideShow:SlideShow_VO ):void { _slideShowVo = $slideShow; };
 }

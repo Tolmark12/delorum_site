@@ -19,6 +19,7 @@ public class SwcText extends MovieClip
 		_textField 				= this.getChildByName("textField") as TextField;
 		_textField.autoSize 	= "left";
 		this.addEventListener( Event.ADDED_TO_STAGE, _addBitmap );
+		this.addEventListener( Event.RENDER, _updateFormat )
 		clearAllFormatting();
 	}
 	
@@ -73,7 +74,7 @@ public class SwcText extends MovieClip
 	// ______________________________________________________________ Private Helpers
 	
 	// apply any changes in the format to textfield
-	private function _updateFormat (  ):void
+	private function _updateFormat ( e:Event=null ):void
 	{
 		_styleSheet.setStyle( "body", _baseStyle );
 		_textField.styleSheet = _styleSheet;

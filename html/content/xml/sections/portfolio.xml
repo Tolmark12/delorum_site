@@ -7,11 +7,13 @@
  			  defaultCss="brown"  >
 
 		
- 		<projectStub title="Various Logos" image="logos.gif" frameX="380" frameY="49" xml="heavens_best.xml" >
+ 		<projectStub title="Various Logos" image="logos.gif" frameX="380" frameY="49" xml="olympus.xml,ibex.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
 					<txt><h1>Various Logos</h1><p>Delorum created over 40 logos for various brands. Lorem ipsum delor and hat telo paks fronn.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0" yMod="210"/>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="1" yMod="240"/>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="2" yMod="270"/>
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
@@ -32,7 +34,7 @@
 				</col>
 			</row>
  		</projectStub>
-		<projectStub title="Idahoan Potatoes" image="idahoan4.jpg" frameX="357" frameY="90" xml="ibex.xml">
+		<projectStub title="Idahoan Potatoes" image="idahoan4.jpg" frameX="357" frameY="90" xml="">
 			<row css="portfolio,idahoan" slideShowId="hss_idahoan" bgColor="#861F16" bgAlpha="0.94">
 	 			<col>
 	 				<txt><h1>Idahoan Potatoes</h1><p>Idahoan potatoes, and other some such, Loerm ipsum deloru. For the forthright mechanism of potato is the reverse case of the adjunct angle.</p></txt>
@@ -77,11 +79,12 @@
 				</col>
 			</row>
  		</projectStub>
-		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="500">
+		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="" frameX="500">
  			<row css="portfolio" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>Sunde omnis Siste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p></txt>
-	 			</col>
+	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+				</col>
 	 			<col span="2" float="right">
 	 				<slideShow id="hss_oliver">
 						<img src="__blank__"  />
@@ -104,6 +107,7 @@
 				</col>
 				<col>
 					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design, coupled with a modern twist and today’s handcrafted precision. Built from solid hardwood, each piece is hand worked and hand stained using the highest quality materials.</p></txt>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 			</row>
  		</projectStub>

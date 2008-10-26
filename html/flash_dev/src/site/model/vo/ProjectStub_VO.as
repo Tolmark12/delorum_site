@@ -6,7 +6,7 @@ import delorum.slides.SlideShow_VO;
 public class ProjectStub_VO
 {
 	public var arrayIndex		:uint;
-	public var xmlPath			:String;
+	public var xmlPaths			:Array;
 	public var image			:String;
 	public var title			:String;
 	public var shortDescription	:String;

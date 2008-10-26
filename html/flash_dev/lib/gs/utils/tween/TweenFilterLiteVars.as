@@ -1,6 +1,6 @@
 /*
-VERSION: 0.95
-DATE: 8/5/2008
+VERSION: 1.1
+DATE: 10/10/2008
 ACTIONSCRIPT VERSION: 3.0
 DESCRIPTION:
 	There are 2 primary benefits of using this utility to define your TweenFilterLite variables:
@@ -48,7 +48,7 @@ package gs.utils.tween {
 	import gs.utils.tween.GlowFilterVars;
 
 	dynamic public class TweenFilterLiteVars extends TweenLiteVars {
-		public static const version:Number = 0.95;
+		public static const version:Number = 1.1;
 		/**
 		 * Adds a BlurFilter. Available properties: blurX, blurY, quality
 		 */
@@ -69,6 +69,12 @@ package gs.utils.tween {
 		 * Adds a BevelFilter. Available properties: angle, blurX, blurY, distance, highlightAlpha, highlightColor, shadowAlpha, shadowColor, strength, quality
 		 */
 		public var bevelFilter:BevelFilterVars; 
+		/**
+		 * Multiplier that controls the speed of the tween. 1 = normal speed, 0.5 = half speed, 2 = double speed, etc.
+		 */
+		public var timeScale:Number; 
+		
+		protected var _roundProps:Array;
 		
 		/**
 		 * 
@@ -96,6 +102,20 @@ package gs.utils.tween {
 			}
 		}
 		
+//---- GETTERS / SETTERS -------------------------------------------------------------------------------------------------------------
+
+		/**
+		 * @return An Array of the names of properties that should be rounded to the nearest integer when tweening
+		 */
+		public function get roundProps():Array {
+			return _roundProps;
+		}
+		/**
+		 * @param $a An Array of the names of properties that should be rounded to the nearest integer when tweening
+		 */
+		public function set roundProps($a:Array):void {
+			_roundProps = _exposedInternalProps.roundProps = $a;
+		}
 		
 	}
 }

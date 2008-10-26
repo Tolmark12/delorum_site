@@ -1,6 +1,6 @@
 /*
-VERSION: 0.95
-DATE: 8/5/2008
+VERSION: 1.0
+DATE: 8/24/2008
 ACTIONSCRIPT VERSION: 3.0
 DESCRIPTION:
 	There are 2 primary benefits of using this utility to define your TweenLite variables:
@@ -43,7 +43,7 @@ package gs.utils.tween {
 	import gs.TweenLite;
 
 	dynamic public class TweenLiteVars {
-		public static const version:Number = 0.95;
+		public static const version:Number = 1.0;
 		public const isTV:Boolean = true; // (stands for "isTweenVars") - Just gives us a way to check inside TweenLite to see if the Object is a TweenLiteVars without having to embed the class. This is helpful when handling tint, visible, and other properties that the user didn't necessarily define, but this utility class forces to be present.
 		/**
 		 * Same as changing the "alpha" property but with the additional feature of toggling the "visible" property to false when alpha is 0.
@@ -90,9 +90,9 @@ package gs.utils.tween {
 		 */
 		public var onCompleteParams:Array; 
 		/**
-		 * If you do NOT want the tween to automatically overwrite tweens that are affecting the same target, make sure this value is false. 
+		 * NONE = 0, ALL = 1, AUTO* = 2, CONCURRENT* = 3  *Only available with the optional OverwriteManager add-on class which must be initted once for TweenLite or TweenFilterLite, like OverwriteManager.init(). TweenMax automatically inits OverwriteManager.
 		 */
-		public var overwrite:Boolean = true;  
+		public var overwrite:int = 2;  
 		/**
 		 * To prevent a tween from getting garbage collected after it completes, set persist to true. This does NOT, however, prevent teh tween from getting overwritten by other tweens of the same target.
 		 */

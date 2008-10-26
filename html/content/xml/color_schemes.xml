@@ -19,6 +19,15 @@
 	</colorScheme>
 	<!-- !! IMPORTANT !! -->
 	
+	<colorScheme id="business_cards">
+		<colors
+			 bg="FCF9EC"
+			 nav_up="636466"
+			 nav_hover="ED7920"
+			 logo="636466"
+			 logo_hover="ED7920"
+		/>
+	</colorScheme>
 	
 	<colorScheme id="tan">
 		<colors 

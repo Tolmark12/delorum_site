@@ -1,6 +1,6 @@
 /*
-VERSION: 0.91
-DATE: 8/5/2008
+VERSION: 0.92
+DATE: 8/15/2008
 ACTIONSCRIPT VERSION: 3.0
 DESCRIPTION:
 	There are 2 primary benefits of using this utility to define your TweenMax variables:
@@ -91,6 +91,14 @@ package gs.utils.tween {
 		 * An Array of parameters to pass the onCompleteAll function when the allTo() or allFrom() tweens have completed. ONLY used with allTo() and allFrom() methods!
 		 */
 		public var onCompleteAllParams:Array;
+		/**
+		 * To make the tween continuously loop backwards and forwards like a yoyo, set this to true.
+		 */
+		public var yoyo:Boolean;
+		/**
+		 * To make the tween continuously loop itself, set this to true.
+		 */
+		public var loop:Boolean;
 		//public var quaternions:Object;
 		
 		/**

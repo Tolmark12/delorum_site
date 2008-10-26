@@ -1,5 +1,11 @@
 <HOME>
-	<data imagePath="content/image/site/butterfly.jpg">
-		
-	</data>
+	<teasers>
+		<teaser>
+			<h1>IDAHOAN LAUNCHES WEBSITE</h1>
+			<p>How we made a potato brand website more appealing to 40 million moms.</p>
+			<a href="">VIEW CASE STUDY</a>
+			<imgR src="content/images/home/teasers/idahoan1.jpg" />
+			<imgL src="content/images/home/teasers/idahoan2.jpg" />
+		</teaser>
+	</teasers>
 </HOME>

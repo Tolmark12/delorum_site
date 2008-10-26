@@ -1,6 +1,33 @@
 <MAIN>
-	<page imageDir="plum/">
-		<!-- Four Hundred Sketches -->
+	<page css="plum" imageDir="plum/">
+		<row css="plum" totalColumns="1">
+			<col align="center">
+				<img src="sketch.jpg" />
+			</col>
+		</row>
+		
+		<row css="plum" totalColumns="1" marginBottom="4">
+			<col stack="horizontal" stackPadding="4" align="center">
+				<img src="row_square1.gif"/>
+				<img src="row_square2.jpg"/>
+				<img src="row_square3.jpg"/>
+			</col>
+		</row>
+		
+		<row css="plum" totalColumns="1">
+			<col float="left">
+				<img src="big_image.jpg" />
+			</col>
+		</row>
+		
+		<row css="plum" totalColumns="1" marginBottom="4">
+			<col float="left">
+				<img src="framed1.jpg"/>
+				<img src="framed2.jpg"/>
+				<img src="framed3.jpg"/>
+				<img src="framed4.jpg"/>
+			</col>
+		</row>
 		
 	</page>
 </MAIN>

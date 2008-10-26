@@ -16,7 +16,7 @@
 				<img src="sketches.jpg" />
 			</col>
 		</row>
-		<row totalColumns="2" marginTop="20" marginBottom="20">
+		<row totalColumns="2" css="padded">
 			<col></col>
 			<col>
 				<txt xMod="-30"><h1>Brand Development</h1><p>With Ibex, we sought to balance the masculine characteristics from the name with a more sophisticated, corporate appeal. Exploration allowed us to create an aggressive, rugged icon with enough polish to approach multi-national oil corporations.</p></txt>
@@ -35,12 +35,12 @@
 				</txt>
 			</col>
 		</row>
-		<row totalColumns="2" marginTop="50" marginBottom="20">
+		<row totalColumns="2" marginTop="50" css="padded">
 			<col>
 				<img src="brochure.jpg" />
 			</col>
 		</row>
-		<row totalColumns="2" marginTop="20" marginBottom="20">
+		<row totalColumns="2" css="padded">
 			<col>
 				<txt>
 					<h1>Making the Sale</h1><p>Only a handful of corporate presentation materials were created as leave-behinds for potential clients. The folders reinforce a sales presentation, yet acts as a stand alone brochure for managers higher up the approval chain.</p>

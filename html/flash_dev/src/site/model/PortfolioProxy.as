@@ -25,6 +25,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 	private var _xmlLoaded:Boolean = false;
 	private var _portfolioPagesDir:String;
 	private var _xml:XML;
+	private var _currentXml:String;
 	
 	private static var _defaultProject:String;
 	private static var _semiActiveStubIndex:int;
@@ -80,7 +81,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 		for each( var stubNode:XML in $xml.projects.projectStub )
 		{
 			var vo:ProjectStub_VO 	= new ProjectStub_VO();
-			vo.xmlPath		   		= $xml.projects.@xmlDir + stubNode.@xml;
+			vo.xmlPaths		   		= _getXmlArray($xml.projects.@xmlDir, stubNode.@xml);
 			vo.image		   		= $xml.projects.@imageStubDir + stubNode.@image;
 			vo.title		   		= stubNode.@title;
 			vo.frameX				= stubNode.@frameX;
@@ -138,17 +139,42 @@ public class PortfolioProxy extends Proxy implements IProxy
 		}
 	}
 	
-	public function loadProjectXml ( $projectIndex:uint ):void
+	public function loadProjectXml ( $projectIndex:uint, $alternateXmlIndex:String ):void
 	{
+		var ind:uint = uint( $alternateXmlIndex );
+		
 		// if project is not currently active...
 		if( _fullyActiveStubIndex != $projectIndex ){
+			hideCaseStudy();
 			_fullyActiveStubIndex = $projectIndex;
-			sendNotification( SiteFacade.PROJECT_XML_LOADING );
 			var project:ProjectStub_VO = _portfolioAr[ $projectIndex ];
-			var ldr:DataLoader 	= new DataLoader( project.xmlPath );
-			ldr.onComplete		= _parseProjectXml;
-			ldr.loadItem();
+			_loadXml( project.xmlPaths[ind] );
+		} 
+		else if( $alternateXmlIndex != null && project.xmlPaths[ind] != _currentXml ) 
+		{
+			_loadXml( project.xmlPaths[ind] );
 		}
+	}
+	
+	private function _getXmlArray ( $xmlDirectory:String, $xmlFileNames:String ):Array
+	{
+		var ar:Array = $xmlFileNames.split(",");
+		var ar2:Array = new Array();
+		var len:uint = ar.length;
+		for ( var i:uint=0; i<len; i++ ) 
+		{
+			ar2[i] = $xmlDirectory + ar[i];
+		}
+		return ar2;
+	}
+	
+	private function _loadXml ( $xmlPath:String ):void
+	{
+		sendNotification( SiteFacade.PROJECT_XML_LOADING );
+		_currentXml = $xmlPath;
+		var ldr:DataLoader 	= new DataLoader( _currentXml);
+		ldr.onComplete		= _parseProjectXml;
+		ldr.loadItem();
 	}
 	
 	// Return current project to it's semi active state

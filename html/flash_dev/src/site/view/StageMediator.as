@@ -40,6 +40,7 @@ public class StageMediator extends Mediator implements IMediator
 
 	// Browser resizing
 	private static const MOVIE_WIDTH:uint = 970;
+	private static const MOVIE_HEIGHT:uint = 750;
 	
 	// Javascript scrolling
 	public var flashHeight:uint = 0;
@@ -257,6 +258,7 @@ public class StageMediator extends Mediator implements IMediator
 	public static function get stageLeft   		(  ):int { return ( _stage.stageWidth  - MOVIE_WIDTH) / -2; };
 	public static function get stageCenter 		(  ):int { return MOVIE_WIDTH / 2; };
 	public static function get stageRight  		(  ):int { return MOVIE_WIDTH + ( _stage.stageWidth  - MOVIE_WIDTH) / 2; };
+	public static function get stageBottom 		(  ):int { return /*MOVIE_HEIGHT + ( _stage.stageHeight  - MOVIE_HEIGHT) / 2;*/ _stage.stageHeight };
 	public static function get stageWidth  		(  ):int { return _stage.stageWidth; };
 	public static function get stageHeight  	(  ):int { return _stage.stageHeight; };
 	public static function get stageMiddle 		(  ):int { return _stage.stageHeight / 2; };

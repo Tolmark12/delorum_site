@@ -1,6 +1,6 @@
 ﻿/*
-VERSION: 1.46
-DATE: 8/5/2008
+VERSION: 3.39
+DATE: 10/24/2008
 ACTIONSCRIPT VERSION: 3.0 (AS2 version is also available)
 UPDATES & MORE DETAILED DOCUMENTATION AT: http://www.TweenMax.com 
 DESCRIPTION:
@@ -11,28 +11,16 @@ DESCRIPTION:
 	and minimize file size. Frankly, TweenLite is probably all most developers will need for 90% of their projects, and it only takes 
 	up 3k. It's extremely efficient and compact considering its features. But if you need to tween filters or rich imaging effects 
 	like saturation, contrast, hue, colorization, etc., step up to TweenFilterLite at 6k (total). Still need more? No problem - use 
-	TweenMax to add extra features jam-packed into 8k (total). See the feature comparison chart at www.TweenMax.com for more info. 
+	TweenMax to add extra features jam-packed into 11k (total). See the feature comparison chart at www.TweenMax.com for more info. 
 	TweenMax introduces an innovative feature called "bezierThrough" that allows you to define points through which you want the 
 	bezier curve to travel (instead of normal control points that simply attract the curve). Or use regular bezier curves - whichever 
-	you prefer. Currently, TweenMax adds the following features (compared to TweenFilterLite):
-		- Perform bezier tweens (including THROUGH points and automatic orientation of Objects to Beziers)
-		- Sequence tweens
-		- Tween arrays of objects with allTo() and allFrom()
-		- Use event listeners and/or callbacks
-		- Pause/Resume tweens using either the pause() and resume() methods or the "paused" property (like myTween.paused = true)
-		- isTweening static method for finding out if any object is currently being tweened (like TweenMax.isTweening(my_mc))
-		- Jump to any point in the tween using the "progress" property. Feed it a value between 0 and 1. Setting progress to 
-		  0 will force the tween to be zero percent complete, and 1 would be 100% complete, 0.5 would be half-way through.
-		  Example: myTween.progress = 0.5;
-		- Tween hex colors easily with the hexColors property.
-		- Get an array of all TweenMax (and TweenLite and TweenFilterLite) instances that are currently affecting a particular target object.
-		  Example: TweenMax.getTweensOf(my_mc);
-		- Get an array of all TweenMax (and TweenLite and TweenFilterLite) instances with the static getAllTweens() function.
-		- Kill all tweens (and optionally complete them)
-		- Pause/Resume all tweens
+	you prefer.
+	
+	To see a feature comparison chart, go to http://www.tweenmax.com
+		
 
 ARGUMENTS:
-	1) $target : Object - Target MovieClip (or other object) whose properties we're tweening
+	1) $target : Object - Target object whose properties we're tweening
 	2) $duration : Number - Duration (in seconds) of the tween
 	3) $vars : Object - An object containing the end values of all the properties you'd like to have tweened (or if you're using the 
 	          		    TweenMax.from() method, these variables would define the BEGINNING values). For example:
@@ -105,13 +93,37 @@ ARGUMENTS:
 			  onCompleteParams : Array - An array of parameters to pass the onComplete function (this is optional)
 			  onCompleteListener : Function - A function to which the TweenMax instance should dispatch a TweenEvent when it completes.
 			  							   	  This is the same as doing myTweenMaxInstance.addEventListener(TweenEvent.COMPLETE, myFunction);
+			  yoyo : Boolean - To make the tween continuously loop backwards and forwards like a yoyo, set this to true.
+			  loop : Boolean - To make the tween continuously loop itself, set this to true.
 			  persist : Boolean - if true, the TweenLite instance will NOT automatically be removed by the garbage collector when it is complete.
 					  			  However, it is still eligible to be overwritten by new tweens even if persist is true. By default, it is false.
 			  renderOnStart : Boolean - If you're using TweenFilterLite.from() with a delay and want to prevent the tween from rendering until it
 										actually begins, set this to true. By default, it's false which causes TweenMax.from() to render
 										its values immediately, even before the delay has expired.
-			  overwrite : Boolean - If you do NOT want the tween to automatically overwrite all other tweens that are 
-									affecting the same target, make sure this value is false.
+			  timeScale : Number - Multiplier that controls the speed of the tween (perceived duration) where 1 = normal speed, 0.5 = half speed, 2 = double speed, etc. 
+			  					   NOTE: There is also a static TweenMax.globalTimeScale property that affects ALL TweenMax and TweenFilterLite tweens (not TweenLite though)
+			  roundProps : Array - If you'd like the inbetween values in a tween to always get rounded to the nearest integer, use the roundProps
+			  					   special property. Just pass in an Array containing the property names that you'd like rounded. For example,
+			  					   if you're tweening the x, y, and alpha properties of mc and you want to round the x and y values (not alpha)
+			  					   every time the tween is rendered, you'd do: TweenMax.to(mc, 2, {x:300, y:200, alpha:0.5, roundProps:["x","y"]});
+			  overwrite : int - Controls how other tweens of the same object are handled when this tween is created. Here are the options:
+			  					- 0 (NONE): No tweens are overwritten. This is the fastest mode, but you need to be careful not to create any 
+			  								tweens with overlapping properties, otherwise they'll conflict with each other. 
+											
+								- 1 (ALL): (this is the default unless OverwriteManager.init() has been called) All tweens of the same object 
+										   are completely overwritten immediately when the tween is created. 
+										   		TweenLite.to(mc, 1, {x:100, y:200});
+												TweenLite.to(mc, 1, {x:300, delay:2, overwrite:1}); //immediately overwrites the previous tween
+												
+								- 2 (AUTO): (used by default if OverwriteManager.init() has been called) Searches for and overwrites only 
+											individual overlapping properties in tweens that are active when the tween begins. 
+												TweenLite.to(mc, 1, {x:100, y:200});
+												TweenLite.to(mc, 1, {x:300, overwrite:2}); //only overwrites the "x" property in the previous tween
+												
+								- 3 (CONCURRENT): Overwrites all tweens of the same object that are active when the tween begins.
+												TweenLite.to(mc, 1, {x:100, y:200});
+												TweenLite.to(mc, 1, {x:300, delay:2, overwrite:3}); //does NOT overwrite the previous tween because the first tween will have finished by the time this one begins.
+			  
 			  blurFilter : Object - To apply a BlurFilter, pass an object with one or more of the following properties:
 			  						blurX, blurY, quality
 			  glowFilter : Object - To apply a GlowFilter, pass an object with one or more of the following properties:
@@ -126,15 +138,13 @@ ARGUMENTS:
 	
 KEY PROPERTIES:
 	- progress : Number (0 - 1 where 0 = tween hasn't progressed, 0.5 = tween is halfway done, and 1 = tween is finished)
+	- timeScale : Number (Multiplier that controls the speed of the tween where 1 = normal speed, 0.5 = half speed, 2 = double speed, etc. )
 	- paused : Boolean
+	- reversed : Boolean
 	
 KEY METHODS:
 	- TweenMax.to(target:Object, duration:Number, vars:Object):TweenMax
 	- TweenMax.from(target:Object, duration:Number, vars:Object):TweenMax
-	- TweenMax.allTo(targets:Array, duration:Number, vars:Object):Array
-	- TweenMax.allFrom(targets:Array, duration:Number, vars:Object):Array
-	- TweenMax.sequence(target:Object, tweens:Array):Array
-	- TweenMax.multiSequence(tweens:Array):Array
 	- TweenMax.getTweensOf(target:Object):Array
 	- TweenMax.isTweening(target:Object):Boolean
 	- TweenMax.getAllTweens():Array
@@ -142,18 +152,20 @@ KEY METHODS:
 	- TweenMax.killAllDelayedCalls(complete:Boolean):void
 	- TweenMax.pauseAll(tweens:Boolean, delayedCalls:Boolean):void
 	- TweenMax.resumeAll(tweens:Boolean, delayedCalls:Boolean):void
+	- TweenMax.delayedCall(delay:Number, function:Function, params:Array, persist:Boolean):TweenMax
+	- TweenMax.setGlobalTimeScale(scale:Number):void
 	- addEventListener(type:String, listener:Function, useCapture:Boolean, priority:int, useWeakReference:Boolean):void
 	- removeEventListener(type:String, listener:Function):void
 	- pause():void
 	- resume():void
+	- restart(includeDelay:Boolean):void
+	- reverse(adjustStart:Boolean, forcePlay:Boolean):void
+	- setDestination(property:String, value:*, adjustStartValues:Boolean):void
+	- invalidate(adjustStartValues:Boolean):void
+	- killProperties(names:Array):void
 	
 	
 EXAMPLES: 
-	To set up a sequence where we fade a MovieClip to 50% opacity over the course of 2 seconds, and then slide it down
-	to y coordinate 300 over the course of 1 second:
-	
-		import gs.TweenMax;
-		TweenMax.sequence(clip_mc, [{time:2, alpha:0.5}, {time:1, y:300}]);
 	
 	To tween the clip_mc MovieClip over 5 seconds, changing the alpha to 0.5, the x to 120 using the Back.easeOut
 	easing function, delay starting the whole tween by 2 seconds, and then call	a function named "onFinishTween" when 
@@ -161,7 +173,7 @@ EXAMPLES:
 	you'd do so like:
 		
 		import gs.TweenMax;
-		import fl.motion.easing.Back;
+		import gs.easing.*;
 		TweenMax.to(clip_mc, 5, {alpha:0.5, x:120, ease:Back.easeOut, delay:2, onComplete:onFinishTween, onCompleteParams:[5, clip_mc]});
 		function onFinishTween(argument1:Number, argument2:MovieClip):void {
 			trace("The tween has finished! argument1 = " + argument1 + ", and argument2 = " + argument2);
@@ -172,7 +184,7 @@ EXAMPLES:
 	dropping it from there), you could:
 		
 		import gs.TweenMax;
-		import fl.motion.easing.Elastic;
+		import gs.easing.*;
 		TweenMax.from(clip_mc, 5, {y:"-100", ease:Elastic.easeOut});
 		
 	To set up an onUpdate listener (not callback) that traces the "progress" property of a tween, and another listener
@@ -191,22 +203,18 @@ EXAMPLES:
 	
 
 NOTES:
-	- Putting quotes around values will make the tween relative to the current value. For example, if you do
+	- Passing values as Strings will make the tween relative to the current value. For example, if you do
 	  TweenMax.to(mc, 2, {x:"-20"}); it'll move the mc.x to the left 20 pixels which is the same as doing
-	  TweenMax.to(mc, 2, {x:mc.x - 20});
-	- You can tween the volume of any MovieClip using the tween property "volume", like:
-	  TweenMax.to(myClip_mc, 1.5, {volume:0});
-	- If you prefer, instead of using the "listeners" special property, you can set up listeners the typical way, like:
+	  TweenMax.to(mc, 2, {x:mc.x - 20}); You could also cast it like: TweenMax.to(mc, 2, {x:String(myVariable)});
+	- If you prefer, instead of using the onCompleteListener, onStartListener, and onUpdateListener special properties, 
+	  you can set up listeners the typical way, like: 
 	  var myTween:TweenMax = TweenMax.to(my_mc, 2, {x:200});
 	  myTween.addEventListener(TweenEvent.COMPLETE, myFunction);
-	- You can tween the tint/color of a MovieClip using the tween property "tint", like:
-	  TweenMax.to(myClip_mc, 1.5, {tint:0xFF0000});
-	- To tween an array, just pass in an array as a property named endArray like:
+	- To tween an Array, just pass in an Array as a property named endArray like:
 	  var myArray:Array = [1,2,3,4];
 	  TweenMax.to(myArray, 1.5, {endArray:[10,20,30,40]});
-	- You can kill all tweens for a particular object (usually a MovieClip) anytime with the 
-	  TweenMax.killTweensOf(myClip_mc); function. If you want to have the tweens forced to completion, 
-	  pass true as the second parameter, like TweenMax.killTweensOf(myClip_mc, true);
+	- You can kill all tweens of a particular object anytime with the TweenMax.killTweensOf(myObject); function. 
+	  If you want to have the tweens forced to completion, pass true as the second parameter, like TweenMax.killTweensOf(myObject, true);
 	- You can kill all delayedCalls to a particular function using TweenMax.killDelayedCallsTo(myFunction);
 	  This can be helpful if you want to preempt a call.
 	- Use the TweenMax.from() method to animate things into place. For example, if you have things set up on 
@@ -215,54 +223,72 @@ NOTES:
 	  
 	  
 CHANGE LOG:
-	1.46:
-		- Fixed pauseAll() error that occurred when TweenLite instances existed
-		- Improved compatibility with TweenMaxVars utility class (for strict data typing and code hinting)
-		- Speed optimizations
-	1.42:
-		- Added ability to tween the volume of any object that has a soundTransform property instead of just MoveiClips and SoundChannels. Now NetStream volumes can be tweened too.
-	1.41:
-		- Fixed delayedCall() error (removed onCompleteScope since it's not useful in AS3 anyway)
-	1.4:
-		- Added event dispatching (onCompleteListener, onUpdateListener, and onStartListener properties)
-		- Added "persist" special property
-		- Added "removeTint" special property
-		- Added compatibility with TweenMaxVars utility class
-	1.3:
-		- Added multiSequence() function, allowing you to sequence multiple items (sequence() only allows one target)
-	1.2:
-		- Added "visible" special property
-	1.16:
-		- Fixed bug with onCompleteAll parameter in allTo() and allFrom()
-	1.14:
-		- Fixed issue with sequences that are run more than once.
-	1.13:
-		- Added the capability to pause/resume delayedCalls()
-	1.11:
-		- Fixed 1009 error with from() and allFrom() calls that was introduced in version 1.1
-	1.1:
-		- Added killAllDelayedCalls()
-		- Updated for compatibility with TweenLite 6.2
-	1.0:
-		- Added killAllTweens()
-		- Added pauseAllTweens()
-		- Added resumeAllTweens()
-	0.98:
-		- Added orientToBezier functionality
-	0.97:
-		- Fixed bug that could cause easeParams not to work with allTo() and allFrom() methods.
-	0.96:
-		- Fixed problem with allTo() and allFrom() onCompleteAll that has no onCompleteAllParams 1010 error
-	0.95:
-		- Changed multiTo() and multiFrom() to allTo() and allFrom() and added onCompleteAll and onCompleteAllParams special properties for those methods.
-	0.94:
-		- Added multiTo() and multiFrom() support (later changed to allTo() and allFrom())
-	0.93:
-		- Prevented "progress" property from extending beyond 1 after the tween had finished.
-	0.9:
-		- Added bezier support
-		- Added sequencing support
-		- Ensured that all tweens are syncronized (use an internal timing mechanism now)
+	3.39:
+		- Speed improvement and slight file size decrease
+	3.37:
+		- Fixed resumeAll()
+	3.36:
+		- Fixed bug with autoAlpha tweens working with TweenGroups when they're reversed.
+	3.35:
+		- Deprecated allTo() and allFrom() in favor of the much more powerful and flexible TweenGroup class (see http://blog.greensock.com/tweengroup/ for details)
+	3.2:
+		- Added "roundProps" special property for rounding values
+		- Fixed but with TweenLiteVars, TweenFilterVars, and TweenMaxVars that caused "visible" to always get set at the end of a tween
+	3.1:
+		- In AUTO or CONCURRENT mode, OverwriteManager doesn't handle overwriting until the tween actually begins which allows for immediate pause()-ing or re-ordering in TweenGroup, etc.
+		- Re-architected some inner-workings to further optimize for speed and reduce file size
+	3.04:
+		- Fixed bug with killTweensOf()
+		- Fixed bug with reverse()
+		- Fixed bug with from()
+	3.0:
+		- Deprecated sequence() and multiSequence() in favor of the much more powerful and flexible TweenGroup class (see http://blog.greensock.com/tweengroup/ for details)
+		- Added clear() method
+		- Added a "clear" parameter to the removeTween() method
+		- Exposed TweenLite.currentTime as well as several other TweenLite variables for compatibility with TweenGroup
+	2.35:
+		- Fixed potential problem if multiple tweens used the same vars object and reverse() was called on more than one.
+	2.34:
+		- Fixed problem with COMPLETE event listeners not firing when killTweensOf() was called with the forceComplete parameter set to true
+	2.32:
+		- Fixed bug with invalidating() a tween with event listeners and adding an UPDATE listener after a tween is instantiated.
+	2.31:
+		- invalidate() reparses onCompleteListener, onUpdateListener, and onStartListener special properties now.
+		- If a tween completed without persist:true and the globalTimeScale was updated between that time and the time restart(), reverse(), or resume() was called, it could have an incorrect timeScale. That's fixed now.
+	2.3:
+		- Added setGlobalTimeScale() function to control the speed of all TweenFilterLite and TweenMax instances
+		- Added static "globalTimeScale" property to TweenMax and TweenFilterLite classes. You can even tween it like TweenLite.to(TweenMax, 1, {globalTimeScale:0.5});
+		- Changed timeScale so that it also affects the delay (if any)
+	2.26:
+		- Made restart(), reverse(), and resume() force the tween back into the rendering queue even if persist wasn't set to true.
+	2.24;
+		- Added "persist" parameter to delayedCall() so that you can reuse/restart them.
+		- Removed defaultEase from TweenMax because it was just a waste of Kb - use TweenLite.defaultEase to affect all default easing, even in TweenMax.
+	2.22:
+		- Added ability to include the delay when restart()-ing a tween.
+	2.2:
+		- Added "reversed" property
+		- Fixed incorrect progress reporting on paused tweens, and potential problem with reverse()-ing paused tweens.
+	2.19:
+		- Fixed bug on pause/resume functionality
+	2.17:
+		- Changed behavior of reverse() so that it automatically calls resume().
+	2.15:
+		- Fixed bug in overwrite management
+		- Fixed bug with tweens that have a zero-length duration
+	2.12:
+		- Fixed bug in timeScale
+	2.1:
+		- Added timeScale special property
+	2.06:
+		- Added the ability to overwrite only individual overlapping properties with the new OverwriteManager class
+		- Added setDestination() method
+		- Added killVars() method
+		- Added killProperties() method
+		- Added reverse() method 
+		- Added restart() method
+		- Added invalidate() method that forces the vars to be re-parsed (and immediately rendered if the tween is active)
+		- Fixed bug in the onCompleteListener, onUpdateListener, and onStartListener special properties.
 
 CODED BY: Jack Doyle, jack@greensock.com
 Copyright 2008, GreenSock (This work is subject to the terms in http://www.greensock.com/terms_of_use.html.)
@@ -277,19 +303,20 @@ package gs {
 	import gs.events.TweenEvent;
 
 	public class TweenMax extends TweenFilterLite implements IEventDispatcher {
-		public static var version:Number = 1.46;
+		public static var version:Number = 3.39;
 		protected static const _RAD2DEG:Number = 180 / Math.PI; //precalculate for speed
+		private static var _overwriteMode:int = (OverwriteManager.enabled) ? OverwriteManager.mode : OverwriteManager.init(); //OverwriteManager is optional for TweenLite and TweenFilterLite, but it is used by default in TweenMax.
 		public static var killTweensOf:Function = TweenLite.killTweensOf;
-		public static var killDelayedCallsTo:Function = TweenLite.killDelayedCallsTo;
+		public static var killDelayedCallsTo:Function = TweenLite.killTweensOf;
 		public static var removeTween:Function = TweenLite.removeTween;
-		public static var defaultEase:Function = TweenLite.defaultEase;
-		protected var _pauseTime:int;
+		public static var setGlobalTimeScale:Function = TweenFilterLite.setGlobalTimeScale;
+		protected static var _pausedTweens:Dictionary = new Dictionary(false); //protects from garbage collection issues
 		protected var _dispatcher:EventDispatcher;
 		protected var _callbacks:Object; //stores the original onComplete, onStart, and onUpdate Functions from the this.vars Object (we replace them if/when dispatching events)
+		public var pauseTime:Number;
 		
 		public function TweenMax($target:Object, $duration:Number, $vars:Object) {
 			super($target, $duration, $vars);
-			_pauseTime = -1;
 			if (this.vars.onCompleteListener != null || this.vars.onUpdateListener != null || this.vars.onStartListener != null) {
 				initDispatcher();
 				if ($duration == 0 && this.delay == 0) {
@@ -297,10 +324,377 @@ package gs {
 					onCompleteDispatcher();
 				}
 			}
-			if (TweenFilterLite.version < 7.35 || isNaN(TweenFilterLite.version)) {
+			if (this.vars.yoyo == true || this.vars.loop == true) {
+				this.vars.persist = true;
+			}
+			if (TweenFilterLite.version < 9.26) {
 				trace("TweenMax error! Please update your TweenFilterLite class or try deleting your ASO files. TweenMax requires a more recent version. Download updates at http://www.TweenMax.com.");
 			}
 		}
+				
+		override public function initTweenVals($hrp:Boolean = false, $reservedProps:String = ""):void {
+			$reservedProps += " hexColors bezier bezierThrough orientToBezier quaternions onCompleteAll onCompleteAllParams yoyo loop onCompleteListener onUpdateListener onStartListener ";
+			var p:String, i:int, curProp:Object, props:Object, b:Array;
+			if (!$hrp && TweenLite.overwriteManager.enabled) {
+				TweenLite.overwriteManager.manageOverwrites(this, masterList[this.target]);
+			}
+			var bProxy:Function = bezierProxy; 
+			if (this.vars.orientToBezier == true) {
+				this.vars.orientToBezier = [["x", "y", "rotation", 0]];
+				bProxy = bezierProxy2;
+			} else if (this.vars.orientToBezier is Array) {
+				bProxy = bezierProxy2;
+			}
+			if (this.vars.bezier != undefined && (this.vars.bezier is Array)) {
+				props = {};
+				b = this.vars.bezier;
+				for (i = 0; i < b.length; i++) {
+					for (p in b[i]) {
+						if (props[p] == undefined) {
+							props[p] = [this.target[p]];
+						}
+						if (typeof(b[i][p]) == "number") {
+							props[p].push(b[i][p]);
+						} else {
+							props[p].push(this.target[p] + Number(b[i][p])); //relative value
+						}
+					}
+				}
+				for (p in props) {
+					if (typeof(this.vars[p]) == "number") {
+						props[p].push(this.vars[p]);
+					} else {
+						props[p].push(this.target[p] + Number(this.vars[p])); //relative value
+					}
+					delete this.vars[p]; //to prevent TweenLite from doing normal tweens on these Bezier values.
+				}
+				addSubTween("bezier", bProxy, {t:0}, {t:1}, {props:parseBeziers(props, false), target:this.target, orientToBezier:this.vars.orientToBezier});
+			}
+			if (this.vars.bezierThrough != undefined && (this.vars.bezierThrough is Array)) {
+				props = {};
+				b = this.vars.bezierThrough;
+				for (i = 0; i < b.length; i++) {
+					for (p in b[i]) {
+						if (props[p] == undefined) {
+							props[p] = [this.target[p]]; //starting point
+						}
+						if (typeof(b[i][p]) == "number") {
+							props[p].push(b[i][p]);
+						} else {
+							props[p].push(this.target[p] + Number(b[i][p])); //relative value
+						}
+					}
+				}
+				for (p in props) {
+					if (typeof(this.vars[p]) == "number") {
+						props[p].push(this.vars[p]);
+					} else {
+						props[p].push(this.target[p] + Number(this.vars[p])); //relative value
+					}
+					delete this.vars[p]; //to prevent TweenLite from doing normal tweens on these Bezier values.
+				}
+				addSubTween("bezierThrough", bProxy, {t:0}, {t:1}, {props:parseBeziers(props, true), target:this.target, orientToBezier:this.vars.orientToBezier});
+				
+			}
+			/* potential new feature - quaternion tweening
+			if (this.vars.quaternions != undefined) {
+				var angle:Number, q1:Object, q2:Object, x1:Number, x2:Number, y1:Number, y2:Number, z1:Number, z2:Number, w1:Number, w2:Number, theta:Number;
+				for (p in this.vars.quaternions) {
+					q1 = this.target[p];
+					q2 = this.vars.quaternions[p];
+					x1 = q1.x; x2 = q2.x;
+					y1 = q1.y; y2 = q2.y;
+					z1 = q1.z; z2 = q2.z;
+					w1 = q1.w; w2 = q2.w;
+					angle = x1 * x2 + y1 * y2 + z1 * z2 + w1 * w2;
+					if (angle < 0) {
+						x1 *= -1;
+						y1 *= -1;
+						z1 *= -1;
+						w1 *= -1;
+						angle *= -1;
+					}
+					if ((angle + 1) < 0.000001) {
+						y2 = -y1;
+						x2 = x1;
+						w2 = -w1;
+						z2 = z1;
+					}
+					theta = Math.acos(angle);
+					addSubTween("quaternions", quaternionProxy, {t:0}, {t:1}, {target:q1, prop:p, x1:x1, x2:x2, y1:y1, y2:y2, z1:z1, z2:z2, w1:w1, w2:w2, angle:angle, theta:theta, invTheta:1 / Math.sin(theta)});
+				}
+			}
+			*/
+			if (this.vars.hexColors != undefined && typeof(this.vars.hexColors) == "object") {
+				for (p in this.vars.hexColors) {
+					addSubTween("hexColors", hexColorsProxy, {r:this.target[p] >> 16, g:(this.target[p] >> 8) & 0xff, b:this.target[p] & 0xff}, {r:(this.vars.hexColors[p] >> 16), g:(this.vars.hexColors[p] >> 8) & 0xff, b:(this.vars.hexColors[p] & 0xff)}, {prop:p, target:this.target});
+				}
+			}
+			super.initTweenVals(true, $reservedProps);
+		}
+		
+		public function pause():void {
+			if (isNaN(this.pauseTime)) {
+				this.pauseTime = currentTime;
+				this.startTime = 999999999999999; //required for OverwriteManager
+				this.enabled = false;
+				_pausedTweens[this] = this;
+			}
+		}
+		
+		public function resume():void {
+			this.enabled = true;
+			if (!isNaN(this.pauseTime)) {
+				var d:Number = this.delay * (1000 / this.combinedTimeScale); //delay in milliseconds
+				this.initTime += currentTime - this.pauseTime;
+				this.startTime = this.initTime + d;
+				this.pauseTime = NaN;
+				if (!this.started && currentTime >= this.startTime) {
+					activate(); //triggers onStart if necessary and initTweenVals()
+				} else {
+					this.active = this.started;
+				}
+				_pausedTweens[this] = null;
+				delete _pausedTweens[this];
+			}
+		}
+		
+		public function restart($includeDelay:Boolean=false):void {
+			if ($includeDelay) {
+				this.initTime = currentTime;
+				this.startTime = currentTime + (this.delay * (1000 / this.combinedTimeScale));
+			} else {
+				this.startTime = currentTime;
+				this.initTime = currentTime - (this.delay * (1000 / this.combinedTimeScale));
+			}
+			if (this.target != this.vars.onComplete) { //protects delayedCall()s from being rendered.
+				render(this.startTime); 
+			}
+			this.pauseTime = NaN;
+			this.enabled = true;
+		}
+		
+		public function reverse($adjustDuration:Boolean=true, $forcePlay:Boolean=true):void {
+			this.ease = (this.vars.ease == this.ease) ? reverseEase : this.vars.ease;
+			var p:Number = this.progress;			
+			if ($adjustDuration && p > 0) {
+				this.startTime = currentTime - ((1 - p) * this.duration * 1000 / this.combinedTimeScale);
+				this.initTime = this.startTime - (this.delay * (1000 / this.combinedTimeScale));
+			}
+			if ($forcePlay != false) {
+				if (p < 1) {
+					resume();
+				} else {
+					restart();
+				}
+			}
+		}
+		
+		public function reverseEase($t:Number, $b:Number, $c:Number, $d:Number):Number {
+			return this.vars.ease($d - $t, $b, $c, $d);
+		}
+	
+		public function invalidate($adjustStartValues:Boolean=true):void { //forces the vars to be re-parsed and immediately re-rendered
+			if (this.initted) {
+				var p:Number = this.progress;
+				if (!$adjustStartValues && p != 0) {
+					this.progress = 0;
+				}
+				this.tweens = [];
+				_subTweens = [];
+				_specialVars = (this.vars.isTV == true) ? this.vars.exposedProps : this.vars; //for TweenLiteVars, TweenFilterLiteVars, and TweenMaxVars
+				initTweenVals();
+				_timeScale = this.vars.timeScale || 1;
+				this.combinedTimeScale = _timeScale * _globalTimeScale;
+				this.delay = this.vars.delay || 0;
+				if (isNaN(this.pauseTime)) {
+					this.startTime = this.initTime + (this.delay * 1000 / this.combinedTimeScale);
+				}
+				if (this.vars.onCompleteListener != null || this.vars.onUpdateListener != null || this.vars.onStartListener != null) {
+					if (_dispatcher != null) {
+						this.vars.onStart = _callbacks.onStart;
+						this.vars.onUpdate = _callbacks.onUpdate;
+						this.vars.onComplete = _callbacks.onComplete;
+						_dispatcher = null;
+					}
+					initDispatcher();
+				}
+				if (p != 0) {
+					if ($adjustStartValues) {
+						adjustStartValues();
+					} else {
+						this.progress = p;
+					}
+				}
+			}
+		}
+		
+		public function setDestination($property:String, $value:*, $adjustStartValues:Boolean=true):void {
+			var p:Number = this.progress;
+			if (this.vars[$property] != undefined && this.initted) {
+				if (!$adjustStartValues && p != 0) {
+					for (var i:int = this.tweens.length - 1; i > -1; i--) {
+						if (this.tweens[i][4] == $property) {
+							this.tweens[i][0][this.tweens[i][1]] = this.tweens[i][2]; //return it to its start value (tween index values: [object, property, start, change, name])
+						}
+					}
+				}
+				var v:Object = {};
+				v[$property] = 1;
+				killVars(v);
+			}
+			this.vars[$property] = $value;
+			if (this.initted) {
+				var varsOld:Object = this.vars;
+				var tweensOld:Array = this.tweens;
+				var subTweensOld:Array = _subTweens;
+				this.vars = {};
+				this.tweens = [];
+				_subTweens = [];
+				this.vars[$property] = $value;
+				initTweenVals();
+				if (this.ease != reverseEase && varsOld.ease is Function) {
+					this.ease = varsOld.ease;
+				}
+				if ($adjustStartValues && p != 0) {
+					adjustStartValues();
+				}
+				this.vars = varsOld;
+				this.tweens = tweensOld.concat(this.tweens);
+				_subTweens = subTweensOld.concat(_subTweens);
+			}
+		}
+		
+		protected function adjustStartValues():void { //forces the current
+			var p:Number = this.progress;
+			if (p != 0) {
+				var factor:Number = 1 / (1 - this.ease(p * this.duration, 0, 1, this.duration));
+				var endValue:Number, tp:Object, i:int;
+				for (i = this.tweens.length - 1; i > -1; i--) {
+					tp = this.tweens[i];
+					endValue = tp[2] + tp[3]; //[object, property, start, change, name]
+					tp[3] = (endValue - tp[0][tp[1]]) * factor;
+					tp[2] = endValue - tp[3];
+				}
+			}
+		}
+		
+		public function killProperties($names:Array):void {
+			var v:Object = {}, i:int;
+			for (i = $names.length - 1; i > -1; i--) {
+				if (this.vars[$names[i]] != null) {
+					v[$names[i]] = 1;
+				}
+			}
+			killVars(v);
+		}
+		
+		override public function complete($skipRender:Boolean = false):void {
+			if (this.vars.yoyo == true || this.vars.loop == true) {
+				if (this.vars.yoyo == true) { //extra validation in case killTweensOf() was called in an onComplete.
+					this.ease = (this.vars.ease == this.ease) ? reverseEase : this.vars.ease;
+				}
+				this.startTime = currentTime;
+				this.initTime = this.startTime - (this.delay * (1000 / this.combinedTimeScale));
+			} else if (this.vars.persist == true) {
+				pause();
+			}
+			super.complete($skipRender);
+		}
+		
+		
+//---- EVENT DISPATCHING ----------------------------------------------------------------------------------------------------------
+		
+		protected function initDispatcher():void {
+			if (_dispatcher == null) {
+				_dispatcher = new EventDispatcher(this);
+				_callbacks = {onStart:this.vars.onStart, onUpdate:this.vars.onUpdate, onComplete:this.vars.onComplete}; //store the originals
+				var v:Object = {};
+				for (var p:String in this.vars) {
+					v[p] = this.vars[p]; //Just in case the same vars Object is reused for multiple tweens, we need to copy all the properties and create a duplicate so that we don't interfere with other tweens.
+				}
+				this.vars = v;
+				this.vars.onStart = onStartDispatcher;
+				this.vars.onComplete = onCompleteDispatcher;
+				
+				if (this.vars.onStartListener is Function) {
+					_dispatcher.addEventListener(TweenEvent.START, this.vars.onStartListener, false, 0, true);
+				}
+				if (this.vars.onUpdateListener is Function) {
+					_dispatcher.addEventListener(TweenEvent.UPDATE, this.vars.onUpdateListener, false, 0, true);
+					this.vars.onUpdate = onUpdateDispatcher; //To improve performance, we only want to add UPDATE dispatching if absolutely necessary.
+					_hasUpdate = true;
+				}
+				if (this.vars.onCompleteListener is Function) {
+					_dispatcher.addEventListener(TweenEvent.COMPLETE, this.vars.onCompleteListener, false, 0, true);
+				}
+			}
+		}
+		
+		protected function onStartDispatcher(... $args):void {
+			if (_callbacks.onStart != null) {
+				_callbacks.onStart.apply(null, this.vars.onStartParams);
+			}
+			_dispatcher.dispatchEvent(new TweenEvent(TweenEvent.START));
+		}
+		
+		protected function onUpdateDispatcher(... $args):void {
+			if (_callbacks.onUpdate != null) {
+				_callbacks.onUpdate.apply(null, this.vars.onUpdateParams);
+			}
+			_dispatcher.dispatchEvent(new TweenEvent(TweenEvent.UPDATE));
+		}
+		
+		protected function onCompleteDispatcher(... $args):void {
+			if (_callbacks.onComplete != null) {
+				_callbacks.onComplete.apply(null, this.vars.onCompleteParams);
+			}
+			_dispatcher.dispatchEvent(new TweenEvent(TweenEvent.COMPLETE));
+		}
+		
+		public function addEventListener($type:String, $listener:Function, $useCapture:Boolean = false, $priority:int = 0, $useWeakReference:Boolean = false):void {
+			if (_dispatcher == null) {
+				initDispatcher();
+			}
+			if ($type == TweenEvent.UPDATE && this.vars.onUpdate != onUpdateDispatcher) { //To improve performance, we only want to add UPDATE dispatching if absolutely necessary.
+				this.vars.onUpdate = onUpdateDispatcher;
+				_hasUpdate = true;
+			}
+			_dispatcher.addEventListener($type, $listener, $useCapture, $priority, $useWeakReference);
+		}
+		
+		public function removeEventListener($type:String, $listener:Function, $useCapture:Boolean = false):void {
+			if (_dispatcher != null) {
+				_dispatcher.removeEventListener($type, $listener, $useCapture);
+			}
+		}
+		
+		public function hasEventListener($type:String):Boolean {
+			if (_dispatcher == null) {
+				return false;
+			} else {
+				return _dispatcher.hasEventListener($type);
+			}
+		}
+		
+		public function willTrigger($type:String):Boolean {
+			if (_dispatcher == null) {
+				return false;
+			} else {
+				return _dispatcher.willTrigger($type);
+			}
+		}
+		
+		public function dispatchEvent($e:Event):Boolean {
+			if (_dispatcher == null) {
+				return false;
+			} else {
+				return _dispatcher.dispatchEvent($e);
+			}
+		}
+		
+		
+//---- STATIC FUNCTIONS -----------------------------------------------------------------------------------------------------------
 		
 		public static function to($target:Object, $duration:Number, $vars:Object):TweenMax {
 			return new TweenMax($target, $duration, $vars);
@@ -311,7 +705,8 @@ package gs {
 			return new TweenMax($target, $duration, $vars);
 		}
 	
-		public static function allTo($targets:Array, $duration:Number, $vars:Object):Array { //vars takes the same special parameters as to() and from() calls, and ALSO "delayIncrement", "onCompleteAll", "onCompleteAllParams", and "onCompleteAllScope"
+		public static function allTo($targets:Array, $duration:Number, $vars:Object):Array { //vars takes the same special parameters as to() and from() calls, and ALSO "delayIncrement", "onCompleteAll" and "onCompleteAllParams"
+			trace("WARNING: TweenMax.allTo() and TweenMax.allFrom() have been deprecated in favor of the much more powerful and flexible TweenGroup class. See http://blog.greensock.com/tweengroup/ for more details. Future versions of TweenMax may not include allTo() and allFrom() (to conserve file size).");
 			if ($targets.length == 0) {
 				return [];
 			}
@@ -356,7 +751,6 @@ package gs {
 			if ($vars.onCompleteAllListener is Function) {
 				a[a.length - 1].addEventListener(TweenEvent.COMPLETE, $vars.onCompleteAllListener);
 			}
-			
 			return a;
 		}
 		
@@ -373,16 +767,19 @@ package gs {
 			}
 		}
 		
-		public static function sequence($target:Object, $tweens:Array):Array { //Note: make sure each tween object has a "time" parameter (duration in seconds).
+		public static function sequence($target:Object, $tweens:Array):Array { 
 			for (var i:uint = 0; i < $tweens.length; i++) {
 				$tweens[i].target = $target;
 			}
 			return multiSequence($tweens);
+			
 		}
 		
-		public static function multiSequence($tweens:Array):Array { //Note: make sure each tween object has a "target" parameter and a "time" parameter ("time" is in seconds)
+		public static function multiSequence($tweens:Array):Array {
+			trace("WARNING: TweenMax.multiSequence() and TweenMax.sequence() have been deprecated in favor of the much more powerful and flexible TweenGroup class. See http://blog.greensock.com/tweengroup/ for more details. Future versions of TweenMax may not include sequence() and multiSequence() (to conserve file size).");
 			var dict:Dictionary = new Dictionary();
 			var a:Array = [];
+			var overwriteMode:int = TweenLite.overwriteManager.mode;
 			var totalDelay:Number = 0;
 			var tw:Object, tgt:Object, dl:Number, t:Number, i:uint, o:Object, p:String;
 			for (i = 0; i < $tweens.length; i++) {
@@ -398,13 +795,12 @@ package gs {
 				tgt = o.target;
 				delete o.target;
 				
-				if (dict[tgt] == undefined) { //By default, we should set overwrite to true for the FIRST tween of each Object. Of course subsequent tweens shouldn't ovewrite each other.
-					if (o.overwrite == undefined) {
-						o.overwrite = true;
+				if (overwriteMode == 1) {
+					if (dict[tgt] == undefined) { //By default, we should set overwrite to true for the FIRST tween of each Object. Of course subsequent tweens shouldn't ovewrite each other.
+						dict[tgt] = o;
+					} else {
+						o.overwrite = 2;
 					}
-					dict[tgt] = o;
-				} else {
-					o.overwrite = false;
 				}
 				
 				a[a.length] = new TweenMax(tgt, t, o);
@@ -413,109 +809,11 @@ package gs {
 			return a;
 		}
 		
-		public static function delayedCall($delay:Number, $onComplete:Function, $onCompleteParams:Array = null):TweenMax {
-			return new TweenMax($onComplete, 0, {delay:$delay, onComplete:$onComplete, onCompleteParams:$onCompleteParams, overwrite:false});
+		public static function delayedCall($delay:Number, $onComplete:Function, $onCompleteParams:Array=null, $persist:Boolean=false):TweenMax {
+			return new TweenMax($onComplete, 0, {delay:$delay, onComplete:$onComplete, onCompleteParams:$onCompleteParams, persist:$persist, overwrite:0});
 		}
 		
-		override public function initTweenVals($hrp:Boolean = false, $reservedProps:String = ""):void {
-			$reservedProps += " hexColors bezier bezierThrough orientToBezier quaternions onCompleteAll onCompleteAllParams ";
-			var p:String, i:int, curProp:Object, props:Object, b:Array;
-			var bProxy:Function = bezierProxy; 
-			if (this.vars.orientToBezier == true) {
-				this.vars.orientToBezier = [["x", "y", "rotation", 0]];
-				bProxy = bezierProxy2;
-			} else if (this.vars.orientToBezier is Array) {
-				bProxy = bezierProxy2;
-			}
-			if (this.vars.bezier != undefined && (this.vars.bezier is Array)) {
-				props = {};
-				b = this.vars.bezier;
-				for (i = 0; i < b.length; i++) {
-					for (p in b[i]) {
-						if (props[p] == undefined) {
-							props[p] = [this.target[p]];
-						}
-						if (typeof(b[i][p]) == "number") {
-							props[p].push(b[i][p]);
-						} else {
-							props[p].push(this.target[p] + Number(b[i][p])); //relative value
-						}
-					}
-				}
-				for (p in props) {
-					if (typeof(this.vars[p]) == "number") {
-						props[p].push(this.vars[p]);
-					} else {
-						props[p].push(this.target[p] + Number(this.vars[p])); //relative value
-					}
-					delete this.vars[p]; //to prevent TweenLite from doing normal tweens on these Bezier values.
-				}
-				addSubTween(bProxy, {t:0}, {t:1}, {props:parseBeziers(props, false), target:this.target, orientToBezier:this.vars.orientToBezier});
-			}
-			if (this.vars.bezierThrough != undefined && (this.vars.bezierThrough is Array)) {
-				props = {};
-				b = this.vars.bezierThrough;
-				for (i = 0; i < b.length; i++) {
-					for (p in b[i]) {
-						if (props[p] == undefined) {
-							props[p] = [this.target[p]]; //starting point
-						}
-						if (typeof(b[i][p]) == "number") {
-							props[p].push(b[i][p]);
-						} else {
-							props[p].push(this.target[p] + Number(b[i][p])); //relative value
-						}
-					}
-				}
-				for (p in props) {
-					if (typeof(this.vars[p]) == "number") {
-						props[p].push(this.vars[p]);
-					} else {
-						props[p].push(this.target[p] + Number(this.vars[p])); //relative value
-					}
-					delete this.vars[p]; //to prevent TweenLite from doing normal tweens on these Bezier values.
-				}
-				addSubTween(bProxy, {t:0}, {t:1}, {props:parseBeziers(props, true), target:this.target, orientToBezier:this.vars.orientToBezier});
-				
-			}
-			/* potential new feature - quaternion tweening
-			if (this.vars.quaternions != undefined) {
-				var angle:Number, q1:Object, q2:Object, x1:Number, x2:Number, y1:Number, y2:Number, z1:Number, z2:Number, w1:Number, w2:Number, theta:Number;
-				for (p in this.vars.quaternions) {
-					q1 = this.target[p];
-					q2 = this.vars.quaternions[p];
-					x1 = q1.x; x2 = q2.x;
-					y1 = q1.y; y2 = q2.y;
-					z1 = q1.z; z2 = q2.z;
-					w1 = q1.w; w2 = q2.w;
-					angle = x1 * x2 + y1 * y2 + z1 * z2 + w1 * w2;
-					if (angle < 0) {
-						x1 *= -1;
-						y1 *= -1;
-						z1 *= -1;
-						w1 *= -1;
-						angle *= -1;
-					}
-					if ((angle + 1) < 0.000001) {
-						y2 = -y1;
-						x2 = x1;
-						w2 = -w1;
-						z2 = z1;
-					}
-					theta = Math.acos(angle);
-					addSubTween(quaternionProxy, {t:0}, {t:1}, {target:q1, prop:p, x1:x1, x2:x2, y1:y1, y2:y2, z1:z1, z2:z2, w1:w1, w2:w2, angle:angle, theta:theta, invTheta:1 / Math.sin(theta)});
-				}
-			}
-			*/
-			if (this.vars.hexColors != undefined && typeof(this.vars.hexColors) == "object") {
-				for (p in this.vars.hexColors) {
-					addSubTween(hexColorsProxy, {r:this.target[p] >> 16, g:(this.target[p] >> 8) & 0xff, b:this.target[p] & 0xff}, {r:(this.vars.hexColors[p] >> 16), g:(this.vars.hexColors[p] >> 8) & 0xff, b:(this.vars.hexColors[p] & 0xff)}, {prop:p, target:this.target});
-				}
-			}
-			super.initTweenVals(true, $reservedProps);
-		}
-		
-		public static function parseBeziers($props:Object, $through:Boolean = false):Object { //$props object should contain a property for each one you'd like bezier paths for. Each property should contain a single array with the numeric point values (i.e. props.x = [12,50,80] and props.y = [50,97,158]). It'll return a new object with an array of values for each property, containing a "s" (start), "cp" (control point), and "e" (end) property. (i.e. returnObject.x = [{s:12, cp:32, e:50}, {s:50, cp:65, e:80}])
+		public static function parseBeziers($props:Object, $through:Boolean=false):Object { //$props object should contain a property for each one you'd like bezier paths for. Each property should contain a single array with the numeric point values (i.e. props.x = [12,50,80] and props.y = [50,97,158]). It'll return a new object with an array of values for each property, containing a "s" (start), "cp" (control point), and "e" (end) property. (i.e. returnObject.x = [{s:12, cp:32, e:50}, {s:50, cp:65, e:80}])
 			var i:int, a:Array, b:Object, p:String;
 			var all:Object = {};
 			if ($through) {
@@ -538,7 +836,7 @@ package gs {
 					if (a.length > 3) {
 						b[b.length] = {s:a[0], cp:a[1], e:(a[1] + a[2]) / 2};
 						for (i = 2; i < a.length - 2; i++) {
-							b.push({s:b[i - 2].e, cp:a[i], e:(a[i] + a[i + 1]) / 2});
+							b[b.length] = {s:b[i - 2].e, cp:a[i], e:(a[i] + a[i + 1]) / 2};
 						}
 						b[b.length] = {s:b[b.length - 1].e, cp:a[a.length - 2], e:a[a.length - 1]};
 					} else if (a.length == 3) {
@@ -552,61 +850,42 @@ package gs {
 		}
 		
 		public static function getTweensOf($target:Object):Array {
-			var t:Dictionary = _all[$target];
-			var a:Array = [];
-			if(t != null) {
-				for (var p:Object in t) {
-					if (t[p].tweens != undefined) {
-						a[a.length] = t[p];
+			var a:Array = masterList[$target];
+			var toReturn:Array = [];
+			if(a != null) {
+				for (var i:int = a.length - 1; i > -1; i--) {
+					if (!a[i].gc) {
+						toReturn[toReturn.length] = a[i];
 					}
 				}
 			}
-			return a;
+			return toReturn;
 		}
 		
 		public static function isTweening($target:Object):Boolean {
 			var a:Array = getTweensOf($target);
 			for (var i:int = a.length - 1; i > -1; i--) {
-				if (a[i].active) {
+				if (a[i].active && !a[i].gc) {
 					return true;
 				}
 			}
 			return false;
 		}
 		
-		public function pause():void {
-			if (_pauseTime == -1) {
-				_pauseTime = _curTime;
-				_active = false;
-			}
-		}
-		
-		public function resume():void {
-			if (_pauseTime != -1) {
-				var gap:Number = _curTime - _pauseTime;
-				this.initTime += gap;
-				if (!isNaN(this.startTime)) {
-					this.startTime += gap;
-				}
-				_pauseTime = -1;
-				if ((_curTime - this.initTime) / 1000 > this.delay) {
-					_active = true;
-				}
-			}
-		}
-		
 		public static function getAllTweens():Array {
-			var a:Dictionary = _all; //speeds things up slightly
-			var all:Array = [];
-			var p:Object, tw:Object;
-			for (p in a) {
-				for (tw in a[p]) {
-					if (a[p][tw] != undefined) {
-						all[all.length] = a[p][tw];
+			var ml:Dictionary = masterList; //speeds things up slightly
+			var toReturn:Array = [], a:Array, i:int, tween:TweenLite;
+			for each (a in ml) {
+				for (i = a.length - 1; i > -1; i--) {
+					if (!a[i].gc) {
+						toReturn[toReturn.length] = a[i];
 					}
 				}
 			}
-			return all;
+			for each (tween in _pausedTweens) {
+				toReturn[toReturn.length] = tween;
+			}
+			return toReturn;
 		}
 		
 		public static function killAllTweens($complete:Boolean = false):void {
@@ -619,12 +898,15 @@ package gs {
 		
 		public static function killAll($complete:Boolean = false, $tweens:Boolean = true, $delayedCalls:Boolean = true):void {
 			var a:Array = getAllTweens();
+			var isDC:Boolean; //is delayedCall
 			for (var i:int = a.length - 1; i > -1; i--) {
-				if ((a[i].target is Function) == $delayedCalls || (a[i].target is Function) != $tweens) {
+				isDC = (a[i].target == a[i].vars.onComplete);
+				if (isDC == $delayedCalls || isDC != $tweens) {
 					if ($complete) {
-						a[i].complete();
+						a[i].complete(false);
+						a[i].clear();
 					} else {
-						TweenLite.removeTween(a[i]);
+						TweenLite.removeTween(a[i], true);
 					}
 				}
 			}
@@ -640,124 +922,48 @@ package gs {
 		
 		public static function changePause($pause:Boolean, $tweens:Boolean = true, $delayedCalls:Boolean = false):void {
 			var a:Array = getAllTweens();
+			var isDC:Boolean; //is delayedCall
 			for (var i:int = a.length - 1; i > -1; i--) {
-				if (a[i] is TweenMax && ((a[i].target is Function) == $delayedCalls || (a[i].target is Function) != $tweens)) {
+				isDC = (a[i].target == a[i].vars.onComplete);
+				if (a[i] is TweenMax && (isDC == $delayedCalls || isDC != $tweens)) {
 					a[i].paused = $pause;
 				}
 			}
 		}
-		
-		
-//---- EVENT DISPATCHING ----------------------------------------------------------------------------------------------------------
-		
-		protected function initDispatcher():void {
-			if (_dispatcher == null) {
-				_dispatcher = new EventDispatcher(this);
-				_callbacks = {onStart:this.vars.onStart, onUpdate:this.vars.onUpdate, onComplete:this.vars.onComplete}; //store the originals
-				var v:Object = {};
-				for (var p:String in this.vars) {
-					v[p] = this.vars[p]; //Just in case the same vars Object is reused for multiple tweens, we need to copy all the properties and create a duplicate so that we don't interfere with other tweens.
-				}
-				this.vars = v;
-				this.vars.onStart = onStartDispatcher;
-				this.vars.onUpdate = onUpdateDispatcher;
-				this.vars.onComplete = onCompleteDispatcher;
-				
-				if (this.vars.onStartListener is Function) {
-					_dispatcher.addEventListener(TweenEvent.START, this.vars.onStartListener, false, 0, true);
-				}
-				if (this.vars.onUpdateListener is Function) {
-					_dispatcher.addEventListener(TweenEvent.UPDATE, this.vars.onUpdateListener, false, 0, true);
-				}
-				if (this.vars.onCompleteListener is Function) {
-					_dispatcher.addEventListener(TweenEvent.COMPLETE, this.vars.onCompleteListener, false, 0, true);
-				}
-			}
-		}
-		
-		protected function onStartDispatcher(... $args):void {
-			if (_callbacks.onStart != null) {
-				_callbacks.onStart.apply(null, this.vars.onStartParams);
-			}
-			_dispatcher.dispatchEvent(new TweenEvent(TweenEvent.START));
-		}
-		
-		protected function onUpdateDispatcher(... $args):void {
-			if (_callbacks.onUpdate != null) {
-				_callbacks.onUpdate.apply(null, this.vars.onUpdateParams);
-			}
-			_dispatcher.dispatchEvent(new TweenEvent(TweenEvent.UPDATE));
-		}
-		
-		protected function onCompleteDispatcher(... $args):void {
-			if (_callbacks.onComplete != null) {
-				_callbacks.onComplete.apply(null, this.vars.onCompleteParams);
-			}
-			_dispatcher.dispatchEvent(new TweenEvent(TweenEvent.COMPLETE));
-		}
-		
-		public function addEventListener($type:String, $listener:Function, $useCapture:Boolean = false, $priority:int = 0, $useWeakReference:Boolean = false):void {
-			if (_dispatcher == null) {
-				initDispatcher();
-			}
-			_dispatcher.addEventListener($type, $listener, $useCapture, $priority, $useWeakReference);
-		}
-		
-		public function removeEventListener($type:String, $listener:Function, $useCapture:Boolean = false):void {
-			if (_dispatcher != null) {
-				_dispatcher.removeEventListener($type, $listener, $useCapture);
-			}
-		}
-		
-		public function hasEventListener($type:String):Boolean {
-			if (_dispatcher == null) {
-				return false;
-			} else {
-				return _dispatcher.hasEventListener($type);
-			}
-		}
-		
-		public function willTrigger($type:String):Boolean {
-			if (_dispatcher == null) {
-				return false;
-			} else {
-				return _dispatcher.willTrigger($type);
-			}
-		}
-		
-		public function dispatchEvent($e:Event):Boolean {
-			if (_dispatcher == null) {
-				return false;
-			} else {
-				return _dispatcher.dispatchEvent($e);
-			}
-		}
-		
+	
+	
 
 //---- PROXY FUNCTIONS ------------------------------------------------------------------------------------------------------------
 	
-		public static function hexColorsProxy($o:Object):void {
-			$o.info.target[$o.info.prop] = ($o.target.r << 16 | $o.target.g << 8 | $o.target.b);
+		public static function hexColorsProxy($o:Object, $time:Number=0):void {
+			$o.info.target[$o.info.prop] = uint($o.target.r << 16 | $o.target.g << 8 | $o.target.b);
 		}
-		public static function bezierProxy($o:Object):void {
+		public static function bezierProxy($o:Object, $time:Number=0):void {
 			var factor:Number = $o.target.t, props:Object = $o.info.props, tg:Object = $o.info.target, i:int, p:String, b:Object, t:Number, segments:uint;
-			for (p in props) {
-				segments = props[p].length;
-				if (factor < 0) {
-					i = 0;
-				} else if (factor >= 1) {
-					i = segments - 1;
-				} else {
-					i = int(segments * factor);
+			if (factor == 1) { //to make sure the end values are EXACTLY what they need to be.
+				for (p in props) {
+					i = props[p].length - 1;
+					tg[p] = props[p][i].e;
 				}
-				t = (factor - (i * (1 / segments))) * segments;
-				b = props[p][i];
-				tg[p] = b.s + t * (2 * (1 - t) * (b.cp - b.s) + t * (b.e - b.s));
+			} else {
+				for (p in props) {
+					segments = props[p].length;
+					if (factor < 0) {
+						i = 0;
+					} else if (factor >= 1) {
+						i = segments - 1;
+					} else {
+						i = int(segments * factor);
+					}
+					t = (factor - (i * (1 / segments))) * segments;
+					b = props[p][i];
+					tg[p] = b.s + t * (2 * (1 - t) * (b.cp - b.s) + t * (b.e - b.s));
+				}
 			}
 		}
 		
-		public static function bezierProxy2($o:Object):void { //Only for orientToBezier tweens. Separated it for speed.
-			bezierProxy($o);
+		public static function bezierProxy2($o:Object, $time:Number=0):void { //Only for orientToBezier tweens. Separated it for speed.
+			bezierProxy($o, $time);
 			var future:Object = {};
 			var tg:Object = $o.info.target;
 			$o.info.target = future;
@@ -777,7 +983,7 @@ package gs {
 		}
 		
 		/* potential new feature - slerp quaternion tweening for 3D rotation
-		public static function quaternionProxy($o:Object):void {
+		public static function quaternionProxy($o:Object, $time:Number=0):void {
 			var info:Object = $o.info, t:Number = $o.target.t, tg:* = info.target, scale:Number, invScale:Number;
 			if ((info.angle + 1) > 0.000001) {
 				 if ((1 - info.angle) >= 0.000001) {
@@ -799,67 +1005,56 @@ package gs {
 		*/
 	
 //---- GETTERS / SETTERS ----------------------------------------------------------------------------------------------------------
-	
-		override public function get active():Boolean {
-			if (_active) {
-				return true;
-			} else if (_pauseTime != -1) {
-				return false;
-			} else if ((_curTime - this.initTime) / 1000 > this.delay) {
-				_active = true;
-				this.startTime = this.initTime + (this.delay * 1000);
-				if (!_initted) {
-					initTweenVals();
-				} else if (this.vars.visible != undefined && _isDisplayObject) {
-					this.target.visible = true;
-				}
-				if (this.vars.onStart != null) {
-					this.vars.onStart.apply(null, this.vars.onStartParams);
-				}
-				if (this.duration == 0.001) { //In the constructor, if the duration is zero, we shift it to 0.001 because the easing functions won't work otherwise. We need to offset the this.startTime to compensate too.
-					this.startTime -= 1;
-				}
-				return true;
-			} else {
-				return false;
-			}
-		}
-	
+		
 		public function get paused():Boolean {
-			if (_pauseTime != -1) {
-				return true;
-			}
-			return false;
+			return (this.startTime == 999999999999999);
 		}
 		public function set paused($b:Boolean):void {
 			if ($b) {
-				this.pause();
+				pause();
 			} else {
-				this.resume();
+				resume();
 			}
 		}
+		public function get reversed():Boolean {
+			return (this.ease == reverseEase);
+		}
+		public function set reversed($b:Boolean):void {
+			if (this.reversed != $b) {
+				reverse();
+			}
+		}
+		public static function set globalTimeScale($n:Number):void {
+			setGlobalTimeScale($n);
+		}
+		public static function get globalTimeScale():Number {
+			return _globalTimeScale;
+		}
 		public function get progress():Number {
-			var n:Number = ((_curTime - this.startTime) / 1000) / this.duration || 0;
-			if (n > 1) {
+			var t:Number = (!isNaN(this.pauseTime)) ? this.pauseTime : currentTime;
+			var p:Number = (((t - this.initTime) / 1000) - this.delay / this.combinedTimeScale) / this.duration * this.combinedTimeScale;
+			if (p > 1) {
 				return 1;
+			} else if (p < 0) {
+				return 0;
 			} else {
-				return n;
+				return p;
 			}
 		}
 		public function set progress($n:Number):void {
-			var t:Number = _curTime - ((this.duration * $n) * 1000);
-			this.initTime = t - (this.delay * 1000);
-			var s:Boolean = this.active; //Just to trigger all the onStart stuff.
-			this.startTime = t;
-			render(_curTime);
-			var v:* = this.vars.visible;
-			if (this.vars.isTV == true) {
-				v = this.vars.exposedProps.visible;
+			this.startTime = currentTime - ((this.duration * $n) * 1000);
+			this.initTime = this.startTime - (this.delay * (1000 / this.combinedTimeScale));
+			if (!this.started) {
+				activate();//Just to trigger all the onStart stuff and make sure initTweenVals() has been called.
 			}
-			if (v != null && _isDisplayObject && $n < 1) {
-				this.target.visible = Boolean(v);
-			}
+			render(currentTime);
 			
+			if (!isNaN(this.pauseTime)) {
+				this.pauseTime = currentTime;
+				this.startTime = 999999999999999; //required for OverwriteManager
+				this.active = false;
+			}
 		}
+		
 	}
 }

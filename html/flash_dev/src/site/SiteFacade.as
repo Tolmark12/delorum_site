@@ -27,6 +27,7 @@ public class SiteFacade extends Facade implements IFacade
 	public static const NAV_BTN_CLICK:String 			= "nav_btn_click";			// Passes the index of the btn clicked
 	public static const CUR_BTN_CLICKED_AGAIN:String 	= "cur_btn_clicked_again";	// Passes the index of the btn clicked (when button is alread active and clicked)
 	public static const HOME_BTN_CLICK:String 			= "home_btn_click";			// Called when logo is clicked 
+	public static const CHANGE_SECTION:String 			= "change_section";			// pass like so: "portfolio/idahoan"
 	
 	// Changing the color Scheme
 	public static const CHANGE_COLOR_SCHEME:String 		= "change_color_scheme";	// Called when colors should change
@@ -36,7 +37,12 @@ public class SiteFacade extends Facade implements IFacade
 	public static const UNLOAD_COMPLETE:String 			= "unload_complete";		// Called when unload of current section finished
 	public static const LOAD_NEW_SECTION:String 		= "load_new_sect";			// Called to begin loading new section
 	                                                                            	
-	// Portfolio                                                                	
+	
+	
+	// SPECIFIC PAGES
+	// -- Home
+	public static const HOME_TEASER_XML_PARSED:String 	= "home_teaser_xml_parsed";
+	// -- Portfolio                                                                	
 	public static const INIT_PORTFOLIO:String 			= "init_portfolio";			// Called to initialize the portfolio
 	public static const PROJECT_STUB_CLICK:String 		= "project_stub_click";		// Called when a project stub is clicked
 	public static const DEACTIVATE_STUB_CLICK:String 	= "deactivate_stub_click";
@@ -92,6 +98,7 @@ public class SiteFacade extends Facade implements IFacade
 		registerCommand( HIDE_CASE_STUDY_CLICK, HideCaseStudyClick	 	);
 		registerCommand( LOAD_CSS, LoadCss							 	);
 		registerCommand( CSS_LOADED, CssLoaded						 	);
+		registerCommand( CHANGE_SECTION, ChangeSection					);
 		
 	}
 

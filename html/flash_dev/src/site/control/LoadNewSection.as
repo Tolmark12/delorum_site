@@ -43,6 +43,17 @@ public class LoadNewSection extends SimpleCommand implements ICommand
 				portfolioProxy.loadPortfolioXml( navItem.xmlPath );
 			break;
 			
+			case "home" :
+				var homeMediator:HomeMediator = new HomeMediator();
+				facade.registerMediator( homeMediator );
+				homeMediator.make();
+				stageMediator.addNewSection( homeMediator );
+				
+				var homeProxy:HomeProxy = new HomeProxy();
+				facade.registerProxy( homeProxy );
+				homeProxy.loadXml( navItem.xmlPath );				
+			break;
+			
 			case "page":
 			
 				var temp:BaseSection = new BaseSection( "BASE" );

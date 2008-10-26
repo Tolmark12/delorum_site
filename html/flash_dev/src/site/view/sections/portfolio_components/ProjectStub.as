@@ -24,7 +24,7 @@ public class ProjectStub extends Sprite
 	
 	
 	// Physical characteristics
-	public static const BORDER_SIZE:Number  = 10;
+	public static const BORDER_SIZE:Number  = 0;
 	public static const WIDTH_TINY:Number 	= 224;	// These are the widths of the images at the
 	public static const WIDTH_SMALL:Number 	= 224;	// These are the widths of the images at the
 	public static const WIDTH_MEDIUM:Number	= 700;	// various screen resolutions. Small is when closed.
@@ -346,11 +346,6 @@ public class ProjectStub extends Sprite
 	private function _click ( e:Event ):void
 	{
 		this.dispatchEvent( new Event( _clickEvent ) );
-	}
-	
-	private function _fireLoadXmlEvent ( e:Event ):void
-	{
-		this.dispatchEvent( new Event( ProjectDetails.LOAD_PROJECT_XML ) );
 	}
 	
 	

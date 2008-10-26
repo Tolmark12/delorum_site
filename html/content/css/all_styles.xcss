@@ -55,7 +55,7 @@
 	
 	
 	<!--Pages     -->
-	<style id="plum"> 				h1{ color:#FFFFFF } p{color:#303030}</style>
+	<style id="plum"> 				row{ bgAlpha:0 } </style>
 	<style id="idahoan"> 			h1{ color:#FFFFFF } p{color:#000000}</style>
 	<style id="h_fudge_row"> 		p{  color:#DDD5CA }</style>
 	<style id="h_fudge_light"> 		p{  color:#85756E }</style>
@@ -64,8 +64,10 @@
 	<!--Pages END -->
 	
 	<!-- Pages shared -->
-	<style id="white">		h1{ color:#FFFFFF }</style>
+	<style id="white">			h1{ color:#FFFFFF }</style>
 	<style id="description">	p{ font-size:12 }</style>
+	<style id="padded">			row{ marginBottom:20; marginTop:20 }</style>
+	
 	<!-- Pages shared END0 -->
 	
 	
