@@ -25,12 +25,12 @@ public class ProjectStub extends Sprite
 	
 	// Physical characteristics
 	public static const BORDER_SIZE:Number  = 0;
-	public static const WIDTH_TINY:Number 	= 224;	// These are the widths of the images at the
-	public static const WIDTH_SMALL:Number 	= 224;	// These are the widths of the images at the
+	public static const WIDTH_TINY:Number 	= 190;	// These are the widths of the images at the
+	public static const WIDTH_SMALL:Number 	= 190;	// These are the widths of the images at the
 	public static const WIDTH_MEDIUM:Number	= 700;	// various screen resolutions. Small is when closed.
 	public static const WIDTH_LARGE:Number 	= 800;	// Medium is when browser < 1000 px. Large when > 1000px
 	
-	public static const HEIGHT:Number	 	= 243;	
+	public static const HEIGHT:Number	 	= 190;	
 	public static const HEIGHT_TINY:Number  = 50;
 	public static const HEIGHT_LARGE:Number = 351;
 	

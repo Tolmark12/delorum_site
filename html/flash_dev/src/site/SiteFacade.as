@@ -42,6 +42,8 @@ public class SiteFacade extends Facade implements IFacade
 	// SPECIFIC PAGES
 	// -- Home
 	public static const HOME_TEASER_XML_PARSED:String 	= "home_teaser_xml_parsed";
+	// -- About us
+	public static const ABOUT_US_XML_PARSED:String 		= "about_us_xml_parsed";
 	// -- Portfolio                                                                	
 	public static const INIT_PORTFOLIO:String 			= "init_portfolio";			// Called to initialize the portfolio
 	public static const PROJECT_STUB_CLICK:String 		= "project_stub_click";		// Called when a project stub is clicked

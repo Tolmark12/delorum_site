@@ -1,0 +1,112 @@
+<ABOUT>
+	<css>
+		h1{
+	   		display:block;
+	   		font-size:14;
+	   		color:#FFFFFF;
+	   		}
+	 	h2{
+	   		display:block;
+	   		font-size:12;
+	   		color:#FFFFFF;
+		}
+		p{
+			color:#222222;
+		}
+	</css>
+	<tags>
+		<tag>
+			<title>what</title>
+			<number>1</number>
+			<text>
+				<h1>ONLINE Strategy</h1>
+				<h2>Design & Production</h2>
+				<p>- Online Redesign & Launch</p>
+				<p>- Ecommerce</p>
+				<p>- Flash</p>
+				<p>- Rich Internet Applications</p>
+				<p>- Facebook Applications</p>
+
+				<h1>BRAND Strategy</h1>
+				<h2>Design & Production</h2>
+				<p>- Brand Reposition & Launch</p>
+				<p>- Identity</p>
+				<p>- Packaging</p>
+				<p>- Print Collateral</p>
+				<p>- Fleet Design</p>
+				<p>- Tradeshow & Retail</p>
+			</text>
+		</tag>
+		<tag>
+			<title>how</title>
+			<number>2</number>
+			<text>
+				<h1>A) RESEARCH</h1>
+				<p>We encourage clients to approach projects with an open mind, using data and objectives to inform solutions. Research helps validate or reshape preconceptions of the objective, audience, product or need. Typically, in a Research phase we seek to:</p>
+				<p>- Understand History and Context</p>
+				<p>- Conduct Field Research</p>
+				<p>- Identify Audiences</p>
+				<p>- Define Project Constraints</p>
+				<p>- Prioritize Objectives</p>
+				
+				<br/><h1>B) CONCEPT</h1>
+				<p>Our concept exploration draws from research, media, technology, positioning and strategy. The creative magic happens here. New and innovative concepts or messaging differentiate and attract customers. We explore various concepts by:</p>
+				<p>- Correlating Disparate Elements</p>
+				<p>- Questioning Conventions</p>
+				<p>- Questioning Limitations</p>
+				<p>- Brainstorming</p>
+				<p>- Abstract Visualization</p>
+				
+				<br/><h1>C) Design</h1>
+				<p>Design eliminates distracting elements, while balancing strategy, content and delivery. Successful design builds from and extends marketing objectives. This is where a project takes shape, is previewed, tested and approved. Tools that shape this stage include:</p>
+				<p>- Principles of Art and Design</p>
+				<p>- Dynamic, Appropriate Media</p>
+				<p>- Stylistic Differentiation</p>
+				<p>- Visual Messaging</p>
+				<p>- Consumer Testing</p>
+				
+				<br/><h1>D) Production</h1>
+				<p>Once a solution is approved, production begins. Our early planning and detailed approvals help avoid technical and budgetary surprises in production. During the production process, typcially we oversee:</p>
+				<p>- Budgets</p>
+				<p>- Deadlines</p>
+				<p>- Prototype Creation</p>
+				<p>- Production Scheduling</p>
+				<p>- Vendor Supervision</p>
+				<p>- Quality Control</p>
+			</text>
+		</tag>
+		<tag>
+			<title>who</title>
+			<number>3</number>
+			<text>
+				<h1>ERIC GRAYBILL</h1>
+				<h2>Creative director</h2>
+				<p>Eric’s early working years were spent in Los Angeles and Arizona. He has worked for clients in industries ranging from health care to technology and higher education. Eric’s design has been recognized in both local and national competitions. In 2005, Eric relocated his family in Idaho to escape the Arizona summers, enjoy the outdoors and launch Delorum.</p>
+				
+				<br/><h1>MARK PARSON</h1>
+				<h2>Interactive Development</h2>
+				<p>Mark’s experience ranges from rich internet applications to tutorials and informational kiosks for government, entertainment, publishing and retail industries. His illustrative abilities and creative technical skills have proven invaluable for clients from Los Angeles to Seattle. In his spare time, Mark is opening a Delorum office in Dallas, Texas.</p>
+
+				<br/><h1>KEITH NELSON</h1>
+				<h2>Project Manager</h2>
+				<p>Originally from Southeast Idaho, early work experience led Keith to L.A. and branding projects for clients such as Acura and Hughes Electronics (DirecTV, Tivo). Keith returned to the Rexburg area to create a brand development and interactive design firm in semi-rural Idaho. He splits remaining time between community involvement and his family.</p>
+
+				<br/><h1>SCOTT ANDERSON</h1>
+				<h2>Design</h2>
+				<p>Scott’s artistic interests were originally rooted in fine art and illustration, but evolved toward graphic design. Since leaving the dusty plains of West Texas for Rexburg, Scott has worked with clients from food and real estate to communications. Free time is spent in the company of his beautiful new bride.</p>
+
+				<br/><h1>STEVE DAVIS</h1>
+				<h2>DESIGN</h2>
+				<p>Steve’s father (a humanities professor) and mother (an artist) instilled a love and capacity for the arts at an early age. Creative and energetic about art and design, Steve thrives on new projects. Most recently, he has shaped packaging, print and web design for clients from golf to software development.</p>
+
+				<br/><h1>TYLER FLINT</h1>
+				<h2>Web Development</h2>
+				<p>Tyler oversees programming for web development and applications. Tyler’s work experience began at age 12, when he was assigned to learn “the computer” and all things electronic for the family business. After a computer science degree and more than a decade, Tyler joined Delorum in as a full-time developer and part-time nuisance to his wife. </p>
+
+				<br/><h1>RICHARD DEAN</h1>
+				<h2>account rep</h2>
+				<p>Hailing from Seattle, Richard enjoys cooking, spending time with family and helping expand Delorum’s reach. He joined Delorum in 2007 to improve our bowling stats and streamline our interactions with clients.</p>
+			</text>
+		</tag>
+	</tags>
+</ABOUT>
