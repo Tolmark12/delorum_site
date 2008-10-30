@@ -189,6 +189,22 @@ public class Scroller extends Sprite
 		Tweener.addTween( _scrollBar, { x:_scrollWidth * $percent,time:$speed, transition:"EaseInOutQuint"} );
 	}
 	
+	public function show ( $speed:Number=1 ):void
+	{
+		this.visible = true;
+		Tweener.addTween( this, { alpha:1, time:$speed, transition:"EaseInOutQuint"} );
+	}
+	
+	public function hide ( $speed:Number=1 ):void
+	{
+		Tweener.addTween( this, { alpha:0, time:$speed, transition:"EaseInOutQuint", onComplete:_makeInvisible} );
+	}
+	
+	private function _makeInvisible (  ):void
+	{
+		this.visible = false;
+	}
+	
 	// ______________________________________________________________ Make
 	
 	private function _make (  ):void
@@ -333,6 +349,10 @@ public class Scroller extends Sprite
 	{
 		_scrollSpeed = _scrollIncrament;
 	}
+	
+	// ______________________________________________________________ Getters Setters
+	
+	public function get scrollPosition (  ):Number	{ return _currentPercent; };
 }
 
 }

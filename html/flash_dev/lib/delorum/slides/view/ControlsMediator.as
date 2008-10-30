@@ -63,12 +63,13 @@ public class ControlsMediator extends Mediator implements IMediator
 	{
 		
 		_controlsHolder = new Sprite();
-		_controlsHolder.y = SlideShowFacade.slidesHeight + 5;
+		_controlsHolder.y = -20;
 		_holderMc.addChild( _controlsHolder );
 		_btnsAr = new Array();
 		var xInc:uint = 15;
 		
-		
+		var wid:Number = SlideShowFacade.slidesWidth;
+		_controlsHolder.x = wid ; 
 		var len:uint  = $slides.length;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
@@ -81,6 +82,7 @@ public class ControlsMediator extends Mediator implements IMediator
 			btn.x = xInc * i;
 			_btnsAr[slideVo.index] = btn;
 			
+			_controlsHolder.x -= xInc;
 			_controlsHolder.addChild(btn);
 		}
 		
@@ -98,7 +100,7 @@ public class ControlsMediator extends Mediator implements IMediator
 		rightBtn.addEventListener( MouseEvent.CLICK, _handleArrowBtnClick );
 		leftBtn.addEventListener(  MouseEvent.CLICK, _handleArrowBtnClick );
 		
-		_controlsHolder.addChild( _playPauseBtn );
+		//_controlsHolder.addChild( _playPauseBtn );
 		_controlsHolder.addChild( rightBtn		);
 		_controlsHolder.addChild( leftBtn		);
 	}

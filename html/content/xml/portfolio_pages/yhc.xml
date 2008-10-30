@@ -1,0 +1,34 @@
+<MAIN>
+	<page imageDir="yellowstone_hc/">
+		<row css="yhc_top,padded" bgColor="#67645B" >
+			<col span="2">
+				<txt>
+					<h1>A colorful past... mostly Sepia.</h1><p>The Yellowstone Historic Center approached us to attract more visitors, </p>
+					<p>and help set the stage for a national fund-raising effort. We focused on </p>
+					<p>the museum’s Western Heritage, Western Travel, and Yellowstone  </p>
+					<p>National Park collections to establish a singular image for this national </p>
+					<p>historic railroad museum.</p>
+				</txt>
+			</col>
+		</row>
+		<row bgColor="#A9A38D" totalColums="2" marginBottom="-87">
+			<col float="right" stack="none">
+				<img src="top_bug.jpg" yMod="-87" xMod="160"/>
+				<img src="sketches.jpg" yMod="63"/>
+			</col>
+			<col stack="none" float="left">
+				<img src="logo.gif" yMod="57" xMod="48"/>
+				<img src="stationary.jpg" yMod="260"/>
+			</col>
+		</row>
+		<row css="yhc_low,padded" bgColor="#D6CEAF" marginBottom="-120">
+			<col>
+				<img src="stamps.gif" xMod="20" yMod="30"/>
+			</col>
+			<col span="2" stack="vertical">
+				<img src="brochure.jpg" yMod="-176" xMod="290"/>
+				<txt yMod="-161"><h1>Flexible Identity</h1><p>We crafted a logotype reminiscent of the museum’s collection. Various icons are used with the logotype, including train depot, stage line, Old Faithful and bus icons. As the museum expands, the identity system is set to include additional icons adapted for print, environments and merchandising.</p></txt>
+			</col>
+		</row>
+	</page>
+</MAIN>

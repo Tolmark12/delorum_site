@@ -2,7 +2,7 @@
 	<page css="plum" imageDir="olympus/">
 		<row bgColor="#E2E2E0">
 			<col span="2">
-				<txt><h1>The Need</h1><p>Klassic Builders was a growing Southeast Idaho construction company. They contacted Delorum to increase the size and sophistication of their clientele, and help position their company for future land development. Our efforts revolved around creating a brand which projected size, capability and integrity. We started with the name.</p></txt>
+				<txt yMod="20"><h1>The Need</h1><p>Klassic Builders was a growing Southeast Idaho construction company. They contacted Delorum to increase the size and sophistication of their clientele, and help position their company for future land development. Our efforts revolved around creating a brand which projected size, capability and integrity. We started with the name.</p></txt>
 			</col>
 			<col float="right">
 				<img src="house.jpg" />

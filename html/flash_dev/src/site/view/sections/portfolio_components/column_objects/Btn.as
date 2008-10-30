@@ -20,6 +20,8 @@ public class Btn extends BaseColumnObj
 	override public function make ( $node:XML ):void
 	{
 		_swcBtn = new ChameleonBtn_swc();
+		_swcBtn.text = $node.@text;
+		_swcBtn.icon = $node.@icon;
 		_swcBtn.useHandCursor = true;
 		_swcBtn.addEventListener( MouseEvent.CLICK, _click );
 		_clickEvent = $node.@event;

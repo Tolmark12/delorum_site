@@ -34,6 +34,9 @@ public class ProjectStub extends Sprite
 	public static const HEIGHT_TINY:Number  = 50;
 	public static const HEIGHT_LARGE:Number = 351;
 	
+	public static const CLOSED_Y:Number 	= 80;
+	public static const OPEN_Y:Number 		= 10;
+	
 	// Physical states
 	public static const TINY:String 		= "tiny";
 	public static const SMALL:String 		= "small";
@@ -107,7 +110,7 @@ public class ProjectStub extends Sprite
 
 		_bgMc.x 			= -BORDER_SIZE;
 		_bgMc.y 			= -BORDER_SIZE;
-		_holder.y			= 40;
+		_holder.y			= CLOSED_Y;
 		
 		this.visible 		= false;
 		_maskMc.buttonMode  = true;
@@ -143,7 +146,7 @@ public class ProjectStub extends Sprite
 		var knockout:Boolean = false;
 		var quality:Number = BitmapFilterQuality.LOW;
 		var dsf:DropShadowFilter = new DropShadowFilter(distance,angle,color,alpha,blurX,blurY,strength,quality,inner,knockout);
-		this.filters = [dsf];
+		//this.filters = [dsf];
 	}
 	
 	private function _removeDropShadow (  ):void
@@ -262,9 +265,9 @@ public class ProjectStub extends Sprite
 			// Showing / Hiding details
 			if( _sizeState == SMALL || _sizeState == TINY ){ 	// Close
 				_clickEvent = ACTIVATE_STUB;
-				Tweener.addTween( _bgMc,    {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );
-				Tweener.addTween( _maskMc,  {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );
-				Tweener.addTween( _holder, 	{ y:40, time:1, transition:"EaseInOutQuint"} );
+				/*Tweener.addTween( _bgMc,    {height:HEIGHT,time:1, transition:"EaseInOutQuint"} );*/
+				Tweener.addTween( _maskMc,  {height:HEIGHT,time:1, y:0, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _holder, 	{ y:CLOSED_Y, time:1, transition:"EaseInOutQuint"} );
 				_maskMc.mouseEnabled = true;
 				
 				// drop shadow
@@ -280,9 +283,9 @@ public class ProjectStub extends Sprite
 				ldr.budgeAndLoad();
 				_clickEvent = DE_ACTIVATE_STUB;
 				currentProject = this;
-				Tweener.addTween( _bgMc,    {height:HEIGHT_LARGE, time:1, transition:"EaseInOutQuint"} );
-				Tweener.addTween( _maskMc,  {height:HEIGHT_LARGE + 20, time:1, transition:"EaseInOutQuint"} );
-				Tweener.addTween( _holder, 	{ y:10, time:1, transition:"EaseInOutQuint"} );
+				/*Tweener.addTween( _bgMc,    {height:HEIGHT_LARGE, time:1, transition:"EaseInOutQuint"} );*/
+				Tweener.addTween( _maskMc,  {height:HEIGHT_LARGE + 20,y:-20, time:1, transition:"EaseInOutQuint"} );
+				Tweener.addTween( _holder, 	{ y:OPEN_Y, time:1, transition:"EaseInOutQuint"} );
 				_maskMc.mouseEnabled = false;
 				
 				// drop shadow
@@ -307,10 +310,10 @@ public class ProjectStub extends Sprite
 	*	@param		X position
 	*	@param		Y Position
  	*/
-	public function moveTo ( $x:Number, $y:Number ):void
+	public function moveTo ( $x:Number, $y:Number=0 ):void
 	{
 		if( this.visible == true ) 
-			Tweener.addTween( this, { x:$x, y:$y, time:1, transition:"EaseInOutQuint"} );
+			Tweener.addTween( this, { x:$x, time:1, transition:"EaseInOutQuint"} );
 		else
 			this.x = $x;
 		_targetX = $x;
@@ -347,6 +350,7 @@ public class ProjectStub extends Sprite
 	{
 		this.dispatchEvent( new Event( _clickEvent ) );
 	}
+	
 	
 	
 	// ______________________________________________________________ Getters / Setters

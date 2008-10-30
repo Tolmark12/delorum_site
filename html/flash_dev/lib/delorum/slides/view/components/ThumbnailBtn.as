@@ -7,8 +7,8 @@ import flash.events.*;
 
 public class ThumbnailBtn extends BaseBtn
 {
-	public static var BG_COLOR:uint 		= 0x000000;
-	public static var HIGHLIGHT_COLOR:uint 	= 0x666666;
+	public static var BG_COLOR:uint 		= 0x232323;
+	public static var HIGHLIGHT_COLOR:uint 	= 0x353331;
 	public static var WIDTH:Number 			= 12;
 	
 	private var _slideVo:Slide_VO;

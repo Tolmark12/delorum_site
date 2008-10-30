@@ -53,6 +53,8 @@ public class HomeMediator extends BaseSection implements IMediator
 		_mainScreen = new MainScreen_swc();
 		_mainScreen.y = 90;
 		_teaser = new Teaser_swc();
+		
+		_mainScreen.addEventListener( MainScreen.JUMP, _jumpClick );
 		_teaser.addEventListener( MouseEvent.CLICK, _teaserClick );
 		
 		super._baseMc.addChild( _mainScreen );
@@ -64,7 +66,7 @@ public class HomeMediator extends BaseSection implements IMediator
 	private function _align (  ):void
 	{
 		_mainScreen.x = StageMediator.stageCenter - _mainScreen.width / 2;
-		_teaser.x = StageMediator.stageRight;
+		_teaser.x = StageMediator.stageRight + 2;
 		
 		var ceiling:uint = 700;
 		_teaser.y = ( StageMediator.stageBottom > ceiling )? StageMediator.stageBottom : ceiling ;
@@ -74,6 +76,11 @@ public class HomeMediator extends BaseSection implements IMediator
 	private function _teaserClick ( e:MouseEvent ):void
 	{
 		sendNotification(SiteFacade.CHANGE_SECTION, "portfolio/Idahoan_Potatoes")
+	}
+	
+	private function _jumpClick ( e:Event ):void
+	{
+		sendNotification(SiteFacade.CHANGE_SECTION, "about")
 	}
 	
 }

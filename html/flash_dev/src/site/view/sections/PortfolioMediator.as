@@ -25,6 +25,12 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private static const _DETAILS:String = "details";
 	private static const _FULL:String = "full";
 	
+	// Positioning
+	public static const SCROLL_Y_BROWSING:Number = 295;
+	public static const SCROLL_Y_OPEN:Number = 390;
+	public static const RIBBON_Y_BROWSING:Number = 0;
+	public static const RIBBON_Y_OPEN:Number = 30;
+	
 	// Display
 	private var _stubHolder:Sprite;
 	private var _scrollHolder:Sprite;
@@ -61,7 +67,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				 SiteFacade.HIDE_CASE_STUDY,
 				 SiteFacade.SHOW_CASE_STUDY,
 				 SiteFacade.PFLIO_SCROLL_RELEASE,
-				 SiteFacade.PFLIO_SCROLL_PRESS, ];
+				 SiteFacade.PFLIO_SCROLL_PRESS, ]
 	}
 	
 	// PureMVC: Handle notifications
@@ -83,13 +89,18 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_activateStub( note.getBody() as uint );
 				_resizeScrollTrack();
 				_updateScrollBarPosition();
+				_resizeScrollBar(1);
 				_moveRibbonVertical();
 				break;
 			case SiteFacade.DEACTIVATE_PROJECT :
 				_portfolioState = _BROWSING;
 				_deactivateActiveStub();
-				//_hideDetails()
 				_moveRibbonVertical();
+				_scroller.changeScrollPosition(0);
+				var e:ScrollEvent  = new ScrollEvent( "FAKE_event" );
+				e.percent = 0;
+				e.easeMotion = true
+				_scrollPortfolio( e );
 				break;
 			case SiteFacade.SHOW_CASE_STUDY : 
 				if( !_caseStudyIsVisible ) {
@@ -116,7 +127,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_moveDetails();
 				_resizeScrollTrack(0);
 				_resizeScrollBar(0);
-				//_updateScrollBarPosition(0);
+				_updateScrollBarPosition( _scroller.scrollPosition );
 				break;
 			case SiteFacade.SCROLL_PORTFOLIO :
 				_scrollPortfolio( note.getBody() as ScrollEvent );
@@ -142,7 +153,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	private function _createStubs ( $stubAr:Array ):void
 	{
 		ProjectStub.currentProject = null;
-		super._baseMc.y = 70;
+		super._baseMc.y = 95;
 		
 		// Create display items
 		_scrollHolder 	= new Sprite();
@@ -150,12 +161,19 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_details 		= new ProjectDetails();		
 		_stubsAr		= new Array();
 		
+		_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
+		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
+		_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);
+		_details.addEventListener( ProjectDetails.HIDE_CASE_STUDY, _handleHideCaseStudy		);
+		_details.addEventListener( ProjectDetails.CASE_STUDY_HIDDEN, _handleCaseStudyHidden	);
+		
 		// Position display items
 		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
+		_stubHolder.y   = RIBBON_Y_OPEN;
 		_details.y		= 430;
 		//_details.y		= 30000; // Temp
 		_scrollHolder.x = OUTER_PADDING + 65;
-		_scrollHolder.y = 300;
+		_scrollHolder.y = SCROLL_Y_OPEN;
 		_moveDetails();
 		
 		// Add to display list
@@ -169,16 +187,11 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		{
 			var stub_vo:ProjectStub_VO  = $stubAr[i];
 			var stub:ProjectStub		= new ProjectStub();
+			stub.y = -30;
 			stub.make( stub_vo );
 			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 				);
 			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 			);
 			// TODO: move the events of the details from the stub to the details. or at least investigate if it should be so
-			_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
-			_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
-			_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);
-			_details.addEventListener( ProjectDetails.HIDE_CASE_STUDY, _handleHideCaseStudy		);
-			_details.addEventListener( ProjectDetails.CASE_STUDY_HIDDEN, _handleCaseStudyHidden	);
-			
 			_stubHolder.addChild( stub );
 			_stubsAr.push( stub );
 		}
@@ -188,7 +201,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		
 		// display ribbon
 		_displayAsRibbon();	
-		_moveRibbonVertical();	
+		//_moveRibbonVertical();	
 		// Make visible
 		super.show();
 	}
@@ -217,17 +230,20 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		
 		switch (_portfolioState ){
 			case _BROWSING :
-				ribbonTargetY = 0;
-				scrollTargetY = 305
+				ribbonTargetY = RIBBON_Y_BROWSING;
+				scrollTargetY = SCROLL_Y_BROWSING;
 				break;
 			case _DETAILS :
-				ribbonTargetY = 30;
-				scrollTargetY = 395
+				ribbonTargetY = RIBBON_Y_OPEN;
+				scrollTargetY = SCROLL_Y_OPEN;
 				break;
 			case _FULL :
-				ribbonTargetY = 100;
+				ribbonTargetY = RIBBON_Y_OPEN;
 				break;
 		}
+		
+		//_stubHolder.y = ribbonTargetY;
+		//_scrollHolder.y = scrollTargetY;
 		
 		Tweener.addTween( _stubHolder, { y:ribbonTargetY, time:1, transition:"EaseInOutQuint"} );
 		Tweener.addTween( _scrollHolder, { y:scrollTargetY, time:1, transition:"EaseInOutQuint"} );
@@ -257,7 +273,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				stub.dimImage();
 			
 			// Move to new position
-			stub.moveTo( _ribbonWidth, -30 );
+			stub.moveTo( _ribbonWidth );
 			_ribbonWidth += stub.stubWidth;
 		}
 		
@@ -364,7 +380,13 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _resizeScrollBar ( $speed:Number=1 ):void
 	{
-		_scroller.updateScrollWindow( StageMediator.stageWidth / _ribbonWidth, $speed );
+		if( StageMediator.stageWidth < _ribbonWidth ) {
+			_scroller.updateScrollWindow( StageMediator.stageWidth / _ribbonWidth, $speed );
+			_scroller.show();
+		}else{
+			_scroller.hide();
+		}
+			
 	}
 	
 	private function _resizeScrollTrack ( $speed:Number=1 ):void
@@ -393,7 +415,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	// Project stub
 	public function _handleActivateStub     ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex );  };
-	public function _handleDeactivateStub   ( e:Event = null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
+	public function _handleDeactivateStub   ( e:Event=null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
 	public function _handleStubXmlRequest   ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML, _alternateXml ); };
 	public function _handleHeightChange     ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 		); };
 	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK		); };

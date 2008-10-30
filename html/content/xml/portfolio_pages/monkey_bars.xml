@@ -1,0 +1,38 @@
+<MAIN>
+	<page imageDir="monkey_bars/">
+		<row css="m_bars,padded" columnPadding="0">
+			<col stack="vertical">
+				<txt>
+					<h1>A name you can hang your hat,</h1>
+					<h1>shovel and ladder on.</h1><p>Our client manufactures wall mountable bars for hanging items in a garage. Our first task was to create a memorable name. We sought a name that not only described the use of the product, but also stuck in the consumer’s memory.</p>
+				</txt>
+				<txt yMod="35">
+					<h1>What does a name look like</h1><p>Once we had settled on the name monkey bars, we untertook an exhaustive visual exploration to give the brand personality. Logo development is crucial to branding. The logo often becomes the hub around which the rest of the brand revolves.</p>
+				</txt>
+			</col>
+			<col span="2" float="right">
+				<img src="logos.gif" yMod="24"/>
+			</col>
+		</row>
+		<row css="m_bars,padded" totalColumns="2" marginTop="35">
+			<col>
+				<img src="cards.jpg" />
+			</col>
+			<col>
+				<txt>
+					<h1>Brand Development</h1><p>As the name and logo began to take shape we knew we had something special. Yet a lone logo does not a brand make. Vibrant color and earthy textures harmonize with the name and logomark to form a memorable brand experience.</p>
+				</txt>
+			</col>
+		</row>
+		<row css="m_bars,padded" columnPadding="0">
+			<col float="left">
+				<img src="brochure2.jpg" />
+			</col>
+			<col>
+				<txt xMod="-253">
+					<h1>Judging a business by it cover</h1><p>Making a lasting impact at a tradeshow can be difficult to say the least. Eye catching color, simple headlines, and restrained design communicate the gist of the product. But perhaps more importantly, these brochures make a simple statement of quality that reflects well on the company they represent.</p>
+				</txt>
+			</col>
+		</row>
+	</page>
+</MAIN>

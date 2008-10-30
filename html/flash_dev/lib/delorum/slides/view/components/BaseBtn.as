@@ -10,7 +10,7 @@ public class BaseBtn extends Sprite
 	protected var _bgShape:Sprite;
 	protected var _doRollOvers:Boolean = true;
 	public var mouseOverColor:uint 	= 0x666666;
-	public var mouseOutColor:uint	= 0x000000;	
+	public var mouseOutColor:uint	= 0x232323;	
 	
 	public function BaseBtn():void
 	{

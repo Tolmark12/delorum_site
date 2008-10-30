@@ -49,6 +49,8 @@
 	
 	<!-- Ribbon -->
 	<style id="rbn_playmill"> h1{ color:#B71A13 } p{color:#303030}</style>
+	<style id="rbn_idahoan"> p{color:#F4E7BB}</style>
+	<style id="rbn_heidi"> h1{color:#F79752} p{color:#BF3431}</style>
 	<!-- Ribbon End -->
 	
 	<!-- Portfolio END -->
@@ -56,18 +58,23 @@
 	
 	<!--Pages     -->
 	<style id="plum"> 				row{ bgAlpha:0 } </style>
-	<style id="idahoan"> 			h1{ color:#FFFFFF } p{color:#000000}</style>
+	<style id="yhc_top"> 			p{  color:#D5D2AC } h1{ color:#F79752 } </style>
+	<style id="yhc_low"> 			h1{ color:#A60016 } </style>
 	<style id="h_fudge_row"> 		p{  color:#DDD5CA }</style>
 	<style id="h_fudge_light"> 		p{  color:#85756E }</style>
 	<style id="heavens_best_top"> 	p{  color:#121A2F } h1{  color:#121A2F }</style>
 	<style id="ibex_head"> 			p   { color:#C8B690; font-size:16 } h1	{ font-size:18 }</style>
+	<style id="idahoan"> 			p   { color:#4A2E15; } h1 { color:#9B120C; } row{bgColor:#F3EED3} </style>
+	<style id="m_bars"> 			row{ bgAlpha:0; } p{ color:#BBBBBB; } h1{ color:#F8883B} </style>
 	<!--Pages END -->
 	
 	<!-- Pages shared -->
 	<style id="white">			h1{ color:#FFFFFF }</style>
 	<style id="description">	p{ font-size:12 }</style>
 	<style id="padded">			row{ marginBottom:20; marginTop:20 }</style>
-	
+	<style id="white_black">	h1{ color:#FFFFFF } p{ color:#000000 }</style>
+	<style id="white_p">		p{ color:#FFFFFF }</style>
+	<style id="white_h1">		h1{ color:#FFFFFF }</style>
 	<!-- Pages shared END0 -->
 	
 	

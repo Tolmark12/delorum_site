@@ -1,0 +1,41 @@
+<MAIN>
+	<page imageDir="idahoan/">
+		<row css="idahoan" background="content/images/portfolio/pages/idahoan/table.jpg" bgAlpha="0" >
+			<col span="2">
+				<txt yMod="20">
+					<h1>Repositioning Idahoan Inside the Kitchen</h1><p>Delorum created several potential solutions, each based on the stated target. Working with Idahoan, we identified the directions which most closely matched the marketing criteria, and expanded those designs into a final direction housing the outlined functionality.</p>
+				</txt>
+			</col>
+		</row>
+		<row css="idahoan,padded" marginBottom="-20">
+			<col>
+				<txt>
+					<h1>The Design of Marketing</h1><p>Concurrently, we addressed messaging and design for the site. From Idahoan’s market research, we created a list of customer motivations and key communication targets. This list drove design development, and was the criteria by which various directions were judged.</p>
+					<br/>
+					<h1>Customized to Fit Idahoan</h1><p>We began Idahoan’s site design process by identifying a “wish list.”  This became a development document detailing the technical and administrative requirements to build an ideal Idahoan web site. This process helped Idahoan weigh the cost and benefits of each feature and identify significant cost savings. By implementing these features into their new online presence, Idahoan is now saving over $10,000 annually.</p>
+				</txt>
+			</col>
+			<col span="2" stack="vertical" float="right">
+				<img src="sketches.jpg" />
+				<img src="wall.jpg" />
+			</col>
+		</row>
+		<row marginTop="60" bgColor="#F9F7E0">
+			<col float="left">
+				<img yMod="60" src="rowsss.jpg" />
+			</col>
+		</row>
+		<row css="idahoan,padded">
+			<col span="2" align="center">
+				<txt xMod="148">
+					<h1></h1><p>Idahoan’s name and history are huge assets in the Instant Potato world, but those assets were carrying, rather than adding to their online presence. Delorum aided in a major shift toward consumers via design and usability.</p>
+				</txt>
+			</col>
+		</row>
+		<row totalColumns="1" css="idahoan" marginTop="20">
+			<col align="center">
+				<img src="browser.jpg" />
+			</col>
+		</row>
+	</page>
+</MAIN>

@@ -55,7 +55,7 @@ public class RowsManager extends Sprite
 	public function show (  ):void
 	{
 		_contentSprite.visible = true;
-		Tweener.addTween( _contentSprite, {alpha:1, time:1  });
+		Tweener.addTween( _contentSprite, {alpha:1, time:0  });
 	}
 	
 	public function hide ( $callBackFunction:Function=null ):void
@@ -80,7 +80,7 @@ public class RowsManager extends Sprite
 		{
 			var row:Row = _rows[i] as Row;
 			row.y = yPos;
-			yPos = row.y + row.actualHeight;
+			yPos = row.y + row.actualHeight -1;
 		}
 	}
 	
