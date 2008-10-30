@@ -14,6 +14,7 @@ public class ProjectStub extends Sprite
 {
 	
 	public static var currentProject:ProjectStub;
+	public static var isInBrowsingMode:Boolean = true;
 	
 	// Events
 	public static const ACTIVATE_STUB:String = "activate_stub";
@@ -329,7 +330,7 @@ public class ProjectStub extends Sprite
 	
 	private function _mouseOver ( e:Event ):void
 	{
-		if ( currentProject == null ){
+		if ( currentProject == null || isInBrowsingMode ){
 			Tweener.addTween( this, { time:0.1, onComplete:bringToFront} );
 			changeBorderColor( DelorumSite.TAN );
 		}else if ( currentProject != this ) {
@@ -339,9 +340,9 @@ public class ProjectStub extends Sprite
 	
 	private function _mouseOut ( e:Event ):void
 	{
-		if( currentProject == null ){
+		if( currentProject == null || isInBrowsingMode ){
 			changeBorderColor( DelorumSite.WHITE );
-		}else if( currentProject != this  ) {
+		}else if( currentProject != this ) {
 			dimImage();
 		}
 	}

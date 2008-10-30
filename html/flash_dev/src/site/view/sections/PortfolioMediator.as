@@ -91,6 +91,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_updateScrollBarPosition();
 				_resizeScrollBar(1);
 				_moveRibbonVertical();
+				ProjectStub.isInBrowsingMode = false;
 				break;
 			case SiteFacade.DEACTIVATE_PROJECT :
 				_portfolioState = _BROWSING;
@@ -118,6 +119,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				break;
 			case SiteFacade.CUR_BTN_CLICKED_AGAIN:
 				_handleDeactivateStub();
+				ProjectStub.isInBrowsingMode = true;
 				break;
 			case SiteFacade.BROWSER_RESIZE:
 				if( _activeStub != null ) {
@@ -141,6 +143,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				break;
 			case SiteFacade.PFLIO_SCROLL_PRESS :
 				_brightenOrDimStubs(true);
+				ProjectStub.isInBrowsingMode = true;
 				break;
 			case SiteFacade.PFLIO_SCROLL_RELEASE :
 				_brightenOrDimStubs(false);
