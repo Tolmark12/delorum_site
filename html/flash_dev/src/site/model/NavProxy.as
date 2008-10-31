@@ -57,15 +57,17 @@ public class NavProxy extends Proxy implements IProxy
 		for each( var node:XML in $navNode.nav_item )
 		{
 			var vo:NavItem_VO = new NavItem_VO();
-			vo.bgColor		= (String(node.@bg).length == 0)? null : uint( "0x" + node.@bg ); 
-			vo.title 		= String( node.title);
-			vo.contentType	= node.@contentType;
-			vo.section		= node.@section;
-			vo.arrayIndex	= _navArray.length;
-			vo.xmlPath		= $navNode.@xmlDir + node.@xml;
-			vo.colorScheme	= node.@colorScheme;
-			vo.buttonType	= node.@buttonType;
-			vo.extraData	= ( node.extraData.toXMLString().length != 0 )? XML( node.extraData[0].toXMLString() ) : null ;
+			vo.bgColor				= (String(node.@bg).length == 0)? null : uint( "0x" + node.@bg ); 
+			vo.title 				= String( node.title);
+			vo.contentType			= node.@contentType;
+			vo.section				= node.@section;
+			vo.arrayIndex			= _navArray.length;
+			vo.xmlPath				= $navNode.@xmlDir + node.@xml;
+			vo.colorScheme			= node.@colorScheme;
+			vo.buttonType			= node.@buttonType;
+			vo.extraData			= ( node.extraData.toXMLString().length != 0 )? XML( node.extraData[0].toXMLString() ) : null ;
+			vo.clickAction			= node.@clickAction;
+			vo.clickActionParam		= node.@clickActionParam;
 			
 			// default section
 			if( vo.section == $navNode.@defaultSection ) 
@@ -79,30 +81,40 @@ public class NavProxy extends Proxy implements IProxy
 	
 	public function changeSection ( $index:uint, $defaultContent:String = null ):void
 	{
-		// if this section is not already active...
-		if( _currentNavItemIndex != $index ){
-			// ...load new section
-			var isFirstSectiontoLoad:Boolean = _currentNavItemIndex == -1;
-			_currentNavItemIndex = $index;
-			
-			// If the new section has some sort of default content to display...
-			if( $defaultContent != null ) 
-				_newSectionDefaultContent = $defaultContent; 
-			else
-				_newSectionDefaultContent = "";
-			
-			if( sectionLoadComplete ) {
-				sectionLoadComplete = false;
-				if( isFirstSectiontoLoad )
-					sendNotification( SiteFacade.LOAD_NEW_SECTION );
-				else
-					sendNotification( SiteFacade.UNLOAD_CURRENT_SECTION, _currentNavItemIndex );
-			}		
-		}
-		// fire notification that current section's btn was clicked
-		else{
-			sendNotification( SiteFacade.CUR_BTN_CLICKED_AGAIN );
-		}		
+		var vo:NavItem_VO = _navArray[ $index ];
+		
+		switch (vo.clickAction)
+		{
+			case "newSection" :
+				// if this section is not already active...
+				if( _currentNavItemIndex != $index ){
+					// ...load new section
+					var isFirstSectiontoLoad:Boolean = _currentNavItemIndex == -1;
+					_currentNavItemIndex = $index;
+					
+					// If the new section has some sort of default content to display...
+					if( $defaultContent != null ) 
+						_newSectionDefaultContent = $defaultContent; 
+					else
+						_newSectionDefaultContent = "";
+					
+					if( sectionLoadComplete ) {
+						sectionLoadComplete = false;
+						if( isFirstSectiontoLoad )
+							sendNotification( SiteFacade.LOAD_NEW_SECTION );
+						else
+							sendNotification( SiteFacade.UNLOAD_CURRENT_SECTION, _currentNavItemIndex );
+					}		
+				}
+				// fire notification that current section's btn was clicked
+				else{
+					sendNotification( SiteFacade.CUR_BTN_CLICKED_AGAIN );
+				}
+			break;
+			case "sendNotification" :
+				sendNotification( SiteFacade[ vo.clickActionParam ] )
+			break;
+		}	
 	}
 	
 	public function changeSectionBySectionName ( $section:String, $defaultContent:String = null ):void

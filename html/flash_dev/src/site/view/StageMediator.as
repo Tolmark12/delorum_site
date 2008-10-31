@@ -14,6 +14,7 @@ import caurina.transitions.Tweener;
 import site.view.sections.BaseSection;
 import gs.TweenLite;
 import site.model.vo.ColorScheme_VO;
+import swc_components.*;
 
 public class StageMediator extends Mediator implements IMediator
 {	
@@ -34,6 +35,7 @@ public class StageMediator extends Mediator implements IMediator
 	private var _navSprite:Sprite;
 	private var _logo:Logo_swc;
 	private var _bgColorMc:Sprite;
+	private var _contact:ContactCard_swc;
 	
 	// Content
 	private var _currentSection:BaseSection;
@@ -66,7 +68,9 @@ public class StageMediator extends Mediator implements IMediator
 					SiteFacade.PROJECT_XML_LOADED,
 					SiteFacade.DEACTIVATE_PROJECT,
 					SiteFacade.HIDE_CASE_STUDY,
-					SiteFacade.CASE_STUDY_HIDDEN,   ];
+					SiteFacade.CASE_STUDY_HIDDEN, 
+					SiteFacade.SHOW_CONTACT_INFO,
+					SiteFacade.HIDE_CONTACT_INFO  ];
 	}
 	
 	// PureMVC: Handle notifications
@@ -103,6 +107,13 @@ public class StageMediator extends Mediator implements IMediator
 			case SiteFacade.CHANGE_COLOR_SCHEME:
 				_changeColorScheme( note.getBody() as ColorScheme_VO );
 				break;
+			case SiteFacade.SHOW_CONTACT_INFO :
+				/*var tall:Number = (_contentSprite.height + 50 > _stage.stageHeight)? _contentSprite.height : _stage.stageHeight;*/
+				_contact.show( /*tall*/ );
+			break;
+			case SiteFacade.HIDE_CONTACT_INFO :
+				_contact.hide();
+			break;
 		}
 	}
 	
@@ -114,16 +125,19 @@ public class StageMediator extends Mediator implements IMediator
 		_contentSprite 		= new Sprite();
 		_navSprite			= new Sprite();
 		_logo		 		= new Logo_swc();
+		_contact			= new ContactCard_swc();
 		_stage				= $mainSprite.stage;
 		_bgColorMc			= new Sprite();
 		_bgColorMc.graphics.beginFill( 0xFFFFFF );
 		_bgColorMc.graphics.drawRect( 0,0,10,10 );
 		_bgColorMc.y = -4000;
 		
+		_contact.addEventListener( ContactCard.CLOSE, _onContactClose );
 		_logo.y = _navSprite.y = 20;
 		
 		$mainSprite.addChild( _bgColorMc	 );		// add to display list
 		$mainSprite.addChild( _rootSprite	 );
+		$mainSprite.addChild( _contact		 );
 		_rootSprite.addChild( _contentSprite );		
 		_rootSprite.addChild( _navSprite	 );
 		_rootSprite.addChild( _logo			 );
@@ -268,8 +282,9 @@ public class StageMediator extends Mediator implements IMediator
 	
 	// ______________________________________________________________ Event Handlers
 	
-	private function _resizeHandler ( e:Event ):void	 { sendNotification( SiteFacade.BROWSER_RESIZE 			);	}
+	private function _resizeHandler ( e:Event ):void	 { sendNotification( SiteFacade.BROWSER_RESIZE ); }
 	private function _scrollHandler ( $perc:Number, $speed:Number ):void { sendNotification( SiteFacade.BROWSER_SCROLL, [$perc, $speed] 	); 	}
-	
+	private function _onContactClose ( e:Event ):void	 { sendNotification( SiteFacade.HIDE_CONTACT_INFO ); }
+
 }
 }

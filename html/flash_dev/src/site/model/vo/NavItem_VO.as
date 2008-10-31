@@ -11,5 +11,7 @@ public class NavItem_VO
 	public var bgColor:uint;
 	public var colorScheme:String;
 	public var extraData:XML;
+	public var clickAction:String
+	public var clickActionParam:String
 }
 }

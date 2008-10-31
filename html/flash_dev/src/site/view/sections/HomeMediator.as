@@ -80,7 +80,7 @@ public class HomeMediator extends BaseSection implements IMediator
 	
 	private function _jumpClick ( e:Event ):void
 	{
-		sendNotification(SiteFacade.CHANGE_SECTION, "about")
+		sendNotification(SiteFacade.CHANGE_SECTION, "portfolio")
 	}
 	
 }

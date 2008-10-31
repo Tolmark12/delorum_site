@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <site>
 	<nav xmlDir="content/xml/" defaultSection="home">
-		<nav_item section="home" buttonType="logo" contentType="home" xml="sections/home.xml" colorScheme="business_cards">
+		<nav_item section="home" buttonType="logo" contentType="home" xml="sections/home.xml" colorScheme="business_cards" clickAction="newSection" >
 			<title>na</title>
 			<extraData image="content/images/site/butterfly.jpg" />
 		</nav_item>
-		<nav_item section="portfolio" contentType="portfolio" xml="sections/portfolio.xml" colorScheme="brown">
+		<nav_item section="portfolio" contentType="portfolio" xml="sections/portfolio.xml" colorScheme="brown" clickAction="newSection" >
 			<title>Our Work</title>
 		</nav_item>
-		<nav_item section="about" contentType="about_us" xml="sections/about.xml" colorScheme="orange">
+		<nav_item section="about" contentType="about_us" xml="sections/about.xml" colorScheme="orange" clickAction="newSection" >
 			<title>About</title>
 		</nav_item>
-		<nav_item section="contact" contentType="page" colorScheme="tan">
+		<nav_item section="contact" contentType="contact" colorScheme="tan" clickAction="sendNotification" clickActionParam="SHOW_CONTACT_INFO">
 			<title>Contact</title>
 		</nav_item>
 	</nav>
