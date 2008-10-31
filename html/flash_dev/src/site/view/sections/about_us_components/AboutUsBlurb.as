@@ -19,6 +19,7 @@ public class AboutUsBlurb extends MovieClip
 	public function setText ( $htmlText:String, $css:String ):void
 	{
 		var txt:AboutUs_swc = new AboutUs_swc();
+		txt.useBitmap = false;
 		txt.y = 180;
 		txt.clearAllFormatting();
 		txt.parseCss( $css );

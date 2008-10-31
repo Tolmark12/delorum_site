@@ -9,6 +9,7 @@ import flash.events.*;
 
 public class SwcText extends MovieClip
 {
+	public var useBitmap:Boolean = true;
 	private var _textField:TextField;
 	private var _bitmap:Bitmap;
 	private var _styleSheet:StyleSheet;
@@ -84,23 +85,41 @@ public class SwcText extends MovieClip
 	// Convert text into a bitmap for performance improvement
 	private function _addBitmap ( e:Event = null ):void
 	{
-		_textField.visible = true;
+		if( useBitmap ) 
+		{
+			_textField.visible = true;
 		
-		if( _bitmap != null ) {
-			this.removeChild(_bitmap);
+			if( _bitmap != null ) {
+				this.removeChild(_bitmap);
+			}
+			var myBitmapData:BitmapData = new BitmapData(this.width, this.height, true, 0x000000);
+			myBitmapData.draw( this );
+			_bitmap = new Bitmap( myBitmapData );
+			this.addChild( _bitmap );
+			_textField.visible = false;
 		}
-		var myBitmapData:BitmapData = new BitmapData(this.width, this.height, true, 0x000000);
-		myBitmapData.draw( this );
-		_bitmap = new Bitmap( myBitmapData );
-		this.addChild( _bitmap );
-		_textField.visible = false;
+		else
+		{
+			trace( "num"  + '  :  ' + this.numChildren );
+			//if( this.numChildren == 0)
+			//{
+				_textField.visible = true;
+				this.addChild( _textField );
+			//}
+		}
+		
 	}
 	
 	
-	// Remove all "\n" characters
+	// Remove all "\n" characters, and all white space between xml nodes
 	private function _stripNewLines ( $str:String ):String
 	{
+		// remove new line chars
 		var look:RegExp = /\n/g;
+		$str = $str.replace(look, "");
+		
+		// remove white space between xml nodes
+		look = /(?<=>)\s*(?=<)/g
 		return $str.replace(look, "");
 	}
 	

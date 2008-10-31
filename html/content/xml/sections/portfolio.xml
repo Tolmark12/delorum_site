@@ -10,10 +10,10 @@
  		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="380" frameY="49" xml="olympus.xml,ibex.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
-					<txt><h1>Selected Logos</h1><p>Delorum has created over 40</p><p>logos for various brands. Here's a sampling of a few of our favorites.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0" text="Olympus Building Case Study" yMod="190" icon="NONE" />
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="1" text="Ibex Case Study" yMod="220" icon="NONE" />
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="2" text="Heaven's Best Case Study" yMod="250" icon="NONE" />
+					<txt><h1>Selected Logos</h1><p>Delorum has designed over 40</p><p>logos for various brands. Here's</p><p>a few of our favorites.</p></txt>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="2" text="Heaven's Best Case Study" yMod="220" icon="NONE" />
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0" text="Olympus Building Case Study" yMod="250" icon="NONE" />
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="1" text="Ibex Case Study" yMod="280" icon="NONE" />
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
@@ -65,12 +65,12 @@
 		<projectStub title="Monkey Bars" image="monkey_bars.jpg" frameX="459" frameY="0" xml="monkey_bars.xml">
 			<row css="portfolio,white_black" bgAlpha="0">
 	 			<col>
-	 				<txt><h1>Monkey Bars</h1><p>Distinctive branding.</p></txt>
+	 				<txt><h1>Monkey Bars</h1><p>Introducing a new product into a specialized market poses a unique set of challenges. Just getting the attention of your consumer can be daunting. With this in mind, we've crafted this brand for a maximum impact in the retail environment.</p></txt>
 	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 	 		</row>
 		</projectStub>
-		<projectStub title="Heidi's Fudge" image="heidis_fudge.jpg" frameX="510" frameY="0" xml="heidis_fudge.xml" >
+		<projectStub title="Heidis Fudge" image="heidis_fudge.jpg" frameX="510" frameY="0" xml="heidis_fudge.xml" >
 			<row css="portfolio,rbn_heidi" slideShowId="hss_heidis_fudge" bgAlpha="0" totalColumns="2" columnPadding="40">
 				<col>
 					<txt><h1>Heidi's Fudge</h1><p>After 20 years of making fudge, Heidi approached Delorum to create a logo, packaging, simple</p><p>e-commerce site and sales brochures for their</p><p>fudge company.</p></txt>
@@ -81,8 +81,8 @@
 		<projectStub title="Plum Furniture" image="plum3.jpg" xml="plum.xml" frameX="580" frameY="71" >
 			<row css="portfolio,white_black" slideShowId="hss_plum" bgAlpha="0">
 				<col>
-					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design coupled wiwth today’s handcrafted precision. Delorum designed an identity, sales materials, and a website to match Plum's superiou level of craft.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design coupled with today’s handcrafted precision. Delorum designed an identity, sales materials, and a website to match Plum's superior level of craft.</p></txt>
+					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_plum">
@@ -96,7 +96,7 @@
  		<projectStub title="Bevy Facebook Application" image="bevy.jpg" frameX="487" frameY="28" xml="bevy.xml" >
  			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
 				<col>
-					<txt><h1>Bevy Facebook Application</h1><p>Seattle based Bevy contacted us to help develop their brand, launch their corporate website, and design a Facebook application that's guarenteed to knock your high heels off. </p></txt>
+					<txt><h1>Bevy Facebook Application</h1><p>Seattle based Bevy contacted us to help develop their brand, launch their corporate website, and design a Facebook application that's guaranteed to knock your high heels off. </p></txt>
 					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
 				</col>
 				<col span="2" float="right">
@@ -113,13 +113,13 @@
 		<projectStub title="Yellowstone Historic Center" image="yhc.jpg" frameX="500" frameY="156" xml="yhc.xml" >
 			<row css="portfolio,white_black" bgAlpha="0" totalColumns="2" columnPadding="70">
 				<col>
-					<txt><h1>Yellowstone Historic Center</h1><p>After 20 years of making fudge, Heidi retained Delorum to create a logo, packaging, simple e-commerce site and sales brochures for their fudge company.</p></txt>
+					<txt><h1>Yellowstone Historic Center</h1><p>Yellowstone National Park has long embodied the great American west. The Yellowstone Historical Center preserves and displays this heritage. We greatly appreciated the opportunity to redesign the look-and-feel of this organization. </p></txt>
 					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 			</row>
  		</projectStub>
 		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="" frameX="500">
- 			<row css="portfolio" bgAlpha="0" slideShowId="hss_oliver">
+ 			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
 	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
