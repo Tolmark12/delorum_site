@@ -6,6 +6,8 @@ import org.puremvc.as3.multicore.patterns.observer.Notification;
 import SWFAddress;
 import SWFAddressEvent;
 import delorum.echo.EchoMachine;
+import flash.external.ExternalInterface;
+import flash.net.navigateToURL;
 import site.SiteFacade;
 
 public class BrowserUrlMediator extends Mediator implements IMediator
@@ -14,6 +16,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 	public static const NAME:String = "browser_url_mediator";
 	
 	private var _sendTime:Date;
+	public var activePage:String = "++++++";
 	
 	public function BrowserUrlMediator( ):void
 	{
@@ -21,6 +24,23 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 		
 		SWFAddress.addEventListener(SWFAddressEvent.CHANGE, _handleSwfAddressChange );
    	}
+	
+	// PureMVC: List notifications
+	override public function listNotificationInterests():Array
+	{
+		return [ SiteFacade.FLASH_URL_CHANGED ];
+	}
+	
+	// PureMVC: Handle notifications
+	override public function handleNotification( note:INotification ):void
+	{
+		switch ( note.getName() )
+		{
+			case SiteFacade.FLASH_URL_CHANGED:
+				_setNewUrl( note.getBody() as String );
+				break;
+		}
+	}
 	
 	private function _handleSwfAddressChange ( e:SWFAddressEvent ):void
 	{
@@ -46,6 +66,8 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 	public function _setNewUrl ( $url:String = ""):void
 	{
 		_sendTime = new Date();
+		//trace( activePage + "->" + $url );
+		ExternalInterface.call( "pageTracker._trackPageview", activePage + "->" + $url );
 		SWFAddress.setValue( $url );
 		
 		var look:RegExp		 = /_/;
@@ -53,23 +75,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 		SWFAddress.setTitle( BROWSER_TITLE_PREFACE + pageTitle);
 	}
 	
-	
-	// PureMVC: List notifications
-	override public function listNotificationInterests():Array
-	{
-		return [ SiteFacade.FLASH_URL_CHANGED ];
-	}
-	
-	// PureMVC: Handle notifications
-	override public function handleNotification( note:INotification ):void
-	{
-		switch ( note.getName() )
-		{
-			case SiteFacade.FLASH_URL_CHANGED:
-				_setNewUrl( note.getBody() as String );
-				break;
-		}
-	}
+
 	
 }
 }

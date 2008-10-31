@@ -186,8 +186,9 @@ public class ProjectStub extends Sprite
 		this.alpha = 0;
 		this.visible = true;
 		Tweener.addTween( this, { alpha:1, time:0.3, transition:"EaseInQuint"} );
-		_imageMc.x = _baseX;
-		_imageMc.y = _baseY;
+		
+		_imageMc.x = (_sizeState == SMALL)? _baseX : 0;
+		_imageMc.y = (_sizeState == SMALL)? _baseY : 0;
 	}
 	
 	// ______________________________________________________________ Activating content
