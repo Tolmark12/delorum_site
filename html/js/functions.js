@@ -86,8 +86,9 @@ function getFlash(){
  */
 function setFlashHeight( newHeight ){
 	document.getElementById( "body" ).style.height = newHeight + "px";
+	document.getElementById('delorum_flash').style.height = newHeight + "px";
 	
-	//alert(newHeight + ' : ' + _scrollHeight());
+	alert(newHeight + ' : ' + _scrollHeight());
 	
 	if ( newHeight<_scrollHeight()  ) 
 	{
