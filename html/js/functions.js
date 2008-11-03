@@ -1,8 +1,17 @@
-// ______________________________________________________________ Flash Scrolling
-
+window.onresize = detectResize;
 window.onscroll = detectScroll;
 echoString = "";
 oldPercent = -1;
+
+
+function detectResize(){
+	//if( typeof( window.innerWidth ) != 'number' ){ 
+		document.getElementById('delorum_flash').style.height = _innerHeight() + "px";
+	//}
+}
+
+// ______________________________________________________________ Flash Scrolling
+
 /** 
  * Formulate percent of document currently
  * being viewed in document window.
@@ -86,9 +95,8 @@ function getFlash(){
  */
 function setFlashHeight( newHeight ){
 	document.getElementById( "body" ).style.height = newHeight + "px";
-	document.getElementById('delorum_flash').style.height = newHeight + "px";
 	
-	alert(newHeight + ' : ' + _scrollHeight());
+	//alert(newHeight + ' : ' + _scrollHeight());
 	
 	if ( newHeight<_scrollHeight()  ) 
 	{
@@ -108,3 +116,8 @@ function moveScrollToCoordinate(y) {
 function getScrollCordinate () {
 	return (document.all)? document.body.scrollTop : window.pageYOffset ;
 }
+
+
+detectResize();
+
+
