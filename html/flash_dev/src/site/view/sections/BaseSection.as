@@ -23,6 +23,7 @@ public class BaseSection extends Mediator implements IMediator
 //		trace( ":: Showing ::" );
 		// Default showing behavior
 		Tweener.addTween( _baseMc, { alpha:1, time:.6 } );
+		_updateHeight();
 	}
 	
 	public function hide (  ):void
@@ -61,5 +62,11 @@ public class BaseSection extends Mediator implements IMediator
 	
 	public function get baseMc (  ):Sprite{ return _baseMc; };
 	
+	// ______________________________________________________________ Helpers
+	
+	protected function _updateHeight (  ):void
+	{
+		sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED );
+	}
 }
 }

@@ -62,11 +62,9 @@ public class AboutUsMediator extends BaseSection implements IMediator
 			blurb.setText( vo.htmlText, AboutUsBlurb_VO.css );
 			_baseMc.addChild(blurb);
 		}
-		
-		super.show();
+
 		_align();
-		sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED );
-		
+		super.show();
 	}
 	
 	

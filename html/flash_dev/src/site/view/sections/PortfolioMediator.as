@@ -206,6 +206,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_displayAsRibbon();	
 		//_moveRibbonVertical();	
 		// Make visible
+		
 		super.show();
 	}
 	
@@ -284,6 +285,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		 										  : StageMediator.stageLeft + OUTER_PADDING;
 		
 		Tweener.addTween( _stubHolder, { x:newx, time:$tweenTime, transition:"EaseInOutQuint", onUpdate:_setRealativePosition} );
+		_updateHeight();
 	}
 	
 	private function _activateStub ( $id:uint ):void
@@ -420,7 +422,7 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	public function _handleActivateStub     ( e:Event 	   ):void { sendNotification( SiteFacade.PROJECT_STUB_CLICK, e.target.arrayIndex );  };
 	public function _handleDeactivateStub   ( e:Event=null ):void { sendNotification( SiteFacade.DEACTIVATE_STUB_CLICK	); };
 	public function _handleStubXmlRequest   ( e:Event 	   ):void { sendNotification( SiteFacade.LOAD_PROJECT_XML, _alternateXml ); };
-	public function _handleHeightChange     ( e:Event 	   ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 		); };
+	public function _handleHeightChange     ( e:Event=null ):void { sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED 		); };
 	private function _handleHideCaseStudy   ( e:Event 	   ):void {	sendNotification( SiteFacade.HIDE_CASE_STUDY_CLICK		); };
 	private function _handleCaseStudyHidden ( e:Event 	   ):void {	sendNotification( SiteFacade.CASE_STUDY_HIDDEN			); };
 	private function _handleScrollPress		( e:Event 	   ):void {	sendNotification( SiteFacade.PFLIO_SCROLL_PRESS			); };
