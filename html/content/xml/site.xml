@@ -14,5 +14,8 @@
 		<nav_item section="contact" contentType="contact" colorScheme="tan" clickAction="sendNotification" clickActionParam="SHOW_CONTACT_INFO">
 			<title>Contact</title>
 		</nav_item>
+		<nav_item section="jobs" contentType="jobs" colorScheme="orange" xml="sections/jobs.xml" clickAction="newSection" >
+			<title>Jobs</title>
+		</nav_item>
 	</nav>
 </site>

@@ -1,0 +1,23 @@
+<JOBS>
+	<openings>
+		<text>
+			<h1>Current job Openings:</h1>
+			<h1>PHP Developer</h1>
+			<p>Delorum Inc. is looking for a solid php developer to join our development team. The work is fast paced and varied–often requiring innovative solutions and creative problem solving. You can expect to be treated with respect and consideration and we expect the same in return. Our team develops applications and sites for high profile clients.</p>
+			
+			<h2>Technical Skills:</h2>
+			<p>We need a php developer completely at ease with Object Oriented development and the MVC design pattern. You should also feel comfortable working within a framework. (Zend, Magento). </p>
+			<p>Strong database integration skills are essential. (SQL, recordset optimization, table structure engineering, etc).</p>
+			
+			<h2>Bonus Points:</h2>
+			<p>- Understanding of compiled, low-level languages such as C/C++</p>
+			<p>- Flash Actionscript experience (or interest).</p>
+			<p>- UML diagramming</p>
+			<p>- HTML / CSS skills</p>
+			<p>- The ability to move small objects with your mind</p>
+			
+			<h2>Location:</h2>
+			<p>While we prefer you to work on site, we are open to long distance collaboration.</p>
+		</text>
+	</openings>
+</JOBS>

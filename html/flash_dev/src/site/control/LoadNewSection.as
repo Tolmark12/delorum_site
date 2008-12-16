@@ -26,6 +26,8 @@ public class LoadNewSection extends SimpleCommand implements ICommand
 		navMediator.makeNavItemActive( navProxy.currentItemIndex );
 		navProxy.changeUrlPath( navProxy.currentItemUrl, 0);
 		
+		trace( navItem.contentType )
+		
 		switch( navItem.contentType )
 		{
 			case "portfolio":
@@ -63,6 +65,17 @@ public class LoadNewSection extends SimpleCommand implements ICommand
 				var aboutProxy:AboutUsProxy = new AboutUsProxy();
 				facade.registerProxy( aboutProxy );
 				aboutProxy.loadXml( navItem.xmlPath );
+			break;
+			
+			case "jobs" :
+				var jobsMediator:JobsMediator = new JobsMediator();
+				facade.registerMediator( jobsMediator );
+				jobsMediator.make();
+				stageMediator.addNewSection( jobsMediator );
+				
+				var jobsProxy:JobsProxy = new JobsProxy();
+				facade.registerProxy( jobsProxy );
+				jobsProxy.loadXml( navItem.xmlPath );
 			break;
 			
 			case "page":

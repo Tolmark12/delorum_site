@@ -13,7 +13,7 @@ public class CssProxy extends Proxy implements IProxy
 {
 	public static const NAME:String = "css_proxy";
 	
-	private static var _cssObj:Object;
+	private static var _cssObj:Object = new Object();;
 	
 	public function CssProxy( ):void
 	{
@@ -35,8 +35,6 @@ public class CssProxy extends Proxy implements IProxy
 	
 	private function _parseCss ( $xml:XML ):void
 	{
-		_cssObj = new Object();
-		
 		for each( var node:XML in $xml.styles.style )
 		{
 			var vo:Css_VO = new Css_VO();
