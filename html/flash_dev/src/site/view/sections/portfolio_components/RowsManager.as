@@ -23,6 +23,7 @@ public class RowsManager extends Sprite
 		this.addChild( _contentSprite );
 		_rows = new Array();
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
+		_contentSprite.addEventListener( Row.ROW_INITIALIZED, _onRowInitialization );
 	}
 	
 	// ______________________________________________________________ Building / Removing
@@ -35,6 +36,8 @@ public class RowsManager extends Sprite
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var newRow:Row = new Row( $page_vo.rowsAr[i] as Row_VO, $page_vo.imagesDir, $width );
+			newRow.stackIndex = i;
+			newRow.hide();
 			_contentSprite.addChild(newRow);
 			_rows.push(newRow);
 		}
@@ -82,6 +85,33 @@ public class RowsManager extends Sprite
 			row.y = yPos;
 			yPos = row.y + row.actualHeight -1;
 		}
+	}
+	
+	private function _makeRowsVisible ( $rowIndex:Number ):void
+	{
+		var doTestNextRowDown:Boolean = true;
+		rowLoop : for ( var i:uint=0; i<$rowIndex+1; i++ ) 
+		{
+			trace( i + '  :  ' + _rows.length );
+			var row:Row = _rows[i] as Row;
+			if( !row.isInitialized ) {
+				doTestNextRowDown = false;
+				break rowLoop
+			} else {
+				row.show();
+			}
+		}
+		
+		if( doTestNextRowDown && $rowIndex != _rows.length -1 ) 
+			_makeRowsVisible( $rowIndex + 1)
+	}
+	
+	// ______________________________________________________________ Event Handlers
+	
+	private function _onRowInitialization ( e:Event ):void
+	{
+		var row:Row = e.target as Row;
+		_makeRowsVisible( row.stackIndex );
 	}
 	
 	private function _handleRowHeightChange ( e:Event ):void

@@ -34,6 +34,7 @@ public class Slides extends BaseColumnObj implements IColumnObject
 		
 		super.make($node);
 		_fireHeightChange();
+		_fireInitialized();
 	}
 	
 	override public function get myWidth (  ):Number{ return _slideShowWidth; };

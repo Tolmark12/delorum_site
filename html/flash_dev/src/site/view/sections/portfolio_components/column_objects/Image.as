@@ -10,6 +10,7 @@ public class Image extends BaseColumnObj implements IColumnObject
 	public var imagesDir:String;
 	private var _imageHolder:Sprite;
 	
+	private var _imageName:String;
 	public function Image():void
 	{
 		super();
@@ -17,9 +18,10 @@ public class Image extends BaseColumnObj implements IColumnObject
 	
 	override public function make ( $node:XML ):void
 	{
+		_imageName = _getImagePath( $node );
 		_imageHolder = new Sprite();
 		this.addChild( _imageHolder );
-		
+		trace( "loading image" + '  :  ' + _imageName );
 		// Todo, create better error handling
 		//if( _getImagePath( $node ).indexOf(".jpg") != -1 ) 
 		//{
@@ -45,7 +47,9 @@ public class Image extends BaseColumnObj implements IColumnObject
 	
 	private function _initImage ( e:Event ):void
 	{
+		trace( "initing image"  + '  :  ' +  _imageName );
 		_fireHeightChange();
+		_fireInitialized();
 	}
 	
 	override public function get myDispayThing (  ):DisplayObject

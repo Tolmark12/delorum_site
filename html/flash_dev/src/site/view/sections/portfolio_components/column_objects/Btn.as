@@ -32,6 +32,7 @@ public class Btn extends BaseColumnObj
 		this.addChild(_swcBtn);
 		super.make($node);
 		_fireHeightChange();
+		_fireInitialized();
 	}
 	
 	// ______________________________________________________________ Event Handlers

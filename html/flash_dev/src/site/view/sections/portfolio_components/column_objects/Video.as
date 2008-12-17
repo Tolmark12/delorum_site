@@ -37,6 +37,7 @@ public class Video extends BaseColumnObj implements IColumnObject
 
 		super.make($node);
 		_fireHeightChange();
+		_fireInitialized();
 	}
 	
 	// ______________________________________________________________ Video control

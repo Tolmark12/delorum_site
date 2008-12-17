@@ -16,7 +16,11 @@ import delorum.loading.*;
 
 public class Row extends Sprite
 {
+	// Constants
 	public static const ROW_PADDING:Number = 20;
+	
+	// Events
+	public static const ROW_INITIALIZED:String = "row_initialized";
 	
 	private var _width:Number;
 	private var _rowVo:Row_VO;
@@ -38,7 +42,13 @@ public class Row extends Sprite
 	private var _cssColumnPadding:uint;
 	private var _columnWidth:Number;
 	
+	// Initialization
+	private var _intializedColumns:Number = 0;
+	private var _totalColumnObjects:Number;
+	
 	// 
+	public var stackIndex:Number;
+	public var isInitialized:Boolean = false;
 	public var actualHeight:Number = 0;
 	private var _hasBackgroundImage:Boolean = false;
 	
@@ -59,15 +69,12 @@ public class Row extends Sprite
 		_drawBg( _width );
 		_addBackground( _rowVo.background )
 		_content = new Sprite();
+		_content.addEventListener( Column.COLUMN_INITIALIZED, _onColumnInitialized );
 		//_content.y = _cssMarginTop;
 		_holder.addChild( _content );
 			
 		// Add columns
 		_buildColumns( $imagesDir );
-		
-		alpha = 0;
-		Tweener.addTween( this, { alpha:1, time:0, transition:"EaseInOutQuint"} );
-//		_show();
 	}
 	
 	// ______________________________________________________________ Make
@@ -77,6 +84,7 @@ public class Row extends Sprite
 		var columnWidth:Number = ( _width - _cssPadding*2 - ( _cssColumnPadding * ( _cssTotalColumns-1 ) )) / _cssTotalColumns;
 		var len:uint = _rowVo.columnAr.length;
 		var currentColumnPos = 0;
+		_totalColumnObjects = len;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var col_vo:Col_VO = _rowVo.columnAr[i] as Col_VO;	
@@ -149,6 +157,22 @@ public class Row extends Sprite
 		
 	}
 	
+	// ______________________________________________________________ API
+	
+	public function hide (  ):void
+	{
+		this.visible = false
+		this.alpha = 0;
+	}
+	
+	public function show (  ):void
+	{
+		if( this.visible == false ) {	
+			Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseInOutQuint"} );
+			this.visible = true;
+		}
+	}
+	
 	// ______________________________________________________________ Event Handlers
 	
 	private function _handleColumnFloat ( e:Event ):void
@@ -203,6 +227,15 @@ public class Row extends Sprite
 			var column:Column = _columnAr.pop() as Column;
 			column.destruct();
 			_content.removeChild( column );
+		}
+	}
+	
+	private function _onColumnInitialized ( e:Event ):void
+	{
+		e.stopPropagation();
+		if( _totalColumnObjects == ++_intializedColumns ) {
+			isInitialized = true;
+			this.dispatchEvent( new Event( ROW_INITIALIZED, true ) );
 		}
 	}
 }

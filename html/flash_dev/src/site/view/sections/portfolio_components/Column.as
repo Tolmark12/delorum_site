@@ -9,6 +9,9 @@ import site.view.sections.portfolio_components.ProjectStub;
 
 public class Column extends Sprite
 {
+	// Events
+	public static const COLUMN_INITIALIZED:String = "column_initialized";
+	
 	// Size
 	public static const COLUMN_PADDING:uint	= 12;
 	public static const COLUMN_WIDTH:uint  	= 266;// - COLUMN_PADDING*4;
@@ -38,6 +41,8 @@ public class Column extends Sprite
 	private var _imagesDir:String;
 	private var _cssStyleList:Array;
 	private var _itemAr:Array;
+	private var _totalItems:Number;
+	private var _initializedItems:Number = 0;
 	private var _alignment:String;
 	
 	// Content
@@ -50,6 +55,7 @@ public class Column extends Sprite
 		_imagesDir = $imagesDir;
 		_cssStyleList = $cssStyleList;
 		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _refreshContent );
+		this.addEventListener( BaseColumnObj.INITIALIZED, _onColumnObjInit );
 	}
 	
 	// ______________________________________________________________ Make
@@ -64,8 +70,10 @@ public class Column extends Sprite
 		numberOfColumnsWide 	= ( $col_vo.colSpan == 0 )? 1 : $col_vo.colSpan ;
 		_colWidth 				= $columnWidth * numberOfColumnsWide;
 		
+		
 		var items:XMLList = $col_vo.content.children()
 		var len:uint = items.length();
+		_totalItems = len;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			// add all the items
@@ -75,6 +83,9 @@ public class Column extends Sprite
 			item.make( items[i] );
 			item.setWidth( _colWidth );
 		}
+		
+		if( len == 0 ) 
+			this.dispatchEvent( new Event(COLUMN_INITIALIZED, true) );
 		
 	}
 	
@@ -232,6 +243,18 @@ public class Column extends Sprite
 			this.removeChild(item);
 		}
 	}
+	
+	// ______________________________________________________________ Event Handlers
+	private function _onColumnObjInit ( e:Event ):void
+	{
+		// Stop the event from bubbling further
+		e.stopPropagation();
+		
+		// If all column items are initialized
+		if( _totalItems == ++_initializedItems )
+			this.dispatchEvent( new Event(COLUMN_INITIALIZED, true) );
+	}
+	
 	
 	// ______________________________________________________________ getters / setters
 	

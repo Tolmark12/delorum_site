@@ -7,6 +7,9 @@ import flash.events.*;
 
 public class BaseColumnObj extends Sprite implements IColumnObject
 {
+	// Events
+	public static const INITIALIZED:String = "initializasdfed";
+	
 	public function BaseColumnObj():void
 	{
 		
@@ -24,6 +27,11 @@ public class BaseColumnObj extends Sprite implements IColumnObject
 	protected function _fireHeightChange()
 	{
 		this.dispatchEvent( new Event( ProjectStub.CONTENT_HEIGHT_CHANGED, true) );
+	}
+	
+	protected function _fireInitialized (  ):void
+	{
+		this.dispatchEvent( new Event( INITIALIZED, true) );
 	}
 	
 	

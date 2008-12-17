@@ -19,8 +19,9 @@ public class ContactCard extends MovieClip
 	{
 		_cardBg = this.getChildByName("cardBg") as MovieClip;
 		_hiderMc = this.getChildByName("hider") as MovieClip;
-		_closeBtn = _cardBg.getChildByName("closeBtn") as MovieClip;
-		_closeBtn.buttonMode = true;
+		//FIXME: I must have accidentally deleted the close button some how...
+		//_closeBtn = _cardBg.getChildByName("closeBtn") as MovieClip;
+		//_closeBtn.buttonMode = true;
 		_hiderMc.blendMode = "multiply";
 		init();
 	}
@@ -31,7 +32,7 @@ public class ContactCard extends MovieClip
 		this.visible = false;
 		this.alpha = 0;
 		_hiderMc.addEventListener( MouseEvent.CLICK, _closeClick );
-		_closeBtn.addEventListener( MouseEvent.CLICK, _closeClick );
+		//_closeBtn.addEventListener( MouseEvent.CLICK, _closeClick );
 	}
 	
 	public function show ( ):void

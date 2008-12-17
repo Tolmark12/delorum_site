@@ -33,6 +33,7 @@ public class Text extends BaseColumnObj implements IColumnObject
 		super.make($node);
 		
 		_fireHeightChange();
+		_fireInitialized();
 	}
 	
 	override public function setWidth ( $width:Number ):void
