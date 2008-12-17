@@ -9,7 +9,7 @@ import flash.events.*;
 
 public class SwcText extends MovieClip
 {
-	public var useBitmap:Boolean = true;
+	private var _useBitmap:Boolean = true;
 	private var _textField:TextField;
 	private var _bitmap:Bitmap;
 	private var _styleSheet:StyleSheet;
@@ -85,7 +85,7 @@ public class SwcText extends MovieClip
 	// Convert text into a bitmap for performance improvement
 	private function _addBitmap ( e:Event = null ):void
 	{
-		if( useBitmap ) 
+		if( _useBitmap ) 
 		{
 			_textField.visible = true;
 		
@@ -138,6 +138,11 @@ public class SwcText extends MovieClip
 	public function set size ( $size:Number ):void 		 { _baseStyle.fontSize = $size; _updateFormat();  };
 	public function set color ( $hex:uint ):void 		 { _baseStyle.color = $hex; _updateFormat() };
 	public function set leading ( $leading:Number ):void {  _baseStyle.leading = $leading; _updateFormat(); };
+	public function set useBitmap ( $bool:Boolean ):void { 
+		_useBitmap = $bool; 
+		if( !_useBitmap && _bitmap != null ) 
+			_bitmap.visible = false;
+	};
 
 }
 

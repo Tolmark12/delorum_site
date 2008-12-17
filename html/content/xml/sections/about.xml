@@ -13,6 +13,9 @@
 		p{
 			color:#222222;
 		}
+		a:hover{
+			text-decoration:underline;
+		}
 	</css>
 	<tags>
 		<tag>

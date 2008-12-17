@@ -59,9 +59,28 @@
 		/>
 	</colorScheme>
 	
+	<colorScheme id="color">
+		<colors 
+			 nav_hover="333333"
+			 nav_active="000000"
+			 bg="138D9C"
+		/>
+	</colorScheme>
+	
 	<colorScheme id="black">
 		<colors 
+			 bg="000000"
+		/>
+	</colorScheme>
+	
+	<colorScheme id="dark">
+		<colors 
+			 logo="FFFFFF"
+			 logo_hover="6994A1"
 			 bg="222222"
+			 scrollbar_track="111111"
+			 scrollbar_track_border="222222"
+			 scrollbar_bar="222222"
 		/>
 	</colorScheme>
 	
@@ -74,7 +93,7 @@
 			 scrollbar_track="CCCCCC"
 			 scrollbar_track_border="AAAAAA"
 			 scrollbar_bar="FFFFFF"
-			 logo="FFFFFF"
+			 logo="222222"
 		/>
 	</colorScheme>
 	

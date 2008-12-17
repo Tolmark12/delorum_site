@@ -74,7 +74,7 @@
 	<style id="heavens_best_top"> 	p{  color:#121A2F } h1{  color:#121A2F }</style>
 	<style id="ibex_head"> 			p   { color:#C8B690; font-size:16 } h1	{ font-size:18 }</style>
 	<style id="idahoan"> 			p   { color:#4A2E15; } h1 { color:#9B120C; } row{bgColor:#F3EED3} </style>
-	<style id="m_bars"> 			row{ bgAlpha:0; } p{ color:#BBBBBB; } h1{ color:#F8883B} </style>
+	<style id="m_bars"> 			row{ bgAlpha:0; } p{ color:#999999; } h1{ color:#F8883B} </style>
 	<!--Pages END -->
 	
 	<!-- Pages shared -->

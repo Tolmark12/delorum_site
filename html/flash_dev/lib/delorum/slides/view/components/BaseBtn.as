@@ -24,22 +24,22 @@ public class BaseBtn extends Sprite
 	
 	private function _mouseOver ( e:Event ):void{
 		if( _doRollOvers ) 
-			_shiftToOutColor();
+			_shiftToOverColor();
 	}
 	
 	private function _mouseOut ( e:Event ):void{
 		if( _doRollOvers )
-			_shiftToOverColor();
+			_shiftToOutColor();
 	}
 	
 	// ______________________________________________________________ Color Shifting
 	private function _shiftToOverColor (  ):void{
-		TweenLite.to(_bgShape,0.1,{tint:mouseOutColor});
+		TweenLite.to(_bgShape,0.1,{tint:mouseOverColor});
 	}
 	
 	private function _shiftToOutColor (  ):void
 	{
-		TweenLite.to(_bgShape,0.4,{tint:mouseOverColor});
+		TweenLite.to(_bgShape,0.4,{tint:mouseOutColor});
 	}
 }
 

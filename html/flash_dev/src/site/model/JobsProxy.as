@@ -29,8 +29,9 @@ public class JobsProxy extends Proxy implements IProxy
 	{
 		var xml:XML = XML( e.target.data );
 		var vo:Jobs_VO = new Jobs_VO();
-		vo.openJobs = xml.openings.text;
-		
+		vo.css = String( xml.css.* );
+		vo.openJobs = String( xml.openings.text.* );
+		vo.generalBlurb = String( xml.blurb.text.* )
 		sendNotification( SiteFacade.JOBS_XML_PARSED, vo )
 	}
 	

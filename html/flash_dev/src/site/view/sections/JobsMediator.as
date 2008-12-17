@@ -16,7 +16,6 @@ import site.model.CssProxy;
 public class JobsMediator extends BaseSection implements IMediator
 {	
 	public static const NAME:String = "jobs_mediator";
-	private var _currentJobsTxt:BodyText_swc;
 	
 	public function JobsMediator(  ):void
 	{
@@ -53,28 +52,24 @@ public class JobsMediator extends BaseSection implements IMediator
 	
 	private function _populateText ( $vo:Jobs_VO ):void
 	{
-		_currentJobsTxt = new BodyText_swc();
-		//_currentJobsTxt.parseCss( CssProxy.getCss( "default" ) );
-		trace( CssProxy.getCss("default") );
-		_currentJobsTxt.text = $vo.openJobs;
-		super._baseMc.addChild(_currentJobsTxt);
+		var currentJobsTxt:BodyText_swc = new BodyText_swc();
+		currentJobsTxt.x = 460;
+		currentJobsTxt.y = 130
+		currentJobsTxt.textWidth = 450;
+		currentJobsTxt.parseCss( $vo.css );
+		currentJobsTxt.htmlText = $vo.openJobs;
+		super._baseMc.addChild( currentJobsTxt) ;
+		
+		var blurbTxt:BodyText_swc = new BodyText_swc();
+		blurbTxt.x = 60;
+		blurbTxt.y = 175
+		blurbTxt.textWidth = 290;
+		blurbTxt.parseCss( $vo.css );
+		blurbTxt.htmlText = $vo.generalBlurb;
+		blurbTxt.useBitmap = false;
+		super._baseMc.addChild( blurbTxt );
+		
 		super.show();
-		//var len:uint = $blurbs.length;
-		//for ( var i:uint=0; i<len; i++ ) 
-		//{
-		//	var vo:AboutUsBlurb_VO = $blurbs[i];
-		//	var blurb:AboutUsBlurb_swc = new AboutUsBlurb_swc();
-		//	blurb.x = i * 300;
-		//	blurb.y = 100;
-		//	blurb.title = vo.title;
-		//	blurb.number = vo.number;
-		//	blurb.setText( vo.htmlText, AboutUsBlurb_VO.css );
-		//	_baseMc.addChild(blurb);
-		//}
-		//
-		//super.show();
-		//_align();
-		//sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED );
 		
 	}
 	

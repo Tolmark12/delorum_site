@@ -1,21 +1,65 @@
 <JOBS>
+	<css>
+		h{
+			display:block;
+			font-size:14;
+			color:#000000;
+		}
+		h1{
+	   		display:block;
+	   		font-size:14;
+	   		color:#FFFFFF;
+	   		}
+	 	h2{
+	   		display:block;
+	   		font-size:14;
+	   		color:#FFFCAE;
+		}
+		p{
+			color:#000000;
+		}
+		w{
+			color:#FFFFFF;
+		}
+		a:hover{
+			color:#121212;
+			text-decoration:underline;
+		}
+		small{
+			font-size:12;
+		}
+	</css>
+	<blurb>
+		<text>
+			<h1>Resumes and Portfolios</h1>
+			<p>Delorum has an open portfolio and resume policy. While we may not be hiring for a specific position, we are always looking for talented individuals. </p>
+			<br/>
+			<h1>Internships</h1>
+			<p>Delorum has a robust paid internship program </p><p>for designers and developers.</p>
+			<br/>
+			<h1>Drop us a line</h1>
+			<p>We'd love to see your work: </p>
+			<a href="mailto:jobs@delorum.com" target="_self" >jobs@delorum.com</a>
+		</text>
+	</blurb>
 	<openings>
 		<text>
-			<h1>Current job Openings:</h1>
-			<h1>PHP Developer</h1>
+			<h>Current job Openings:</h><br/>
+			<h1>PHP Developer - Starting Jan 2009</h1>
 			<p>Delorum Inc. is looking for a solid php developer to join our development team. The work is fast paced and varied–often requiring innovative solutions and creative problem solving. You can expect to be treated with respect and consideration and we expect the same in return. Our team develops applications and sites for high profile clients.</p>
-			
+			<br/>
 			<h2>Technical Skills:</h2>
 			<p>We need a php developer completely at ease with Object Oriented development and the MVC design pattern. You should also feel comfortable working within a framework. (Zend, Magento). </p>
+			<br/>
 			<p>Strong database integration skills are essential. (SQL, recordset optimization, table structure engineering, etc).</p>
-			
+			<br/>
 			<h2>Bonus Points:</h2>
 			<p>- Understanding of compiled, low-level languages such as C/C++</p>
 			<p>- Flash Actionscript experience (or interest).</p>
 			<p>- UML diagramming</p>
 			<p>- HTML / CSS skills</p>
 			<p>- The ability to move small objects with your mind</p>
-			
+			<br/>
 			<h2>Location:</h2>
 			<p>While we prefer you to work on site, we are open to long distance collaboration.</p>
 		</text>

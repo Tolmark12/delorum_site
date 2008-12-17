@@ -7,7 +7,7 @@
  			  defaultCss="brown"  >
 
 		
- 		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="380" frameY="49" xml="olympus.xml,ibex.xml,heavens_best.xml" >
+ 		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,ibex.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
 					<txt><h1>Selected Logos</h1><p>Delorum has designed over 40</p><p>logos for various brands. Here's</p><p>a few of our favorites.</p></txt>

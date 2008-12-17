@@ -212,7 +212,7 @@ public class ProjectStub extends Sprite
 	}
 	
 	/**	Turns the image to black and white */
-	public function brightenImageHalfway ( $changeBorderToo:Boolean = true, $lum2:Number = 0.6, $time:Number=0.2 ):void
+	public function brightenImageHalfway ( $changeBorderToo:Boolean = true, $lum2:Number = 1, $time:Number=0.2 ):void
 	{
 		brightenImage( $changeBorderToo, 0.08, $lum2, $time );
 	}

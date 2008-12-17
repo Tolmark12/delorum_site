@@ -7,8 +7,8 @@ import flash.events.*;
 
 public class ThumbnailBtn extends BaseBtn
 {
-	public static var BG_COLOR:uint 		= 0x232323;
-	public static var HIGHLIGHT_COLOR:uint 	= 0x353331;
+	public static var BG_COLOR:uint 		= 0x000000;
+	public static var HIGHLIGHT_COLOR:uint 	= 0x666666;
 	public static var WIDTH:Number 			= 12;
 	
 	private var _slideVo:Slide_VO;
@@ -17,17 +17,25 @@ public class ThumbnailBtn extends BaseBtn
 	public function ThumbnailBtn( $slideVo:Slide_VO ):void
 	{
 		super();
+		//mouseOverColor = 0xE3742A;
+		mouseOutColor = 0x000000;
 		_slideVo = $slideVo;
 		this.buttonMode = true;
 	}
 	
 	// ______________________________________________________________ Make
 	
-	public function build (  ):void
+	public function build ( $offsetFromOtherBtns:Number ):void
 	{
 		super._bgShape.graphics.beginFill( BG_COLOR );
 		super._bgShape.graphics.drawRect(0,0,WIDTH,WIDTH);
 		
+		var hitSprite:Sprite = new Sprite();
+		hitSprite.graphics.beginFill(0xFF0000, 0);
+		hitSprite.graphics.drawRect(-$offsetFromOtherBtns, -$offsetFromOtherBtns, this.width + $offsetFromOtherBtns, this.height + $offsetFromOtherBtns)
+		this.addChild(hitSprite);
+		
+				
 		_dot = new Sprite();
 		_dot.x = _dot.y = WIDTH / 4;
 		_dot.graphics.beginFill( HIGHLIGHT_COLOR );

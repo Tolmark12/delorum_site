@@ -76,7 +76,7 @@ public class ControlsMediator extends Mediator implements IMediator
 			var slideVo:Slide_VO = $slides[i];
 			var btn:ThumbnailBtn = new ThumbnailBtn(slideVo);
 			
-			btn.build();
+			btn.build(3);
 			btn.unHighlight();
 			btn.addEventListener( MouseEvent.CLICK, _handleBtnClick );
 			btn.x = xInc * i;
