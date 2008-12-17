@@ -92,7 +92,6 @@ public class RowsManager extends Sprite
 		var doTestNextRowDown:Boolean = true;
 		rowLoop : for ( var i:uint=0; i<$rowIndex+1; i++ ) 
 		{
-			trace( i + '  :  ' + _rows.length );
 			var row:Row = _rows[i] as Row;
 			if( !row.isInitialized ) {
 				doTestNextRowDown = false;
