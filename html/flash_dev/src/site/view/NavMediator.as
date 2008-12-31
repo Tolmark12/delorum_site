@@ -73,7 +73,7 @@ public class NavMediator extends Mediator implements IMediator
 				navBtn.index = navItem.arrayIndex;
 				_navAr[navItem.arrayIndex] = navBtn;
 				
-				navBtn.addEventListener( MouseEvent.CLICK, _handleNavBtnClick );
+				navBtn.addEventListener( MouseEvent.CLICK, _handleNavBtnClick, false,0,true );
 				navBtn.x = xPos;
 				navHolder.addChild(navBtn);
 				xPos += navBtn.textWidth + padding;
@@ -87,7 +87,7 @@ public class NavMediator extends Mediator implements IMediator
 			// This is the logo button
 			else
 			{
-				_logo.addEventListener( MouseEvent.CLICK, _handleNavBtnClick );
+				_logo.addEventListener( MouseEvent.CLICK, _handleNavBtnClick, false,0,true );
 				_logo.index = navItem.arrayIndex;
 			}
 		}

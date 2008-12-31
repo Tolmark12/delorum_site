@@ -132,7 +132,7 @@ public class StageMediator extends Mediator implements IMediator
 		_bgColorMc.graphics.drawRect( 0,0,10,10 );
 		_bgColorMc.y = -4000;
 		
-		_contact.addEventListener( ContactCard.CLOSE, _onContactClose );
+		_contact.addEventListener( ContactCard.CLOSE, _onContactClose, false,0,true );
 		_logo.y = _navSprite.y = 20;
 		
 		$mainSprite.addChild( _bgColorMc	 );		// add to display list
@@ -155,7 +155,7 @@ public class StageMediator extends Mediator implements IMediator
 		// initialize the stage for full screen amd listen for resize
 		_stage.scaleMode	   = StageScaleMode.NO_SCALE;
 		_stage.align 		   = StageAlign.TOP;
-		_stage.addEventListener( Event.RESIZE, _resizeHandler );
+		_stage.addEventListener( Event.RESIZE, _resizeHandler, false,0,true );
 		
 		// Listen for javascript to let flash know scrolling occured
 		if( ExternalInterface.available )

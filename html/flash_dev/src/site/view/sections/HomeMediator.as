@@ -54,8 +54,8 @@ public class HomeMediator extends BaseSection implements IMediator
 		_mainScreen.y = 90;
 		_teaser = new Teaser_swc();
 		
-		_mainScreen.addEventListener( MainScreen.JUMP, _jumpClick );
-		_teaser.addEventListener( MouseEvent.CLICK, _teaserClick );
+		_mainScreen.addEventListener( MainScreen.JUMP, _jumpClick, false,0,true );
+		_teaser.addEventListener( MouseEvent.CLICK, _teaserClick, false,0,true );
 		
 		super._baseMc.addChild( _mainScreen );
 		super._baseMc.addChild( _teaser );

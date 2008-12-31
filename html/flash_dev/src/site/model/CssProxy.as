@@ -23,7 +23,7 @@ public class CssProxy extends Proxy implements IProxy
 	public function loadCss ( $cssFile:String ):void
 	{
 		var ldr:DataLoader 			= new DataLoader( $cssFile );
-		ldr.addEventListener( Event.COMPLETE, _handleCssLoadComplete);
+		ldr.addEventListener( Event.COMPLETE, _handleCssLoadComplete, false,0,true);
 		ldr.loadItem();
 	}
 	

@@ -22,8 +22,8 @@ public class RowsManager extends Sprite
 		_contentSprite = new Sprite();
 		this.addChild( _contentSprite );
 		_rows = new Array();
-		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
-		_contentSprite.addEventListener( Row.ROW_INITIALIZED, _onRowInitialization );
+		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange, false,0,true );
+		_contentSprite.addEventListener( Row.ROW_INITIALIZED, _onRowInitialization, false,0,true );
 	}
 	
 	// ______________________________________________________________ Building / Removing
@@ -35,11 +35,13 @@ public class RowsManager extends Sprite
 		var len:uint = $page_vo.rowsAr.length;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
-			var newRow:Row = new Row( $page_vo.rowsAr[i] as Row_VO, $page_vo.imagesDir, $width );
-			newRow.stackIndex = i;
-			newRow.hide();
+			var newRow:Row = new Row( $page_vo.rowsAr[i] as Row_VO, $width );
 			_contentSprite.addChild(newRow);
 			_rows.push(newRow);
+
+			newRow.stackIndex = i;
+			newRow.hide();
+			newRow.buildColumns( $page_vo.imagesDir );
 		}
 	}
 	

@@ -115,9 +115,9 @@ public class ProjectStub extends Sprite
 		
 		this.visible 		= false;
 		_maskMc.buttonMode  = true;
-		_maskMc.addEventListener(  MouseEvent.MOUSE_OVER, _mouseOver);
-		_maskMc.addEventListener(  MouseEvent.MOUSE_OUT , _mouseOut );
-		_maskMc.addEventListener(  MouseEvent.CLICK ,     _click );
+		_maskMc.addEventListener(  MouseEvent.MOUSE_OVER, _mouseOver, false,0,true);
+		_maskMc.addEventListener(  MouseEvent.MOUSE_OUT , _mouseOut, false,0,true );
+		_maskMc.addEventListener(  MouseEvent.CLICK ,     _click, false,0,true );
 		_clickEvent = ACTIVATE_STUB;
 		
 		this.addChild(	 		_holder		);
@@ -157,7 +157,8 @@ public class ProjectStub extends Sprite
 	
 	private function _createRow ( $row:Row_VO=null ):void
 	{
-		var newRow:Row = new Row( $row, "", WIDTH_LARGE );
+		var newRow:Row = new Row( $row, WIDTH_LARGE );
+		newRow.buildColumns();
 		_slideShow = SlideShow.getSlideShowById( $row.slideShowId );
 		if( _slideShow != null)
 			_slideShow.stop();

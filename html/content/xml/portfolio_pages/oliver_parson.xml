@@ -1,12 +1,9 @@
 <MAIN>
 	<page imageDir="oliver/">
 		<!-- Four Hundred Sketches -->
-		<row css="header" padding="0">
+		<row css="header" bgAlpha="0" align="center">
 			<col>
-				<txt><h1>Oliver Parson Documentary</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions. </p></txt>
-			</col>
-			<col span="2" float="right">
-
+				<video src="content/images/portfolio/pages/oliver/oliver.mov" w="618" h="458" />
 			</col>
 		</row>
 	</page>

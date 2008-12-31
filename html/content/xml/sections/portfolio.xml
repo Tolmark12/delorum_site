@@ -97,7 +97,7 @@
  			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
 				<col>
 					<txt><h1>Bevy Facebook Application</h1><p>Seattle based Bevy contacted us to help develop their brand, launch their corporate website, and design a Facebook application that's guaranteed to knock your high heels off. </p></txt>
-					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
+					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_bevy">
@@ -118,11 +118,11 @@
 				</col>
 			</row>
  		</projectStub>
-		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="" frameX="500">
+		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="500">
  			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
-	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
+	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 	 			<col span="2" float="right">
 	 				<slideShow id="hss_oliver">

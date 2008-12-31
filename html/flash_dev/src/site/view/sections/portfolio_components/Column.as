@@ -54,8 +54,8 @@ public class Column extends Sprite
 		_colWidth = 0;
 		_imagesDir = $imagesDir;
 		_cssStyleList = $cssStyleList;
-		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _refreshContent );
-		this.addEventListener( BaseColumnObj.INITIALIZED, _onColumnObjInit );
+		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _refreshContent, false,0,true );
+		this.addEventListener( BaseColumnObj.INITIALIZED, _onColumnObjInit, false,0,true );
 	}
 	
 	// ______________________________________________________________ Make

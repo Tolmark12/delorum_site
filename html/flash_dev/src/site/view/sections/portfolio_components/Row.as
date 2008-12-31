@@ -52,10 +52,10 @@ public class Row extends Sprite
 	public var actualHeight:Number = 0;
 	private var _hasBackgroundImage:Boolean = false;
 	
-	public function Row( $rowVo:Row_VO, $imagesDir:String, $width:Number ):void
+	public function Row( $rowVo:Row_VO,  $width:Number ):void
 	{
 		_width = $width;
-		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange );
+		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleRowHeightChange, false,0,true );
 		
 		_rowVo = $rowVo;
 		_columnYpos = ROW_PADDING;
@@ -69,17 +69,17 @@ public class Row extends Sprite
 		_drawBg( _width );
 		_addBackground( _rowVo.background )
 		_content = new Sprite();
-		_content.addEventListener( Column.COLUMN_INITIALIZED, _onColumnInitialized );
+		_content.addEventListener( Column.COLUMN_INITIALIZED, _onColumnInitialized, false,0,true );
 		//_content.y = _cssMarginTop;
 		_holder.addChild( _content );
 			
 		// Add columns
-		_buildColumns( $imagesDir );
+	//	_buildColumns( $imagesDir );
 	}
 	
 	// ______________________________________________________________ Make
 	
-	private function _buildColumns ( $imagesDir:String ):void
+	public function buildColumns ( $imagesDir:String="" ):void
 	{
 		var columnWidth:Number = ( _width - _cssPadding*2 - ( _cssColumnPadding * ( _cssTotalColumns-1 ) )) / _cssTotalColumns;
 		var len:uint = _rowVo.columnAr.length;
@@ -92,7 +92,7 @@ public class Row extends Sprite
 			_content.addChild(column);
 			column.x = _cssPadding + (currentColumnPos * columnWidth) + (currentColumnPos * _cssColumnPadding);
 			column.y = _cssMarginTop;
-			column.addEventListener( Column.FLOAT, _handleColumnFloat );
+			column.addEventListener( Column.FLOAT, _handleColumnFloat, false,0,true );
 			column.make( col_vo, columnWidth );
 			currentColumnPos += column.numberOfColumnsWide;
 			_columnAr.push(column);
@@ -133,7 +133,7 @@ public class Row extends Sprite
 			var _imageHolder:Sprite = new Sprite();
 			_holder.addChild(_imageHolder);
 			var ldr:ImageLoader = new ImageLoader( $bg, _imageHolder );
-			ldr.addEventListener( Event.COMPLETE, _dispatchHeightChange );
+			ldr.addEventListener( Event.COMPLETE, _dispatchHeightChange, false,0,true );
 			ldr.loadItem();
 		}
 	}
@@ -237,6 +237,7 @@ public class Row extends Sprite
 			isInitialized = true;
 			this.dispatchEvent( new Event( ROW_INITIALIZED, true ) );
 		}
+		
 	}
 }
 
