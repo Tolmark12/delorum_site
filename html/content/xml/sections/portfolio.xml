@@ -110,6 +110,19 @@
 				</col>
 			</row>
  		</projectStub>
+		<projectStub title="Tommy Bahama" image="tommy1.jpg" frameX="332" frameY="162" xml="tommy.xml" >
+ 			<row css="portfolio,white_black" slideShowId="hss_tommy" bgAlpha="0">
+				<col>
+					<txt><h1>Tommy Bahama Flash Development</h1><p>Delorum continues to work closely with Tommy Bahama's talented internal design team to bring rich flash interactivity to their site. Furthermore, our modular code structure has enabled Tommy Bahama to quickly implement a vast array of home page designs.</p></txt>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+				</col>
+				<col span="2" float="right">
+					<slideShow id="hss_tommy">
+						<img src="__blank__" />
+					</slideShow>
+				</col>
+			</row>
+ 		</projectStub>
 		<projectStub title="Yellowstone Historic Center" image="yhc.jpg" frameX="500" frameY="156" xml="yhc.xml" >
 			<row css="portfolio,white_black" bgAlpha="0" totalColumns="2" columnPadding="70">
 				<col>
