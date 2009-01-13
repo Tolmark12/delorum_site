@@ -3,7 +3,7 @@ DelorumSite.swf Movie Report
 
 Frame #    Frame Bytes    Total Bytes    Scene
 -------    -----------    -----------    ----------------
-      1         223150         223150    Scene 1 (AS 3.0 Classes Export Frame)
+      1         227482         227482    Scene 1 (AS 3.0 Classes Export Frame)
 
 Scene                        Shape Bytes    Text Bytes    ActionScript Bytes
 -------------------------    -----------    ----------    ------------------
@@ -11,43 +11,46 @@ Scene 1                                0             0                     0
 
 Symbol                       Shape Bytes    Text Bytes    ActionScript Bytes
 -------------------------    -----------    ----------    ------------------
+Close                                 70             0                     0
+Symbol 4                             368           288                     0
+Contact Card                           0             0                     0
 icons                                209             0                     0
-About Us Blurb                        76           182                     0
+About Us Blurb                        75           182                     0
 blankCard                              0             0                     0
 Arrow                                 16             0                     0
 Symbol 3                              19             0                     0
 Teaser Image Card                      0             0                     0
-Home Teaser                           33           241                     0
-<Path>_2                             104             0                     0
-thumbs up                            985             0                     0
-Home Main Screen                    2223             0                     0
+Home Teaser                           33           238                     0
+<Path>_2                             103             0                     0
+thumbs up                            980             0                     0
+Home Main Screen                    2211             0                     0
 Brick                                 18             0                     0
 Symbol 2                              30             0                     0
 White close btn                       27             0                     0
 Title Txt                              0            27                     0
 Body Text                              0            35                     0
-About Us Text                          0            26                     0
-Chameleon Button                      17            36                     0
+About Us Text                          0            25                     0
+Chameleon Button                      17            35                     0
 Nav Divider                           18             0                     0
 Nav Button                             0            27                     0
-Symbol 1                             162             0                     0
+Symbol 1                             161             0                     0
 
 Font Name                 Bytes        Characters    
 ----------------------    ---------    --------------
-Helvetica Neue Light           3912     ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-MetaPlusBook                   6427     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
-Univers 55                     6013     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
-News Gothic Std                1545     abcdefghijklmnopqrstuvwxyz
-Clarendon BT                   2872     #.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+Helvetica Neue Light           3892     ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+Univers 55                     5982     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
+News Gothic Std                1537     abcdefghijklmnopqrstuvwxyz
+Clarendon BT                   2857     #.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+MetaPlusBook                   6394     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
 
 ActionScript Bytes    Location
 ------------------    --------
-            192087    ActionScript 3.0 Classes
+            195705    ActionScript 3.0 Classes
 
 Bitmap                     Compressed    Compression
 -----------------------    ----------  --------  -----------
-mainShadow.png                  3761     1391088   JPEG Quality=80
-small_shadow.png                 682      144092   Lossless
+mainShadow.png                  3742     1391088   JPEG Quality=80
+small_shadow.png                 678      144092   Lossless
 
 
 
