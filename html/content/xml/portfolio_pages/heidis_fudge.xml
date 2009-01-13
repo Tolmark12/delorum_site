@@ -6,8 +6,8 @@
 				<img src="purple_shield.jpg"/>
 			</col>
 			<col span="2">
-				<txt><br/><h1>Boutique Packaging</h1><p></p><br/>
-				<p>Just a few years after launch, Heidi’s Fudge has opened a physical store and seasonal mall locations, while their e-commerce site continues to boast a modest 5-6% conversion rate for new customers.</p></txt>
+				<txt><br/><h1>Tasty Packaging</h1><p></p><br/>
+				<p>Heidi makes incredibly delicious fudge that wins the loyalty of everyone who tries it. However, in a retail environment consumers rarely have the luxury of sampling the fudge before purchase. Therefore, the brand and package needed to be every bit as compelling as the actual fudge. Just a few years after launching their new brand and packaging, Heidi’s Fudge has opened their own physical store and seasonal mall locations.</p></txt>
 			</col>
 		</row>
 		<row css="h_fudge_row" bgColor="#2B221F" >
@@ -36,13 +36,13 @@
 				<img src="fudge_close.jpg" />
 			</col>
 		</row>
-		<row bgColor="#DDD5CA" padding="">
+		<!-- <row bgColor="#DDD5CA" padding="">
 			<col>
 				<txt><br/><h1>Simple e-commerce</h1><p>While the packages were being fabricated, we developed promotional materials and a simple e-commerce web site. We coupled a playful attitude with simple, direct information.</p></txt>
 			</col>
 			<col float="right">
 				<img src="browsers.jpg" />
 			</col>
-		</row>
+		</row> -->
 	</page>
 </MAIN>

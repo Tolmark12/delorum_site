@@ -73,7 +73,7 @@
 		<projectStub title="Heidis Fudge" image="heidis_fudge.jpg" frameX="510" frameY="0" xml="heidis_fudge.xml" >
 			<row css="portfolio,rbn_heidi" slideShowId="hss_heidis_fudge" bgAlpha="0" totalColumns="2" columnPadding="40">
 				<col>
-					<txt><h1>Heidi's Fudge</h1><p>After 20 years of making fudge, Heidi approached Delorum to create a logo, packaging, simple</p><p>e-commerce site and sales brochures for their</p><p>fudge company.</p></txt>
+					<txt><h1>Heidi's Fudge</h1><p>After 20 years of making and selling fudge at a local level, Heidi's Fudge hired Delorum to develop an identity and packaging that would allow their products to compete in a broader market place.</p></txt>
 					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 			</row>
@@ -97,7 +97,7 @@
  			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
 				<col>
 					<txt><h1>Bevy Facebook Application</h1><p>Seattle based Bevy contacted us to help develop their brand, launch their corporate website, and design a Facebook application that's guaranteed to knock your high heels off. </p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_bevy">
@@ -122,7 +122,7 @@
  			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
-	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
 				</col>
 	 			<col span="2" float="right">
 	 				<slideShow id="hss_oliver">
