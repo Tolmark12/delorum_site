@@ -164,11 +164,11 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_details 		= new ProjectDetails();		
 		_stubsAr		= new Array();
 		
-		_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 		);
-		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest 	);
-		_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange 	);
-		_details.addEventListener( ProjectDetails.HIDE_CASE_STUDY, _handleHideCaseStudy		);
-		_details.addEventListener( ProjectDetails.CASE_STUDY_HIDDEN, _handleCaseStudyHidden	);
+		_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub, false,0,true 		);
+		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest, false,0,true 	);
+		_details.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleHeightChange, false,0,true 	);
+		_details.addEventListener( ProjectDetails.HIDE_CASE_STUDY, _handleHideCaseStudy, false,0,true		);
+		_details.addEventListener( ProjectDetails.CASE_STUDY_HIDDEN, _handleCaseStudyHidden, false,0,true	);
 		
 		// Position display items
 		_stubHolder.x 	= StageMediator.stageLeft + OUTER_PADDING;
@@ -192,15 +192,15 @@ public class PortfolioMediator extends BaseSection implements IMediator
 			var stub:ProjectStub		= new ProjectStub();
 			stub.y = -30;
 			stub.make( stub_vo );
-			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub 				);
-			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub 			);
+			stub.addEventListener( ProjectStub.ACTIVATE_STUB, _handleActivateStub, false,0,true 				);
+			stub.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub, false,0,true 			);
 			// TODO: move the events of the details from the stub to the details. or at least investigate if it should be so
 			_stubHolder.addChild( stub );
 			_stubsAr.push( stub );
 		}
 		
 		// Add event listeners for events fired from content
-		super._baseMc.addEventListener( BtnEvent.SHOW_CASE_STUDY, _showCaseStudy );
+		super._baseMc.addEventListener( BtnEvent.SHOW_CASE_STUDY, _showCaseStudy, false,0,true );
 		
 		// display ribbon
 		_displayAsRibbon();	
@@ -219,9 +219,9 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_scroller.createDefaultScroller( colorScheme.scrollbar_bar, colorScheme.scrollbar_track, colorScheme.scrollbar_track_border, 4 );
 		_scroller.build();
 		
-		_scroller.addEventListener( Scroller.SCROLL, _handleScroll );
-		_scroller.addEventListener( Scroller.SCROLL_PRESSED, _handleScrollPress)
-		_scroller.addEventListener( Scroller.SCROLL_RELEASED, _handleScrollRelease)
+		_scroller.addEventListener( Scroller.SCROLL, _handleScroll, false,0,true );
+		_scroller.addEventListener( Scroller.SCROLL_PRESSED, _handleScrollPress, false,0,true)
+		_scroller.addEventListener( Scroller.SCROLL_RELEASED, _handleScrollRelease, false,0,true)
 		_scrollHolder.addChild( _scroller );
 	}
 	

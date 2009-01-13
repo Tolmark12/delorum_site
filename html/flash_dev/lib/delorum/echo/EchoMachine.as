@@ -1,7 +1,13 @@
 package delorum.echo
 {
-import flash.display.Stage;
+import flash.display.*;
 import flash.external.ExternalInterface;
+import flash.utils.Timer;
+import flash.events.Event;
+import flash.system.System;
+import flash.net.LocalConnection;
+import flash.events.StatusEvent;
+
 /**
  *	This class is used to report errors or other messages independent
  *	of how the swf has been deployed. For instance, if the swf has been
@@ -12,9 +18,9 @@ import flash.external.ExternalInterface;
  *	<listing version="3.0">
  *	
  *	// Determine what mode to output errors and messages
- *	ErrorMachine.setErrorModeAutomatically( this.stage );
+ *	ErrorMachine.setechoModeAutomatically( this.stage );
  *	// or, to set the error mode manually... 
- *	// ErrorMachine.errorMode = ErrorMachine.FLASH;
+ *	// ErrorMachine.echoMode = ErrorMachine.FLASH;
  *	
  *	// Add a sample error
  *	ErrorMachine.addErrorToLog( "This is a fake error." );
@@ -45,18 +51,20 @@ public class EchoMachine
 	public static const WEB:String 			= "web";
 	/** Error Mode: For saving errors to a log (not implemented yet) */
 	public static const LOG:String 			= "log";
-	
+	/**	Error Mode: Ooutputs to the AIR application */
+	public static const AIR:String 			= "air";
 
-	/**	Set the errorMode to indicate how errors should be reported 
+	/**	Set the echoMode to indicate how errors should be reported 
 	*	
 	*	@default    EchoMachine.QUIET 							 */
-	public static var errorMode:String		= QUIET;
+	private static var _echoMode:String		= QUIET;
 
 	/**	@private 	Store Messages here for later output */ 
 	private static var _messageLog:Array 	= new Array();
 	/**	@private 	Store Errors here for later output */ 
 	private static var _errorLog:Array 		= new Array();
-	
+	/**	@private 	Local Connection to the AIR application */
+	private static var _airConnection:LocalConnection;
 	
 	// ______________________________________________________________ PUBLIC FUNCTIONS
 	
@@ -100,7 +108,7 @@ public class EchoMachine
 	/** Automatically detect if flash is embedded in html, and set error mode appropriately 	*/
 	public static function setEchoModeAutomatically ( $stage:Stage ):void
 	{
-		errorMode = ( isOnWeb( $stage ) )? EchoMachine.WEB : EchoMachine.FLASH 
+		echoMode = ( isOnWeb( $stage ) )? EchoMachine.WEB : EchoMachine.FLASH 
 	}
 	
 	/** 
@@ -108,7 +116,7 @@ public class EchoMachine
 	*/
 	public static function isOnWeb ( $stage:Stage ):Boolean
 	{
-		return ( $stage.loaderInfo.url.indexOf("http://") == 0 )? true : false;
+		return ( $stage.loaderInfo.url.indexOf("http") == 0 )? true : false;
 	}
 	
 	
@@ -142,13 +150,56 @@ public class EchoMachine
 		_errorLog = new Array()
 	}
 	
+	// ______________________________________________________________ AIR specific 
+	
+	private static function _initForAIR (  ):void
+	{
+		_airConnection = new LocalConnection();
+		_airConnection.addEventListener(StatusEvent.STATUS, _onAirStaus);
+		_airConnection.send( "_delorum_air_connect", "clear" );
+	}
+	
+	private static function _onAirStaus ( e:Event ):void
+	{
+		
+	}
+	
+	// ______________________________________________________________ AIR specific END
+	
+	// ______________________________________________________________ Memory
+	
+	private static var _memoryEchoCount:uint = 0;
+	private static var _memoryTimer:Timer;
+	
+	/**	Echo out the amount of memory used by flash every 1 second. */
+	public static function startMemoryEcho ( $seconds:Number = 1 ):void
+	{
+		if( _memoryTimer == null ) 
+			_memoryTimer = new Timer( $seconds * 1 );
+
+		_memoryTimer.addEventListener("timer", _echoMemory, false, 0, true);
+		_memoryTimer.start();
+	}
+	
+	public static function stopMemoryEcho (  ):void
+	{
+		_memoryTimer.stop();
+	}
+	
+	private static function _echoMemory ( e:Event ):void
+	{
+		trace( _memoryEchoCount++ + ") " + System.totalMemory );
+	}
+	
+	// ______________________________________________________________ Memory END
+	
 	/** @private 	Send message to output receiver
 	* 	@param		Message
 	* 	@param		Error Mode [FLASH, QUIET, WEB, WEB_ALERT, LOG] */
 	private static function outputMessage( $str:String,  $emode:String = null ):void
 	{
-		// If no error mode sent, use the static errorMode
-		$emode = ( $emode == null )? errorMode : $emode ;
+		// If no error mode sent, use the static echoMode
+		$emode = ( $emode == null )? echoMode : $emode ;
 				
 		if( $str.length != 0 ) 
 		{
@@ -165,7 +216,11 @@ public class EchoMachine
 				case WEB:
 					ExternalInterface.call("confirm", $str);
 				break
-			
+				
+				case AIR :
+					_airConnection.send( "_delorum_air_connect", "echo", $str );
+				break;
+				
 				case LOG:
 					// Nothing here yet :-D
 				break
@@ -174,7 +229,22 @@ public class EchoMachine
 				break
 			}
 		}
-		
+	}
+	
+	// ______________________________________________________________ Stats
+	private static var _statsHarvester:StatsHarvester;
+	
+	public static function startLogging ( $stage:DisplayObjectContainer ):void
+	{
+		_statsHarvester = new StatsHarvester( $stage );
+		_statsHarvester.addEventListener( StatsHarvester.STATS, _onStats );
+		var str:String = $stage.stage.loaderInfo.loaderURL;
+		_airConnection.send( "_delorum_air_connect", "init", str );
+	}
+	
+	private static function _onStats ( e:Event ):void
+	{
+		_airConnection.send( "_delorum_air_connect", "stats", _statsHarvester.statsObject );
 	}
 	
 	public static function get errorLog 	(  ):Array{ return _errorLog; };
@@ -189,7 +259,7 @@ public class EchoMachine
 	
 	private static function getErrorsAsString():String
 	{
-		var newLine:String 		= (errorMode == WEB)? "\n" : "\n";
+		var newLine:String 		= (echoMode == WEB)? "\n" : "\n";
 		var lineStart:String	= ""
 		var preamble:String		= ">> Errors" + newLine;
 		var conclusion:String	= "<< End";
@@ -210,7 +280,7 @@ public class EchoMachine
 	*/
 	private static function getMessagesAsString():String
 	{
-		var newLine:String 		= (errorMode == WEB)? "\n" : "\n";
+		var newLine:String 		= (echoMode == WEB)? "\n" : "\n";
 		var lineStart:String	= ""
 		var preamble:String		= ">> Message Log" + newLine;
 		var conclusion:String	= "<< End";
@@ -222,6 +292,14 @@ public class EchoMachine
 			str += lineStart + _messageLog[ i ] + newLine;
 		}
 		return str + conclusion;
+	}
+	
+	// ______________________________________________________________ Getters + Setters
+	public static function get echoMode (  ):String { return _echoMode; }
+	public static function set echoMode ( $str:String ):void { 
+		_echoMode = $str;
+		if( _echoMode == AIR ) 
+			_initForAIR();
 	}
 	
 	// ______________________________________________________________ Aliases

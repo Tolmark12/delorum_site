@@ -19,8 +19,11 @@ public class DelorumSite extends Sprite
 	public function DelorumSite():void 
 	{
 		// For printing any errors / message
-		EchoMachine.setEchoModeAutomatically( this.stage );
-		EchoMachine.initForExternalJavascript();
+		//EchoMachine.setEchoModeAutomatically( this.stage );
+		//EchoMachine.initForExternalJavascript();
+		
+		EchoMachine.echoMode = EchoMachine.AIR;
+		EchoMachine.startLogging(this);
 		
 		// Initialze the site facade and begin
 		var siteFacade:SiteFacade = SiteFacade.getInstance( 'site_facade' );

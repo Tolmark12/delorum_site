@@ -62,7 +62,7 @@ public class ProjectDetails extends Sprite
 		_rowManager.y = 0;
 		
 
-		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange );
+		this.addEventListener( ProjectStub.CONTENT_HEIGHT_CHANGED, _handleMyHeightcChange, false,0,true );
 
 		var colorScheme:ColorScheme_VO = ColorSchemeProxy.currentColorScheme;
 		

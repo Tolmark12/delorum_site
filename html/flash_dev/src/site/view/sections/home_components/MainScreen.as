@@ -22,9 +22,9 @@ public class MainScreen extends MovieClip
 	
 	private function _init (  ):void
 	{
-		_thumbsUp.addEventListener( MouseEvent.CLICK, _thumbsClick );
-		_thumbsUp.addEventListener( MouseEvent.MOUSE_OVER, _thumbOver );
-		_thumbsUp.addEventListener( MouseEvent.MOUSE_OUT, _thumbOut );
+		_thumbsUp.addEventListener( MouseEvent.CLICK, _thumbsClick, false,0,true );
+		_thumbsUp.addEventListener( MouseEvent.MOUSE_OVER, _thumbOver, false,0,true );
+		_thumbsUp.addEventListener( MouseEvent.MOUSE_OUT, _thumbOut, false,0,true );
 		_thumbsUp.buttonMode = true;
 	}
 	

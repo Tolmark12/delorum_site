@@ -23,7 +23,7 @@ public class Btn extends BaseColumnObj
 		_swcBtn.text = $node.@text;
 		_swcBtn.icon = $node.@icon;
 		_swcBtn.useHandCursor = true;
-		_swcBtn.addEventListener( MouseEvent.CLICK, _click );
+		_swcBtn.addEventListener( MouseEvent.CLICK, _click, false,0,true );
 		_clickEvent = $node.@event;
 		
 		// possible vars
@@ -49,6 +49,14 @@ public class Btn extends BaseColumnObj
 	override public function get myDispayThing (  ):DisplayObject
 	{
 		return _swcBtn;
+	}
+	
+	// ______________________________________________________________ Destruct
+	
+	override public function destruct (  ):void
+	{
+		super.destruct();
+		_swcBtn.removeEventListener( MouseEvent.CLICK, _click );
 	}
 
 }

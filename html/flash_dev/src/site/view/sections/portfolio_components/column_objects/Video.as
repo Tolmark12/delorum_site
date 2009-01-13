@@ -16,7 +16,7 @@ public class Video extends BaseColumnObj implements IColumnObject
 	{
 		super();
 		this.buttonMode = true;
-		this.addEventListener( MouseEvent.CLICK, _click );
+		this.addEventListener( MouseEvent.CLICK, _click, false,0,true );
 	}
 	
 	override public function make ( $node:XML ):void
@@ -26,7 +26,7 @@ public class Video extends BaseColumnObj implements IColumnObject
 		_player.width = Number($node.@w);
 		_player.height = Number($node.@h);
 		this.addChild(_player);
-		_player.addEventListener( VideoEvent.COMPLETE, _playComplete );
+		_player.addEventListener( VideoEvent.COMPLETE, _playComplete, false,0,true );
 		
 		// Overlay Color
 		_overlayColor.graphics.beginFill(0x333333, 0.6);
@@ -58,7 +58,6 @@ public class Video extends BaseColumnObj implements IColumnObject
 	
 	private function _playComplete ( e:Event ):void
 	{
-		trace( "play complete" );
 	}
 	
 	private function _click ( e:Event ):void
@@ -66,7 +65,7 @@ public class Video extends BaseColumnObj implements IColumnObject
 		if( _isStopped ) 
 		{
 			_isStopped = false;
-			_player.addEventListener( Event.ENTER_FRAME, _enterFrame );
+			_player.addEventListener( Event.ENTER_FRAME, _enterFrame, false,0,true );
 			_play();
 		}
 		else
@@ -79,18 +78,20 @@ public class Video extends BaseColumnObj implements IColumnObject
 	
 	private function _enterFrame ( e:Event ):void
 	{
-		trace( this + '  :  ' + _player );
+		EchoMachine.echo( "aa" );
 	}
 	
 	// ______________________________________________________________ Destruct
-	
+	import delorum.echo.EchoMachine;
 	override public function destruct (  ):void
 	{
+		EchoMachine.echo( "Destruct video" );
 		_player.stop();
 		_player.removeEventListener( VideoEvent.COMPLETE, _playComplete );
 		_player.removeEventListener( Event.ENTER_FRAME, _enterFrame );
 		this.removeChild(_player);
-
+		this.removeChild(_overlayColor);
+		_player = null;
 	}
 
 }

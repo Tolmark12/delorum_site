@@ -100,7 +100,6 @@ public class SwcText extends MovieClip
 		}
 		else
 		{
-			trace( "num"  + '  :  ' + this.numChildren );
 			//if( this.numChildren == 0)
 			//{
 				_textField.visible = true;

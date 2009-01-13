@@ -53,6 +53,12 @@ public class Image extends BaseColumnObj implements IColumnObject
 	{
 		return _imageHolder;
 	}
+	
+	override public function destruct (  ):void
+	{
+		super.destruct();
+		
+	}
 }
 
 
