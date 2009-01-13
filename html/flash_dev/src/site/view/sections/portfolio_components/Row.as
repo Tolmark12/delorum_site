@@ -14,7 +14,7 @@ import flash.geom.*;
 import delorum.loading.*;
 
 
-public class Row extends Sprite
+public class Row extends RowBase
 {
 	// Constants
 	public static const ROW_PADDING:Number = 20;
@@ -157,21 +157,6 @@ public class Row extends Sprite
 		
 	}
 	
-	// ______________________________________________________________ API
-	
-	public function hide (  ):void
-	{
-		this.visible = false
-		this.alpha = 0;
-	}
-	
-	public function show (  ):void
-	{
-		if( this.visible == false ) {	
-			Tweener.addTween( this, { alpha:1, time:0.4, transition:"EaseInOutQuint"} );
-			this.visible = true;
-		}
-	}
 	
 	// ______________________________________________________________ Event Handlers
 	
@@ -219,7 +204,7 @@ public class Row extends Sprite
 			
 	}
 	
-	public function destruct (  ):void
+	override public function destruct (  ):void
 	{
 		var len:uint = _columnAr.length;
 		for ( var i:uint=0; i<len; i++ ) 
