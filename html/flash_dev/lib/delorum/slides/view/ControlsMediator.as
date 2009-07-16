@@ -7,22 +7,27 @@ import delorum.slides.*;
 import flash.display.Sprite;
 import delorum.slides.view.components.*;
 import flash.events.*;
+import delorum.slides.view.components.events.ControlsEvent;
 
 public class ControlsMediator extends Mediator implements IMediator
 {	
 	public static const NAME:String = "controls_mediator";
 	
 	// Display
-	private var _holderMc:Sprite;
-	private var _controlsHolder:Sprite;
-	private var _btnsAr:Array;
-	private var _currentBtn:ThumbnailBtn;
-	private var _playPauseBtn:PlayPauseBtn;
+	private var _controls:Controls = new Controls();
+
 	
 	public function ControlsMediator( $holderMc:Sprite ):void
 	{
 		super( NAME );
-		_holderMc = $holderMc;
+		
+		_controls.y = -20;
+		_controls.addEventListener( ControlsEvent.ARROW_CLICK, _onArrowBtnClick, false,0,true );
+		_controls.addEventListener( ControlsEvent.PLAY, _onPlay, false,0,true );
+		_controls.addEventListener( ControlsEvent.SLIDE_BTN_CLICK, _onSlideBtnClick, false,0,true );
+		_controls.addEventListener( ControlsEvent.PAUSE, _onPause, false,0,true );
+		
+		$holderMc.addChild( _controls );
    	}
 	
 	// PureMVC: List notifications
@@ -41,100 +46,49 @@ public class ControlsMediator extends Mediator implements IMediator
 		switch ( note.getName() )
 		{
 			case SlideShowFacade.INIT_SLIDES:
-				_createControls( note.getBody() as Array );
-				break;
+				_controls.createControls( note.getBody() as Array );
+			break;
 			case SlideShowFacade.DISPLAY_NEW_SLIDE:
 				var slideVo:Slide_VO = note.getBody() as Slide_VO;
-				_activateBtn( slideVo.index );
-				break;
+				_controls.activateBtn( slideVo.index );
+			break;
 			case SlideShowFacade.START_AUTOPLAY:
-				_playPauseBtn.changeState( PlayPauseBtn.PAUSE );
-				break;
+				_controls.startAutoPlay();
+			break;
 			case SlideShowFacade.STOP_AUTOPLAY:
 			case SlideShowFacade.CHANGE_SLIDE_BY_INDEX:
-				_playPauseBtn.changeState( PlayPauseBtn.PLAY  );
-				break
+				_controls.stopAutoPlay()
+			break
 		}
 	}
 	
 	// ______________________________________________________________ Make
 	
-	private function _createControls ( $slides:Array ):void
-	{
-		
-		_controlsHolder = new Sprite();
-		_controlsHolder.y = -20;
-		_holderMc.addChild( _controlsHolder );
-		_btnsAr = new Array();
-		var xInc:uint = 15;
-		
-		var wid:Number = SlideShowFacade.slidesWidth;
-		_controlsHolder.x = wid ; 
-		var len:uint  = $slides.length;
-		for ( var i:uint=0; i<len; i++ ) 
-		{
-			var slideVo:Slide_VO = $slides[i];
-			var btn:ThumbnailBtn = new ThumbnailBtn(slideVo);
-			
-			btn.build(3);
-			btn.unHighlight();
-			btn.addEventListener( MouseEvent.CLICK, _handleBtnClick );
-			btn.x = xInc * i;
-			_btnsAr[slideVo.index] = btn;
-			
-			_controlsHolder.x -= xInc;
-			_controlsHolder.addChild(btn);
-		}
-		
-		// Create play and pause button
-		_playPauseBtn = new PlayPauseBtn();
-		_playPauseBtn.addEventListener( PlayPauseBtn.PAUSE, _pauseShow );
-		_playPauseBtn.addEventListener( PlayPauseBtn.PLAY,  _playShow  );
-		_playPauseBtn.x = _controlsHolder.width  + 20;
-		
-		// Create previous and next buttons
-		var rightBtn:ArrowBtn = new ArrowBtn( ArrowBtn.RIGHT );
-		var leftBtn:ArrowBtn  = new ArrowBtn( ArrowBtn.LEFT  );
-		rightBtn.x = SlideShowFacade.slidesWidth - rightBtn.width/4 - 5;
-		leftBtn.x  = SlideShowFacade.slidesWidth - leftBtn.width - 5;
-		rightBtn.addEventListener( MouseEvent.CLICK, _handleArrowBtnClick );
-		leftBtn.addEventListener(  MouseEvent.CLICK, _handleArrowBtnClick );
-		
-		//_controlsHolder.addChild( _playPauseBtn );
-		_controlsHolder.addChild( rightBtn		);
-		_controlsHolder.addChild( leftBtn		);
-	}
-	
-	private function _activateBtn ( $index:uint ):void
-	{
-		if( _currentBtn != null )
-			_currentBtn.unHighlight();
-		_currentBtn = _btnsAr[ $index ] as ThumbnailBtn;
-		_currentBtn.highlight();
-	}
 	
 	// ______________________________________________________________ Event Handlers
+
 	
-	private function _handleBtnClick ( e:Event ):void{
+	private function _onSlideBtnClick ( e:ControlsEvent ):void{
 		facade.sendNotification( SlideShowFacade.TRANSITION_SPEED_TO_CLICK );
-		facade.sendNotification( SlideShowFacade.CHANGE_SLIDE_BY_INDEX, e.currentTarget.slideIndex );
+		facade.sendNotification( SlideShowFacade.CHANGE_SLIDE_BY_INDEX, e.clickedSlideId );
 	}
 	
-	private function _pauseShow ( e:Event ):void{
+	private function _onPause ( e:ControlsEvent ):void{
 		facade.sendNotification( SlideShowFacade.STOP_AUTOPLAY );
 	}
 	
-	private function _playShow ( e:Event ):void{
+	private function _onPlay ( e:ControlsEvent ):void{
 		facade.sendNotification( SlideShowFacade.START_AUTOPLAY );
 		facade.sendNotification( SlideShowFacade.TRANSITION_SPEED_TO_CLICK );
 		facade.sendNotification( SlideShowFacade.NEXT_SLIDE, true );
 	}
 	
-	private function _handleArrowBtnClick ( e:Event ):void{
+
+	private function _onArrowBtnClick ( e:ControlsEvent ):void{
 		facade.sendNotification( SlideShowFacade.TRANSITION_SPEED_TO_CLICK );
 		facade.sendNotification( SlideShowFacade.STOP_AUTOPLAY );
 		
-		if( e.currentTarget.direction == ArrowBtn.RIGHT )
+		if( e.arrowClickDirection == ControlsEvent.RIGHT )
 			facade.sendNotification( SlideShowFacade.NEXT_SLIDE, true);
 		else
 			facade.sendNotification( SlideShowFacade.PREV_SLIDE, true);

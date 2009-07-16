@@ -1,13 +1,13 @@
- <?xml version="1.0" encoding="UTF-8" ?>
- <portfolio>
- 	<projects imageStubDir="content/images/portfolio/cards/" 
- 			  portfolioImagesDir="content/images/portfolio/pages/" 
- 			  xmlDir="content/xml/portfolio_pages/" 
- 			  cssFile="content/css/all_styles.xcss"
- 			  defaultCss="brown"  >
+<?xml version="1.0" encoding="UTF-8" ?>
+<portfolio>
+	<projects imageStubDir="content/images/portfolio/cards/" 
+			  portfolioImagesDir="content/images/portfolio/pages/" 
+			  xmlDir="content/xml/portfolio_pages/" 
+			  cssFile="content/css/all_styles.xcss"
+			  defaultCss="brown"  >
 
 		
- 		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,ibex.xml,heavens_best.xml" >
+		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,ibex.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
 					<txt><h1>Selected Logos</h1><p>Delorum has designed over 40</p><p>logos for various brands. Here's</p><p>a few of our favorites.</p></txt>
@@ -18,24 +18,24 @@
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
 						<img src="__blank__"  />
-						<img src="content/images/portfolio/pages/logos2/monkey_bars.jpg" />
-						<img src="content/images/portfolio/pages/logos2/yellowstone.gif" />
 						<img src="content/images/portfolio/pages/logos2/h_fudge.jpg" />
+						<img src="content/images/portfolio/pages/logos2/wilcox.jpg" />
 						<img src="content/images/portfolio/pages/logos2/olympus.jpg" />
 						<img src="content/images/portfolio/pages/logos2/middle_school.gif" />
 						<img src="content/images/portfolio/pages/logos2/tbooks.jpg" />
 						<img src="content/images/portfolio/pages/logos2/heavens_best.jpg" />
-						<img src="content/images/portfolio/pages/logos2/spencermarston.jpg" />
-						<img src="content/images/portfolio/pages/logos2/bonitas.gif" />
 						<img src="content/images/portfolio/pages/logos2/ibex.gif" />
 						<img src="content/images/portfolio/pages/logos2/plum.jpg" />
 						<img src="content/images/portfolio/pages/logos2/scrapbook.jpg" />
+						<img src="content/images/portfolio/pages/logos2/monkey_bars.jpg" />
 						<img src="content/images/portfolio/pages/logos2/teton.gif" />
+						<img src="content/images/portfolio/pages/logos2/spencermarston.jpg" />
+						<img src="content/images/portfolio/pages/logos2/yellowstone.gif" />
 						<img src="content/images/portfolio/pages/logos2/zion.gif" />
 					</slideShow>
 				</col>
 			</row>
- 		</projectStub>
+		</projectStub>
 		<projectStub title="Idahoan Potatoes" image="idahoan6.jpg" frameX="282" frameY="152" xml="idahoan.xml">
 			<row css="portfolio,rbn_idahoan" slideShowId="hss_idahoan" bgAlpha="0">
 	 			<col>
@@ -51,8 +51,8 @@
 	 			</col>
 	 		</row>
 		</projectStub>
- 		<projectStub title="Playmill Theatre" image="playmill_new1.jpg" xml="playmill.xml" frameX="414" >
- 			<row css="rbn_playmill,portfolio" bgAlpha="0">
+		<projectStub title="Playmill Theatre" image="playmill_new1.jpg" xml="playmill.xml" frameX="414" >
+			<row css="rbn_playmill,portfolio" bgAlpha="0">
 	 			<col>
 	 				<txt><h1>Playmill Theatre</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions.</p></txt>
 	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
@@ -61,7 +61,7 @@
 	 				
 	 			</col>
 	 		</row>
- 		</projectStub>
+		</projectStub>
 		<projectStub title="Monkey Bars" image="monkey_bars.jpg" frameX="459" frameY="0" xml="monkey_bars.xml">
 			<row css="portfolio,white_black" bgAlpha="0">
 	 			<col>
@@ -77,7 +77,7 @@
 					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 			</row>
- 		</projectStub>
+		</projectStub>
 		<projectStub title="Plum Furniture" image="plum3.jpg" xml="plum.xml" frameX="580" frameY="71" >
 			<row css="portfolio,white_black" slideShowId="hss_plum" bgAlpha="0">
 				<col>
@@ -92,9 +92,9 @@
 					</slideShow>
 				</col>
 			</row>
- 		</projectStub>
- 		<projectStub title="Bevy Facebook Application" image="bevy.jpg" frameX="487" frameY="28" xml="bevy.xml" >
- 			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
+		</projectStub>
+		<projectStub title="Bevy Facebook Application" image="bevy.jpg" frameX="487" frameY="28" xml="bevy.xml" >
+			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
 				<col>
 					<txt><h1>Bevy Facebook Application</h1><p>Seattle based Bevy contacted us to help develop their brand, launch their corporate website, and design a Facebook application that's guaranteed to knock your high heels off. </p></txt>
 					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
@@ -109,20 +109,7 @@
 					</slideShow>
 				</col>
 			</row>
- 		</projectStub>
-		<projectStub title="Tommy Bahama" image="tommy1.jpg" frameX="332" frameY="162" xml="tommy.xml" >
- 			<row css="portfolio,white_black" slideShowId="hss_tommy" bgAlpha="0">
-				<col>
-					<txt><h1>Tommy Bahama Flash Development</h1><p>Delorum continues to work closely with Tommy Bahama's talented internal design team to bring rich flash interactivity to their site. Furthermore, our modular code structure has enabled Tommy Bahama to quickly implement a vast array of home page designs.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
-				</col>
-				<col span="2" float="right">
-					<slideShow id="hss_tommy">
-						<img src="__blank__" />
-					</slideShow>
-				</col>
-			</row>
- 		</projectStub>
+		</projectStub>
 		<projectStub title="Yellowstone Historic Center" image="yhc.jpg" frameX="500" frameY="156" xml="yhc.xml" >
 			<row css="portfolio,white_black" bgAlpha="0" totalColumns="2" columnPadding="70">
 				<col>
@@ -130,9 +117,9 @@
 					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 			</row>
- 		</projectStub>
+		</projectStub>
 		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="500">
- 			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
+			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
 	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
@@ -147,6 +134,6 @@
 	 				</slideShow>
 	 			</col>
 	 		</row>
- 		</projectStub>
- 	</projects>
- </portfolio>
+		</projectStub>
+	</projects>
+</portfolio>

@@ -15,6 +15,7 @@ import site.view.sections.BaseSection;
 import gs.TweenLite;
 import site.model.vo.ColorScheme_VO;
 import swc_components.*;
+import delorum.echo.EchoMachine;
 
 public class StageMediator extends Mediator implements IMediator
 {	
@@ -158,8 +159,10 @@ public class StageMediator extends Mediator implements IMediator
 		_stage.addEventListener( Event.RESIZE, _resizeHandler, false,0,true );
 		
 		// Listen for javascript to let flash know scrolling occured
-		if( ExternalInterface.available )
+		if( ExternalInterface.available ){
 			ExternalInterface.addCallback( "scrollFlash", _scrollHandler );
+			ExternalInterface.addCallback( "externalMouseEvent", _scrollHandlerTwo );
+		}
 	}
 	
 	private function _handleBrowserResize (  ):void
@@ -283,8 +286,9 @@ public class StageMediator extends Mediator implements IMediator
 	// ______________________________________________________________ Event Handlers
 	
 	private function _resizeHandler ( e:Event ):void	 { sendNotification( SiteFacade.BROWSER_RESIZE ); }
-	private function _scrollHandler ( $perc:Number, $speed:Number ):void { sendNotification( SiteFacade.BROWSER_SCROLL, [$perc, $speed] 	); 	}
+	private function _scrollHandler ( $perc:Number, $speed:Number ):void { sendNotification( SiteFacade.BROWSER_SCROLL, [$perc, $speed] 	);  	}
+	private function _scrollHandlerTwo ( $delta:Number ):void { sendNotification( SiteFacade.HIDE_CONTACT_INFO ); 	}
 	private function _onContactClose ( e:Event ):void	 { sendNotification( SiteFacade.HIDE_CONTACT_INFO ); }
-
+	
 }
 }

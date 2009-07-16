@@ -23,7 +23,11 @@ public class DelorumSite extends Sprite
 		//EchoMachine.initForExternalJavascript();
 		
 		EchoMachine.echoMode = EchoMachine.AIR;
-		EchoMachine.startLogging(this);
+		EchoMachine.echo("this");
+		EchoMachine.echo("this");
+		EchoMachine.echo("this");
+		EchoMachine.echo("this");
+		EchoMachine.echo("this");
 		
 		// Initialze the site facade and begin
 		var siteFacade:SiteFacade = SiteFacade.getInstance( 'site_facade' );

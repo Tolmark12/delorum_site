@@ -39,6 +39,9 @@
 			<col>
 				<img src="brochure.jpg" />
 			</col>
+			<col>
+				<img src="jacket.jpg" />
+			</col>
 		</row>
 		<row totalColumns="2" css="padded">
 			<col>

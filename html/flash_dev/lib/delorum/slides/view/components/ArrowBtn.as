@@ -23,7 +23,7 @@ public class ArrowBtn extends BaseBtn
 		var tall:Number 	= ThumbnailBtn.WIDTH;
 		var shape:Shape		= new Shape();
 		// Draw arrow
-		shape.graphics.beginFill( ThumbnailBtn.BG_COLOR );
+		shape.graphics.beginFill( mouseOutColor );
 		shape.graphics.moveTo( 0, 0 			);
 		shape.graphics.lineTo( tall, tall/2 	);
 		shape.graphics.lineTo( 0, tall 		);

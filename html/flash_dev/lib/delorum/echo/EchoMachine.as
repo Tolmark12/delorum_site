@@ -66,6 +66,8 @@ public class EchoMachine
 	/**	@private 	Local Connection to the AIR application */
 	private static var _airConnection:LocalConnection;
 	
+	private static var _connectionId:String;
+	
 	// ______________________________________________________________ PUBLIC FUNCTIONS
 	
 	/**	Allow Javascript to add items to logs. Print logs, And print immediately */
@@ -154,9 +156,22 @@ public class EchoMachine
 	
 	private static function _initForAIR (  ):void
 	{
+		// Connection id
+		_connectionId = String( new Date().getTime() );
+		
+		// Allow the air app to talk to this swf
+		var conn:LocalConnection = new LocalConnection();
+		conn.client = EchoMachine;
+		conn.allowDomain('*');
+		try {
+		    conn.connect(_connectionId);
+		} catch (error:ArgumentError) {
+		}
+		
+		// Connect to the air app
 		_airConnection = new LocalConnection();
 		_airConnection.addEventListener(StatusEvent.STATUS, _onAirStaus);
-		_airConnection.send( "_delorum_air_connect", "clear" );
+		_airConnection.send( "_delorum_air_connect", "clear", _connectionId );
 	}
 	
 	private static function _onAirStaus ( e:Event ):void
@@ -218,7 +233,7 @@ public class EchoMachine
 				break
 				
 				case AIR :
-					_airConnection.send( "_delorum_air_connect", "echo", $str );
+					_airConnection.send( "_delorum_air_connect", "echo", _connectionId, $str );
 				break;
 				
 				case LOG:
@@ -239,12 +254,12 @@ public class EchoMachine
 		_statsHarvester = new StatsHarvester( $stage );
 		_statsHarvester.addEventListener( StatsHarvester.STATS, _onStats );
 		var str:String = $stage.stage.loaderInfo.loaderURL;
-		_airConnection.send( "_delorum_air_connect", "init", str );
+		_airConnection.send( "_delorum_air_connect", "initNewSwf", _connectionId );
 	}
 	
 	private static function _onStats ( e:Event ):void
 	{
-		_airConnection.send( "_delorum_air_connect", "stats", _statsHarvester.statsObject );
+		_airConnection.send( "_delorum_air_connect", "stats", _connectionId, _statsHarvester.statsObject );
 	}
 	
 	public static function get errorLog 	(  ):Array{ return _errorLog; };
