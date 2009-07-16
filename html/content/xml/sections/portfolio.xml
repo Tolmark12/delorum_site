@@ -51,8 +51,25 @@
 	 			</col>
 	 		</row>
 		</projectStub>
-		<projectStub title="Playmill Theatre" image="playmill_new1.jpg" xml="playmill.xml" frameX="414" >
-			<row css="rbn_playmill,portfolio" bgAlpha="0">
+
+<!-- 		<projectStub title="iJerseys" image="ijerseys.jpg" frameX="382" frameY="15" xml="idahoan.xml">
+			<row css="portfolio,rbn_idahoan,white_h1" slideShowId="hss_ijerseys" bgAlpha="0">
+	 			<col>
+	 				<txt><h1>Painless e-commerce</h1><p>Lorem ipsum delor, first in their category. They were second. After brief and unsuccessful online branding efforts with two major agencies, Idahoan contracted with Delorum to help reposition their online brand.</p></txt>
+				</col>
+	 			<col span="2" float="right" stack="none" >
+	 				<slideShow id="hss_ijerseys" >
+						<img src="__blank__"  />
+						<img src="content/images/portfolio/pages/ijerseys/slide2.jpg" />
+						<img src="content/images/portfolio/pages/ijerseys/slide1.jpg" />
+						<img src="content/images/portfolio/pages/ijerseys/slide3.jpg" />
+	 				</slideShow>
+	 			</col>
+	 		</row>
+		</projectStub> -->
+		
+ 		<projectStub title="Playmill Theatre" image="playmill_new1.jpg" xml="playmill.xml" frameX="414" >
+ 			<row css="rbn_playmill,portfolio" bgAlpha="0">
 	 			<col>
 	 				<txt><h1>Playmill Theatre</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions.</p></txt>
 	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
