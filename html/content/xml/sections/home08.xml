@@ -1,0 +1,69 @@
+<HOME>
+	<css>
+		<main>
+		  p {
+		   	font-size:18;
+		   	color:#737575;
+		   }
+		   h1{
+		   	display:block;
+		   	font-size:24;
+		   	color:#d10f0c;
+		   }
+		</main>
+		<blurb>
+		  p {
+		   	font-size:14;
+		   	color:#737575;
+		   }
+		   h1{
+		   	display:block;
+		   	font-size:15;
+		   	color:#d10f0c;
+		   }
+		</blurb>
+	</css>
+	<blurbs>
+		<rightBlurb>
+			<h1>E-Commerce</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip pllit anim id est laborum.</body>
+		</rightBlurb>
+		<leftBlurb>
+			<h1>Design and Branding</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip pllit anim id est laborum.</body>
+		</leftBlurb>
+	</blurbs>
+	
+	<slides>
+		<slide href="some/page">
+			<img src="content/images/home/cards/test.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete 1</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		</slide>
+		<slide href="some/page">
+			<img src="content/images/home/cards/test2.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete 2</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		</slide>
+		<slide href="some/page">
+			<img src="content/images/home/cards/test3.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete 3</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		</slide>
+		<slide href="some/page">
+			<img src="content/images/home/cards/test4.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete 4</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		</slide>
+		<slide href="some/page">
+			<img src="content/images/home/cards/test5.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete 5</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		</slide>
+		<slide href="some/page">
+			<img src="content/images/home/cards/test.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete 6</h1>
+			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		</slide>
+	</slides>
+</HOME>
