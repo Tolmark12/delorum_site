@@ -68,6 +68,8 @@ public class Controls extends Sprite
 		_leftBtn.dispatchEvent( new MouseEvent(MouseEvent.MOUSE_OUT, true) );
 		_rightBtn.x 	= _holder.width + 10;
 		_leftBtn.x  	= -20;
+		_rightBtn.y		= 2;
+		_leftBtn.y		= 2;
 		_leftBtn.scaleX = 0;
 		_rightBtn.addEventListener( MouseEvent.CLICK, _onArrowBtnClick, false,0,true );
 		_leftBtn.addEventListener ( MouseEvent.CLICK, _onArrowBtnClick, false,0,true );
@@ -106,20 +108,24 @@ public class Controls extends Sprite
 	
 	private function _showControls (  ):void
 	{
-		trace( "show" );
 		Tweener.removeTweens( _leftBtn, scaleX );
 		Tweener.removeTweens( _holder, x );
 		Tweener.addTween( _leftBtn, { scaleX:1, time:0.8, transition:"EaseInOutQuint"} );
-		Tweener.addTween( _holder, { x:_baseX - 20, time:0.8, transition:"EaseInOutQuint"} );
+		Tweener.addTween( _holder, { x:_baseX - 22, time:0.8, transition:"EaseInOutQuint"} );
 	}
 	
 	private function _hideControls (  ):void
 	{
-		trace( "hide" );
 		Tweener.removeTweens( _leftBtn, scaleX );
 		Tweener.removeTweens( _holder, x );
-		Tweener.addTween( _leftBtn, { scaleX:0, time:0.6, transition:"EaseInOutQuint", delay:0.7} );
-		Tweener.addTween( _holder, { x:_baseX, time:0.6, transition:"EaseInOutQuint",  delay:0.7} );
+		Tweener.addTween( _leftBtn, { scaleX:0, time:1, transition:"EaseInOutQuint", delay:0.7} );
+		Tweener.addTween( _holder, { x:_baseX, time:2, transition:"EaseInOutQuint",  delay:0.7, onComplete:_restartAutoPlay} );
+	}
+	
+	private function _restartAutoPlay (  ):void
+	{
+		//if( _playPauseBtn.isPaused )
+		//	_onPlay(null);
 	}
 	
 	// _____________________________ Event Handlers

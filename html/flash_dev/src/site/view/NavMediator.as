@@ -8,6 +8,7 @@ import flash.display.Sprite;
 import site.model.vo.*;
 import flash.events.*;
 import swc_components.NavButtonMain;
+import gs.TweenLite;
 
 public class NavMediator extends Mediator implements IMediator
 {	
@@ -17,6 +18,7 @@ public class NavMediator extends Mediator implements IMediator
 	private var _logo:Logo_swc;				// Logo swc
 	private var _navAr:Array;						// List of the nav buttons
 	private var _currentBtn:NavButtonMain_swc;		// Store reference to the current nav button
+	private var _dividers:Array;
 	
 	public function NavMediator():void
 	{
@@ -55,6 +57,7 @@ public class NavMediator extends Mediator implements IMediator
 		var xPos:uint = 0;
 		var padding:uint = 30;
 		_navAr = new Array();
+		_dividers = new Array();
 		var navHolder:Sprite = new Sprite();
 		_navSprite.addChild(navHolder);
 		
@@ -82,6 +85,7 @@ public class NavMediator extends Mediator implements IMediator
 					var divider:NavDivider_swc = new NavDivider_swc();
 					divider.x = xPos - padding / 2.3;
 					navHolder.addChild( divider );
+					_dividers.push(divider);
 				}
 			}
 			// This is the logo button
@@ -106,6 +110,7 @@ public class NavMediator extends Mediator implements IMediator
 		
 		if( _navAr != null ) 
 		{
+			
 			// Update nav buttons current color
 			var len:uint = _navAr.length;
 			for ( var i:uint=0; i<len; i++ ) 
@@ -116,6 +121,14 @@ public class NavMediator extends Mediator implements IMediator
 				}
 			}
 		}
+		if( _dividers != null ) {
+			var len2:uint = _dividers.length;
+			for ( var j:uint=0; j<len2; j++ ) 
+			{
+				TweenLite.to( _dividers[j], 0, { tint:$colorScheme.nav_divide });
+			}
+		}
+
 	}
 	
 	// ______________________________________________________________ Updating Nav Status

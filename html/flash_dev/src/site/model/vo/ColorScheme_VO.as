@@ -4,6 +4,7 @@ package site.model.vo
 public class ColorScheme_VO
 {
 	public var nav_up:uint;
+	public var nav_divide:uint;
 	public var nav_hover:uint;
 	public var nav_active:uint;
 	public var bg:uint;

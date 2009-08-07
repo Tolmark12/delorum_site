@@ -4,7 +4,7 @@ import org.puremvc.as3.multicore.interfaces.*;
 import org.puremvc.as3.multicore.patterns.mediator.Mediator;
 import org.puremvc.as3.multicore.patterns.observer.Notification;
 import flash.external.ExternalInterface;
-import delorum.echo.EchoMachine;
+import delorum.utils.echo;
 import site.SiteFacade;
 import flash.events.*;
 import flash.display.*;
@@ -15,7 +15,7 @@ import site.view.sections.BaseSection;
 import gs.TweenLite;
 import site.model.vo.ColorScheme_VO;
 import swc_components.*;
-import delorum.echo.EchoMachine;
+import delorum.utils.echo;
 
 public class StageMediator extends Mediator implements IMediator
 {	
@@ -215,13 +215,13 @@ public class StageMediator extends Mediator implements IMediator
 		if( ExternalInterface.available )
 			scrollBarYpos = ExternalInterface.call( "getScrollCordinate" );
 		
-//		EchoMachine.echo(ExternalInterface.call( "getScrollCordinate", flashHeight ));
+//		echo(ExternalInterface.call( "getScrollCordinate", flashHeight ));
 		Tweener.addTween( this, { scrollBarYpos:$distanceFromTop, time:$speed, transition:"EaseInOutExpo", onUpdate:_sendScrollPositiontoJS } );
 	}
 	
 	private function _sendScrollPositiontoJS (  ):void
 	{
-		//EchoMachine.echo(scrollBarYpos);
+		//echo(scrollBarYpos);
 		if( ExternalInterface.available )
 			ExternalInterface.call( "moveScrollToCoordinate", scrollBarYpos );
 	}

@@ -3,51 +3,247 @@ DelorumSite.swf Movie Report
 
 Frame #    Frame Bytes    Total Bytes    Scene
 -------    -----------    -----------    ----------------
-      1          36245          36245    Scene 1 (AS 3.0 Classes Export Frame)
+      1         230525         230525    Scene 1 (AS 3.0 Classes Export Frame)
 
 Scene                        Shape Bytes    Text Bytes    ActionScript Bytes
 -------------------------    -----------    ----------    ------------------
-Scene 1                                0             0                     0
+Scene 1                                0             0                198667
 
 Symbol                       Shape Bytes    Text Bytes    ActionScript Bytes
 -------------------------    -----------    ----------    ------------------
-Close                                122             0                     0
-Symbol 4                             635           509                     0
+Close                                 70             0                     0
+Symbol 4                             366           286                     0
 Contact Card                           0             0                     0
-icons                                359             0                     0
-About Us Blurb                       130           316                     0
+icons                                206             0                     0
+About Us Blurb                        75           183                     0
 blankCard                              0             0                     0
-Arrow                                 28             0                     0
-Symbol 3                              32             0                     0
+Arrow                                 16             0                     0
+Symbol 3                              19             0                     0
 Teaser Image Card                      0             0                     0
-Home Teaser                           56           409                     0
-<Path>_2                             178             0                     0
-thumbs up                           1688             0                     0
-Home Main Screen                    3809             0                     0
-Brick                                 32             0                     0
-Symbol 2                              52             0                     0
-White close btn                       47             0                     0
-Title Txt                              0            47                     0
-Body Text                              0            61                     0
-About Us Text                          0            44                     0
-Chameleon Button                      29            61                     0
-Nav Divider                           31             0                     0
-Nav Button                             0            47                     0
-Symbol 1                             278             0                     0
+Home Teaser                           32           242                     0
+<Path>_2                             102             0                     0
+thumbs up                            974             0                     0
+Home Main Screen                    2198             0                     0
+Brick                                 18             0                     0
+Symbol 2                              30             0                     0
+White close btn                       27             0                     0
+Title Txt                              0            27                     0
+Body Text                              0            35                     0
+About Us Text                          0            25                     0
+Chameleon Button                      17            35                     0
+Nav Divider                           18             0                     0
+Nav Button                             0            27                     0
+Symbol 1                             160             0                     0
 
 Font Name                 Bytes        Characters    
 ----------------------    ---------    --------------
-Helvetica Neue Light           6701     ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
-Helvetica                     10382     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
+HelveticaNeue-Light            3868     ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
+Univers                        5949     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
+NewsGothicStd                  1532     abcdefghijklmnopqrstuvwxyz
+ClarendonBT-Roman              2839     #.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ
+MetaPlusBook-Roman             6359     !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ˆ˜–—‘’‚“”„†‡•…‰‹›€™
 
 ActionScript Bytes    Location
 ------------------    --------
-                14    ActionScript 3.0 Classes
+                80    Scene 1:Frame 1:fl.video.flvplayback_internal
+               132    Scene 1:Frame 1:delorum.utils.echo
+               684    Scene 1:Frame 1:fl.video.ControlData
+             22488    Scene 1:Frame 1:fl.video.UIManager
+               266    Scene 1:Frame 1:fl.video.CuePointType
+              4164    Scene 1:Frame 1:fl.video.CuePointManager
+               490    Scene 1:Frame 1:fl.video.INCManager
+               412    Scene 1:Frame 1:fl.video.VideoPlayerState
+               255    Scene 1:Frame 1:site.model.vo.HomeTeaser_VO
+               878    Scene 1:Frame 1:delorum.utils.EchoMachine
+               337    Scene 1:Frame 1:fl.video.QueuedCommand
+               439    Scene 1:Frame 1:fl.video.VideoState
+              5164    Scene 1:Frame 1:caurina.transitions.Tweener
+              3369    Scene 1:Frame 1:gs.TweenLite
+               182    Scene 1:Frame 1:fl.video.IVPEvent
+               164    Scene 1:Frame 1:delorum.loading.LoaderIF
+               245    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.INotifier
+              1542    Scene 1:Frame 1:caurina.transitions.TweenListObj
+              2085    Scene 1:Frame 1:fl.video.SMILManager
+              1008    Scene 1:Frame 1:fl.video.FPADManager
+               282    Scene 1:Frame 1:fl.video.ParseResults
+               301    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.INotification
+               289    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IModel
+               312    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IController
+               372    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IView
+               362    Scene 1:Frame 1:site.model.vo.ColorScheme_VO
+               318    Scene 1:Frame 1:caurina.transitions.SpecialPropertyModifier
+               335    Scene 1:Frame 1:caurina.transitions.SpecialProperty
+               321    Scene 1:Frame 1:caurina.transitions.SpecialPropertySplitter
+               346    Scene 1:Frame 1:fl.video.VideoAlign
+               244    Scene 1:Frame 1:fl.video.VideoScaleMode
+               481    Scene 1:Frame 1:caurina.transitions.AuxFunctions
+              3129    Scene 1:Frame 1:caurina.transitions.Equations
+               448    Scene 1:Frame 1:caurina.transitions.PropertyInfoObj
+              2180    Scene 1:Frame 1:caurina.transitions.SpecialPropertiesDefault
+               266    Scene 1:Frame 1:fl.video.ReconnectClient
+               396    Scene 1:Frame 1:fl.video.ConnectClient
+              1195    Scene 1:Frame 1:gs.OverwriteManager
+               419    Scene 1:Frame 1:fl.video.VideoPlayerClient
+               296    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IObserver
+               333    Scene 1:Frame 1:site.model.vo.NavItem_VO
+               208    Scene 1:Frame 1:site.model.vo.Css_VO
+               202    Scene 1:Frame 1:site.model.vo.Jobs_VO
+               521    Scene 1:Frame 1:site.model.vo.ProjectStub_VO
+               641    Scene 1:Frame 1:site.model.vo.Row_VO
+               241    Scene 1:Frame 1:site.model.vo.Page_VO
+               246    Scene 1:Frame 1:site.model.vo.Col_VO
+               227    Scene 1:Frame 1:site.model.vo.AboutUsBlurb_VO
+               410    Scene 1:Frame 1:site.model.vo.Home08_VO
+              2440    Scene 1:Frame 1:SWFAddress
+               235    Scene 1:Frame 1:delorum.slides.Slide_VO
+               288    Scene 1:Frame 1:site.model.vo.Home08Slide_VO
+               181    Scene 1:Frame 1:delorum.scrolling.iScrollTrack
+               176    Scene 1:Frame 1:delorum.scrolling.iScrollBar
+               169    Scene 1:Frame 1:delorum.scrolling.iScrollBtn
+               250    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.IColumnObject
+               317    Scene 1:Frame 1:fl.video.SoundEvent
+               410    Scene 1:Frame 1:fl.video.LayoutEvent
+               329    Scene 1:Frame 1:gs.events.TweenEvent
+               600    Scene 1:Frame 1:SWFAddressEvent
+               239    Scene 1:Frame 1:delorum.scrolling.ScrollEvent
+               308    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.BtnEvent
+               414    Scene 1:Frame 1:delorum.slides.view.components.events.ControlsEvent
+               881    Scene 1:Frame 1:fl.video.VideoError
+              5327    Scene 1:Frame 1:fl.video.NCManager
+              3706    Scene 1:Frame 1:gs.TweenFilterLite
+               414    Scene 1:Frame 1:fl.video.MetadataEvent
+               851    Scene 1:Frame 1:fl.video.VideoEvent
+               467    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IFacade
+               356    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IMediator
+               477    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.observer.Notifier
+               283    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.IProxy
+               219    Scene 1:Frame 1:org.puremvc.as3.multicore.interfaces.ICommand
+               531    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.observer.Notification
+               686    Scene 1:Frame 1:org.puremvc.as3.multicore.core.Model
+               857    Scene 1:Frame 1:org.puremvc.as3.multicore.core.Controller
+              1102    Scene 1:Frame 1:org.puremvc.as3.multicore.core.View
+               491    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.observer.Observer
+              1194    Scene 1:Frame 1:delorum.loading.BaseLoader
+               573    Scene 1:Frame 1:delorum.utils.StatsHarvester
+               389    Scene 1:Frame 1:fl.video.AutoLayoutEvent
+               368    Scene 1:Frame 1:fl.video.VideoProgressEvent
+              5712    Scene 1:Frame 1:gs.TweenMax
+              1293    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.facade.Facade
+               543    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.mediator.Mediator
+               451    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.proxy.Proxy
+               320    Scene 1:Frame 1:org.puremvc.as3.multicore.patterns.command.SimpleCommand
+               437    Scene 1:Frame 1:delorum.loading.ImageLoader
+               377    Scene 1:Frame 1:delorum.loading.DataLoader
+               285    Scene 1:Frame 1:fl.video.SkinErrorEvent
+              1790    Scene 1:Frame 1:site.SiteFacade
+              1213    Scene 1:Frame 1:delorum.slides.SlideShowFacade
+              2832    Scene 1:Frame 1:site.view.StageMediator
+               687    Scene 1:Frame 1:site.view.sections.BaseSection
+               872    Scene 1:Frame 1:site.view.BrowserUrlMediator
+              1366    Scene 1:Frame 1:site.view.NavMediator
+               797    Scene 1:Frame 1:delorum.slides.view.AutoplayMediator
+              1092    Scene 1:Frame 1:delorum.slides.view.ControlsMediator
+              1190    Scene 1:Frame 1:delorum.slides.view.DisplayImageMediator
+              2650    Scene 1:Frame 1:site.model.PortfolioProxy
+              1594    Scene 1:Frame 1:site.model.NavProxy
+              1004    Scene 1:Frame 1:site.model.ColorSchemeProxy
+               572    Scene 1:Frame 1:site.model.JobsProxy
+               629    Scene 1:Frame 1:site.model.AboutUsProxy
+               538    Scene 1:Frame 1:site.model.HomeProxy_08
+               653    Scene 1:Frame 1:site.model.HomeProxy
+               660    Scene 1:Frame 1:site.model.CssProxy
+               810    Scene 1:Frame 1:delorum.slides.model.SlideShowProxy
+               443    Scene 1:Frame 1:site.control.LoadProjectXml
+               403    Scene 1:Frame 1:site.control.DeactivateStubClick
+               477    Scene 1:Frame 1:site.control.ProjectStubClick
+               583    Scene 1:Frame 1:site.control.BrowserUrlChanged
+              1185    Scene 1:Frame 1:site.control.LoadNewSection
+               545    Scene 1:Frame 1:site.control.Startup
+               383    Scene 1:Frame 1:site.control.CssLoaded
+               366    Scene 1:Frame 1:site.control.BuildNav
+               432    Scene 1:Frame 1:site.control.ChangeSection
+               422    Scene 1:Frame 1:site.control.NavBtnClick
+               431    Scene 1:Frame 1:site.control.LoadCss
+               406    Scene 1:Frame 1:site.control.UnloadCurrentSection
+               398    Scene 1:Frame 1:site.control.HideCaseStudyClick
+               460    Scene 1:Frame 1:delorum.slides.control.BuildSlides
+               453    Scene 1:Frame 1:delorum.slides.control.ChangeTransitionSpeed
+               607    Scene 1:Frame 1:delorum.slides.control.Startup
+               542    Scene 1:Frame 1:delorum.slides.control.IncramentSlide
+               461    Scene 1:Frame 1:delorum.slides.control.ChangeSlideByIndex
+             13608    Scene 1:Frame 1:fl.video.VideoPlayer
+               736    Scene 1:Frame 1:site.view.sections.ImageSection
+               954    Scene 1:Frame 1:site.view.sections.HomeMediator
+               587    Scene 1:Frame 1:site.view.sections.HomeMediator_08
+               705    Scene 1:Frame 1:site.view.sections.JobsMediator
+               890    Scene 1:Frame 1:site.view.sections.AboutUsMediator
+              3909    Scene 1:Frame 1:site.view.sections.PortfolioMediator
+               481    Scene 1:Frame 1:DelorumSite
+             12545    Scene 1:Frame 1:fl.video.FLVPlayback
+               358    Scene 1:Frame 1:site.view.sections.home_08_components.Home
+              2397    Scene 1:Frame 1:delorum.scrolling.Scroller
+              1584    Scene 1:Frame 1:site.view.sections.portfolio_components.ProjectDetails
+              3230    Scene 1:Frame 1:site.view.sections.portfolio_components.ProjectStub
+               531    Scene 1:Frame 1:delorum.slides.SlideShow_VO
+               331    Scene 1:Frame 1:site.view.sections.home_08_components.HomeSlideShow
+               292    Scene 1:Frame 1:delorum.scrolling.BaseScrollTrack
+               295    Scene 1:Frame 1:delorum.scrolling.BaseScrollBar
+               757    Scene 1:Frame 1:delorum.scrolling.BaseScrollBtn
+               946    Scene 1:Frame 1:delorum.slides.SlideShow
+              1058    Scene 1:Frame 1:site.view.sections.portfolio_components.RowsManager
+              2061    Scene 1:Frame 1:site.view.sections.portfolio_components.Column
+               412    Scene 1:Frame 1:site.view.sections.portfolio_components.RowBase
+               803    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.BaseColumnObj
+              1728    Scene 1:Frame 1:delorum.slides.view.components.Controls
+               279    Scene 1:Frame 1:delorum.slides.view.components.Slide
+               554    Scene 1:Frame 1:delorum.slides.view.components.BaseBtn
+               264    Scene 1:Frame 1:DelorumSite_fla.Close_4
+               266    Scene 1:Frame 1:DelorumSite_fla.icons_20
+               512    Scene 1:Frame 1:site.view.sections.about_us_components.AboutUsBlurb
+              1232    Scene 1:Frame 1:swc_components.SwcText
+               631    Scene 1:Frame 1:swc_components.ChameleonBtn
+               810    Scene 1:Frame 1:swc_components.ContactCard
+               578    Scene 1:Frame 1:swc_components.Logo_swc
+               567    Scene 1:Frame 1:site.view.sections.home_components.MainScreen
+               991    Scene 1:Frame 1:swc_components.NavButtonMain
+               259    Scene 1:Frame 1:swc_components.NavDivider_swc
+               299    Scene 1:Frame 1:site.view.sections.home_components.TeaserImageCard
+              1043    Scene 1:Frame 1:site.view.sections.home_components.Teaser
+               265    Scene 1:Frame 1:swc_components.WhiteCloseBtn
+               226    Scene 1:Frame 1:fl.video.Icon
+               702    Scene 1:Frame 1:delorum.loading.progress.BaseProgressDisplay
+               445    Scene 1:Frame 1:delorum.scrolling.DefaultScrollTrack
+               416    Scene 1:Frame 1:delorum.scrolling.DefaultScrollBar
+               515    Scene 1:Frame 1:delorum.scrolling.DefaultScrollBtn
+              2117    Scene 1:Frame 1:site.view.sections.portfolio_components.Row
+              1010    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.Btn
+               726    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.Text
+               757    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.Image
+               810    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.Slides
+              1085    Scene 1:Frame 1:site.view.sections.portfolio_components.column_objects.Video
+               522    Scene 1:Frame 1:delorum.slides.view.components.ArrowBtn
+               780    Scene 1:Frame 1:delorum.slides.view.components.PlayPauseBtn
+               703    Scene 1:Frame 1:delorum.slides.view.components.ThumbnailBtn
+               241    Scene 1:Frame 1:AboutUsBlurb_swc
+               222    Scene 1:Frame 1:AboutUs_swc
+               263    Scene 1:Frame 1:swc_components.BodyText_swc
+               263    Scene 1:Frame 1:swc_components.TitleTxt_swc
+               230    Scene 1:Frame 1:ChameleonBtn_swc
+               228    Scene 1:Frame 1:ContactCard_swc
+               216    Scene 1:Frame 1:Logo_swc
+               236    Scene 1:Frame 1:MainScreen_swc
+               231    Scene 1:Frame 1:NavButtonMain_swc
+               221    Scene 1:Frame 1:NavDivider_swc
+               243    Scene 1:Frame 1:TeaserImageCard_swc
+               230    Scene 1:Frame 1:Teaser_swc
+               231    Scene 1:Frame 1:WhiteCloseBtn_swc
+               228    Scene 1:Frame 1:BodyText_swc
+               225    Scene 1:Frame 1:TitleTxt_swc
 
 Bitmap                     Compressed    Compression
 -----------------------    ----------  --------  -----------
-mainShadow.png                  6443     1391088   JPEG Quality=80
-small_shadow.png                1168      144092   Lossless
+mainShadow.png                  3719     1391088   JPEG Quality=80
+small_shadow.png                 674      144092   Lossless
 
 
 

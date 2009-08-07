@@ -48,7 +48,7 @@ public class BaseSection extends Mediator implements IMediator
 		hide();
 	}
 	
-	private function _unloadComplete (  ):void
+	protected function _unloadComplete (  ):void
 	{
 //		trace( ":: Unload Complete ::" );
 		setViewComponent( null );

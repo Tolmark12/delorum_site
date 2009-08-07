@@ -10,7 +10,7 @@ import flash.events.*;
 import site.SiteFacade;
 import site.model.vo.*;
 
-import delorum.echo.EchoMachine;
+import delorum.utils.echo;
 
 public class NavProxy extends Proxy implements IProxy
 {

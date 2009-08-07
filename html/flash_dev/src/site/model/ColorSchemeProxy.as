@@ -49,6 +49,7 @@ public class ColorSchemeProxy extends Proxy implements IProxy
 			_setVoParam( vo, node, "nav_up" 	);
 			_setVoParam( vo, node, "nav_hover" 	);
 			_setVoParam( vo, node, "nav_active" 	);
+			_setVoParam( vo, node, "nav_divide" 	);
 			_setVoParam( vo, node, "bg" 		);
 			_setVoParam( vo, node, "scrollbar_track"		);
 			_setVoParam( vo, node, "scrollbar_track_border"	);

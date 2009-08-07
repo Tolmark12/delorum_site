@@ -59,6 +59,8 @@ public class PlayPauseBtn extends BaseBtn
 		_currentState = $state;
 	}
 	
+	public function get isPaused (  ):Boolean{ return _currentState != PAUSE; };
+	
 	// ______________________________________________________________ Event Handler
 	
 	public function _click ( e:Event ):void

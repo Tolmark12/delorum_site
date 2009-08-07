@@ -20,8 +20,9 @@ public class ArrowBtn extends BaseBtn
 	
 	public function _draw ():void
 	{
-		var tall:Number 	= ThumbnailBtn.WIDTH;
+		var tall:Number 	= ThumbnailBtn.WIDTH-4;
 		var shape:Shape		= new Shape();
+		
 		// Draw arrow
 		shape.graphics.beginFill( mouseOutColor );
 		shape.graphics.moveTo( 0, 0 			);
@@ -31,7 +32,7 @@ public class ArrowBtn extends BaseBtn
 		
 		// draw hit area
 		shape.graphics.beginFill( 0xFF0000, 0 );
-		shape.graphics.drawRect( -tall/5, -tall/5, tall*2, tall*1.5);
+		shape.graphics.drawRect( -tall, -tall, tall*4, tall*3);
 		
 		// Point the right direction
 		if( direction == LEFT ) {

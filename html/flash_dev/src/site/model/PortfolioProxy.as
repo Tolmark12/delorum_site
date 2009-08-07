@@ -8,7 +8,7 @@ import delorum.loading.DataLoader;
 import flash.events.*;
 import site.SiteFacade;
 import site.model.vo.*;
-import delorum.echo.EchoMachine;
+import delorum.utils.echo;
 import delorum.slides.SlideShow_VO;
 import flash.text.StyleSheet;
 

@@ -23,6 +23,8 @@ public class ProjectStub extends Sprite
 	
 	private var _clickEvent:String;			// Which notification to fire on click
 	
+	public static const BORDER_COLOR:Number = 0x111111;
+	public static const BORDER_HOVER:Number = 0xFFFFFF;
 	
 	// Physical characteristics
 	public static const BORDER_SIZE:Number  = 0;
@@ -129,7 +131,7 @@ public class ProjectStub extends Sprite
 		_imageMc.addChildAt(_imageHolder, 0)
 		
 		_loadImage( $vo.image );
-		_drawBgAndMask( $vo.bgColor );
+		_drawBgAndMask( 0x333333 );
 		if( $vo.row != null ) 
 			_createRow( $vo.row );
 	}
@@ -167,10 +169,10 @@ public class ProjectStub extends Sprite
 	
 	private function _drawBgAndMask ( $color:uint=0xFFFFFF ):void
 	{
-		_bgMc.graphics.beginFill( $color );
+		_bgMc.graphics.beginFill( BORDER_COLOR );
 		if( BORDER_SIZE != 0)
 			_bgMc.graphics.drawRect(0,0,WIDTH_SMALL + BORDER_SIZE*2, HEIGHT + BORDER_SIZE*2 )
-		_maskMc.graphics.beginFill( 0xFFFFFF );
+		_maskMc.graphics.beginFill( 0x444444);
 		_maskMc.graphics.drawRect(0,0,WIDTH_SMALL, HEIGHT );
 	}
 	
@@ -209,7 +211,7 @@ public class ProjectStub extends Sprite
 								  time:$time, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
 
 		if( $changeBorderToo ) 
-			changeBorderColor(DelorumSite.GRAY_STUB);
+			changeBorderColor(BORDER_COLOR);
 	}
 	
 	/**	Turns the image to black and white */
@@ -224,7 +226,7 @@ public class ProjectStub extends Sprite
 		Tweener.addTween( this, { rLum:$lum1, gLum:$lum1, bLum:$lum1, rLum2:$lum2, gLum2:$lum2, bLum2:$lum2, brightness:0,  
 								  time:$time, transition:"EaseOutQuint", onUpdate:_updateImageSaturation} );
 		if( $changeBorderToo ) 
-			changeBorderColor(DelorumSite.WHITE);
+			changeBorderColor(BORDER_HOVER);
 	}
 	
 	/**	
@@ -343,7 +345,7 @@ public class ProjectStub extends Sprite
 	private function _mouseOut ( e:Event ):void
 	{
 		if( currentProject == null || isInBrowsingMode ){
-			changeBorderColor( DelorumSite.WHITE );
+			changeBorderColor( BORDER_COLOR );
 		}else if( currentProject != this ) {
 			dimImage();
 		}

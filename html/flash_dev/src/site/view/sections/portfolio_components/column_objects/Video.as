@@ -78,14 +78,14 @@ public class Video extends BaseColumnObj implements IColumnObject
 	
 	private function _enterFrame ( e:Event ):void
 	{
-		EchoMachine.echo( "aa" );
+		echo( "aa" );
 	}
 	
 	// ______________________________________________________________ Destruct
-	import delorum.echo.EchoMachine;
+	import delorum.utils.echo;
 	override public function destruct (  ):void
 	{
-		EchoMachine.echo( "Destruct video" );
+		echo( "Destruct video" );
 		_player.stop();
 		_player.removeEventListener( VideoEvent.COMPLETE, _playComplete );
 		_player.removeEventListener( Event.ENTER_FRAME, _enterFrame );

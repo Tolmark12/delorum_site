@@ -4,7 +4,7 @@ import org.puremvc.as3.multicore.interfaces.*;
 import org.puremvc.as3.multicore.patterns.command.SimpleCommand;
 import site.SiteFacade;
 import site.model.*;
-import delorum.echo.EchoMachine;
+import delorum.utils.echo;
 
 public class BrowserUrlChanged extends SimpleCommand implements ICommand
 {

@@ -1,10 +1,10 @@
 /*
-VERSION: 0.986
-DATE: 10/24/2008
+VERSION: 1.1
+DATE: 3/31/2009
 ACTIONSCRIPT VERSION: 3.0 (AS2 version is also available)
 UPDATES & MORE DETAILED DOCUMENTATION AT: http://blog.greensock.com/tweengroup/
 DESCRIPTION:
-	TweenGroup is a very powerful, flexible tool for managing groups of TweenLite/TweenFilterLite/TweenMax tweens.
+	TweenGroup is a very powerful, flexible tool for managing groups of TweenLite/TweenMax tweens.
 	Here are a few of the features:
 		
 		- pause(), resume(), reverse(), or restart() the group as a whole. This is an easy way to add
@@ -41,10 +41,6 @@ DESCRIPTION:
 		  it has completed) 2 times, just do myGroup.yoyo = 2; (to loop twice instead, do myGroup.loop = 2)
 		  
 		- Only adds about 4Kb to your SWF (not including TweenLite and OverwriteManager).
-		
-		- Performance-wise, TweenGroup has no effect whatsoever on the actual rendering speed of the tweens it
-		  contains, so you don't have to worry about lots of extra overhead. TweenGroup only uses CPU cycles
-		  when you perform management tasks (getting/setting properties or calling methods).
 		
 	At first glance, it may be difficult to see the value of using TweenGroup, but once you wrap your head around
 	it, you'll probably find all kinds of uses for it and wonder how you lived without it. For example, what if you 
@@ -85,6 +81,7 @@ PROPERTIES:
 	- loop : Number
 	- yoyo : Number
 	- tweens : Array
+	- timeScale : Number  (only affects TweenMax instances)
 	
 
 EXAMPLES: 
@@ -101,7 +98,7 @@ EXAMPLES:
 		myGroup.align = TweenGroup.ALIGN_SEQUENCE;
 		
 		
-	Or if you don't mind all your tweens being the same type (TweenMax in this case as opposed to TweenLite or TweenFilterLite), 
+	Or if you don't mind all your tweens being the same type (TweenMax in this case as opposed to TweenLite), 
 	you can do the same thing in less code like this:
 	
 		var myGroup:TweenGroup = new TweenGroup([{target:mc, time:1, x:300}, {target:mc, time:3, y:400}, {target:mc, time:2, blurFilter:{blurX:10, blurY:10}}], TweenMax, TweenGroup.ALIGN_SEQUENCE);
@@ -130,8 +127,8 @@ NOTES:
 	  you run into any bugs/problems.
 	  
 
-CODED BY: Jack Doyle, jack@greensock.com
-Copyright 2008, GreenSock (This work is subject to the terms in http://www.greensock.com/terms_of_use.html.)
+AUTHOR: Jack Doyle, jack@greensock.com
+Copyright 2009, GreenSock. All rights reserved. This work is subject to the terms in http://www.greensock.com/terms_of_use.html or for corporate Club GreenSock members, the software agreement that was issued with the corporate membership.
 */
 
 package gs {
@@ -139,62 +136,60 @@ package gs {
 	import flash.utils.*;
 
 	dynamic public class TweenGroup extends Proxy implements IEventDispatcher {
-		public static const version:Number = 0.986;
+		public static const version:Number = 1.1;
 		public static const ALIGN_INIT:String = "init";
 		public static const ALIGN_START:String = "start";
 		public static const ALIGN_END:String = "end";
 		public static const ALIGN_SEQUENCE:String = "sequence";
-		public static const ALIGN_NONE:String = "none";		
-		protected static var _TweenFilterLite:Class;
+		public static const ALIGN_NONE:String = "none";
+		
+		protected static var _overwriteMode:int = (OverwriteManager.enabled) ? OverwriteManager.mode : OverwriteManager.init(); //forces OverwriteManager to init() in AUTO mode (if it's not already initted) because AUTO overwriting is much more intuitive when working with sequences and groups. If you prefer to manage overwriting manually to save the 1kb, just comment this line out.
 		protected static var _TweenMax:Class;
 		protected static var _classInitted:Boolean;
+		protected static var _unexpired:Array = []; //TweenGroups that have not ended/expired yet (have endTimes in the future)
+		protected static var _prevTime:uint = 0; // records TweenLite.currentTime so that we can compare it on the checkExpiration() function to see if/when TweenGroups have completed.
 		
 		public var onComplete:Function;
 		public var onCompleteParams:Array;
 		public var loop:Number;
 		public var yoyo:Number;
+		public var endTime:Number; //time at which the last tween finishes (made it public for speed purposes)
+		public var expired:Boolean;
 		
 		protected var _tweens:Array;
 		protected var _pauseTime:Number;
 		protected var _startTime:Number; //time at which the first tween in the group begins (AFTER any delay)
-		protected var _endTime:Number; //time at which the last tween finishes
 		protected var _initTime:Number; //same as _startTime except it factors in the delay, so it's basically _startTime minus the first tween's delay.
 		protected var _reversed:Boolean;
 		protected var _align:String;
 		protected var _stagger:Number; //time (in seconds) to stagger each tween in the group/sequence
-		protected var _lastTweenVars:Object; //store the original vars object of the LAST tween here - we replace it with a duplicate that has an onComplete pointing to the onCompleteHandler.
-		protected var _lastTween:TweenLite; 
-		protected var _loopCount:Number; //number of times the group has yoyo'd or loop'd.
+		protected var _repeatCount:Number; //number of times the group has yoyo'd or loop'd.
 		protected var _dispatcher:EventDispatcher;
 		
 		/**
 		 * Constructor 
 		 * 
-		 * @param $tweens An Array of either TweenLite/TweenFilterLite/TweenMax instances or Objects each containing at least a "target" and "time" property, like [{target:mc, time:2, x:300},{target:mc2, time:1, alpha:0.5}]
-		 * @param $DefaultTweenClass Defines which tween class should be used when parsing objects that are not already TweenLite/TweenFilterLite/TweenMax instances. Choices are TweenLite, TweenFilterLite, or TweenMax.
+		 * @param $tweens An Array of either TweenLite/TweenMax instances or Objects each containing at least a "target" and "time" property, like [{target:mc, time:2, x:300},{target:mc2, time:1, alpha:0.5}]
+		 * @param $DefaultTweenClass Defines which tween class should be used when parsing objects that are not already TweenLite/TweenMax instances. Choices are TweenLite or TweenMax.
 		 * @param $align Controls the alignment of the tweens within the group. Options are TweenGroup.ALIGN_SEQUENCE, TweenGroup.ALIGN_START, TweenGroup.ALIGN_END, TweenGroup.ALIGN_INIT, or TweenGroup.ALIGN_NONE
 		 * @param $stagger Amount of time (in seconds) to offset each tween according to the current alignment. For example, if the align property is set to ALIGN_SEQUENCE and stagger is 0.5, this adds 0.5 seconds between each tween in the sequence. If align is set to ALIGN_START, it would add 0.5 seconds to the start time of each tween (0 for the first tween, 0.5 for the second, 1 for the third, etc.)
 		 * */
 		public function TweenGroup($tweens:Array=null, $DefaultTweenClass:Class=null, $align:String="none", $stagger:Number=0) {
 			super();
 			if (!_classInitted) {
-				if (TweenLite.version < 9.26) {
+				if (TweenLite.version < 10.092) {
 					trace("TweenGroup error! Please update your TweenLite class or try deleting your ASO files. TweenGroup requires a more recent version. Download updates at http://www.TweenLite.com.");
 				}
 				try {
-					_TweenMax = (getDefinitionByName("gs.TweenMax") as Class); //Checking "if (tween is _TweenMax)" is twice as fast as "if (tween.hasOwnProperty("combinedTimeScale"))". Storing a reference to the class this way prevents us from having to import the whole TweenMax class, thus saves a lot of Kb.
+					_TweenMax = (getDefinitionByName("gs.TweenMax") as Class); //Checking "if (tween is _TweenMax)" is twice as fast as "if (tween.hasOwnProperty("paused"))". Storing a reference to the class this way prevents us from having to import the whole TweenMax class, thus saves a lot of Kb.
 				} catch ($e:Error) {
 					_TweenMax = Array;
 				}
-				try {
-					_TweenFilterLite = (getDefinitionByName("gs.TweenFilterLite") as Class);//Checking "if (tween is TweenFilterLite)" is twice as fast as "if (tween.hasOwnProperty("combinedTimeScale"))". Storing a reference to the class this way prevents us from having to import the whole TweenFilterLite class, thus saves a lot of Kb.
-				} catch ($e:Error) {
-					_TweenFilterLite = Array;
-				}
-				var overwriteMode:int = (OverwriteManager.enabled) ? OverwriteManager.mode : OverwriteManager.init(2); //forces OverwriteManager to init() in AUTO mode (if it's not already initted) because AUTO overwriting is much more intuitive when working with sequences and groups. If you prefer to manage overwriting manually to save the 1kb, just comment this line out.
+				TweenLite.timingSprite.addEventListener(Event.ENTER_FRAME, checkExpiration, false, -1, true);
 				_classInitted = true;
 			}
-			_loopCount = 0;
+			this.expired = true;
+			_repeatCount = 0;
 			_align = $align;
 			_stagger = $stagger;
 			_dispatcher = new EventDispatcher(this);
@@ -204,7 +199,7 @@ package gs {
 				realign();
 			} else {
 				_tweens = [];
-				_initTime = _startTime = _endTime = 0;
+				_initTime = _startTime = this.endTime = 0;
 			}
 		}
 		
@@ -237,6 +232,17 @@ package gs {
 				if (!isNaN(_pauseTime) && ($value is TweenLite)) {
 					pauseTween($value as TweenLite);
 				}
+			}
+		}
+		
+		flash_proxy override function hasProperty($name:*):Boolean {
+			var props:String = " progress progressWithDelay duration durationWithDelay paused reversed timeScale align stagger tweens ";
+			if (_tweens.hasOwnProperty($name)) {
+				return true;
+			} else if (props.indexOf(" " + $name + " ") != -1) {
+				return true;
+			} else {
+				return false;
 			}
 		}
 		
@@ -308,7 +314,7 @@ package gs {
 		 */
 		public function restart($includeDelay:Boolean=false):void {
 			setProgress(0, $includeDelay);
-			_loopCount = 0;
+			_repeatCount = 0;
 			resume();
 		}
 		
@@ -323,16 +329,16 @@ package gs {
 		 */
 		public function reverse($forcePlay:Boolean=true):void {
 			_reversed = !_reversed;
-			var i:int, tween:TweenLite, proxy:ReverseProxy, endTime:Number, startTime:Number, initTime:Number, prog:Number, timeScale:Number, timeOffset:Number = 0, isFinished:Boolean = false;
+			var i:int, tween:TweenLite, proxy:ReverseProxy, startTime:Number, initTime:Number, prog:Number, tScale:Number, timeOffset:Number = 0, isFinished:Boolean = false;
 			var time:Number = (!isNaN(_pauseTime)) ? _pauseTime : TweenLite.currentTime;
-			if (_endTime <= time) {
-				timeOffset = int(_endTime - time) + 1;		
+			if (this.endTime <= time) {
+				timeOffset = int(this.endTime - time) + 1;		
 				isFinished = true;
 			}
 			for (i = _tweens.length - 1; i > -1; i--) {
 				tween = _tweens[i];
 				
-				if (tween is _TweenMax) { //TweenMax instances already have a "reverseEase()" function. I don't us "if (tween is TweenMax)" because it would bloat the file size by having to import TweenMax, so developers can just use this class with TweenLite to keep file size to a minimum if they so choose.
+				if (tween is _TweenMax) { //TweenMax instances already have a "reverseEase()" function. I don't use "if (tween is TweenMax)" because it would bloat the file size by having to import TweenMax, so developers can just use this class with TweenLite to keep file size to a minimum if they so choose.
 					startTime = tween.startTime;
 					initTime = tween.initTime;
 					(tween as Object).reverse(false, false);
@@ -345,10 +351,10 @@ package gs {
 					tween.ease = proxy.reverseEase;
 				}
 				
-				timeScale = tween.combinedTimeScale;
-				prog = (((time - tween.initTime) / 1000) - tween.delay / timeScale) / tween.duration * timeScale;
-				startTime = int(time - ((1 - prog) * tween.duration * 1000 / timeScale) + timeOffset);
-				tween.initTime = int(startTime - (tween.delay * (1000 / timeScale)));
+				tScale = tween.combinedTimeScale;
+				prog = (((time - tween.initTime) / 1000) - tween.delay / tScale) / tween.duration * tScale;
+				startTime = int(time - ((1 - prog) * tween.duration * 1000 / tScale) + timeOffset);
+				tween.initTime = int(startTime - (tween.delay * (1000 / tScale)));
 				
 				if (tween.startTime != 999999999999999) {
 					tween.startTime = startTime;
@@ -371,14 +377,14 @@ package gs {
 		/**
 		 * Provides an easy way to determine which tweens (if any) are currently active. Active tweens are not paused and are in the process of tweening values.
 		 * 
-		 * @return An Array of TweenLite/TweenFilterLite/TweenMax instances from the group that are currently active (in the process of tweening)
+		 * @return An Array of TweenLite/TweenMax instances from the group that are currently active (in the process of tweening)
 		 */
 		public function getActive():Array {
 			var a:Array = [];
 			if (isNaN(_pauseTime)) {
 				var i:int, time:Number = TweenLite.currentTime;
 				for (i = _tweens.length - 1; i > -1; i--) {
-					if (_tweens[i].startTime <= time && getEndTime(_tweens[i]) >= time) {
+					if (getStartTime(_tweens[i]) <= time && getEndTime(_tweens[i]) >= time) {
 						a[a.length] = _tweens[i];
 					}				
 				}
@@ -417,6 +423,61 @@ package gs {
 				_tweens[i] = null;
 				_tweens.splice(i, 1);
 			}
+			if (!this.expired) {
+				for (i = _unexpired.length - 1; i > -1; i--) {
+					if (_unexpired[i] == this) {
+						_unexpired.splice(i, 1);
+						break;
+					}
+				}
+				this.expired = true;
+			}
+		}
+		
+		/** 
+		 * Realigns all the tweens in the TweenGroup based on whatever the "align" property is set to. The only
+		 * time you may need to call realign() is if you change a time-related property of an individual tween in the
+		 * TweenGroup (like a tween's timeScale or duration). This is very uncommon.
+		 */
+		public function realign():void {
+			if (_align != ALIGN_NONE && _tweens.length > 1) {
+				var l:uint = _tweens.length, i:int, offset:Number = _stagger * 1000, prog:Number, rev:Boolean = _reversed;
+				
+				if (rev) {
+					prog = this.progressWithDelay;
+					reverse();
+					this.progressWithDelay = 0;
+				}
+				
+				if (_align == ALIGN_SEQUENCE) {
+					setTweenInitTime(_tweens[0], _initTime);
+					for (i = 1; i < l; i++) {
+						setTweenInitTime(_tweens[i], getEndTime(_tweens[i - 1]) + offset);
+					}
+					
+				} else if (_align == ALIGN_INIT) {
+					for (i = 0; i < l; i++) {
+						setTweenInitTime(_tweens[i], _initTime + (offset * i));
+					}
+					
+				} else if (_align == ALIGN_START) {
+					for (i = 0; i < l; i++) {
+						setTweenStartTime(_tweens[i], _startTime + (offset * i));
+					}
+					
+				} else { //ALIGN_END
+					for (i = 0; i < l; i++) {
+						setTweenInitTime(_tweens[i], this.endTime - ((_tweens[i].delay + _tweens[i].duration) * 1000 / _tweens[i].combinedTimeScale) - (offset * i));
+					}
+				}
+				
+				if (rev) {
+					reverse();
+					this.progressWithDelay = prog;
+				}
+				
+			}
+			updateTimeSpan();
 		}
 		
 		/** 
@@ -426,23 +487,26 @@ package gs {
 		 * in which case you can use updateTimeSpan() to recalibrate. 
 		 */
 		public function updateTimeSpan():void {
-			var i:int, start:Number, init:Number, end:Number, tween:TweenLite, lastTween:TweenLite;
 			if (_tweens.length == 0) {
-				_endTime = _startTime = _initTime = 0;
+				this.endTime = _startTime = _initTime = 0;
 			} else {
+				var i:int, start:Number, init:Number, end:Number, tween:TweenLite, repeats:int;
 				tween = _tweens[0];
 				_initTime = tween.initTime;
 				
 				_startTime = _initTime + (tween.delay * (1000 / tween.combinedTimeScale));
-				_endTime = _startTime + (tween.duration * (1000 / tween.combinedTimeScale));
-				lastTween = _tweens[0];
+				this.endTime = _startTime + (tween.duration * (1000 / tween.combinedTimeScale));
 				
 				for (i = _tweens.length - 1; i > 0; i--) {
 					tween = _tweens[i];
 					init = tween.initTime;
+					if (tween is _TweenMax && tween.initted && (!isNaN(tween.exposedVars.yoyo) || !isNaN(tween.exposedVars.loop))) {
+						repeats = (!isNaN(tween.exposedVars.yoyo)) ? tween.exposedVars.yoyo : tween.exposedVars.loop;
+						init -= (tween as Object).repeatCount * (tween.duration * 1000 / tween.combinedTimeScale); //resets the initTime (factoring in the loops/yoyo repeats)
+					}
 					
 					start = init + (tween.delay * (1000 / tween.combinedTimeScale));
-					end = start + (tween.duration * (1000 / tween.combinedTimeScale));
+					end = getEndTime(tween);
 					
 					if (init < _initTime) {
 						_initTime = init;
@@ -450,40 +514,33 @@ package gs {
 					if (start < _startTime) {
 						_startTime = start;
 					}
-					if (end > _endTime) {
-						_endTime = end;
-						lastTween = _tweens[i];
+					if (end > this.endTime) {
+						this.endTime = end;
 					}
 				}
 				
-				if (lastTween.vars.onComplete != onCompleteHandler) {
-					if (_lastTween != null) {
-						_lastTween.vars = _lastTweenVars; //swap it back in
-					}
-					var vars:Object = _lastTweenVars = lastTween.vars, v:Object = {}, p:String;
-					for (p in vars) {
-						v[p] = vars[p];
-					}
-					v.onComplete = onCompleteHandler;
-					v.onCompleteParams = [];
-					v.persist = true;
-					lastTween.vars = v;
-					_lastTween = lastTween;
+				if (this.expired && this.endTime > TweenLite.currentTime) {
+					this.expired = false;
+					_unexpired[_unexpired.length] = this;
 				}
 				
 			}
+		}
+		
+		public function toString():String {
+			return "TweenGroup( " + _tweens.toString() + " )";
 		}
 		
 
 //---- STATIC PUBLIC FUNCTIONS -----------------------------------------------------------------------------------
 
 		/**
-		 * Parses an Array that contains either TweenLite/TweenFilterLite/TweenMax instances or Objects that are meant to define tween instances.
+		 * Parses an Array that contains either TweenLite/TweenMax instances or Objects that are meant to define tween instances.
 		 * Specifically, they must contain at LEAST "target" and "time" properties. For example: TweenGroup.parse([{target:mc1, time:2, x:300},{target:mc2, time:1, y:400}]);
 		 *  
-		 * @param $tweens An Array of either TweenLite/TweenFilterLite/TweenMax instances or Objects that are meant to define tween instances. For example [{target:mc1, time:2, x:300},{target:mc2, time:1, y:400}]
-		 * @param $BaseTweenClass Defines which tween class should be used when parsing objects that are not already TweenLite/TweenFilterLite/TweenMax instances. Choices are TweenLite, TweenFilterLite, or TweenMax.
-		 * @return An Array with only TweenLite/TweenFilterLite/TweenMax instances
+		 * @param $tweens An Array of either TweenLite/TweenMax instances or Objects that are meant to define tween instances. For example [{target:mc1, time:2, x:300},{target:mc2, time:1, y:400}]
+		 * @param $BaseTweenClass Defines which tween class should be used when parsing objects that are not already TweenLite/TweenMax instances. Choices are TweenLite or TweenMax.
+		 * @return An Array with only TweenLite/TweenMax instances
 		 */
 		public static function parse($tweens:Array, $DefaultTweenClass:Class=null):Array {
 			if ($DefaultTweenClass == null) {
@@ -514,14 +571,14 @@ package gs {
 		 * @param $targets An Array of objects to tween.
 		 * @param $duration Duration (in seconds) of the tween
 		 * @param $vars An object containing the end values of all the properties you'd like to have tweened (or if you're using the TweenGroup.allFrom() method, these variables would define the BEGINNING values). Additional special properties: "stagger", "onCompleteAll", and "onCompleteAllParams"
-		 * @param $DefaultTweenClass Defines which tween class to use. Choices are TweenLite, TweenFilterLite, or TweenMax.
+		 * @param $DefaultTweenClass Defines which tween class to use. Choices are TweenLite or TweenMax.
 		 * @return TweenGroup instance
 		 */
 		public static function allTo($targets:Array, $duration:Number, $vars:Object, $DefaultTweenClass:Class=null):TweenGroup {
 			if ($DefaultTweenClass == null) {
 				$DefaultTweenClass = TweenLite;
 			}
-			var i:int, target:Object, vars:Object, p:String;
+			var i:int, vars:Object, p:String;
 			var group:TweenGroup = new TweenGroup(null, $DefaultTweenClass, ALIGN_INIT, $vars.stagger || 0);
 			group.onComplete = $vars.onCompleteAll;
 			group.onCompleteParams = $vars.onCompleteAllParams;
@@ -547,7 +604,7 @@ package gs {
 		 * @param $targets An Array of objects to tween.
 		 * @param $duration Duration (in seconds) of the tween
 		 * @param $vars An object containing the beginning values of all the properties you'd like to have tweened. Additional special properties: "stagger", "onCompleteAll", and "onCompleteAllParams"
-		 * @param $DefaultTweenClass Defines which tween class to use. Choices are TweenLite, TweenFilterLite, or TweenMax.
+		 * @param $DefaultTweenClass Defines which tween class to use. Choices are TweenLite or TweenMax.
 		 * @return TweenGroup instance
 		 */
 		public static function allFrom($targets:Array, $duration:Number, $vars:Object, $DefaultTweenClass:Class=null):TweenGroup {
@@ -555,84 +612,89 @@ package gs {
 			return allTo($targets, $duration, $vars, $DefaultTweenClass);
 		}
 		
-		
-//---- PROTECTED FUNCTIONS ---------------------------------------------------------------------------------------
-		
-		protected function realign():void {
-			if (_align != ALIGN_NONE && _tweens.length > 1) {
-				var l:uint = _tweens.length, i:int, offset:Number = _stagger * 1000;
-				
-				if (_align == ALIGN_SEQUENCE) {
-					setTweenInitTime(_tweens[0], _initTime);
-					for (i = 1; i < l; i++) {
-						setTweenInitTime(_tweens[i], getEndTime(_tweens[i - 1]) + offset);
-					}
-					
-				} else if (_align == ALIGN_INIT) {
-					for (i = 0; i < l; i++) {
-						setTweenInitTime(_tweens[i], _initTime + (offset * i));
-					}
-					
-				} else if (_align == ALIGN_START) {
-					for (i = 0; i < l; i++) {
-						setTweenStartTime(_tweens[i], _startTime + (offset * i));
-					}
-					
-				} else { //ALIGN_END
-					for (i = 0; i < l; i++) {
-						setTweenInitTime(_tweens[i], _endTime - ((_tweens[i].delay + _tweens[i].duration) * 1000 / _tweens[i].combinedTimeScale) - (offset * i));
-					}
+
+//---- PROTECTED STATIC FUNCTIONS -------------------------------------------------------------------------------
+
+		protected static function checkExpiration($e:Event):void {
+			var time:uint = TweenLite.currentTime, a:Array = _unexpired, tg:TweenGroup, i:int;
+			for (i = a.length - 1; i > -1; i--) {
+				tg = a[i];
+				if (tg.endTime > _prevTime && tg.endTime <= time && !tg.paused) {
+					a.splice(i, 1);
+					tg.expired = true;
+					tg.handleCompletion();
 				}
-				
 			}
-			updateTimeSpan();
+			_prevTime = time;
 		}
 		
+		
+//---- PROTECTED FUNCTIONS ---------------------------------------------------------------------------------------
+				
 		protected function offsetTime($tweens:Array, $offset:Number):void {
-			trace("reverse() inside");
 			if ($tweens.length != 0) {
 				var ms:Number = $offset * 1000; //offset in milliseconds
 				var time:Number = (isNaN(_pauseTime)) ? TweenLite.currentTime : _pauseTime;
 				var tweens:Array = getRenderOrder($tweens, time);
-				var isPaused:Boolean, tween:TweenLite, renderTime:Number, startTime:Number, endTime:Number, i:int, toRender:Array = [];
+				var isPaused:Boolean, tween:TweenLite, render:Boolean, startTime:Number, end:Number, repeats:int, i:int, toRender:Array = [];
 				for (i = tweens.length - 1; i > -1; i--) {
 					tween = tweens[i];
-					tween.initTime += ms;
+					if (tween is _TweenMax && tween.initted && (!isNaN(tween.exposedVars.yoyo) || !isNaN(tween.exposedVars.loop))) {
+						repeats = (!isNaN(tween.exposedVars.yoyo)) ? tween.exposedVars.yoyo : tween.exposedVars.loop;
+						tween.initTime = tween.initTime + ms - ((tween as Object).repeatCount * (tween.duration * 1000 / tween.combinedTimeScale)); //resets the initTime (factoring in the loops/yoyo repeats)
+					} else {
+						tween.initTime += ms;
+					}
 					isPaused = Boolean(tween.startTime == 999999999999999);
 					
 					startTime = tween.initTime + (tween.delay * (1000 / tween.combinedTimeScale)); //this forces paused tweens with false start times to adjust to the normal one temporarily so that we can render it properly.
-					endTime = getEndTime(tween);
+					end = getEndTime(tween);
 					
-					if (isNaN(_pauseTime) && endTime >= time) {
+					render = ((startTime <= time || startTime - ms <= time) && (end >= time || end - ms >= time)); //only render what's necessary
+					
+					if (isNaN(_pauseTime) && end >= time) {
 						tween.enabled = true; //make sure they're in the rendering queue in case they were already completed!
-						trace("enable "+tween.target.name);
-					}
-					if (startTime > time) { //don't allow tweens with delays that haven't expired yet to be active
-						tween.active = false;
 					}
 					if (!isPaused) {
 						tween.startTime = startTime;
 					}
-					if ((startTime <= time || startTime - ms <= time) && (endTime >= time || endTime - ms >= time)) { //only render what's necessary
-						toRender[toRender.length] = tween;
+					if (startTime >= time) { //don't allow tweens with delays that haven't expired yet to be active
+						if (!tween.initted) { //otherwise a TweenGroup could be paused immediately after creation, then resumed later and if there's a sequential tween of an object, initTweenVals() could get called before the previous tweens finished running, meaning if the tweens pertain to the same property, the wrong value(s) could get recorded in the tweens Array
+							render = false;
+						}
+						tween.active = false;
+					}
+					if (render) {
+						toRender[toRender.length] = {tween:tween, startTime:startTime};
 					}
 				}
 				
-				for (i = toRender.length - 1; i > -1; i--) {
-					renderTween(toRender[i], time);
+				if ($offset > 0) {
+					toRender.sortOn("startTime", Array.NUMERIC);
+				} else {
+					toRender.sortOn("startTime", Array.NUMERIC | Array.DESCENDING);
 				}
 				
-				_endTime += ms;
+				
+				for (i = toRender.length - 1; i > -1; i--) {
+					renderTween(toRender[i].tween, time);
+				}
+				
+				this.endTime += ms;
 				_startTime += ms;
 				_initTime += ms;
 				
+				if (this.expired && this.endTime > time) {
+					this.expired = false;
+					_unexpired[_unexpired.length] = this;
+				}
 			}
 		}
 		
 		protected function renderTween($tween:TweenLite, $time:Number):void {
-			var endTime:Number = getEndTime($tween), renderTime:Number, isPaused:Boolean;
+			var end:Number = getEndTime($tween), renderTime:Number, isPaused:Boolean;
 			if ($tween.startTime == 999999999999999) {
-				$tween.startTime = $tween.initTime + ($tween.delay * (1000 / $tween.combinedTimeScale)); //this forces paused tweens with false start times to adjust to the normal one temporarily so that we can render it properly.
+				$tween.startTime = $tween.initTime + ($tween.delay * 1000 / $tween.combinedTimeScale); //this forces paused tweens with false start times to adjust to the normal one temporarily so that we can render it properly.
 				isPaused = true;
 			}
 			if (!$tween.initted) {
@@ -651,10 +713,19 @@ package gs {
 			
 			if ($tween.startTime > $time) { //don't allow tweens with delays that haven't expired yet to be active
 				renderTime = $tween.startTime;
-			} else if (endTime < $time) {
-				renderTime = endTime;
+			} else if (end < $time) {
+				renderTime = end;
 			} else {
 				renderTime = $time;
+			}
+			
+			if ($tween is _TweenMax && $tween.initted && (!isNaN($tween.exposedVars.yoyo) || !isNaN($tween.exposedVars.loop))) {
+				var repeats:int = (!isNaN($tween.exposedVars.yoyo)) ? $tween.exposedVars.yoyo : $tween.exposedVars.loop;
+				var count:int = int((renderTime - $tween.initTime - $tween.delay) / ($tween.duration * 1000 / $tween.combinedTimeScale));
+				if (count > repeats) {
+					count = repeats;
+				}
+				($tween as Object).repeatCount = count;	
 			}
 			
 			if (renderTime < 0) { //render time is uint, so it must be zero or greater. 
@@ -665,6 +736,7 @@ package gs {
 			} else {
 				$tween.render(renderTime);
 			}
+			
 			if (isPaused) {
 				$tween.startTime = 999999999999999;
 			}
@@ -680,7 +752,7 @@ package gs {
 		 * @return An Array with the tweens in the correct render order
 		 */
 		protected function getRenderOrder($tweens:Array, $time:Number):Array {
-			var i:int, tween:TweenLite, startTime:Number, postTweens:Array = [], preTweens:Array = [], a:Array = [];
+			var i:int, startTime:Number, postTweens:Array = [], preTweens:Array = [], a:Array = [];
 			for (i = $tweens.length - 1; i > -1; i--) {
 				startTime = getStartTime($tweens[i]);
 				if (startTime >= $time) {
@@ -716,7 +788,23 @@ package gs {
 		}
 		
 		protected function getEndTime($tween:TweenLite):Number {
-			return $tween.initTime + (($tween.delay + $tween.duration) * (1000 / $tween.combinedTimeScale));
+			var dur:Number = $tween.duration * (1000 / $tween.combinedTimeScale);
+			if ($tween is _TweenMax && (!isNaN($tween.exposedVars.yoyo) || !isNaN($tween.exposedVars.loop))) {
+				var repeats:Number = (!isNaN($tween.exposedVars.yoyo)) ? $tween.exposedVars.yoyo : $tween.exposedVars.loop;
+				if (repeats == 0) {
+					return Infinity;
+				}
+				dur = (repeats - ($tween as Object).repeatCount + 1) * dur;
+			}
+			return $tween.initTime + ($tween.delay * 1000 / $tween.combinedTimeScale) + dur;
+		}
+		
+		protected function getInitTime($tween:TweenLite):Number {
+			if ($tween is _TweenMax && (!isNaN($tween.exposedVars.yoyo) || !isNaN($tween.exposedVars.loop))) {
+				return $tween.initTime - (($tween as Object).repeatCount * ($tween.duration * 1000 / $tween.combinedTimeScale)); 
+			} else {
+				return $tween.initTime;
+			}
 		}
 		
 		protected function getStartTime($tween:TweenLite):Number {
@@ -745,7 +833,7 @@ package gs {
 			} else {
 				var time:Number = (isNaN(_pauseTime)) ? TweenLite.currentTime : _pauseTime;
 				var min:Number = ($includeDelay) ? _initTime : _startTime;
-				var p:Number = (time - min) / (_endTime - min);
+				var p:Number = (time - min) / (this.endTime - min);
 				if (p < 0) {
 					return 0;
 				} else if (p > 1) {
@@ -760,22 +848,17 @@ package gs {
 			if (_tweens.length != 0) {
 				var time:Number = (isNaN(_pauseTime)) ? TweenLite.currentTime : _pauseTime;
 				var min:Number = ($includeDelay) ? _initTime : _startTime;
-				offsetTime(_tweens, (time - (min + ((_endTime - min) * $progress))) / 1000);
+				offsetTime(_tweens, (time - (min + ((this.endTime - min) * $progress))) / 1000);
 			}
 		}
 		
-		protected function onCompleteHandler():void {
-			if (!isNaN(this.yoyo) && (_loopCount < this.yoyo || this.yoyo == 0)) {
-				_loopCount++;
+		public function handleCompletion():void {
+			if (!isNaN(this.yoyo) && (_repeatCount < this.yoyo || this.yoyo == 0)) {
+				_repeatCount++;
 				reverse(true);
-			} else if (!isNaN(this.loop) && (_loopCount < this.loop || this.loop == 0)) {
-				_loopCount++;
+			} else if (!isNaN(this.loop) && (_repeatCount < this.loop || this.loop == 0)) {
+				_repeatCount++;
 				setProgress(0, true);
-			} else {
-				_lastTween.enabled = false;
-			}
-			if (_lastTweenVars.onComplete is Function) {
-				_lastTweenVars.onComplete.apply(null, _lastTweenVars.onCompleteParams);
 			}
 			if (this.onComplete != null) {
 				this.onComplete.apply(null, this.onCompleteParams);
@@ -831,7 +914,7 @@ package gs {
 			if (_tweens.length == 0) {
 				return 0;
 			} else {
-				return (_endTime - _startTime) / 1000;
+				return (this.endTime - _startTime) / 1000;
 			}
 		}
 		/**
@@ -841,7 +924,7 @@ package gs {
 			if (_tweens.length == 0) {
 				return 0;
 			} else {
-				return (_endTime - _initTime) / 1000;
+				return (this.endTime - _initTime) / 1000;
 			}
 		}
 		
@@ -879,6 +962,31 @@ package gs {
 			if (_reversed != $b) {
 				reverse(true);
 			}
+		}
+		
+		/**
+		 * @return timeScale property of the first TweenMax instance in the group (or 1 if there aren't any). Remember, timeScale edits do NOT affect TweenLite instances!
+		 */
+		public function get timeScale():Number {
+			for (var i:uint = 0; i < _tweens.length; i++) {
+				if (_tweens[i] is _TweenMax) {
+					return _tweens[i].timeScale;
+				}
+			}
+			return 1;
+		}
+		/**
+		 * Changes the timeScale of all TweenMax instances in the TweenGroup. Remember, TweenLite instances are NOT affected by timeScale!
+		 * 
+		 * @param $n time scale for all TweenMax instances in the TweenGroup. 1 is normal speed, 0.5 is half speed, 2 is double speed, etc.
+		 */
+		public function set timeScale($n:Number):void {
+			for (var i:int = _tweens.length - 1; i > -1; i--) {
+				if (_tweens[i] is _TweenMax) {
+					_tweens[i].timeScale = $n;
+				}
+			}
+			updateTimeSpan();
 		}
 		
 		/**

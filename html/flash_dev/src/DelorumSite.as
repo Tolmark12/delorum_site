@@ -1,6 +1,6 @@
 package {
 
-import delorum.echo.EchoMachine;
+import delorum.utils.EchoMachine;
 import flash.events.*;
 import flash.display.*;
 import site.SiteFacade;
@@ -18,17 +18,7 @@ public class DelorumSite extends Sprite
 {
 	public function DelorumSite():void 
 	{
-		// For printing any errors / message
-		//EchoMachine.setEchoModeAutomatically( this.stage );
-		//EchoMachine.initForExternalJavascript();
-		
-		EchoMachine.echoMode = EchoMachine.AIR;
-		EchoMachine.echo("this");
-		EchoMachine.echo("this");
-		EchoMachine.echo("this");
-		EchoMachine.echo("this");
-		EchoMachine.echo("this");
-		
+		EchoMachine.register( this.stage );
 		// Initialze the site facade and begin
 		var siteFacade:SiteFacade = SiteFacade.getInstance( 'site_facade' );
 		siteFacade.begin( this );

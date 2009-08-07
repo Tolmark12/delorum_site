@@ -42,6 +42,7 @@ public class SiteFacade extends Facade implements IFacade
 	// SPECIFIC PAGES
 	// -- Home
 	public static const HOME_TEASER_XML_PARSED:String 	= "home_teaser_xml_parsed";
+	public static const HOME_DATA_PARSED:String 		= "home_data_parsed";
 	// -- About us
 	public static const ABOUT_US_XML_PARSED:String 		= "about_us_xml_parsed";
 	// -- Jobs

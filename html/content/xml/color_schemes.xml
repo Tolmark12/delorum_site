@@ -7,6 +7,7 @@
 			 nav_up="FFFFFF"
 			 nav_hover="D4B17D"
 			 nav_active="F2CA8F"
+			 nav_divide="D4B17D"
 			 scrollbar_track="000000"
 			 scrollbar_track_border="222222"
 			 scrollbar_bar="4F555E"
@@ -53,6 +54,7 @@
 	
 	<colorScheme id="orange">
 		<colors 
+			 nav_divide="FBC97B"
 			 nav_hover="333333"
 			 nav_active="000000"
 			 bg="F9A146"
@@ -75,6 +77,7 @@
 	
 	<colorScheme id="dark">
 		<colors 
+			 nav_divide="666666"
 			 logo="FFFFFF"
 			 logo_hover="6994A1"
 			 bg="222222"

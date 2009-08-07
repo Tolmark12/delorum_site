@@ -9,6 +9,7 @@ import flash.events.*;
 import flash.display.Sprite;
 import site.view.StageMediator;
 import site.view.sections.home_components.*;
+import caurina.transitions.Tweener;
 
 public class HomeMediator extends BaseSection implements IMediator
 {	
@@ -71,6 +72,14 @@ public class HomeMediator extends BaseSection implements IMediator
 		var ceiling:uint = 700;
 		_teaser.y = ( StageMediator.stageBottom > ceiling )? StageMediator.stageBottom : ceiling ;
 		_teaser.y -= _teaser.height + 40
+	}
+	
+	override public function unload (  ):void
+	{
+	//		trace( ":: Preparing to unload " + this.getMediatorName() + " Component  ::" );
+		//Tweener.addTween( _baseMc, { alpha:0, x:_baseMc.x - 200, time:0.5, easeing:"EaseInOutQuint", onComplete:super._unloadComplete } );
+	
+		super.hide();
 	}
 	
 	private function _teaserClick ( e:MouseEvent ):void

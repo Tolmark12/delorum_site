@@ -41,6 +41,10 @@ public class HomeProxy extends Proxy implements IProxy
 		}
 		
 		sendNotification( SiteFacade.HOME_TEASER_XML_PARSED, ar )
+		
+		
+		
+		
 	}
 	
 }

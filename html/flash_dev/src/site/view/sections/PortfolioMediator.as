@@ -14,6 +14,8 @@ import delorum.scrolling.*;
 import site.model.ColorSchemeProxy;
 import site.model.CssProxy;
 import site.view.sections.portfolio_components.column_objects.BtnEvent;
+import delorum.utils.echo;
+import flash.filters.*;
 
 public class PortfolioMediator extends BaseSection implements IMediator
 {	
@@ -97,7 +99,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_portfolioState = _BROWSING;
 				_deactivateActiveStub();
 				_moveRibbonVertical();
-				_scroller.changeScrollPosition(0);
+				if( _scroller != null )
+					_scroller.changeScrollPosition(0);
 				var e:ScrollEvent  = new ScrollEvent( "FAKE_event" );
 				e.percent = 0;
 				e.easeMotion = true
@@ -129,7 +132,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 				_moveDetails();
 				_resizeScrollTrack(0);
 				_resizeScrollBar(0);
-				_updateScrollBarPosition( _scroller.scrollPosition );
+				if( _scroller != null )
+					_updateScrollBarPosition( _scroller.scrollPosition );
 				break;
 			case SiteFacade.SCROLL_PORTFOLIO :
 				_scrollPortfolio( note.getBody() as ScrollEvent );
@@ -163,6 +167,19 @@ public class PortfolioMediator extends BaseSection implements IMediator
 		_stubHolder 	= new Sprite();
 		_details 		= new ProjectDetails();		
 		_stubsAr		= new Array();
+		
+		var color:Number = 0x000000;
+		var angle:Number = 90;
+		var alpha:Number = 0.6;
+		var blurX:Number = 10;
+		var blurY:Number = 10;
+		var distance:Number = 7;
+		var strength:Number = 0.40;
+		var inner:Boolean = false;
+		var knockout:Boolean = false;
+		var quality:Number = BitmapFilterQuality.LOW;
+		var dsf:DropShadowFilter = new DropShadowFilter(distance,angle,color,alpha,blurX,blurY,strength,quality,inner,knockout);
+		_stubHolder.filters = [ dsf ];
 		
 		_details.addEventListener( ProjectStub.DE_ACTIVATE_STUB, _handleDeactivateStub, false,0,true 		);
 		_details.addEventListener( ProjectDetails.LOAD_PROJECT_XML, _handleStubXmlRequest, false,0,true 	);
@@ -351,7 +368,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _moveDetails (  ):void
 	{
-		_details.x = StageMediator.stageLeft + OUTER_PADDING;
+		if( _details != null )
+			_details.x = StageMediator.stageLeft + OUTER_PADDING;
 	}
 	
 	private function _hideDetails (  ):void
@@ -385,19 +403,24 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	
 	private function _resizeScrollBar ( $speed:Number=1 ):void
 	{
-		if( StageMediator.stageWidth < _ribbonWidth ) {
-			_scroller.updateScrollWindow( StageMediator.stageWidth / _ribbonWidth, $speed );
-			_scroller.show();
-		}else{
-			_scroller.hide();
+		if( _scroller != null ) {
+			if( StageMediator.stageWidth < _ribbonWidth ) {
+				_scroller.updateScrollWindow( StageMediator.stageWidth / _ribbonWidth, $speed );
+				_scroller.show();
+			}else{
+				_scroller.hide();
+			}			
 		}
+
 			
 	}
 	
 	private function _resizeScrollTrack ( $speed:Number=1 ):void
 	{
-		Tweener.addTween( _scrollHolder, { x:StageMediator.stageLeft + OUTER_PADDING - 12, time:$speed, transition:"EaseInOutQuint", onUpdate:_setRealativePosition} );
-		_scroller.changeWidth( StageMediator.stageWidth - OUTER_PADDING * 2, $speed );
+		if( _scroller != null ) {
+			Tweener.addTween( _scrollHolder, { x:StageMediator.stageLeft + OUTER_PADDING - 12, time:$speed, transition:"EaseInOutQuint", onUpdate:_setRealativePosition} );
+			_scroller.changeWidth( StageMediator.stageWidth - OUTER_PADDING * 2, $speed );
+		}
 	}
 	
 	private function _updateScrollBarPosition ( $speed:Number=1 ):void
@@ -409,7 +432,8 @@ public class PortfolioMediator extends BaseSection implements IMediator
 	// ______________________________________________________________ Aligning the ribbon on stage resize
 	
 	private function _alignRibbonLeft ():void{
-		_stubHolder.x = StageMediator.stageLeft - _realativeXpos;
+		if( _stubHolder != null )
+			_stubHolder.x = StageMediator.stageLeft - _realativeXpos;
 	}
 	
 	private function _setRealativePosition (  ):void{
