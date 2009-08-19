@@ -6,14 +6,28 @@
 			  cssFile="content/css/all_styles.xcss"
 			  defaultCss="brown"  >
 
-		
-		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,ibex.xml,heavens_best.xml" >
+		<projectStub title="Ibex" image="ibex.jpg" frameX="533" frameY="116" xml="ibex.xml,ibex.xml" >
+			<row css="portfolio,white_h1" slideShowId="hss_ibex" bgAlpha="0">
+				<col>
+					<txt><h1>Ibex Trucking</h1><p>Ibex understands the value of design and branding. Delorum partnered with Ibex to craft a competitive brand and a strong web presence.</p></txt>
+					<!-- btn event="SHOW_CASE_STUDY" frame="case_study" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
+					<btn event="SHOW_CASE_STUDY" frame="case_study" text="Ibex Branding Case Study" xmlFile="0"  yMod="280"  />
+				</col>
+				<col span="2" float="right">
+					<slideShow id="hss_ibex">
+						<img src="__blank__"  />
+						<img src="content/images/portfolio/pages/ibex/slide2.jpg" />
+						<img src="content/images/portfolio/pages/ibex/slide1.jpg" />
+					</slideShow>
+				</col>
+			</row>
+		</projectStub>		
+		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
 					<txt><h1>Selected Logos</h1><p>Delorum has designed over 40</p><p>logos for various brands. Here's</p><p>a few of our favorites.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="2" text="Heaven's Best Case Study" yMod="220" icon="NONE" />
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0" text="Olympus Building Case Study" yMod="250" icon="NONE" />
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="1" text="Ibex Case Study" yMod="280" icon="NONE" />
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="1" text="Heaven's Best Case Study" yMod="250" icon="NONE" />
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0" text="Olympus Building Case Study" yMod="280" icon="NONE" />
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
@@ -33,6 +47,22 @@
 						<img src="content/images/portfolio/pages/logos2/yellowstone.gif" />
 						<img src="content/images/portfolio/pages/logos2/zion.gif" />
 					</slideShow>
+				</col>
+			</row>
+		</projectStub>
+		<projectStub title="Tommyy Bahama" image="tommy.jpg" frameX="263" frameY="0" xml="tommy.xml">
+			<row css="portfolio,white_black" slideShowId="hss_tommy" bgAlpha="0">
+				<col>
+					<txt><h1>Tommy Bahama</h1><p>Delorum worked closesly with Tommy Bahama's in house design team to architect and deliver a rich online shopping experience.</p></txt>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+	 			</col>
+				<col span="2" float="right" stack="none" >
+					<!--slideShow id="hss_tommy" >
+						<img src="__blank__"  />
+						<img src="content/images/portfolio/pages/ijerseys/slide2.jpg" />
+						<img src="content/images/portfolio/pages/ijerseys/slide1.jpg" />
+						<img src="content/images/portfolio/pages/ijerseys/slide3.jpg" />
+					</slideShow-->
 				</col>
 			</row>
 		</projectStub>
@@ -95,8 +125,8 @@
 				</col>
 			</row>
 		</projectStub>
-		<projectStub title="Plum Furniture" image="plum3.jpg" xml="plum.xml" frameX="580" frameY="71" >
-			<row css="portfolio,white_black" slideShowId="hss_plum" bgAlpha="0">
+		<projectStub title="Plum Furniture" image="plum.jpg" xml="plum.xml" frameX="280" frameY="57" >
+			<row css="portfolio" slideShowId="hss_plum" bgAlpha="0">
 				<col>
 					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design coupled with today’s handcrafted precision. Delorum designed an identity, sales materials, and a website to match Plum's superior level of craft.</p></txt>
 					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
@@ -109,6 +139,23 @@
 					</slideShow>
 				</col>
 			</row>
+		</projectStub>
+		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="514" frameY="150">
+			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
+	 			<col>
+	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
+	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
+				</col>
+	 			<col span="2" float="right">
+	 				<slideShow id="hss_oliver">
+						<img src="__blank__"  />
+						<img src="content/images/portfolio/pages/oliver/slides_new_1.jpg" />
+						<img src="content/images/portfolio/pages/oliver/slides_new_2.jpg" />
+						<img src="content/images/portfolio/pages/oliver/slide3.jpg" />
+						<img src="content/images/portfolio/pages/oliver/slides_new_3.jpg" />
+	 				</slideShow>
+	 			</col>
+	 		</row>
 		</projectStub>
 		<projectStub title="Bevy Facebook Application" image="bevy.jpg" frameX="487" frameY="28" xml="bevy.xml" >
 			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
@@ -134,23 +181,6 @@
 					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 			</row>
-		</projectStub>
-		<projectStub title="Oliver Parson Documentary" image="oliver2.jpg" xml="oliver_parson.xml" frameX="500">
-			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
-	 			<col>
-	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
-	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
-				</col>
-	 			<col span="2" float="right">
-	 				<slideShow id="hss_oliver">
-						<img src="__blank__"  />
-						<img src="content/images/portfolio/pages/oliver/slides_new_1.jpg" />
-						<img src="content/images/portfolio/pages/oliver/slides_new_2.jpg" />
-						<img src="content/images/portfolio/pages/oliver/slide3.jpg" />
-						<img src="content/images/portfolio/pages/oliver/slides_new_3.jpg" />
-	 				</slideShow>
-	 			</col>
-	 		</row>
 		</projectStub>
 	</projects>
 </portfolio>
