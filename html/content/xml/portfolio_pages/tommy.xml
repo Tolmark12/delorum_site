@@ -8,7 +8,7 @@
 			<col span="2">
 				<txt xMod="20">
 					<h1>What moves you?</h1>
-					<p>Understanding User Motivations is the first step when when building any interactive system. We developed multiple motivation charts to represent not only how a user would approach Tommy’s site, but why they were coming. This gave us a great base for making decisions  about where to allocate creative resources. We’ve found that giving a problem tangibility is often just as important as solving it.</p>
+					<p>Understanding user motivations is the first step when building any interactive system. We developed multiple motivation charts to represent not only how a user would approach Tommy’s site, but why they were coming. This gave us a great base for making decisions  about where to allocate creative resources. We’ve found that giving a problem tangibility is often just as important as solving it.</p>
 				</txt>
 			</col>
 		</row>
@@ -29,7 +29,7 @@
 			<col span="2">
 				<txt xMod="20">
 					<h1>Low Fidelity = High Flexibility</h1>
-					<p>We typically explore ideas on paper before moving to the computer. The client was able to “try on” dozens of potention ideas in a realativly short time frame. This transparency during the creative phase allowed Tommy Bahama direct access to the ideas we were exploring–and thus provide feedback early.</p>
+					<p>We typically explore ideas on paper before moving to the computer. The client was able to “try on” dozens of potential ideas in a relatively short time frame. This transparency during the creative phase allowed Tommy Bahama direct access to the ideas we were exploring–and thus provide feedback early.</p>
 				</txt>
 			</col>
 		</row>
@@ -37,7 +37,7 @@
 			<col>
 				<txt>
 					<h1>Squeaky Clean Code</h1>
-					<p>Historically, rich flash based content comes at the expense of limited updatibility. However Tommy Bahama’s site undergoes constant seasonal refresh. With this in mind, we designed a modular system that allows deisgn updates to occur with no modifications needed in the actionscript codebase. Seasonal designs are implemented via external assets and an xml design specification filen. Clear separation of display assets from the display engine has reduced seasonal refresh to a matter of hours.</p>
+					<p>Historically, rich flash based content comes at the expense of limited updatibility. However Tommy Bahama’s site undergoes constant seasonal refresh. With this in mind, we designed a modular system that allows design updates to occur with no modifications needed in the actionscript codebase. Seasonal designs are implemented via external assets and an xml design specification file. Clear separation of display assets from the display engine has reduced seasonal refresh to a matter of hours.</p>
 				</txt>
 			</col>
 			<col span="2" xMod="20">

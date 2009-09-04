@@ -4,7 +4,7 @@ package site.view.sections.portfolio_components.column_objects
 import flash.display.*;
 import flash.events.*;
 import flash.geom.ColorTransform;
-
+import flash.geom.ColorTransform;
 
 public class Btn extends BaseColumnObj
 {
@@ -29,10 +29,22 @@ public class Btn extends BaseColumnObj
 		_swcBtn = new ChameleonBtn_swc();
 		_swcBtn.text = $node.@text;
 		_swcBtn.icon = $node.@icon;
-		_swcBtn.useHandCursor = true;
-		_swcBtn.addEventListener( MouseEvent.CLICK, _click, false,0,true );
-		_swcBtn.addEventListener( MouseEvent.MOUSE_OVER, _onMouseOver, false,0,true );
-		_swcBtn.addEventListener( MouseEvent.MOUSE_OUT, _onMouseOut, false,0,true );
+		if( $node.@inactive != "true" ) {
+			_swcBtn.buttonMode = true;
+			_swcBtn.addEventListener( MouseEvent.CLICK, _click, false,0,true );
+			_swcBtn.addEventListener( MouseEvent.MOUSE_OVER, _onMouseOver, false,0,true );
+			_swcBtn.addEventListener( MouseEvent.MOUSE_OUT, _onMouseOut, false,0,true );
+		}else{
+			_swcBtn.useHandCursor = false;
+		}
+		
+		if( String( $node.@color ).length != 0 ){
+			var newColorTransform:ColorTransform = this.transform.colorTransform;
+			newColorTransform.color = uint( "0x" + $node.color );
+			this.transform.colorTransform = newColorTransform;
+		}
+			
+		
 		_clickEvent = $node.@event;
 		_colorTransform = _swcBtn.transform.colorTransform;
 		

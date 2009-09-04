@@ -21,7 +21,7 @@
 					</slideShow>
 				</col>
 			</row>
-		</projectStub>		
+		</projectStub>	
 		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
@@ -50,10 +50,34 @@
 				</col>
 			</row>
 		</projectStub>
+		<projectStub title="Zumiez" image="zumiez.jpg" frameX="370" frameY="64" xml="zumiez.xml" >
+			<row css="portfolio,rbn_zumiez" slideShowId="hss_zumiez" bgAlpha="0" columnPadding="5" >
+				<col>
+					<txt><h1>Zumiez eCommerce Replatform</h1><p>Zumiez contacted Delorum to port their existing site to a new platform. The site relaunch entailed user interface design upgrades, massive site architecture, and no small degree of programatic wizardry.</p></txt>
+					<!-- btn event="SHOW_CASE_STUDY" frame="case_study" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
+					<btn event="SHOW_CASE_STUDY" frame="case_study" text="Full case study coming soon..." inactive="true" xmlFile="0"  yMod="280" icon="NONE" color="000000" />
+				</col>
+				<col span="2" float="right">
+					<slideShow id="hss_zumiez">
+						<img src="__blank__"  />
+						<img src="content/images/portfolio/pages/zumiez/slide2.jpg" />
+						<img src="content/images/portfolio/pages/zumiez/slide1.jpg" />
+					</slideShow>
+				</col>
+			</row>
+		</projectStub>
+		<projectStub title="Monkey Bars" image="monkey_bars.jpg" frameX="459" frameY="0" xml="monkey_bars.xml">
+			<row css="portfolio,white_black" bgAlpha="0">
+	 			<col>
+	 				<txt><h1>Monkey Bars</h1><p>Introducing a new product into a specialized market poses a unique set of challenges. Just getting the attention of your consumer can be daunting. With this in mind, we've crafted this brand for a maximum impact in the retail environment.</p></txt>
+					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0"  yMod="280"  />
+				</col>
+	 		</row>
+		</projectStub>
 		<projectStub title="Tommyy Bahama" image="tommy.jpg" frameX="263" frameY="0" xml="tommy.xml">
 			<row css="portfolio,white_black" slideShowId="hss_tommy" bgAlpha="0">
 				<col>
-					<txt><h1>Tommy Bahama</h1><p>Delorum worked closesly with Tommy Bahama's in house design team to architect and deliver a rich online shopping experience.</p></txt>
+					<txt><h1>Tommy Bahama</h1><p>Delorum worked closely with Tommy Bahama's in house design team to architect and deliver a rich online shopping experience.</p></txt>
 					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 	 			</col>
 				<col span="2" float="right" stack="none" >
@@ -66,10 +90,10 @@
 				</col>
 			</row>
 		</projectStub>
-		<projectStub title="Idahoan Potatoes" image="idahoan6.jpg" frameX="282" frameY="152" xml="idahoan.xml">
+		<projectStub title="Idahoan Potatoes" image="idahoan.jpg" frameX="282" frameY="152" xml="idahoan.xml">
 			<row css="portfolio,rbn_idahoan" slideShowId="hss_idahoan" bgAlpha="0">
 	 			<col>
-	 				<txt><h1>Home Cooking Online</h1><p>Idahoan wanted to be first in their category. They were second. After brief and unsuccessful online branding efforts with two major agencies, Idahoan contracted with Delorum to help reposition their online brand.</p></txt>
+	 				<txt><h1>Home Cooking Online</h1><p>Idahoan wanted to increase their marketshare by creating a stronger presence on the web. Idahoan contracted with Delorum to develop their online brand, and launch their corporate website.</p></txt>
 	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
 				</col>
 	 			<col span="2" float="right" stack="none" >
@@ -107,14 +131,6 @@
 	 			<col span="2" float="right">
 	 				
 	 			</col>
-	 		</row>
-		</projectStub>
-		<projectStub title="Monkey Bars" image="monkey_bars.jpg" frameX="459" frameY="0" xml="monkey_bars.xml">
-			<row css="portfolio,white_black" bgAlpha="0">
-	 			<col>
-	 				<txt><h1>Monkey Bars</h1><p>Introducing a new product into a specialized market poses a unique set of challenges. Just getting the attention of your consumer can be daunting. With this in mind, we've crafted this brand for a maximum impact in the retail environment.</p></txt>
-	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
-				</col>
 	 		</row>
 		</projectStub>
 		<projectStub title="Heidis Fudge" image="heidis_fudge.jpg" frameX="510" frameY="0" xml="heidis_fudge.xml" >

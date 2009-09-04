@@ -57,9 +57,10 @@
 	
 	<!-- Ribbon -->
 	<style id="rbn_playmill"> h1{ color:#B71A13 } p{color:#FFF1B0}</style>
-	<style id="rbn_idahoan"> p{color:#F4E7BB}</style>
+	<style id="rbn_idahoan"> h1{color:#D8D2B8} p{color:#D4B17D}</style>
 	<style id="rbn_heidi"> h1{color:#F79752} p{color:#BF3431}</style>
 	<style id="rbn_oparson"> h1{color:#D8D2B8} p{color:#98937A}</style>
+	<style id="rbn_zumiez"> h1{color:#A41F25} p{color:#777777}</style>
 	<!-- Ribbon End -->
 	
 	<!-- Portfolio END -->

@@ -47,6 +47,7 @@ public class NavProxy extends Proxy implements IProxy
 		var xml:XML = XML(e.target.data);
 		_createNav( xml.nav );
 		sendNotification( SiteFacade.BUILD_NAV, _navArray );
+		sendNotification( SiteFacade.BROWSER_RESIZE );
 	}
 	
 	// ______________________________________________________________ Create Nav Value Objects
