@@ -4,6 +4,7 @@ package site.view.sections.home_08_components
 import flash.display.*;
 import gs.*;
 import gs.plugins.*;
+import gs.easing.*;
 import flash.filters.BitmapFilter;
 import flash.filters.BitmapFilterQuality;
 import flash.filters.BlurFilter;
@@ -59,11 +60,12 @@ public class SlideImage extends Sprite
 
 	  	_image.scaleX = 3;
 	  	_image.scaleY = 3;
-	  	_image.rotation = ( 100 +  Math.random() * 90 ) * mod;
+	    _image.rotation = ( 60 +  Math.random() * 90 ) * mod;
 		mod *= (Math.random() > 0.89)? 1 : -1 ;
 	  	_image.x = 300 * Math.random();
-	  	_image.y = -300 + Math.random() * -700;
-	
+	  	_image.y = -30 + Math.random() * -700;
+		_image.rotationY = Math.random() * 110;
+		_image.rotationX = Math.random() * 110;
 		// Scale and blur
 	  	var params:Object = {
 	  		scaleX 		: 1,
@@ -80,9 +82,10 @@ public class SlideImage extends Sprite
 	  	}
 		
 		// Tween
-	  	var time:uint 	= 1;
+	  	var time:Number = 0.8;
 	  	TweenMax.to(_image, time, params);
 	  	TweenMax.to(_image, time + 0.2, params2);
+		TweenMax.to(_image, time - 0.3, {rotationX:0, rotationY:0, ease:Linear.easeNone});
 	
 	  	// _____________________________ Shadow
 	
@@ -90,7 +93,7 @@ public class SlideImage extends Sprite
 	  	_shadow.alpha	 = 0.3;
 		_shadow.x		 = 300;
 		_shadow.y		 = 300;
-
+		
 	  	params = {
 			scaleX 		: 1,
 			scaleY 		: 1,
