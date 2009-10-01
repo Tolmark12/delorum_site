@@ -4,7 +4,8 @@ package site.view.sections.portfolio_components.column_objects
 import flash.display.*;
 import flash.events.*;
 import flash.geom.ColorTransform;
-import flash.geom.ColorTransform;
+import flash.net.navigateToURL;
+import flash.net.URLRequest;
 
 public class Btn extends BaseColumnObj
 {
@@ -18,6 +19,7 @@ public class Btn extends BaseColumnObj
 	
 	// possible vars
 	private var _xmlFile:String;
+	private var _url:String;
 	
 	public function Btn():void
 	{
@@ -26,12 +28,18 @@ public class Btn extends BaseColumnObj
 	
 	override public function make ( $node:XML ):void
 	{
-		_swcBtn = new ChameleonBtn_swc();
-		_swcBtn.text = $node.@text;
-		_swcBtn.icon = $node.@icon;
-		if( $node.@inactive != "true" ) {
-			_swcBtn.buttonMode = true;
-			_swcBtn.addEventListener( MouseEvent.CLICK, _click, false,0,true );
+		_swcBtn 		= new ChameleonBtn_swc();
+		_swcBtn.text 	= $node.@text;
+		_swcBtn.icon 	= $node.@icon;
+		_url 			= String( $node.@url );
+		
+		if( $node.@inactive != "true" ){
+			if( _url.length == 0 ) 
+				_swcBtn.addEventListener( MouseEvent.CLICK, _click, false,0,true );
+			else
+				_swcBtn.addEventListener(MouseEvent.CLICK, _onUrlClick, false, 0, true );
+
+			_swcBtn.buttonMode = true;			
 			_swcBtn.addEventListener( MouseEvent.MOUSE_OVER, _onMouseOver, false,0,true );
 			_swcBtn.addEventListener( MouseEvent.MOUSE_OUT, _onMouseOut, false,0,true );
 		}else{
@@ -65,6 +73,10 @@ public class Btn extends BaseColumnObj
 		var btnEvent:BtnEvent = new BtnEvent( _clickEvent, true );
 		btnEvent.xmlFileIndex = _xmlFile;
 		this.dispatchEvent( btnEvent );
+	}
+	
+	private function _onUrlClick ( e:Event ):void {
+		navigateToURL(new URLRequest(_url), '_blank');
 	}
 	
 	private function _onMouseOut ( e:Event ):void

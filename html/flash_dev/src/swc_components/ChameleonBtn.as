@@ -10,13 +10,15 @@ public class ChameleonBtn extends MovieClip
 	public static const WEB:String = "WEB";
 	public static const NONE:String = "NONE";
 	
-	private var _icons:MovieClip;
-	private var _titleTxt:TextField;
+	public var icons:MovieClip;
+	public var titleTxt:TextField;
+	public var url:String;
 	
 	public function ChameleonBtn():void
 	{
-		_icons = this.getChildByName( "icons" ) as MovieClip;
-		_titleTxt = this.getChildByName( "titleTxt" ) as TextField;
+		icons = this.getChildByName( "icons" ) as MovieClip;
+		titleTxt = this.getChildByName( "titleTxt" ) as TextField;
+		titleTxt.autoSize = "left";
 		this.buttonMode = true;
 		this.mouseChildren = false;
 	}
@@ -40,7 +42,7 @@ public class ChameleonBtn extends MovieClip
 			icon = CASE;
 		}
 		
-		_titleTxt.text = $text;
+		titleTxt.text = $text;
 	}
 	
 	public function set icon ( $icon:String ):void
@@ -49,18 +51,26 @@ public class ChameleonBtn extends MovieClip
 		{
 			switch ($icon){
 				case CASE :
-					_icons.gotoAndStop( CASE );
+					icons.gotoAndStop( CASE );
 				break;
 				case WEB :
-					_icons.gotoAndStop( WEB );
+					icons.gotoAndStop( WEB );
 				break;
 				case NONE :
-					_icons.gotoAndStop( NONE );
-					_titleTxt.x -= 22;
+					icons.gotoAndStop( NONE );
+					titleTxt.x -= 22;
+				break;
+				default  :
+					icons.gotoAndStop( $icon.toUpperCase() );
 				break;
 			}
 		}
+		
 	}
+	
+	public function get textField (  ):TextField	{ return titleTxt; };
+	
+	
 
 }
 

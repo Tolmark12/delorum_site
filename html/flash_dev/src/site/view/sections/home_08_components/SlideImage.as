@@ -20,9 +20,12 @@ public class SlideImage extends Sprite
 	private var _shadow:Shape = new Shape();
 	public var txt:String;
 	public static var mod:int = 1;
+	public var buttons:Array;
+	public var href:String;
 	
 	public function SlideImage( $path):void
 	{
+		this.buttonMode = true;
 		_draw();
 		var imageHolder:Sprite = new Sprite();
 		imageHolder.x = -174;

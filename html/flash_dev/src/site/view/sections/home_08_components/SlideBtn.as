@@ -1,49 +1,48 @@
 package site.view.sections.home_08_components
 {
 
-import flash.display.Sprite;
+import flash.display.*;
 import flash.events.*;
 
 public class SlideBtn extends Sprite
 {
 	public var isSelected:Boolean = false;
 	public var index:uint;
+	private var _selectedMc:MovieClip;
 	
-	public function SlideBtn( $index ):void
+	public function SlideBtn(  ):void
+	{
+	}
+	
+	// _____________________________ APi
+
+	public function make ( $index ):void
 	{
 		index = $index;
 		this.buttonMode = true;
 		this.addEventListener( MouseEvent.MOUSE_OVER, _onMouseOver, false,0,true );
 		this.addEventListener( MouseEvent.MOUSE_OUT, _onMouseOut, false,0,true );
 		this.addEventListener( MouseEvent.CLICK, _onClick, false,0,true );
-		_make();
+		_selectedMc = this.getChildByName( "selectedMc" ) as MovieClip;
+		_selectedMc.visible = false;
 	}
-	
-	// _____________________________ APi
+
 	
 	public function activate (  ):void
 	{
 		_onMouseOver(null);
+		_selectedMc.visible = true;
 		this.isSelected = true;
 	}
 	
 	public function deactivate (  ):void
 	{
 		this.isSelected = false;
+		_selectedMc.visible = false;
 		_onMouseOut(null);
 	}
 	
-	
-	// _____________________________ Make
-	
-	private function _make (  ):void
-	{
-		this.graphics.beginFill(0x444444, 1);
-		this.graphics.drawRect( 0,0,17,17 );
-		this.graphics.endFill();
-		this._onMouseOut(null);
-	}
-	
+
 	// _____________________________ Events
 	
 	private function _onMouseOver ( e:Event ):void{
@@ -53,7 +52,7 @@ public class SlideBtn extends Sprite
 	
 	private function _onMouseOut ( e:Event ):void {
 		if( !this.isSelected )
-			this.alpha = 0.6;
+			this.alpha = 0.85;
 	}
 	
 	private function _onClick ( e:Event ):void{

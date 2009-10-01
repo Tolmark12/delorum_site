@@ -18,6 +18,11 @@ public class DelorumSite extends Sprite
 {
 	public function DelorumSite():void 
 	{
+		this.addEventListener( Event.ADDED_TO_STAGE, _onAddedToStage, false,0,true );
+	}
+	
+	private function _onAddedToStage ( e:Event ):void
+	{
 		EchoMachine.register( this.stage );
 		// Initialze the site facade and begin
 		var siteFacade:SiteFacade = SiteFacade.getInstance( 'site_facade' );

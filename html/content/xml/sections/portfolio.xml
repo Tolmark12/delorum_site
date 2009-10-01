@@ -10,8 +10,9 @@
 			<row css="portfolio,white_h1" slideShowId="hss_ibex" bgAlpha="0">
 				<col>
 					<txt><h1>Ibex Trucking</h1><p>Ibex understands the value of design and branding. Delorum partnered with Ibex to craft a competitive brand and a strong web presence.</p></txt>
-					<!-- btn event="SHOW_CASE_STUDY" frame="case_study" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
-					<btn event="SHOW_CASE_STUDY" frame="case_study" text="Ibex Branding Case Study" xmlFile="0"  yMod="280"  />
+					<!-- btn event="SHOW_CASE_STUDY" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
+					<btn event="SHOW_CASE_STUDY" text="Ibex Branding Case Study" xmlFile="0"  yMod="280"  />
+					<!-- btn text="Launch Web Site" url="http://www.ibexincorporated.com" yMod="280" icon="WEB" /-->
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_ibex">
@@ -26,8 +27,8 @@
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
 					<txt><h1>Selected Logos</h1><p>Delorum has designed over 40</p><p>logos for various brands. Here's</p><p>a few of our favorites.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="1" text="Heaven's Best Case Study" yMod="250" icon="NONE" />
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0" text="Olympus Building Case Study" yMod="280" icon="NONE" />
+					<btn event="SHOW_CASE_STUDY" xmlFile="1" text="Heaven's Best Case Study" yMod="250" icon="NONE" />
+					<btn event="SHOW_CASE_STUDY" xmlFile="0" text="Olympus Building Case Study" yMod="280" icon="NONE" />
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
@@ -35,9 +36,11 @@
 						<img src="content/images/portfolio/pages/logos2/neu_seed.gif" />
 						<img src="content/images/portfolio/pages/logos2/h_fudge.jpg" />
 						<img src="content/images/portfolio/pages/logos2/wilcox.gif" />
+						<img src="content/images/portfolio/pages/logos2/asher.jpg" />
 						<img src="content/images/portfolio/pages/logos2/olympus.jpg" />
 						<img src="content/images/portfolio/pages/logos2/middle_school.gif" />
 						<img src="content/images/portfolio/pages/logos2/tbooks.jpg" />
+						<img src="content/images/portfolio/pages/logos2/welibilew.gif" />
 						<img src="content/images/portfolio/pages/logos2/heavens_best.jpg" />
 						<img src="content/images/portfolio/pages/logos2/ibex.gif" />
 						<img src="content/images/portfolio/pages/logos2/plum.jpg" />
@@ -55,8 +58,9 @@
 			<row css="portfolio,rbn_zumiez" slideShowId="hss_zumiez" bgAlpha="0" columnPadding="5" >
 				<col>
 					<txt><h1>Zumiez eCommerce Replatform</h1><p>Zumiez contacted Delorum to port their existing site to a new platform. The site relaunch entailed user interface design upgrades, massive site architecture, and no small degree of programatic wizardry.</p></txt>
-					<!-- btn event="SHOW_CASE_STUDY" frame="case_study" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
-					<btn event="SHOW_CASE_STUDY" frame="case_study" text="Full case study coming soon..." inactive="true" xmlFile="0"  yMod="280" icon="NONE" color="000000" />
+					<!-- btn event="SHOW_CASE_STUDY" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
+					<!-- btn text="Launch Web Site" url="http://www.zumiez.com/guys.html" yMod="250" icon="WEB" color="000000" /-->
+					<btn event="SHOW_CASE_STUDY" text="Full case study coming soon..." inactive="true" xmlFile="0"  yMod="280" icon="NONE" color="000000" />
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_zumiez">
@@ -71,7 +75,7 @@
 			<row css="portfolio,white_black" bgAlpha="0">
 	 			<col>
 	 				<txt><h1>Monkey Bars</h1><p>Introducing a new product into a specialized market poses a unique set of challenges. Just getting the attention of your consumer can be daunting. With this in mind, we've crafted this brand for a maximum impact in the retail environment.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" xmlFile="0"  yMod="280"  />
+					<btn event="SHOW_CASE_STUDY" xmlFile="0"  yMod="280"  />
 				</col>
 	 		</row>
 		</projectStub>
@@ -79,7 +83,7 @@
 			<row css="portfolio,white_black" slideShowId="hss_tommy" bgAlpha="0">
 				<col>
 					<txt><h1>Tommy Bahama</h1><p>Delorum worked closely with Tommy Bahama's in house design team to architect and deliver a rich online shopping experience.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+					<btn event="SHOW_CASE_STUDY" yMod="270"/>
 	 			</col>
 				<col span="2" float="right" stack="none" >
 					<!--slideShow id="hss_tommy" >
@@ -95,7 +99,8 @@
 			<row css="portfolio,rbn_idahoan" slideShowId="hss_idahoan" bgAlpha="0">
 	 			<col>
 	 				<txt><h1>Home Cooking Online</h1><p>Idahoan wanted to increase their marketshare by creating a stronger presence on the web. Idahoan contracted with Delorum to develop their online brand, and launch their corporate website.</p></txt>
-	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+	 				<btn event="SHOW_CASE_STUDY" yMod="270"/>
+					<!--btn text="Launch Web Site" url="http://www.idahoan.com/" yMod="280" icon="WEB" /-->
 				</col>
 	 			<col span="2" float="right" stack="none" >
 	 				<slideShow id="hss_idahoan" >
@@ -127,7 +132,7 @@
  			<row css="rbn_playmill,portfolio" bgAlpha="0">
 	 			<col>
 	 				<txt><h1>Playmill Theatre</h1><p>In the tourism town of West Yellowstone, low-budget cliches abound. In 2005, the 40 year old Playmill Theatre approached us to to help refresh and differentiate their image from more localized “rubber tomahawk” attractions.</p></txt>
-	 				<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+	 				<btn event="SHOW_CASE_STUDY" yMod="270"/>
 				</col>
 	 			<col span="2" float="right">
 	 				
@@ -138,7 +143,7 @@
 			<row css="portfolio,rbn_heidi" slideShowId="hss_heidis_fudge" bgAlpha="0" totalColumns="2" columnPadding="40">
 				<col>
 					<txt><h1>Heidi's Fudge</h1><p>After 20 years of making and selling fudge at a local level, Heidi's Fudge hired Delorum to develop an identity and packaging that would allow their products to compete in a broader market place.</p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+					<btn event="SHOW_CASE_STUDY" yMod="270"/>
 				</col>
 			</row>
 		</projectStub>
@@ -146,7 +151,7 @@
 			<row css="portfolio" slideShowId="hss_plum" bgAlpha="0">
 				<col>
 					<txt><h1>Plum Furniture</h1><p>Plum Handcrafted Furniture combines the best in historical design coupled with today’s handcrafted precision. Delorum designed an identity, sales materials, and a website to match Plum's superior level of craft.</p></txt>
-					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
+					<!-- <btn event="SHOW_CASE_STUDY" yMod="270"/> -->
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_plum">
@@ -161,7 +166,7 @@
 			<row css="portfolio,rbn_oparson" bgAlpha="0" slideShowId="hss_oliver">
 	 			<col>
 	 				<txt><h1>Oliver Parson Documentary</h1><p>This interactive digital kiosk displays the work and life story of artist Oliver Parson. The exhibit blends interviews, critical commentary and the artist's work in an intuitive digital framework.</p></txt>
-	 				<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
+	 				<!-- <btn event="SHOW_CASE_STUDY" yMod="270"/> -->
 				</col>
 	 			<col span="2" float="right">
 	 				<slideShow id="hss_oliver">
@@ -178,7 +183,7 @@
 			<row css="portfolio,white_h1" slideShowId="hss_bevy" bgAlpha="0">
 				<col>
 					<txt><h1>Bevy Facebook Application</h1><p>Seattle based Bevy contacted us to help develop their brand, launch their corporate website, and design a Facebook application that's guaranteed to knock your high heels off. </p></txt>
-					<!-- <btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/> -->
+					<!-- btn text="Launch Web Site" url="http://www.zumiez.com/guys.html" yMod="270" icon="WEB" color="000000" /-->
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_bevy">
@@ -195,7 +200,7 @@
 			<row css="portfolio,white_black" bgAlpha="0" totalColumns="2" columnPadding="70">
 				<col>
 					<txt><h1>Yellowstone Historic Center</h1><p>Yellowstone National Park has long embodied the great American west. The Yellowstone Historical Center preserves and displays this heritage. We greatly appreciated the opportunity to redesign the look-and-feel of this organization. </p></txt>
-					<btn event="SHOW_CASE_STUDY" frame="case_study" yMod="270"/>
+					<btn event="SHOW_CASE_STUDY" yMod="270"/>
 				</col>
 			</row>
 		</projectStub>
