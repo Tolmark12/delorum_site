@@ -1,0 +1,2 @@
+<p><span class='testimonial white-text serif'><h2>These guys are PHENOMENAL !!!! I wish I had 7 web sites they could design and build for me.</h2> --  Neil Fiske, Eddie Bauer, CEO</span></p>
+<p><span class='testimonial white-text serif'><h2>I wouldn’t hire this group of rif raf if they were the 2nd to last web company on the planet.</h2> --  Thomas Kimbal, BilliardEx, CEO</span></p>

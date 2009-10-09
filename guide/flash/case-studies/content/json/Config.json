@@ -1,0 +1,5 @@
+{
+	"services" : {
+		"getCaseStudiesData" : "content/json/case-studies.json"
+	}
+}
