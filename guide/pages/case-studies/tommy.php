@@ -22,9 +22,9 @@
 				<div id='tommy-page-top' class='page-top'>
 					<div id='tommy-header' class='header'>
 						<div id='tommy-header-images' class='header-images'>
-							<span id='tommy-title' class='title'><img src='../../images/pages/case-studies/tommy/title.png' alt=''/></span>
+							<span id='tommy-title' class='title'><img src='../../media/images/pages/case-studies/tommy/title.png' alt=''/></span>
 							<div id='tommy-image' class='image'>
-								<img src='../../images/pages/case-studies/tommy/image.png' alt=''/>
+								<img src='../../media/images/pages/case-studies/tommy/image.png' alt=''/>
 								<a href='http://www.tommybahama.com' target='_blank'><span id='tommy-link' class='link underline'>www.tommybahama.com</span></a>
 							</div>
 						</div>

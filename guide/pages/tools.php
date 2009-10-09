@@ -22,7 +22,7 @@
 				<div id='tools-page-top' class='page-top'>
 					<div id='tools-header' class='header'>
 						<div id='tools-header-images' class='header-images'>
-							<img src='../images/pages/tools/title.png' alt='tools'/>
+							<img src='../media/images/pages/tools/title.png' alt='tools'/>
 						</div>
 					</div>
 				</div>
@@ -70,7 +70,7 @@
 								</div>
 								
 								<div id='tools-content-body-right' class='content-body-right'>
-									<img src='../images/pages/tools/screen.png' alt='screen'/>
+									<img src='../media/images/pages/tools/screen.png' alt='screen'/>
 									
 									<div id='tools-links' class='capitalize underline brown-text'>
 										<p>view larger</p>

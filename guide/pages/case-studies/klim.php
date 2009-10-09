@@ -22,9 +22,9 @@
 				<div id='klim-page-top' class='page-top'>
 					<div id='klim-header' class='header'>
 						<div id='klim-header-images' class='header-images'>
-							<span id='klim-title' class='title'><img src='../../images/pages/case-studies/klim/title.png' alt=''/></span>
+							<span id='klim-title' class='title'><img src='../../media/images/pages/case-studies/klim/title.png' alt=''/></span>
 							<div id='klim-image' class='image'>
-								<img src='../../images/pages/case-studies/klim/image.png' alt=''/>
+								<img src='../../media/images/pages/case-studies/klim/image.png' alt=''/>
 								<a href='http://www.klim.com' target='_blank'><span id='klim-link' class='link underline'>www.klim.com</span></a>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 										<p><span class='bold'>Mirrored Site:</span> We helped leverage demand for snow apparel by creating a parallel motocross site styled for an alternate line of motocross clothing.</p>
 									</div>
 									
-									<img src='../../images/pages/case-studies/klim/highlight.png' atl='highlight'/>
+									<img src='../../media/images/pages/case-studies/klim/highlight.png' atl='highlight'/>
 								</div>
 					
 								<div id='klim-content-right' class='content-right'>

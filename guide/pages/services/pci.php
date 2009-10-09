@@ -26,7 +26,7 @@
 						</div>
 						<div id='pci-header-image' class='header-images services-header-image'>
 							<div id='image'>
-								<img src='../../images/pages/services/pci/image.png' alt=''/>
+								<img src='../../media/images/pages/services/pci/image.png' alt=''/>
 							</div>
 						</div>
 					</div>

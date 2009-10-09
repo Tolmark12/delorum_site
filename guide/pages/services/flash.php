@@ -26,7 +26,7 @@
 						</div>
 						<div id='flash-header-image' class='header-images services-header-image'>
 							<div id='image'>
-								<img src='../../images/pages/services/flash/image.png' alt=''/>
+								<img src='../../media/images/pages/services/flash/image.png' alt=''/>
 							</div>
 						</div>
 					</div>

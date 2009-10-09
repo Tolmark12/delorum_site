@@ -22,7 +22,7 @@
 				<div id='team-page-top' class='page-top'>
 					<div id='team-header' class='header'>
 						<div  id='team-header-images' class='header-images'>
-							<img src='../../images/pages/about-us/title.png' alt='title'/>
+							<img src='../../media/images/pages/about-us/title.png' alt='title'/>
 							<p>Compact, versatile and handy in case of emergency – here’s an inside look at the people who make Delorum possible.</p>
 						</div>
 					</div>
@@ -160,7 +160,7 @@
 					
 					<div id='keith-bio' class='bio'>
 
-						<img src='../../images/pages/about-us/profiles/keith.png' alt='keith' />
+						<img src='../../media/images/pages/about-us/profiles/keith.png' alt='keith' />
 
 						<div id='rolls'>
 							<ul>
@@ -179,7 +179,7 @@
 					
 					<div id='mark-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/mark.png' alt='mark' />
+						<img src='../../media/images/pages/about-us/profiles/mark.png' alt='mark' />
 
 						<div id='rolls'>
 							<ul>
@@ -197,7 +197,7 @@
 					
 					<div id='eric-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/eric.png' alt='eric' />
+						<img src='../../media/images/pages/about-us/profiles/eric.png' alt='eric' />
 
 						<div id='rolls'>
 							<ul>
@@ -216,7 +216,7 @@
 					
 					<div id='tyler-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/tyler.png' alt='steve' />
+						<img src='../../media/images/pages/about-us/profiles/tyler.png' alt='steve' />
 
 						<div id='rolls'>
 							<ul>
@@ -235,7 +235,7 @@
 					
 					<div id='scott-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/scott.png' alt='scott' />
+						<img src='../../media/images/pages/about-us/profiles/scott.png' alt='scott' />
 
 						<div id='rolls'>
 							<ul>
@@ -254,7 +254,7 @@
 					
 					<div id='steve-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/steve.png' alt='steve' />
+						<img src='../../media/images/pages/about-us/profiles/steve.png' alt='steve' />
 
 						<div id='rolls'>
 							<ul>
@@ -272,7 +272,7 @@
 					
 					<div id='domino-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/domino.png' alt='domino' />
+						<img src='../../media/images/pages/about-us/profiles/domino.png' alt='domino' />
 
 						<div id='rolls'>
 							<ul>
@@ -291,7 +291,7 @@
 					
 					<div id='braxton-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/braxton.png' alt='braxton' />
+						<img src='../../media/images/pages/about-us/profiles/braxton.png' alt='braxton' />
 
 						<div id='rolls'>
 							<ul>
@@ -309,7 +309,7 @@
 					
 					<div id='chris-bio' class='bio' style='display:none;'>
 
-						<img src='../../images/pages/about-us/profiles/chris.png' alt='chris' />
+						<img src='../../media/images/pages/about-us/profiles/chris.png' alt='chris' />
 
 						<div id='rolls'>
 							<ul>

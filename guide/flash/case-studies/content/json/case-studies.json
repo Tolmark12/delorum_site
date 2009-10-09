@@ -1,9 +1,0 @@
-{
-	"caseStudies" :
-	[
-		{ "image":"ibex", 		"description":"Pass the burden of PCI Security thoseo understand [View Full Case Study]", 	"link":"url" },
-		{ "image":"bevy", 		"description":"Pass the burden of PCI Security thoseo understand [View Full Case Study]", 	"link":"url" },
-		{ "image":"zumiez", 	"description":"Pass the burden of PCI Security thoseo understand [View Full Case Study]", 	"link":"url" },
-		{ "image":"idahoan", 	"description":"Pass the burden of PCI Security thoseo understand [View Full Case Study]", 	"link":"url" }
-	]
-}

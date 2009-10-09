@@ -22,9 +22,9 @@
 				<div id='idahoan-page-top' class='page-top'>
 					<div id='idahoan-header' class='header'>
 						<div id='idahoan-header-images' class='header-images'>
-							<span id='idahoan-title' class='title'><img src='../../images/pages/case-studies/idahoan/title.png' alt=''/></span>
+							<span id='idahoan-title' class='title'><img src='../../media/images/pages/case-studies/idahoan/title.png' alt=''/></span>
 							<div id='idahoan-image' class='image'>
-								<img src='../../images/pages/case-studies/idahoan/image.png' alt=''/>
+								<img src='../../media/images/pages/case-studies/idahoan/image.png' alt=''/>
 								<a href='http://www.idahoan.com' target='_blank'><span id='idahoan-link' class='link underline'>www.idahoan.com</span></a>
 							</div>
 						</div>
@@ -52,7 +52,7 @@
 										<p>Features anticipate future development, allowing expansion without expensive retooling.</p>
 									</div>
 									
-									<img src='../../images/pages/case-studies/idahoan/highlight.png' atl='highlight'/>
+									<img src='../../media/images/pages/case-studies/idahoan/highlight.png' atl='highlight'/>
 								</div>
 					
 								<div id='idahoan-content-right' class='content-right'>

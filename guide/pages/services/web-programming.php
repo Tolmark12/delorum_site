@@ -26,7 +26,7 @@
 						</div>
 						<div id='web-programming-header-image' class='header-images services-header-image'>
 							<div id='image'>
-								<img src='../../images/pages/services/web-programming/image.png' alt=''/>
+								<img src='../../media/images/pages/services/web-programming/image.png' alt=''/>
 							</div>
 						</div>
 					</div>

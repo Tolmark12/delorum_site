@@ -22,9 +22,9 @@
 				<div id='ibex-page-top' class='page-top'>
 					<div id='ibex-header' class='header'>
 						<div id='ibex-header-images' class='header-images'>
-							<span id='ibex-title' class='title'><img src='../../images/pages/case-studies/ibex/title.png' alt=''/></span>
+							<span id='ibex-title' class='title'><img src='../../media/images/pages/case-studies/ibex/title.png' alt=''/></span>
 							<div id='ibex-image' class='image'>
-								<img src='../../images/pages/case-studies/ibex/image.png' alt=''/>
+								<img src='../../media/images/pages/case-studies/ibex/image.png' alt=''/>
 								<a href='http://www.ibexincorporated.com' target='_blank'><span id='ibex-link' class='link underline'>www.ibexincorporated.com</span></a>
 							</div>
 						</div>

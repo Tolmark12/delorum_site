@@ -26,7 +26,7 @@
 						</div>
 						<div id='sla-header-image' class='header-images services-header-image'>
 							<div id='image'>
-								<img src='../../images/pages/services/sla/image.png' alt=''/>
+								<img src='../../media/images/pages/services/sla/image.png' alt=''/>
 							</div>
 						</div>
 					</div>

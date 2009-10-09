@@ -22,9 +22,9 @@
 				<div id='bevy-page-top' class='page-top'>
 					<div id='bevy-header' class='header'>
 						<div id='bevy-header-images' class='header-images'>
-							<span id='bevy-title' class='title'><img src='../../images/pages/case-studies/bevy/title.png' alt=''/></span>
+							<span id='bevy-title' class='title'><img src='../../media/images/pages/case-studies/bevy/title.png' alt=''/></span>
 							<div id='bevy-image' class='image'>
-								<img src='../../images/pages/case-studies/bevy/image.png' alt=''/>
+								<img src='../../media/images/pages/case-studies/bevy/image.png' alt=''/>
 								<a href='http://www.bevyinc.com' target='_blank'><span id='bevy-link' class='link underline'>www.bevyinc.com</span></a>
 							</div>
 						</div>

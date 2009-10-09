@@ -1,6 +1,6 @@
 <?php
 	$pagesUrl = '/delorum_site/guide/pages';
-	$mediaUrl = '/delorum_site/guide';
+	$mediaUrl = '/delorum_site/guide/media';
 ?>
 
 <div id='' class='wrapper left-nav-wrapper'>

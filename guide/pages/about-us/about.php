@@ -22,8 +22,8 @@
 				<div id='about-page-top' class='page-top'>
 					<div id='about-header' class='header'>
 						<div id='about-header-images' class='header-images'>
-							<img src='../../images/pages/about-us/delorum.png' alt='delorum'/><span class='italic' id='pronunciation-guide'>[de-lor-uh m]</span>
-							<img src='../../images/pages/about-us/sound.png' alt='pronunciation'/>
+							<img src='../../media/images/pages/about-us/delorum.png' alt='delorum'/><span class='italic' id='pronunciation-guide'>[de-lor-uh m]</span>
+							<img src='../../media/images/pages/about-us/sound.png' alt='pronunciation'/>
 						</div>
 					</div>
 				</div>

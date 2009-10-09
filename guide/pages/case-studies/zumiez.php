@@ -22,9 +22,9 @@
 				<div id='zumiez-page-top' class='page-top'>
 					<div id='zumiez-header' class='header'>
 						<div id='zumiez-header-images' class='header-images'>
-							<span id='zumiez-title' class='title'><img src='../../images/pages/case-studies/zumiez/title.png' alt=''/></span>
+							<span id='zumiez-title' class='title'><img src='../../media/images/pages/case-studies/zumiez/title.png' alt=''/></span>
 							<div id='zumiez-image' class='image'>
-								<img src='../../images/pages/case-studies/zumiez/image.png' alt=''/>
+								<img src='../../media/images/pages/case-studies/zumiez/image.png' alt=''/>
 								<a href='http://www.zumiez.com' target='_blank'><span id='zumiez-link' class='link underline'>www.zumiez.com</span></a>
 							</div>
 						</div>
