@@ -33,6 +33,7 @@ public class HomeMediator_08 extends BaseSection implements IMediator
 		{
 			case SiteFacade.HOME_DATA_PARSED:
 				home.build( note.getBody() as Home08_VO );
+				sendNotification( SiteFacade.FLASH_HEIGHT_CHANGED )
 			break;
 		}
 	}

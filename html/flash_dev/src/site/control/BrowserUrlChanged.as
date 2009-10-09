@@ -21,7 +21,8 @@ public class BrowserUrlChanged extends SimpleCommand implements ICommand
 			navProxy.changeSectionBySectionName( pages[1], pages[2] );
 		}
 		else if( portfolioProxy != null ){
-			portfolioProxy.makeStubSemiActiveByName( pages[2] );
+			echo( pages );
+			portfolioProxy.makeStubSemiActiveByName( pages[2], pages[3] == "case_study");
 		}
 	}
 }

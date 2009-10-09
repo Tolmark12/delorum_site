@@ -3,67 +3,84 @@
 		<main>
 		  p {
 		   	font-size:18;
-		   	color:#737575;
+		   	color:#636565;
 		   }
 		   h1{
 		   	display:block;
 		   	font-size:24;
-		   	color:#d10f0c;
+		   	color:#D65C23;
 		   }
 		</main>
 		<blurb>
 		  p {
 		   	font-size:14;
-		   	color:#737575;
+		   	color:#636565;
 		   }
 		   h1{
 		   	display:block;
 		   	font-size:15;
-		   	color:#d10f0c;
+		   	color:#D65C23;
 		   }
 		</blurb>
 	</css>
+	<image src="content/images/shared/e_commerce.jpg" />
 	<blurbs>
-		<rightBlurb>
-			<h1>E-Commerce</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip pllit anim id est laborum.</body>
-		</rightBlurb>
 		<leftBlurb>
 			<h1>Design and Branding</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip pllit anim id est laborum.</body>
+			<body>Current economic challenges have many of us hunkered down just hoping to survive the downturn. However this general climate of business timidity is opening the door for new players to step in and seize portions of marketshare that may have been inaccessible even two years ago.</body>
+			<btn text="What We're Doing Now" url="/#/portfolio/" icon="ARROW" />
 		</leftBlurb>
+		<rightBlurb>
+			<h1>E-Commerce</h1>
+			<body>Launching an ecommerce site can be a lot like launching an army of robots (a nice-robots-that-sell-things sort of an army). We've developed an ecommerce primer to get your site launched and flowing smoothly with as little running amok as possible.</body>
+			<btn text="Ecommerce Survival Guide - Coming Oct 09..." url="/#/portfolio/Brand_Development/case_study" icon="NONE" />
+		</rightBlurb>
 	</blurbs>
 	
 	<slides>
-		<slide href="some/page">
-			<img src="content/images/home/cards/test.jpg" />
-			<h1>Zumiez e-Commerce Replatform Complete 1</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		<slide href="#/portfolio/Ibex/case_study">
+			<img src="content/images/home/cards/ibex.jpg" />
+			<h1>Ibex Trucking Corporate Site Launch</h1>
+			<body>We've recently launched a new corporate site for Ibex Trucking. The site extends Ibex's hard-working-no-nonsense brand. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated the authenticity of Ibex's working man corporate culture.</body>
+			<btns>
+				<btn text="Ibex Branding Case Study" url="#/portfolio/Ibex/case_study" icon="CASE_HOME" />
+				<btn text="Launch Web Site" url="http://www.ibexincorporated.com" icon="WEB" />
+			</btns>
 		</slide>
-		<slide href="some/page">
-			<img src="content/images/home/cards/test2.jpg" />
-			<h1>Zumiez e-Commerce Replatform Complete 2</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		<slide href="/#/portfolio/Brand_Development/case_study">
+			<img src="content/images/home/cards/neu_seed.jpg" />
+			<h1>NeuSeed Logo Design</h1>
+			<body>NeuSeed's work is on the cutting edge of genetic engineering. Our challenge was to create a logo that reflected this without overshadowing their focus on natural genetic processes. The final result is an intelligent mark, not only comfortable in front of investors, but right at home stitched to a hay & feed clerk's hat.</body>
+			<btns>
+				<btn text="View More Logos" url="/#/portfolio/Brand_Development/case_study" icon="CASE_HOME" />
+			</btns>
 		</slide>
-		<slide href="some/page">
-			<img src="content/images/home/cards/test3.jpg" />
-			<h1>Zumiez e-Commerce Replatform Complete 3</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		<slide href="/#/portfolio/Zumiez/case_study">
+			<img src="content/images/home/cards/zumiez.jpg" />
+			<h1>Zumiez e-Commerce Replatform Complete</h1>`
+			<body>Delorum worked closely with skateboarding clothing retailer Zumiez to port their eCommerce site to a new platform. We are proud to announce the launch of their new site.</body>
+			<btns>
+				<btn text="View Case Study" url="/#/portfolio/Zumiez/case_study" icon="CASE_HOME" />
+				<btn text="Launch Web Site" url="http://www.zumiez.com/guys.html" icon="WEB" />
+			</btns>
 		</slide>
-		<slide href="some/page">
-			<img src="content/images/home/cards/test4.jpg" />
-			<h1>Zumiez e-Commerce Replatform Complete 4</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		<slide href="/#/portfolio/Idahoan_Potatoes/case_study">
+			<img src="content/images/home/cards/idahoan.jpg" />
+			<h1>Idahoan Potatoes Corporate Site</h1>
+			<body>We've recently launched a new website for Idahoan potatoes. The redesign provided a unique opportunity to extend the scope of Idahoan's brand beyond the retail space and begin offering values unique to the web. Thus far, online recipes and downloadable coupons have proven immensely popular.</body>
+		<btns>
+			<btn text="View Full Case Study" url="/#/portfolio/Idahoan_Potatoes/case_study" icon="CASE_HOME" />
+			<btn text="Launch Web Site" url="http://www.idahoan.com/" icon="WEB" />
+		</btns>
 		</slide>
-		<slide href="some/page">
-			<img src="content/images/home/cards/test5.jpg" />
-			<h1>Zumiez e-Commerce Replatform Complete 5</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
-		</slide>
-		<slide href="some/page">
-			<img src="content/images/home/cards/test.jpg" />
-			<h1>Zumiez e-Commerce Replatform Complete 6</h1>
-			<body>Lorem ipsum dolorum sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est .</body>
+		<slide href="/#/portfolio/Playmill_Theatre/case_study">
+			<img src="content/images/home/cards/playmill.jpg" />
+			<h1>Playmill Theatre 2009 Marketing Materials</h1>
+			<body>For the past 5 years, Delorum has designed the promotional materials for the Playmill Theatre in West Yellowstone Montana. This year's poster echoes the beautiful hand-drawn typography of early theatre bills and vintage record album art.</body>
+			<btns>
+				<btn text="View The Playmill Case Study" url="/#/portfolio/Playmill_Theatre/case_study" icon="CASE_HOME" />
+				<btn text="See The Full Size Poster" url="http://www.delorum.com/client/playmill/playmill_09_huge.jpg" icon="CASE2" />
+			</btns>
 		</slide>
 	</slides>
 </HOME>

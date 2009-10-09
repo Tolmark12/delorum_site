@@ -17,6 +17,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 	
 	private var _sendTime:Date;
 	public var activePage:String = "++++++";
+	private var _currentUrl:String;
 	
 	public function BrowserUrlMediator( ):void
 	{
@@ -37,15 +38,19 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 		switch ( note.getName() )
 		{
 			case SiteFacade.FLASH_URL_CHANGED:
-				_setNewUrl( note.getBody() as String );
-				break;
+				if( _currentUrl != note.getBody() as String )
+					_setNewUrl( note.getBody() as String );
+			break;
 		}
 	}
 	
 	private function _handleSwfAddressChange ( e:SWFAddressEvent ):void
 	{
+		echo( e.value );
+		
 		if( _sendTime != null )
 		{ 
+			_currentUrl = e.value;
 			var receiveTime = new Date();
 			if( receiveTime.time - _sendTime.time < 10 )
 			{
@@ -65,6 +70,7 @@ public class BrowserUrlMediator extends Mediator implements IMediator
 	
 	public function _setNewUrl ( $url:String = ""):void
 	{
+		_currentUrl = $url;
 		_sendTime = new Date();
 		//trace( activePage + "->" + $url );
 		ExternalInterface.call( "pageTracker._trackPageview", activePage + "->" + $url );

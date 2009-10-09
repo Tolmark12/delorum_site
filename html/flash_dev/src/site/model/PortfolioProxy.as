@@ -110,7 +110,7 @@ public class PortfolioProxy extends Proxy implements IProxy
 	
 	// ______________________________________________________________ Project Stub
 	
-	public function makeStubSemiActive ( $stubArIndex:uint ):void
+	public function makeStubSemiActive ( $stubArIndex:uint, $doShowCaseStudy:Boolean=false ):void
 	{
 		// If stub is not already active, activate it
 		if( $stubArIndex != _semiActiveStubIndex ) 
@@ -118,7 +118,12 @@ public class PortfolioProxy extends Proxy implements IProxy
 			_fullyActiveStubIndex   = -1;
 			_semiActiveStubIndex    = $stubArIndex;
 			var stub:ProjectStub_VO = _portfolioAr[ _semiActiveStubIndex ];
-			sendNotification( SiteFacade.SHOW_STUB_OVERVIEW, _semiActiveStubIndex );
+			sendNotification( SiteFacade.SHOW_STUB_OVERVIEW, _semiActiveStubIndex  );
+			trace( "asdf" + '  :  ' + $doShowCaseStudy );
+			if( $doShowCaseStudy ){
+				echo( "I'm trying..." );
+				sendNotification( SiteFacade.SHOW_CASE_STUDY, stub.xmlPaths[0] );
+			}
 		}
 	}
 	
@@ -128,14 +133,14 @@ public class PortfolioProxy extends Proxy implements IProxy
 		_semiActiveStubIndex = _fullyActiveStubIndex = -1;
 	}
 	
-	public function makeStubSemiActiveByName ( $name:String ):void
+	public function makeStubSemiActiveByName ( $name:String, $doShowCaseStudy:Boolean=false ):void
 	{
 		var len:uint = _portfolioAr.length;
 		for ( var i:uint=0; i<len; i++ ) 
 		{
 			var vo:ProjectStub_VO = _portfolioAr[i] as ProjectStub_VO;
 			if( _replaceSpaces(vo.title, /\s/g) == $name )
-				makeStubSemiActive( vo.arrayIndex );
+				makeStubSemiActive( vo.arrayIndex, $doShowCaseStudy );
 		}
 	}
 	
