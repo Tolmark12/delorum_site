@@ -1,6 +1,7 @@
 <?php
 	$baseUrl = '/delorum_site/guide/js';
 	$mediaUrl = '/delorum_site/guide/media';
+	
 ?>
 
 <div id='' class='wrapper right-side-wrapper'>
@@ -21,7 +22,7 @@
 
 <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/swfobject/swfobject.js"></script>
 <script type="text/javascript">
-	flashVars   = { configData:"<?php echo $mediaUrl ?>/flash/case-studies/content/json/case-studies.json"};
+	flashVars   = { configData:"http://delorum.com/delorum_site/guide/media/flash/case-studies/content/json/Config.json"};
 	flashParams = { wmode:"transparent"};
     swfobject.embedSWF("<?php echo $mediaUrl; ?>/flash/case-studies/case-studies.swf", "case-studies-flash-div", "215", "325", "9.0.0", "expressInstall.swf", flashVars, flashParams);
 </script>
