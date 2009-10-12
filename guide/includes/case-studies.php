@@ -22,7 +22,7 @@
 
 <script type="text/javascript" src="<?php echo $baseUrl; ?>/js/swfobject/swfobject.js"></script>
 <script type="text/javascript">
-	flashVars   = { configData:"http://delorum.com/delorum_site/guide/media/flash/case-studies/content/json/Config.json"};
+	flashVars   = { configData:"http://www.delorum.com/delorum_site/guide/media/flash/case-studies/content/json/Config.json"};
 	flashParams = { wmode:"transparent"};
     swfobject.embedSWF("<?php echo $mediaUrl; ?>/flash/case-studies/case-studies.swf", "case-studies-flash-div", "215", "325", "9.0.0", "expressInstall.swf", flashVars, flashParams);
 </script>

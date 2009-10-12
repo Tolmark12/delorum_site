@@ -1,5 +1,5 @@
 {
 	"services" : {
-		"getCaseStudiesData" : "http://delorum.com/delorum_site/guide/media/flash/case-studies/content/json/case-studies.json"
+		"getCaseStudiesData" : "http://www.delorum.com/delorum_site/guide/media/flash/case-studies/content/json/case-studies.json"
 	}
 }
