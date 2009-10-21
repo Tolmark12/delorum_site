@@ -36,7 +36,7 @@
 
 						<div id='zumiez-page-header' class='page-header'>						
 							<div id='zumiez-content-top' class='content-top'>
-								<p>Zumiez had an aggressive ecommerce growth strategy, but highly unstable code base. They approached Delorum to implement a flexible new platform, customize for their needs, enhance front end usability, and integrate many of the leading ecommerce services... in half the time.</p>
+								<p>Zumiez had an aggressive ecommerce growth strategy, but increasingly unstable code base. They approached Delorum for Magento commerce integration, custom Magento module development, enhanced usability, and to integrate several leading ecommerce services... in half the time.</p>
 							</div>
 						</div>
 
@@ -47,11 +47,11 @@
 								<div id='zumiez-content-left' class='content-left'>
 									<h4><span class='uppercase orange-text'>solution:</span></h4>
 									<div id='zumiez-content-left-body' class='content-left-body'>
-										<p><span class='bold'>PCI Compliance:</span> We began by architecting an environment and payment solution to reduce their PCI requirements from SAQ D to SAQ A, saving tens of thousands in policy, employment and auditing costs.</p>
-										<p><span class='bold'>Frontend Redesign:</span> While staying true to the Zumiez brand, we completely overhauled the user experience to simplify usability and increase functionality.</p>
-										<p><span class='bold'>Administrative Tools:</span> Working within the Magento™ platform, we provided robust, customized tools that streamlined the Zumiez workflow, giving complete catalog, customer service and promotion control to their in-house staff.</p>
-										<p><span class='bold'>Best of Breed:</span> We implemented some of the industry’s top solutions for guided navigation, analytics, recommendations and fraud screening into a single, seamless solution.</p>
-										<p><span class='bold'>Ongoing Support:</span> We continue to provide development services to Zumiez, working in tandem with their IT department and hosting provider to optimize site performance and execute a long-term strategy for growth.</p>
+										<p><span class='bold'>PCI Compliance:</span> We began by architecting a Magento hosting environment and Magento cart to reduce their PCI requirements from SAQ D to SAQ A, saving tens of thousands in policy, employment and auditing costs.</p>
+										<p><span class='bold'>Frontend Redesign:</span> While staying true to the Zumiez brand, we completely overhauled the user experience to simplify usability and increase functionality... no tacky Magento templates.</p>
+										<p><span class='bold'>Administrative Tools:</span> We provided robust, customized Magento admin tools that streamlined the Zumiez workflow, giving complete catalog, customer service and promotion control to their in-house staff.</p>
+										<p><span class='bold'>Best of Breed:</span> We extended the Magento API to integrate with some of the industry’s top solutions, including Endeca, Coremetrics, ATG, Cybersource and Akamai for guided navigation, analytics, recommendations and fraud screening into a single, seamless solution.</p>
+										<p><span class='bold'>Ongoing Support:</span> We continue to provide Magento backend development for Zumiez, working in tandem with their IT department and hosting provider to optimize site performance and execute a long-term strategy for growth.</p>
 									</div>
 								</div>
 					
@@ -60,14 +60,14 @@
 										<h4><span class='uppercase orange-text'>deliverables:</span></h4>
 										<div id='deliverables' class='capitalize italic bold'>
 											<ul>
-												<li>project architecture</li>
-												<li>future expansion</li>
-												<li>design objectives</li>
-												<li>market positioning</li>
-												<li>site admin tools</li>
-												<li>project ROI</li>
-												<li>customer database</li>
-												<li>online coupons</li>
+												<li>optimized magento hosting</li>
+												<li>enterprise magento database</li>
+												<li>magento cache configuration</li>
+												<li>frontend IU design</li>
+												<li>upgraded magento admin</li>
+												<li>multiple custom magento modules</li>
+												<li>expanded magento promotions</li>
+												<li>magento / ATG / Endeca / coremetrics</li>
 											</ul>
 										</div>
 									</div>
@@ -75,7 +75,7 @@
 									<div id='zumiez-content-right-bottom' class='content-right-bottom'>
 										<h4><span class='uppercase orange-text'>the result:</span></h4>
 										<div id='' class='results'>
-											<p>result here</p>
+											<p>In the months following launch, online sales have increased 40% over last year, and we continue to tweak our Magento customization. Zumiez’ in-house web team also has full adminstrative control over ad campaigns, product management and promotional packages.</p>
 										</div>
 									</div>
 								</div>

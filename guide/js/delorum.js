@@ -5,6 +5,21 @@ function showBio($who)
 {
 	$$('.bio').each(function(e){e.hide();});
 	$($who + '-bio').appear();
+	
+	if(window.pageYOffset > 50)
+	{
+		$($who + '-bio').style.top = window.pageYOffset - 35 + 'px';
+	}else{
+		$($who + '-bio').style.top = window.pageYOffset + 'px';
+	}	
+}
+
+// TOOLS //
+
+function showTool($toolNumber)
+{
+	$$('.tool').each(function(e){e.hide();});
+	$('tool-' + $toolNumber).appear();	
 }
 
 // CONTACT INFORMATION //

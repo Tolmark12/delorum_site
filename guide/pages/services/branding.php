@@ -22,7 +22,7 @@
 				<div id='branding-page-top' class='page-top'>
 					<div id='branding-header' class='header'>
 						<div id='branding-header-text' class='header-text'>
-							<p><span class='header-text-title'>Fuel:</span> Web helps drive sales, link multi-channel, and rekindle loyalty. We toss in a little brand positioning to jumpstart the process.</p>
+							<p><span class='header-text-title'>Fuel:</span> Our web development helps drive sales, link multi-channel, and rekindle customer loyalty. We also add a little design and branding to give our development a bit more kick.</p>
 						</div>
 						<div id='branding-header-image' class='header-images services-header-image'>
 							<div id='image'>

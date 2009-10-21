@@ -23,7 +23,7 @@
 					<div id='team-header' class='header'>
 						<div  id='team-header-images' class='header-images'>
 							<img src='../../media/images/pages/about-us/title.png' alt='title'/>
-							<p>Compact, versatile and handy in case of emergency – here’s an inside look at the people who make Delorum possible.</p>
+							<p>Compact, versatile and handy in case of emergency – here’s an inside look at the people who’ve made Delorum contagious.</p>
 						</div>
 					</div>
 				</div>
@@ -138,6 +138,39 @@
 									</div>
 								</div>
 								
+								<div id='row-4' class='row'>
+									<div id='matchbook-wrapper' class='wrapper'>
+										<div id='matchbook' class=''>
+											<span id='justin-matchbook'><a href='#link' onClick='showBio("justin");'><span class='no-display'>justin</span></a></span>
+										</div>
+									
+										<div id='matchbook' class=''>
+											<span id='name-matchbook'><a href='#link' onClick='showBio("name");'><span class='no-display'>name</span></a></span>
+										</div>
+									
+										<div id='matchbook' class=''>
+											<span id='name-matchbook'><a href='#link' onClick='showBio("name");'><span class='no-display'>name</span></a></span>
+										</div>
+									</div>
+									
+									<div id='matchbook-info-wrapper' class='wrapper'>
+										<div id='' class='matchbook-info'>
+											<span class='uppercase green-text'>justin pratt</span>
+											<span class='capitalize italic green-text'>developer</span>
+										</div>
+								
+										<div id='' class='matchbook-info'>
+											<span class='uppercase green-text'></span>
+											<span class='capitalize italic green-text'></span>
+										</div>
+								
+										<div id='' class='matchbook-info'>
+											<span class='uppercase green-text'></span>
+											<span class='capitalize italic green-text'></span>
+										</div>
+									</div>
+								</div>
+								
 								<p>To join our amazing team and garner your own vintage matchbook, send us a <a href='#'>resume</a> or portfolio.</p>
 							</div>
 						</div>
@@ -158,7 +191,7 @@
 				<div id='team-right-side' class='right-side'>
 					<?php include('../../includes/contact-us.php'); ?>
 					
-					<div id='keith-bio' class='bio'>
+					<div id='keith-bio' class='bio' style=''>
 
 						<img src='../../media/images/pages/about-us/profiles/keith.png' alt='keith' />
 
@@ -183,7 +216,7 @@
 
 						<div id='rolls'>
 							<ul>
-								<li>falsh genius</li>
+								<li>flash genius</li>
 								<li>communication strategist</li>
 								<li>image creator</li>
 								<li>design</li>
@@ -318,10 +351,28 @@
 							</ul>
 						</div>
 
-						<p>Just before joining Delorum, Chris developed the web-based  support site (including online training) for the US Department of Energy - Idaho Nuclear Lab. When asked about his accomplishments, he states “They are great and many. Anything more is a risk to national security.”</p>
-						<p>Since joining Delorum, Chris has taken on deep Magento development and payment integration for Zumiez, plus front-end development for Freestone Road.</p>
+						<p>Just before joining Delorum, Chris developed the technical support site (including other call-center support applications) for the IT Operations Center at US Department of Energy's Idaho National Laboratory. When asked about his accomplishments, he states “They are great and many. Anything more is a risk to national security.”</p>
+						<p>Since joining Delorum, Chris has taken on deep Magento development and payment integration for Zumiez and hopes to expand to multiple layers of Magento applications.</p>
 
 						<span>Email: <a href='mailto:cduncan@delorum.com'>Chris Duncan</a></span>
+					</div>
+					
+					<div id='justin-bio' class='bio' style='display:none;'>
+
+						<img src='../../media/images/pages/about-us/profiles/justin.png' alt='justin' />
+
+						<div id='rolls'>
+							<ul>
+								<li>magento/PHP developer</li>
+								<li>HTML/CSS, java, SQL, C++</li>
+								<li>Fly Fishing Fanatic</li>
+							</ul>
+						</div>
+
+						<p>Prior to joining Delorum, Justin developed web sites and applications for a CNC manufacturer. To stave off boredom, he enjoys tinkering with other languages and "geeking out" in general.</p>
+						<p>Passions outside development include stalking trout on the river, and spending time with his wife and four little girls.</p>
+
+						<span>Email: <a href='mailto:jpratt@delorum.com'>justin pratt</a></span>
 					</div>
 					
 				</div>

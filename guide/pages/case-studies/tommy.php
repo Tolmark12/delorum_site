@@ -72,7 +72,7 @@
 									<div id='tommy-content-right-bottom' class='content-right-bottom'>
 										<h4><span class='uppercase orange-text'>the result:</span></h4>
 										<div id='' class='results'>
-											<p>Tommy Bahama met their launch and Flash devleopment came in under budget, and the site made 3 times their projected return within the first year. We’ve continued to work together to develop addtiional features for the site. We created detailed requirements documentation and architectural wireframes to help weigh benefits and long term ROI.</p>
+											<p>Tommy Bahama met their launch, Flash devleopment came in under budget, and the site outperformed earnings projections. We’ve continued to develop additional features for the site.</p>
 										</div>
 									</div>
 								</div>

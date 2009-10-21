@@ -1,9 +1,0 @@
-{
-	"caseStudies" :
-	[
-		{ "image":"ibex", 		"description":"Pass the burden of PCI to those who understand [View Full Case Study]", 	"link":"pages/case-studies/ibex.php" },
-		{ "image":"bevy", 		"description":"Pass the burden of PCI to those who understand [View Full Case Study]", 	"link":"pages/case-studies/bevy.php" },
-		{ "image":"zumiez", 	"description":"Pass the burden of PCI to those who understand [View Full Case Study]", 	"link":"pages/case-studies/zumiez.php" },
-		{ "image":"idahoan", 	"description":"Pass the burden of PCI to those who understand [View Full Case Study]", 	"link":"pages/case-studies/idahoan.php" }
-	]
-}

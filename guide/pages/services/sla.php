@@ -22,7 +22,7 @@
 				<div id='sla-page-top' class='page-top'>
 					<div id='sla-header' class='header'>
 						<div id='sla-header-text' class='header-text'>
-							<p><span class='header-text-title'>Service Agreements:</span> We offer ongoing design and qualified technical support services that help bail you out of a tight spot.</p>
+							<p><span class='header-text-title'>Saving Your Backside:</span> We offer ongoing design and REAL technical support to help bail you out in case of emergency.</p>
 						</div>
 						<div id='sla-header-image' class='header-images services-header-image'>
 							<div id='image'>
@@ -40,10 +40,10 @@
 						<div id='sla-page-body' class='page-body services-page-body'>
 							<div id='sla-content-body' class='content-body services-content-body'>
 								<div id='sla-content-left' class='content-left services-content-left'>
-									<h4><span class='uppercase brown-text bold'>ongoing enterprise support</span></h4>
+									<h4><span class='uppercase brown-text bold'>ongoing enterprise magento support</span></h4>
 									<div id='sla-content-left-body' class='content-left-body services-content-left-body'>
-										<p>Our client relationships are best described as an external Creative + IT Department. Standard operating procedure involves a high level of transparency and includes clients in the strategic and development processes. We team with clients to provide in-house administrative web tools and a range of ongoing technical support services and levels, without the costly overhead.</p>
-										<p>We do not provide hosting. Instead, we work with companies that provide more extensive and cost effective hosting services. We have successfully worked with existing client/host relationships or brokered third party options specific to our clients’ needs.</p>
+										<p>Our client relationships are best described as an external Creative + IT Department. Standard operating procedure involves a high level of transparency, and includes clients in the strategic and development processes. We team with clients to create or maximize in-house administrative web tools, plus a range of ongoing technical support services, without all the costly overhead.</p>
+										<p>We’ll state it up front: we do not provide hosting (although we understand Linux environments in a big way). Instead, we work with companies that provide more extensive and cost effective hosting services. We‘ve successfully worked with existing client/host relationships or brokered third party options specific to our clients’ needs.</p>
 									</div>
 								</div>
 					

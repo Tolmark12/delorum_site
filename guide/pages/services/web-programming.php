@@ -40,16 +40,10 @@
 						<div id='web-programming-page-body' class='page-body services-page-body'>
 							<div id='web-programming-content-body' class='content-body services-content-body'>
 								<div id='web-programming-content-left' class='content-left services-content-left'>
-									<h4><span class='uppercase brown-text bold'>web development</span></h4>
+									<h4><span class='uppercase brown-text bold'>custom magento development, plus...</span></h4>
 									<div id='web-programming-content-left-body' class='content-left-body services-content-left-body'>
-										<p>We plan, design, and build business web sites and web applications. Delorum’s focused, agile team delivers system architecture, project management, application development, and integration.</p>
-										<p>We favor open source solutions to create engaging, cost-effective, and dynamic rich media sites, built and implemented to exacting standards. We’re sticklers about scalability, and architect to allow simple scaling as demand increases. We provide secure, flexible, and scalable web solutions built from the following:</p>
-										
-										<span class='bold'>duh</span>
-										<p>HTML, CSS, Flash</p>
-										
-										<span class='capitalize'>contact us</p>
-										<span class='capitalize'>request proposal</p>
+										<p>We plan, design, and build business web sites, ecommerce storefronts and custom web applications. Delorum’s focused, agile team delivers system architecture, project management, application development, and integration.</p>
+										<p>We favor open source solutions like Magento ecommerce, to create engaging, cost-effective, and dynamic rich media sites, built to exacting standards. We’re sticklers about scalability, and architect to allow simple scaling as demand increases. <a href='mailto:keith@delorum.com'>Contact us</a> to start a secure, flexible, and scalable web solution that’s built and tailored to your specific needs.</p>
 									</div>
 								</div>
 					
@@ -70,9 +64,9 @@
 										</div>
 										
 										<h4><span class='uppercase green-text'>protocols:</span></h4>
-										<div id='protocols' class='capitalize italic bold'>
+										<div id='protocols' class='uppercase italic bold'>
 											<ul>
-												<li>XML. JSON, AMFPHP, SOAP</li>
+												<li>xml. json, amfphp, soap</li>
 											</ul>
 										</div>
 									</div>

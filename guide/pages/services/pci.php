@@ -22,7 +22,7 @@
 				<div id='pci-page-top' class='page-top'>
 					<div id='pci-header' class='header'>
 						<div id='pci-header-text' class='header-text'>
-							<p><span class='header-text-title'>PCI Compliance - More for Less:</span> Hosted gateways mean simpler PCI security and liability for about the same price, without PCI Audits.</p>
+							<p><span class='header-text-title'>PCI Compliance:</span> We don’t want to be liable for that stuff! Magento integration with a hosted gateway provides simpler PCI security and reduced liability. Let a payment processor carry the load (and cost) of securing cardholder data.</p>
 						</div>
 						<div id='pci-header-image' class='header-images services-header-image'>
 							<div id='image'>
@@ -42,8 +42,8 @@
 								<div id='pci-content-left' class='content-left services-content-left'>
 									<h4><span class='uppercase brown-text bold'>reduce pci from saq-A to saq-D</span></h4>
 									<div id='pci-content-left-body' class='content-left-body services-content-left-body'>
-										<p>Why let sensitive credit card data into your system and carry the liability? Instead, pass the burden of PCI Security to those who understand and secure it – credit card processors. Integrating a hosted gateway allows a seamless checkout without retaining cardholder information. This eliminates external PCI audits and shifts the burden (and cost) to experienced gateways and payment processors, for about the same price as traditional checkout.</p>
-										<p>...But don’t worry, you’ll still retain access to transactions for edits and reauths. You also gain the industry’s leading fraud prevention tools, all integrated with an intuitive 3 step checkout. Ultimately, this integrated solution resides seamlessly inside a branded checkout (your url’s and HTML/CSS), increases front-end usability, offers robust fraud screening and reduces compliance costs.</p>
+										<p>Why let sensitive credit card data into your Magento store and carry the liability? Instead, pass the burden of PCI Security to those who understand and secure it – credit card processors. We’ve integrated a hosted gateway with a customized Magento cart to provide a seamless checkout without retaining cardholder information. This can eliminate external PCI audits and shift the burden to experienced gateways and payment processors.</p>
+										<p>...But don’t worry, you’ll still retain access to transactions for edits and reauths. Depending on your provider, you may also gain the industry’s leading fraud prevention tools, integrated with an intuitive, branded, 3-step checkout (your url’s and HTML/CSS). This approach increases front-end usability, provides robust fraud screening and reduces compliance costs.</p>
 									</div>
 								</div>
 					
@@ -52,7 +52,7 @@
 										<h4><span class='uppercase green-text'>services:</span></h4>
 										<div id='services' class='capitalize italic bold'>
 											<ul>
-												<li>offload liability to credit card companies</li>
+												<li>PCI compliant sites - but they cost you.</li>
 											</ul>
 										</div>	
 									</div>

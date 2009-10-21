@@ -35,8 +35,13 @@
 				</ul>
 			</div>
 		</div>
+		<!--
 		<div id='process-left-nav' class='sub-nav-item uppercase'>
-			<a href='<?php echo $pagesUrl; ?>/process.php'>process</a>
+			<a href='<?php //echo $pagesUrl; ?>/process.php'>process</a>
+		</div>
+		-->
+		<div id='plugins-left-nav' class='sub-nav-item uppercase'>
+			<a href='<?php echo $pagesUrl; ?>/plug-ins.php'>plug-ins</a>
 		</div>
 		<div id='tools-left-nav' class='sub-nav-item uppercase'>
 			<a href='<?php echo $pagesUrl; ?>/tools.php'>tools</a>

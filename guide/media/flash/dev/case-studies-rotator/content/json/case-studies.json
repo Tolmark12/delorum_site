@@ -1,0 +1,9 @@
+{
+	"caseStudies" :
+	[
+		{ "image":"ibex", 		"description":"Online Branding & Flash Development", 				"link":"http://www.delorum.com/delorum_site/guide/pages/case-studies/ibex.php" },
+		{ "image":"bevy", 		"description":"Facebook App Development. UI Design & Branding", 	"link":"http://www.delorum.com/delorum_site/guide/pages/case-studies/bevy.php" },
+		{ "image":"zumiez", 	"description":"Enterprize Magento Customization & Support", 		"link":"http://www.delorum.com/delorum_site/guide/pages/case-studies/zumiez.php" },
+		{ "image":"idahoan", 	"description":"Brand Positioning and Magento Installation",		 	"link":"http://www.delorum.com/delorum_site/guide/pages/case-studies/idahoan.php" }
+	]
+}

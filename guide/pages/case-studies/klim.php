@@ -36,7 +36,7 @@
 
 						<div id='klim-page-header' class='page-header'>						
 							<div id='klim-content-top' class='content-top'>
-								<p>As a young start-up, Klim’s rigorous R&D propelled them to the top for performance snowmobile clothing. Klim approached Delorum to create an e-commerce site reflecting their position as the premiere clothing manufacturer for the motor sports industry. </p>
+								<p>As a young start-up, Klim’s rigorous R&D propelled them to the top for performance snowmobile clothing. Klim approached Delorum to create an e-commerce site reflecting their position as the premiere clothing manufacturer for the motor sports industry.</p>
 							</div>
 						</div>
 
@@ -47,7 +47,7 @@
 								<div id='klim-content-left' class='content-left'>
 									<h4><span class='uppercase orange-text'>solution:</span></h4>
 									<div id='klim-content-left-body' class='content-left-body'>
-										<p><span class='bold'>Positioning with Attitude:</span> Aggressive Flash animation, heavy bass guitar, extreme photo gallery and heavy dose of black and steel all connect Klim’s brand to audience lifestyle.</p>
+										<p><span class='bold'>Positioning with Attitude:</span> Aggressive Flash animation, heavy bass guitar, extreme photo gallery and a heavy dose of black and steel all connect Klim’s brand to audience lifestyle.</p>
 										<p><span class='bold'>Custom Development:</span> A fully administrable Flash e-commerce site simplified the on-line shopping experience, and provided Klim the ability to manage products, sync with accounting databases, generate custom e-mail campaigns and on-line surveys, manage user generated content and site content plus track web traffic statistics.</p>
 										<p><span class='bold'>Mirrored Site:</span> We helped leverage demand for snow apparel by creating a parallel motocross site styled for an alternate line of motocross clothing.</p>
 									</div>

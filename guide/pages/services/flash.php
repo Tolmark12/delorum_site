@@ -22,10 +22,10 @@
 				<div id='flash-page-top' class='page-top'>
 					<div id='flash-header' class='header'>
 						<div id='flash-header-text' class='header-text'>
-							<p><span class='header-text-title'>All that Glitters:</span> Sure, there’s the cool factor, but with over a decade of Flash development, we come with a lot of depth too.</p>
+							<p><span class='header-text-title'>All that Glitters:</span> Sure, there’s a cool factor, but with over a decade of Flash development, we’ve got depth, too. What do you need? We can do that.</p>
 						</div>
 						<div id='flash-header-image' class='header-images services-header-image'>
-							<div id='image'>
+							<div id='flash-flash-div'>
 								<img src='../../media/images/pages/services/flash/image.png' alt=''/>
 							</div>
 						</div>
@@ -42,8 +42,8 @@
 								<div id='flash-content-left' class='content-left services-content-left'>
 									<h4><span class='uppercase brown-text bold'>we can build anything</span></h4>
 									<div id='flash-content-left-body' class='content-left-body services-content-left-body'>
-										<p>We offer extensive Flash capabilities, but usually guide clientele with this caveat. Know when to use it. Typically, that means integrate Flash elements as part an HTML site, which allows sophisticated movement and functionality without impacting search engine optimization.</p>
-										<p>However, there are occasions when a full Flash implementation is preferable. Generally, this is the case when brand or technical requirements simply can’t be met by today’s HTML, and searchability is a lesser priority. In either case, we’ve got the Flash expertise to build ANYTHING.</p>
+										<p>We offer extensive Flash capabilities, but usually guide clientele with this admonition: Know when to use it. Typically, that means we integrate Flash elements as part of a Magento HTML site, which allows sophisticated movement and functionality without impacting search engine optimization.</p>
+										<p>However, there are occasions when a full Flash implementation is preferable. Generally, this is the case when brand or technical requirements simply can’t be met by today’s HTML, and searchability is a lesser priority. We’ve even created a Magento Flash module linking a Magento admin to a full Flash front end. No matter what your needs, we’ve got the Flash expertise to build ANYTHING.</p>
 									</div>
 								</div>
 					
@@ -52,7 +52,7 @@
 										<h4><span class='uppercase green-text'>services:</span></h4>
 										<div id='services' class='capitalize italic bold'>
 											<ul>
-												<li>actionscript</li>
+												<li>actionscript 3</li>
 												<li>magento-driven flash</li>
 												<li>modular architecture</li>
 												<li>administrable content</li>
@@ -79,5 +79,20 @@
 			<!-- RIGHT SIDE -->
 			<?php include('../../includes/case-studies.php'); ?>
 		</div>
+		
 	</body>
+	
+	<?php
+		$baseUrl = '/delorum_site/guide';
+		$mediaUrl = '/delorum_site/guide/media';	
+	?>
+	
+	<script type="text/javascript" src="<?php echo $baseUrl; ?>/js/swfobject/swfobject.js"></script>
+	
+	<script type="text/javascript">
+		flashVars 	= {};
+		flashParams = {};
+	    swfobject.embedSWF("<?php echo $mediaUrl; ?>/flash/dev/services/flash/src/main.swf", "flash-flash-div", "520", "222", "9.0.0", "expressInstall.swf", flashVars, flashParams);
+	</script>
+	
 </html>

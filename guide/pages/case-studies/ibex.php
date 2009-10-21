@@ -47,9 +47,9 @@
 								<div id='ibex-content-left' class='content-left'>
 									<h4><span class='uppercase orange-text'>solution:</span></h4>
 									<div id='ibex-content-left-body' class='content-left-body'>
-										<p>Key Positioning and Communication: We developed key targets, or what people ‘think and feel’ as they interact with the site which served to guide development.</p>
-										<p>Brand Extension: We art directed heroic photography and created gritty, masculine textures and colors to reinforce IBEX‘s core position as an rugged, dependable company that exceeds expectations 24/7, no matter the weather.</p>
-										<p>Flash Development: We created an administrable Flash site as a focused sales tool to work in tandem with phone contacts, direct marketing and other marketing efforts. A highly specialized, limited customer base allowed us to take advantage of Flash Actionscript, without worrying about Flash’s inherent search engine liabilities.</p>
+										<p><span class='bold'>Key Positioning and Communication:</span> Key Positioning and Communication: We developed key targets, or what people ‘think and feel’ as they interact with the site which served to guide development.</p>
+										<p><span class='bold'>Brand Extension:</span> We art directed heroic photography and created gritty, masculine textures and colors to reinforce IBEX‘s core position as a rugged, dependable company that exceeds expectations 24/7, no matter the weather.</p>
+										<p><span class='bold'>Flash Development:</span> We created an administrable Flash site as a focused sales tool to work in tandem with phone contacts, direct marketing and other sales efforts. A highly specialized, limited customer base allowed us to take advantage of Flash Actionscript, without worrying about Flash’s inherent search engine liabilities.</p>
 									</div>
 								</div>
 					
@@ -61,9 +61,9 @@
 												<li>naming & logo</li>
 												<li>positioning</li>
 												<li>branded message</li>
-												<li>gritty photography</li>
+												<li>art direct photography</li>
 												<li>flash actionscript</li>
-												<li>site admin tool</li>
+												<li>site admin tools</li>
 											</ul>
 										</div>
 									</div>
@@ -81,7 +81,11 @@
 											</div>
 											<div id='' class='result'>
 												<span id='result-arrow'><span id='arrow-text' class='capitalize bold green-text'>year:3</span></span>
-												<span id='result-text' class='gray-text'>The fleet has grown 7 fold, revenue increased 1,00%, and the owner unofficially 'retired' from daily operations.</span>
+												<span id='result-text' class='gray-text'>The fleet has grown 7 fold, revenue increased 1,000%, and the owner unofficially 'retired' from daily operations.</span>
+											</div>
+											<div id='' class='result'>
+												<span id='result-arrow'><span id='arrow-text' class='capitalize bold green-text'>year:4</span></span>
+												<span id='result-text' class='gray-text'>The fleet doubled again, and IBEX is moving to expand internationally.</span>
 											</div>
 										</div>
 									</div>

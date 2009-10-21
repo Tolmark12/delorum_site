@@ -70,7 +70,7 @@
 									<div id='bevy-content-right-bottom' class='content-right-bottom'>
 										<h4><span class='uppercase orange-text'>the result:</span></h4>
 										<div id='' class='results'>
-											<p>Bevy rapidly became one of the richest user experiences on Facebook. Just a few months after launch, Bevy boasted over 45,000 active users and  received unanimous 5-Star reviews from appreciative users.</p>
+											<p>Bevy rapidly became one of the richest user experiences on Facebook. Just a few months after launch, Bevy boasted over 45,000 active users and has received unanimous 5-Star reviews from appreciative users.</p>
 										</div>
 									</div>
 								</div>

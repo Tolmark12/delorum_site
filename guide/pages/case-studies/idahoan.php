@@ -36,7 +36,7 @@
 
 						<div id='idahoan-page-header' class='page-header'>						
 							<div id='idahoan-content-top' class='content-top'>
-								<p>After brief and unsuccessful online branding efforts with two major agencies, Idahoan contracted with Delorum to help reposition their online brand directly to consumers. Our task included a shift toward consumers via design, usability and a fully administrable site.</p>
+								<p>After brief and unsuccessful online branding efforts with two major agencies, Idahoan contracted with Delorum to help reposition to consumers and build a Magento database of customers. Our task included a shift toward consumers via design, usability and a fully administrable site.</p>
 							</div>
 						</div>
 
@@ -47,9 +47,10 @@
 								<div id='idahoan-content-left' class='content-left'>
 									<h4><span class='uppercase orange-text'>solution:</span></h4>
 									<div id='idahoan-content-left-body' class='content-left-body'>
-										<p>We created detailed requirements documentation and architectural wireframes to help weigh benefits and long term ROI.</p>
-										<p>From market research, we identified customer motivations and communication targets, then redesigned the site to hit those objectives. At the same time, we created custom web tools to extend marketing efforts and bring web management and customer database inhouse.</p>
-										<p>Features anticipate future development, allowing expansion without expensive retooling.</p>
+										<p>We created detailed requirements documentation and architectural wireframes to help outline content, weigh the benefits of potential solutions, and determine long term ROI.</p>
+										<p>From market research, we identified customer motivations and communication targets, then designed a Magento web site to hit those objectives. At the same time, we created custom Magento database tools to extend marketing efforts and bring backend management and customer database inhouse.</p>
+										<p>Specifically, we used a Magento installation to hijack the backend administration for products, recipes and coupons. We extended the Magento database to allow extensive filtering and email management capabilities. We also used the Magento URL management to move search engine results to the top 3 overnight.</p>
+										<p>All said, all features allow for future expansion without expensive retooling.</p>
 									</div>
 									
 									<img src='../../media/images/pages/case-studies/idahoan/highlight.png' atl='highlight'/>
@@ -60,13 +61,13 @@
 										<h4><span class='uppercase orange-text'>deliverables:</span></h4>
 										<div id='deliverables' class='capitalize italic bold'>
 											<ul>
-												<li>project architecture</li>
-												<li>future expansion</li>
+												<li>branded, frontend design</li>
+												<li>custom magento backend</li>
 												<li>design objectives</li>
-												<li>market positioning</li>
-												<li>site admin tools</li>
-												<li>project ROI</li>
-												<li>customer database</li>
+												<li>improved market position</li>
+												<li>magento admin tools</li>
+												<li>ROI projections</li>
+												<li>magento customer database</li>
 												<li>online coupons</li>
 											</ul>
 										</div>
@@ -75,7 +76,7 @@
 									<div id='idahoan-content-right-bottom' class='content-right-bottom'>
 										<h4><span class='uppercase orange-text'>the result:</span></h4>
 										<div id='' class='results'>
-											<p>3 days after launch, Idahoan’s coupon distribution exceeded the entire previous year, with over 85% going to targeted first time customers. In the ensuing 5 months, the new site built a customer database over 25,000 strong and repositioned their online image above category leader Betty Crocker. The site is also completely administered by a single employee through simple administrative tools.</p>
+											<p>3 days after launch, Idahoan’s coupon distribution exceeded the entire previous year, with over 85% going to targeted first time customers. In the ensuing 5 months, the new Magento web site built a customer database over 25,000 strong, and helped overtake leader, Betty Crocker. The site is currently administered by a single employee through simple administrative tools.</p>
 											<p>Together, these changes saved Idahoan over $20,000 in administration, customer service and mailing costs within the first 5 months.</p>
 										</div>
 									</div>

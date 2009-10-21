@@ -22,7 +22,7 @@
 				<div id='magento-ecommerce-page-top' class='page-top'>
 					<div id='magento-ecommerce-header' class='header'>
 						<div id='magento-ecommerce-header-text' class='header-text'>
-							<p><span class='header-text-title'>rEvolutionary Tools:</span> Beginning with Magento, we provide a range of ecommerce tools to grow with you. Plug into custom development and ongoing  support to discover an entirely new set of options.</p>
+							<p><span class='header-text-title'>rEvolutionary Tools:</span> Our Magento team is stellar, with a host of enterprise-level Magento extensions built to improve your bottom line. Plug into our custom development, and discover an entirely new set of options.</p>
 						</div>
 						<div id='magento-ecommerce-header-image' class='header-images services-header-image'>
 							<div id='image'>
@@ -42,7 +42,7 @@
 								<div id='magento-ecommerce-content-left' class='content-left services-content-left'>
 									<h4><span class='uppercase brown-text bold'>integrated technologies</span></h4>
 									<div id='magento-ecommerce-content-left-body' class='content-left-body services-content-left-body'>
-										<p>We build on the Magento Platform, which provides extensive tools, flexibility and support in what we think will rapidly prove to be the web’s most flexible ecommerce platform. But we also supplement Magento with industry leading tools, custom software development and open source applications to provide cost effective solutions tailored to meet each clients‘ needs. In doing so, we’ve pioneered the integration of Magento with these leading technologies:</p>
+										<p>We build from a Magento commerce installation, which provides extensive tools, flexibility and support in what we think will rapidly prove to the web’s most flexible ecommerce platform. But we also supplement Magento ecommerce with industry leading tools, custom software development and open source applications to provide cost effective solutions tailored to meet each clients‘ needs. In doing so, we’ve pioneered the Magento integration with these leading technologies:</p>
 										<div id='' class='feature brown-text capitalize'>
 											<ul>
 												<li>endeca: search & guided navigation</li>
@@ -52,16 +52,16 @@
 											</ul>
 										</div>
 										
-										<p>We’ve also developed the following custom Magento features during recent projects:</p>
+										<p>We’ve also provided custom Magento development for the following Magento modules:</p>
 										<div id='' class='feature brown-text capitalize'>
 											<ul>
-												<li>simplified checkout</li>
-												<li>enhanced customer database + exports</li>
+												<li>simplified magento checkout</li>
+												<li>enhanced magento customer database + exports</li>
 												<li>mass product attribute edits</li>
 												<li>mass product image uploads</li>
-												<li>firstData gift card integration</li>
-												<li>enhanced account features (move all to bag/Wishlist, email friend)</li>
-												<li>enhanced CSR features (edit order)</li>
+												<li>firstData / magento gift card integration</li>
+												<li>enhanced magento customer account features (move all to bag/Wishlist, email friend)</li>
+												<li>enhanced magento CSR features (edit order)</li>
 											</ul>
 										</div>
 									</div>

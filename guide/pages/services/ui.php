@@ -22,7 +22,7 @@
 				<div id='ui-page-top' class='page-top'>
 					<div id='ui-header' class='header'>
 						<div id='ui-header-text' class='header-text'>
-							<p><span class='header-text-title'>Digital Wayfinding (UI):</span> Intuitive. User Friendly. Effective. We combine information architecture, design and technology to help users see the forest through the trees.</p>
+							<p><span class='header-text-title'>Digital Wayfinding (UI):</span> Intuitive, user friendly and effective – You can get there from here, without restrictive Magento templates.</p>
 						</div>
 						<div id='ui-header-image' class='header-images services-header-image'>
 							<div id='image'>
@@ -40,10 +40,10 @@
 						<div id='ui-page-body' class='page-body services-page-body'>
 							<div id='ui-content-body' class='content-body services-content-body'>
 								<div id='ui-content-left' class='content-left services-content-left'>
-									<h4><span class='uppercase brown-text bold'>maslow's hierarchy online</span></h4>
+									<h4><span class='uppercase brown-text bold'>maslow's hierarchy, online</span></h4>
 									<div id='ui-content-left-body' class='content-left-body services-content-left-body'>
-										<p>There’s a mix of phsycology, design and functionality behind an intuitive user interface. We combine design, interactivity and communication expertise to create a technically superb, intuitive interface that’s still brand centric.</p>
-										<p><span class='bold'>The results are easy to see.</span> Our portfolio of client sites are user friendly, targeted experiences that help strengthen brands and connect with customers. Our design typically enhances usability, conversion, and adds a little kick to customer perception.</p>
+										<p>There’s a mix of phsycology, design and functionality behind an intuitive user interface. Adding a team of Magento experts to the mix of design, interactivity and communication expertise allows us to create a technically superb, intuitive interface that’s still brand centric.</p>
+										<p><span class='bold'>The results are easy to see.</span> Our client sites are user friendly, targeted experiences that help strengthen brands and connect with customers. Our UI design enhances usability, conversion, and puts customer perception on the right path.</p>
 									</div>
 								</div>
 					
