@@ -1,0 +1,5 @@
+{
+	"services" : {
+		"getCaseStudiesData" : "http://www.delorum.com/delorum_site/guide/media/flash/dev/case-studies-rotator/content/json/case-studies.json"
+	}
+}
