@@ -24,6 +24,9 @@ public class BrowserUrlChanged extends SimpleCommand implements ICommand
 			echo( pages );
 			portfolioProxy.makeStubSemiActiveByName( pages[2], pages[3] == "case_study");
 		}
+		else if( aboutProxy != null ) {
+			echo( "Add the about us changes in here..." );
+		}
 	}
 }
 }

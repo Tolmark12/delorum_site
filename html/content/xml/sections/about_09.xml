@@ -1,0 +1,20 @@
+<ABOUT>
+	<css>
+		h1{
+	   		display:block;
+	   		font-size:14;
+	   		color:#FFFFFF;
+	   		}
+	 	h2{
+	   		display:block;
+	   		font-size:12;
+	   		color:#FFFFFF;
+		}
+		p{
+			color:#222222;
+		}
+		a:hover{
+			text-decoration:underline;
+		}
+	</css>
+</ABOUT>

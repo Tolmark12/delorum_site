@@ -96,7 +96,7 @@ public class Home extends Sprite
 		_leftBtn.titleTxt.x = 0;
 		_leftBtn.icons.x = _leftBtn.titleTxt.width;
 		
-		var newColorTransform:ColorTransform = _leftBtn.icons.transform.colorTransform;
+		newColorTransform = _leftBtn.icons.transform.colorTransform;
 		newColorTransform.color = 0xD65C23;
 		_leftBtn.icons.transform.colorTransform = newColorTransform;
 		

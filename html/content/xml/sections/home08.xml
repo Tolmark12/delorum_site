@@ -23,7 +23,7 @@
 		   }
 		</blurb>
 	</css>
-	<image src="content/images/shared/e_commerce.jpg" />
+	<image src="content/images/shared/e_commerce_live.jpg" />
 	<blurbs>
 		<leftBlurb>
 			<h1>Design and Branding</h1>
@@ -33,11 +33,27 @@
 		<rightBlurb>
 			<h1>E-Commerce</h1>
 			<body>Launching an ecommerce site can be a lot like launching an army of robots (a nice-robots-that-sell-things sort of an army). We've developed an ecommerce primer to get your site launched and flowing smoothly with as little running amok as possible.</body>
-			<btn text="Ecommerce Survival Guide - Coming Oct 09..." url="/#/portfolio/Brand_Development/case_study" icon="NONE" />
+			<btn text="Ecommerce Survival Guide" url="http://www.delorumcommerce.com" icon="ARROW" />
 		</rightBlurb>
 	</blurbs>
 	
 	<slides>
+		<slide>
+			<img src="content/images/home/cards/dance.jpg" />
+			<h1>International Dance Festival Poster</h1>
+			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
+			<btns>
+				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
+			</btns>
+		</slide>
+		<slide>
+			<img src="content/images/home/cards/potandon2.jpg" />
+			<h1>Green Giant Packaging Redesign</h1>
+			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
+			<btns>
+				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
+			</btns>
+		</slide>
 		<slide href="#/portfolio/Ibex/case_study">
 			<img src="content/images/home/cards/ibex.jpg" />
 			<h1>Ibex Trucking Corporate Site Launch</h1>

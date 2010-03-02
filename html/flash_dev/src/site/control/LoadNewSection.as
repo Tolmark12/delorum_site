@@ -82,6 +82,17 @@ public class LoadNewSection extends SimpleCommand implements ICommand
 				aboutProxy.loadXml( navItem.xmlPath );
 			break;
 			
+			case "about_us_09" :
+				var aboutMediator09:AboutUsMediator_09 = new AboutUsMediator_09();
+				facade.registerMediator( aboutMediator09 );
+				aboutMediator09.make();
+				stageMediator.addNewSection( aboutMediator09 );
+				
+				var aboutProxy09:AboutUsProxy_09 = new AboutUsProxy_09();
+				facade.registerProxy( aboutProxy09 );
+				aboutProxy09.loadXml( navItem.xmlPath );
+			break;
+			
 			case "jobs" :
 				var jobsMediator:JobsMediator = new JobsMediator();
 				facade.registerMediator( jobsMediator );
