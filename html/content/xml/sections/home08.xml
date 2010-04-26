@@ -39,8 +39,8 @@
 	
 	<slides>
 		<slide>
-			<img src="content/images/home/cards/dance.jpg" />
-			<h1>International Dance Festival Poster</h1>
+			<img src="content/images/home/cards/thousand-springs3.jpg" />
+			<h1>Thousand Springs Plant Company Logo</h1>
 			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
 			<btns>
 				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
@@ -55,7 +55,7 @@
 			</btns>
 		</slide>
 		<slide href="#/portfolio/Ibex/case_study">
-			<img src="content/images/home/cards/ibex.jpg" />
+			<img src="content/images/home/cards/thousand-springs3.jpg" />
 			<h1>Ibex Trucking Corporate Site Launch</h1>
 			<body>We've recently launched a new corporate site for Ibex Trucking. The site extends Ibex's hard-working-no-nonsense brand. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated the authenticity of Ibex's working man corporate culture.</body>
 			<btns>

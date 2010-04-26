@@ -1,6 +1,6 @@
 <MAIN>
 	<page imageDir="idahoan/">
-		<row css="idahoan" background="content/images/portfolio/pages/idahoan/table.jpg" bgAlpha="0" >
+		<row css="idahoan" background="content/images/portfolio/pages/idahoan/table.jpg" bgColor="#FDF6DA" >
 			<col span="2">
 				<txt yMod="20">
 					<h1>Repositioning Idahoan Inside the Kitchen</h1><p>Delorum created several potential solutions, each based on the stated target. Working with Idahoan, we identified the directions which most closely matched the marketing criteria, and expanded those designs into a final direction housing the outlined functionality.</p>
@@ -25,14 +25,14 @@
 				<img yMod="60" src="rowsss.jpg" />
 			</col>
 		</row>
-		<row css="idahoan,padded">
+		<row css="idahoan,padded" bgColor="#F7F1DB">
 			<col span="2" align="center">
 				<txt xMod="148">
 					<h1></h1><p>Idahoan’s name and history are huge assets in the Instant Potato world, but those assets were carrying, rather than adding to their online presence. Delorum aided in a major shift toward consumers via design and usability.</p>
 				</txt>
 			</col>
 		</row>
-		<row totalColumns="1" css="idahoan" marginTop="20">
+		<row totalColumns="1" css="idahoan" marginTop="20" bgColor="#F7F1DB">
 			<col align="center">
 				<img src="browser.jpg" />
 			</col>

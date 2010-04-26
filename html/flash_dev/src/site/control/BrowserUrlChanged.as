@@ -11,10 +11,9 @@ public class BrowserUrlChanged extends SimpleCommand implements ICommand
 
 	override public function execute( note:INotification ):void
 	{
-		var newURL:String 				  = note.getBody() as String;
-		var navProxy:NavProxy 			  = facade.retrieveProxy( NavProxy.NAME ) as NavProxy;
-		var portfolioProxy:PortfolioProxy = facade.retrieveProxy( PortfolioProxy.NAME ) as PortfolioProxy;
-		
+		var newURL:String 				  	= note.getBody() as String;
+		var navProxy:NavProxy 			  	= facade.retrieveProxy( NavProxy.NAME ) as NavProxy;
+		var portfolioProxy:PortfolioProxy 	= facade.retrieveProxy( PortfolioProxy.NAME ) as PortfolioProxy;
 		var pages = newURL.split( "/" ); // ex: /page1/page2/page3
 		
 		if( pages[1] != navProxy.currentItemUrl ) {
@@ -24,9 +23,9 @@ public class BrowserUrlChanged extends SimpleCommand implements ICommand
 			echo( pages );
 			portfolioProxy.makeStubSemiActiveByName( pages[2], pages[3] == "case_study");
 		}
-		else if( aboutProxy != null ) {
-			echo( "Add the about us changes in here..." );
-		}
+		//else if( aboutProxy != null ) {
+		//	echo( "Add the about us changes in here..." );
+		//}
 	}
 }
 }
