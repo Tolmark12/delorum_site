@@ -36,11 +36,11 @@
 						<img src="content/images/portfolio/pages/logos2/neu_seed.gif" />
 						<img src="content/images/portfolio/pages/logos2/h_fudge.jpg" />
 						<img src="content/images/portfolio/pages/logos2/wilcox.gif" />
-						<img src="content/images/portfolio/pages/logos2/asher.jpg" />
+						<!-- <img src="content/images/portfolio/pages/logos2/asher.jpg" /> -->
 						<img src="content/images/portfolio/pages/logos2/olympus.jpg" />
 						<img src="content/images/portfolio/pages/logos2/middle_school.gif" />
 						<img src="content/images/portfolio/pages/logos2/tbooks.jpg" />
-						<img src="content/images/portfolio/pages/logos2/welibilew.gif" />
+						<!-- <img src="content/images/portfolio/pages/logos2/welibilew.gif" /> -->
 						<img src="content/images/portfolio/pages/logos2/heavens_best.jpg" />
 						<img src="content/images/portfolio/pages/logos2/ibex.gif" />
 						<img src="content/images/portfolio/pages/logos2/plum.jpg" />
@@ -98,7 +98,7 @@
 		<projectStub title="Idahoan Potatoes" image="idahoan.jpg" frameX="282" frameY="152" xml="idahoan.xml">
 			<row css="portfolio,rbn_idahoan" slideShowId="hss_idahoan" bgAlpha="0">
 	 			<col>
-	 				<txt><h1>Home Cooking Online</h1><p>Idahoan wanted to increase their marketshare by creating a stronger presence on the web. Idahoan contracted with Delorum to develop their online brand, and launch their corporate website.</p></txt>
+	 				<txt><h1>Home Cooking Online</h1><p>Idahoan wanted to increase their marketshare by creating a stronger presence on the web. To do so, they contracted with Delorum to develop their online brand, and launch their corporate website.</p></txt>
 	 				<btn event="SHOW_CASE_STUDY" yMod="270"/>
 					<!--btn text="Launch Web Site" url="http://www.idahoan.com/" yMod="280" icon="WEB" /-->
 				</col>

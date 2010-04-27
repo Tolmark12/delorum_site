@@ -49,6 +49,7 @@ public class Buttons extends Sprite
 			newColorTransform.color = 0x6E6D6A;
 			btn.titleTxt.transform.colorTransform = newColorTransform;
 		}
+		
 	}
 	
 	// _____________________________ Event handlers

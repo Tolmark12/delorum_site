@@ -23,7 +23,7 @@
 		   }
 		</blurb>
 	</css>
-	<image src="content/images/shared/e_commerce.jpg" />
+	<image src="content/images/shared/e_commerce_live.jpg" />
 	<blurbs>
 		<leftBlurb>
 			<h1>Design and Branding</h1>
@@ -33,15 +33,15 @@
 		<rightBlurb>
 			<h1>E-Commerce</h1>
 			<body>Launching an ecommerce site can be a lot like launching an army of robots (a nice-robots-that-sell-things sort of an army). We've developed an ecommerce primer to get your site launched and flowing smoothly with as little running amok as possible.</body>
-			<btn text="Ecommerce Survival Guide - Coming Oct 09..." url="/#/portfolio/Brand_Development/case_study" icon="NONE" />
+			<btn text="Ecommerce Survival Guide" url="http://www.delorumcommerce.com" icon="ARROW" />
 		</rightBlurb>
 	</blurbs>
 	
 	<slides>
 		<slide href="#/portfolio/Ibex/case_study">
 			<img src="content/images/home/cards/ibex.jpg" />
-			<h1>Ibex Trucking Corporate Site Launch</h1>
-			<body>We've recently launched a new corporate site for Ibex Trucking. The site extends Ibex's hard-working-no-nonsense brand. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated the authenticity of Ibex's working man corporate culture.</body>
+			<h1>IBEX Corporate Site Launch</h1>
+			<body>We've recently launched a new corporate site for Industrial trucking company IBEX Incorporated. The site branding draws heavily from their hard-working-no-nonsense corporate culture. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated their organization's authenticity.</body>
 			<btns>
 				<btn text="Ibex Branding Case Study" url="#/portfolio/Ibex/case_study" icon="CASE_HOME" />
 				<btn text="Launch Web Site" url="http://www.ibexincorporated.com" icon="WEB" />

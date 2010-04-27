@@ -55,10 +55,13 @@ public class Home extends Sprite
 		_addButtons( $vo );
 		
 		// Lower right image
-		trace( $vo.lowerRightImage );
 		var ldr:ImageLoader = new ImageLoader( $vo.lowerRightImage, _imageHolder );
 		ldr.addEventListener( Event.COMPLETE, _handleImageLoaded );
 		ldr.loadItem();
+		_imageHolder.buttonMode = true;
+		_imageHolder.addEventListener( MouseEvent.CLICK, _onImageClick, false,0,true );
+		
+		// Make visible
 		this.visible = true;
 	}
 	
@@ -81,11 +84,11 @@ public class Home extends Sprite
 		newColorTransform.color = 0x636565;
 		_rightBtn.titleTxt.transform.colorTransform = newColorTransform;
 		
-		_rightBtn.buttonMode = false;
-		_rightBtn.mouseEnabled = false;
-		//_rightBtn.addEventListener( MouseEvent.MOUSE_OVER, _onMouseOver, false,0,true );
-		//_rightBtn.addEventListener( MouseEvent.MOUSE_OUT, _onMouseOut, false,0,true );
-		//_rightBtn.dispatchEvent(new Event(MouseEvent.MOUSE_OUT));
+		//_rightBtn.buttonMode = false;
+		//_rightBtn.mouseEnabled = false;
+		_rightBtn.addEventListener( MouseEvent.MOUSE_OVER, _onMouseOver, false,0,true );
+		_rightBtn.addEventListener( MouseEvent.MOUSE_OUT, _onMouseOut, false,0,true );
+		_rightBtn.dispatchEvent(new Event(MouseEvent.MOUSE_OUT));
 		
 		_leftBtn.text 	= $vo.xml.blurbs.leftBlurb.btn.@text;
 		_leftBtn.icon 	= $vo.xml.blurbs.leftBlurb.btn.@icon;
@@ -96,7 +99,7 @@ public class Home extends Sprite
 		_leftBtn.titleTxt.x = 0;
 		_leftBtn.icons.x = _leftBtn.titleTxt.width;
 		
-		var newColorTransform:ColorTransform = _leftBtn.icons.transform.colorTransform;
+		newColorTransform = _leftBtn.icons.transform.colorTransform;
 		newColorTransform.color = 0xD65C23;
 		_leftBtn.icons.transform.colorTransform = newColorTransform;
 		
@@ -133,6 +136,11 @@ public class Home extends Sprite
 		_imageHolder.y = 500;
 		_imageHolder.alpha = 0;
 		Tweener.addTween( _imageHolder, { alpha:1, time:1, transition:"EaseInOutQuint"} );
+	}
+	
+	private function _onImageClick ( e:Event ):void {
+		trace( _rightBtn.url  );
+		navigateToURL(new URLRequest( _rightBtn.url ), "_blank" );
 	}
 
 }

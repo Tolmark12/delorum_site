@@ -13,6 +13,7 @@ import delorum.utils.Sequence;
 import flash.filters.*;
 import flash.net.navigateToURL;
 import flash.net.URLRequest;
+import delorum.loading.ImageLoader;
 
 public class HomeSlideShow extends Sprite
 {
@@ -24,9 +25,12 @@ public class HomeSlideShow extends Sprite
 	private var _currentBtn:SlideBtn;
 	private var _currentSlide:SlideImage;
 	private var _buttons:Buttons = new Buttons();;
+	private var _headerImage:Sprite = new Sprite();
+	
 	
 	public function HomeSlideShow():void
 	{
+		this.addChild( _headerImage )
 		this.addChild( _slideBtnHolder );
 		this.addChild( _txt );
 		this.addChild( _buttons );
@@ -71,6 +75,13 @@ public class HomeSlideShow extends Sprite
 		_currentBtn = _sequence.currentItem;
 		_sequence.next();
 		_currentBtn.dispatchEvent( new MouseEvent(MouseEvent.CLICK, true) );
+		
+		// Add header:
+		_headerImage.y = -20
+		_headerImage.x = _slideBtnHolder.x;
+		var ldr:ImageLoader = new ImageLoader( "content/images/shared/our_latest_work.png", _headerImage );
+		//ldr.addEventListener( Event.COMPLETE, _handleImageLoaded );
+		ldr.loadItem();
 	}
 	
 	// _____________________________ Event Handlers
