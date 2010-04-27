@@ -38,10 +38,26 @@
 	</blurbs>
 	
 	<slides>
+		<slide>
+			<img src="content/images/home/cards/thousand-springs3.jpg" />
+			<h1>Thousand Springs Plant Company Logo</h1>
+			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
+			<btns>
+				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
+			</btns>
+		</slide>
+		<slide>
+			<img src="content/images/home/cards/potandon2.jpg" />
+			<h1>Green Giant Packaging Redesign</h1>
+			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
+			<btns>
+				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
+			</btns>
+		</slide>
 		<slide href="#/portfolio/Ibex/case_study">
-			<img src="content/images/home/cards/ibex.jpg" />
-			<h1>IBEX Corporate Site Launch</h1>
-			<body>We've recently launched a new corporate site for Industrial trucking company IBEX Incorporated. The site branding draws heavily from their hard-working-no-nonsense corporate culture. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated their organization's authenticity.</body>
+			<img src="content/images/home/cards/thousand-springs3.jpg" />
+			<h1>Ibex Trucking Corporate Site Launch</h1>
+			<body>We've recently launched a new corporate site for Ibex Trucking. The site extends Ibex's hard-working-no-nonsense brand. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated the authenticity of Ibex's working man corporate culture.</body>
 			<btns>
 				<btn text="Ibex Branding Case Study" url="#/portfolio/Ibex/case_study" icon="CASE_HOME" />
 				<btn text="Launch Web Site" url="http://www.ibexincorporated.com" icon="WEB" />

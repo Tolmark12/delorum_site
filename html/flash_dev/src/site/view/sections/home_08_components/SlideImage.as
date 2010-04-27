@@ -13,6 +13,7 @@ import delorum.utils.EchoMachine;
 import delorum.utils.echo;
 import delorum.loading.ImageLoader;
 import site.view.StageMediator;
+import flash.geom.Matrix;
 
 public class SlideImage extends Sprite
 {
@@ -88,7 +89,7 @@ public class SlideImage extends Sprite
 	  	var time:Number = 0.8;
 	  	TweenMax.to(_image, time, params);
 	  	TweenMax.to(_image, time + 0.2, params2);
-		TweenMax.to(_image, time - 0.3, {rotationX:0, rotationY:0, ease:Linear.easeNone});
+		TweenMax.to(_image, time - 0.3, {rotationX:0, rotationY:0, ease:Linear.easeNone, onComplete:_fixBlur });
 	
 	  	// _____________________________ Shadow
 	
@@ -114,6 +115,10 @@ public class SlideImage extends Sprite
 	
 	  	TweenMax.to(_shadow, time, params);
 	  	TweenMax.to(_shadow, time + 0.2, params2);
+	}
+	
+	private function _fixBlur (  ):void {
+		_image.transform.matrix = new Matrix();
 	}
 	
 	private function _makeInvisible (  ):void

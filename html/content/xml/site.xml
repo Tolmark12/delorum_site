@@ -10,6 +10,9 @@
 		<nav_item section="about" contentType="about_us" xml="sections/about.xml" colorScheme="orange" clickAction="newSection" >
 			<title>About</title>
 		</nav_item>
+		<nav_item section="about_09" contentType="about_us_09" xml="sections/about_09.xml" colorScheme="orange" clickAction="newSection" >
+			<title>About - New</title>
+		</nav_item>
 		<nav_item section="contact" contentType="contact" colorScheme="tan" clickAction="sendNotification" clickActionParam="SHOW_CONTACT_INFO">
 			<title>Contact</title>
 		</nav_item>

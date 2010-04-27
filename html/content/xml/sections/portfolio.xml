@@ -10,9 +10,8 @@
 			<row css="portfolio,white_h1" slideShowId="hss_ibex" bgAlpha="0">
 				<col>
 					<txt><h1>Ibex Trucking</h1><p>Ibex understands the value of design and branding. Delorum partnered with Ibex to craft a competitive brand and a strong web presence.</p></txt>
-					<!-- btn event="SHOW_CASE_STUDY" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
-					<btn event="SHOW_CASE_STUDY" text="Ibex Branding Case Study" xmlFile="0"  yMod="280"  />
-					<!-- btn text="Launch Web Site" url="http://www.ibexincorporated.com" yMod="280" icon="WEB" /-->
+					<btn event="SHOW_CASE_STUDY" text="Ibex Branding Case Study"  xmlFile="1"  yMod="250"  />
+					<btn text="Launch Web Site" url="http://www.ibexincorporated.com" yMod="280" icon="WEB" />
 				</col>
 				<col span="2" float="right">
 					<slideShow id="hss_ibex">
@@ -23,7 +22,7 @@
 				</col>
 			</row>
 		</projectStub>	
-		<projectStub title="Brand Development" image="logos_big_1.jpg" frameX="326" frameY="8" xml="olympus.xml,heavens_best.xml" >
+		<projectStub title="Brand Development" image="logos3.jpg" frameX="565" frameY="94" xml="olympus.xml,heavens_best.xml" >
 			<row css="portfolio" slideShowId="hss_logos" bgAlpha="0">
 				<col>
 					<txt><h1>Selected Logos</h1><p>Delorum has designed over 40</p><p>logos for various brands. Here's</p><p>a few of our favorites.</p></txt>
@@ -33,33 +32,32 @@
 				<col span="2" float="right">
 					<slideShow id="hss_logos">
 						<img src="__blank__"  />
-						<img src="content/images/portfolio/pages/logos2/neu_seed.gif" />
-						<img src="content/images/portfolio/pages/logos2/h_fudge.jpg" />
+						<img src="content/images/portfolio/pages/logos2/monkey_bars2.jpg" />
+						<img src="content/images/portfolio/pages/logos2/thousand_springs.jpg" />
 						<img src="content/images/portfolio/pages/logos2/wilcox.gif" />
-						<!-- <img src="content/images/portfolio/pages/logos2/asher.jpg" /> -->
 						<img src="content/images/portfolio/pages/logos2/olympus.jpg" />
-						<img src="content/images/portfolio/pages/logos2/middle_school.gif" />
-						<img src="content/images/portfolio/pages/logos2/tbooks.jpg" />
-						<!-- <img src="content/images/portfolio/pages/logos2/welibilew.gif" /> -->
+						<img src="content/images/portfolio/pages/logos2/neu_seed2.gif" />
+						<!-- <img src="content/images/portfolio/pages/logos2/middle_school.gif" /> -->
+						<img src="content/images/portfolio/pages/logos2/talking-books.gif" />
 						<img src="content/images/portfolio/pages/logos2/heavens_best.jpg" />
-						<img src="content/images/portfolio/pages/logos2/ibex.gif" />
-						<img src="content/images/portfolio/pages/logos2/plum.jpg" />
+						<img src="content/images/portfolio/pages/logos2/welibilew.jpg" />
+						<img src="content/images/portfolio/pages/logos2/ibex.jpg" />
+						<img src="content/images/portfolio/pages/logos2/plum2.jpg" />
 						<img src="content/images/portfolio/pages/logos2/scrapbook.jpg" />
-						<img src="content/images/portfolio/pages/logos2/monkey_bars.jpg" />
-						<img src="content/images/portfolio/pages/logos2/teton.gif" />
-						<img src="content/images/portfolio/pages/logos2/spencermarston.jpg" />
-						<img src="content/images/portfolio/pages/logos2/yellowstone.gif" />
-						<img src="content/images/portfolio/pages/logos2/zion.gif" />
+						<img src="content/images/portfolio/pages/logos2/spencermarston2.jpg" />
+						<img src="content/images/portfolio/pages/logos2/asher-2.jpg" />
+						<img src="content/images/portfolio/pages/logos2/yellowstone2.gif" />
+						<img src="content/images/portfolio/pages/logos2/h_fudge.jpg" />
 					</slideShow>
 				</col>
 			</row>
 		</projectStub>
-		<projectStub title="Zumiez" image="zumiez.jpg" frameX="370" frameY="64" xml="zumiez.xml" >
+		<projectStub title="Zumiez" image="zumiez-2.jpg" frameX="545" frameY="73" xml="zumiez.xml" >
 			<row css="portfolio,rbn_zumiez" slideShowId="hss_zumiez" bgAlpha="0" columnPadding="5" >
 				<col>
 					<txt><h1>Zumiez eCommerce Replatform</h1><p>Zumiez contacted Delorum to port their existing site to a new platform. The site relaunch entailed user interface design upgrades, massive site architecture, and no small degree of programatic wizardry.</p></txt>
 					<!-- btn event="SHOW_CASE_STUDY" text="Ibex Website Case Study"  xmlFile="1"  yMod="250"  /-->
-					<!-- btn text="Launch Web Site" url="http://www.zumiez.com/guys.html" yMod="250" icon="WEB" color="000000" /-->
+					<btn text="Launch Web Site" url="http://www.zumiez.com/guys/snow-outerwear.html" yMod="250" icon="WEB" color="000000" />
 					<btn event="SHOW_CASE_STUDY" text="Full case study coming soon..." inactive="true" xmlFile="0"  yMod="280" icon="NONE" color="000000" />
 				</col>
 				<col span="2" float="right">
