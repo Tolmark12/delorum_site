@@ -16,7 +16,7 @@
 		   	font-size:14;
 		   	color:#636565;
 		   }
-		   h1{
+		   h1 {
 		   	display:block;
 		   	font-size:15;
 		   	color:#D65C23;
@@ -39,11 +39,43 @@
 	
 	<slides>
 		<slide>
-			<img src="content/images/home/cards/thousand-springs3.jpg" />
-			<h1>Thousand Springs Plant Company Logo</h1>
+			<img src="content/images/home/cards/justin.jpg" />
+			<h1>Justin Cash</h1>
+			<body>Tiny brick sells software modules for the popular eCommerce framework Magento.</body>
+			<btns>
+				<btn text="Launch Web Site" url="http://www.tinybrick.com/" icon="WEB" />
+			</btns>
+		</slide>
+		<slide>
+			<img src="content/images/home/cards/tiny-brick.jpg" />
+			<h1>TinyBrick - Naming, Branding & Site Design</h1>
+			<body>Tiny brick sells software modules for the popular eCommerce framework Magento.</body>
+			<btns>
+				<btn text="Launch Web Site" url="http://www.tinybrick.com/" icon="WEB" />
+			</btns>
+		</slide>
+		<slide>
+			<img src="content/images/home/cards/allen-bros.jpg" />
+			<h1>Allen Brothers Steaks - Resetting the Table</h1>
+			<body>Allen Brothers Steaks provides the finest beef in the country and needed a website to match. Delorum teamed up with Allen Brothers to reposition their online brand experience and provide a new ecommerce platform. While maintaining the integrity that Allen Brothers has built over the last 120 years we provided them with the technology to administer their users experience. </body>
+			<btns>
+				<btn text="Launch Web Site" url="http://www.kielphoto.com/" icon="WEB" />
+			</btns>
+		</slide>
+		<slide>
+			<img src="content/images/home/cards/eric-kiel2.jpg" />
+			<h1>Eric Kiel Photography Site Launch</h1>
+			<body>Kiel's work spans a diverse range of subject matter, and his site needed to strike a balance between showcasing his client work and giving access to his large stock catalogue. Our design keeps his work front and center with minimal user interface. A powerful backend administration system gives Kiel's staff control over updates and site edits.</body>
+			<btns>
+				<btn text="Launch Web Site" url="http://www.kielphoto.com/" icon="WEB" />
+			</btns>
+		</slide>
+		<slide>
+			<img src="content/images/home/cards/emeril2.jpg" />
+			<h1>Emeril's Red Marble Steaks Website</h1>
 			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
 			<btns>
-				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
+				<btn text="Launch Web Site" url="http://www.redmarblesteaks.com/" icon="WEB" />
 			</btns>
 		</slide>
 		<slide>
@@ -52,15 +84,6 @@
 			<body>We've redesigned Green Giant's Klondike line of potatoes to emphasize delicious taste and freshness. Rich photography of prepared dishes sets the Klondike line apart from competitor products typically packaged in low end bags.</body>
 			<btns>
 				<btn text="View Our Full Design Portfolio" url="#/portfolio/" icon="CASE_HOME" />
-			</btns>
-		</slide>
-		<slide href="#/portfolio/Ibex/case_study">
-			<img src="content/images/home/cards/thousand-springs3.jpg" />
-			<h1>Ibex Trucking Corporate Site Launch</h1>
-			<body>We've recently launched a new corporate site for Ibex Trucking. The site extends Ibex's hard-working-no-nonsense brand. In preparation for the site redesign, Delorum worked closely with photographer Eric Kiel to create imagery that communicated the authenticity of Ibex's working man corporate culture.</body>
-			<btns>
-				<btn text="Ibex Branding Case Study" url="#/portfolio/Ibex/case_study" icon="CASE_HOME" />
-				<btn text="Launch Web Site" url="http://www.ibexincorporated.com" icon="WEB" />
 			</btns>
 		</slide>
 		<slide href="/#/portfolio/Brand_Development/case_study">

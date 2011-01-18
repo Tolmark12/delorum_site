@@ -82,14 +82,15 @@ public class SlideImage extends Sprite
 	  	var params2:Object = {
 	  		x			: 180,
 	  		y			: 180,
-	  		rotation 	: String(_image.rotation * -1)
+	  		rotation 	: String(_image.rotation * -1),
+			onComplete	:_fixBlur
 	  	}
 		
 		// Tween
 	  	var time:Number = 0.8;
 	  	TweenMax.to(_image, time, params);
 	  	TweenMax.to(_image, time + 0.2, params2);
-		TweenMax.to(_image, time - 0.3, {rotationX:0, rotationY:0, ease:Linear.easeNone, onComplete:_fixBlur });
+		TweenMax.to(_image, time - 0.3, {rotationX:0, rotationY:0, ease:Linear.easeNone  });
 	
 	  	// _____________________________ Shadow
 	
@@ -119,6 +120,8 @@ public class SlideImage extends Sprite
 	
 	private function _fixBlur (  ):void {
 		_image.transform.matrix = new Matrix();
+		_image.x = 180;
+		_image.y = 180;
 	}
 	
 	private function _makeInvisible (  ):void
