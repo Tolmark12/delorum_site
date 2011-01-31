@@ -1,13 +1,16 @@
+general:
+  writable_directories: []
+
 web:
   document_root: '/html'
   index_list: [index.html, index.php]
-  # far_future_expires: false
-  # locations:
-  #   -
-  #     path: /test/new.txt
-  #     permissions:
-  #       -
-  #         rule: deny
-  #         who: all
-  # error_pages:
-  #   "404": /error.php
+  far_future_expires: false
+  locations:
+    -
+      path: /test/new.txt
+      permissions:
+        -
+          rule: deny
+          who: all
+  error_pages:
+    "404": /error.php
